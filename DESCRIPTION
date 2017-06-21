@@ -1,0 +1,25 @@
+Package: stevemisc
+Type: Package
+Title: Miscellaneous functions that Only Steve Finds Useful
+Version: 0.1.0
+Authors@R: c(
+    person("Steve", "Miller", email = "steven.v.miller@gmail.com",
+    role = c("aut", "cre"))
+    )
+Description: These are miscellaneous scripts that I find useful for my research.
+    This includes a better/faster "peace-year" function for binary time-series
+    cross-section (BTSCS) research, my default ggplot theme that's flexible and
+    aesthetically pleasing for LaTeX and the web, and a function for plotting
+    levels of a random effect from a mixed effects model.
+License: GPL (>=2)
+BugReports: https://github.com/svmiller/stevemisc/issues
+Encoding: UTF-8
+LazyData: true
+Imports:
+    tidyverse,
+    broom
+Suggests:
+    lme4,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
