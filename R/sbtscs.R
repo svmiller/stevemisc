@@ -18,6 +18,7 @@ sbtscs <- function (data, event, tvar, csunit, pad.ts = FALSE)
   tvar <- quo_name(tvar)
   event <- quo_name(event)
   csunit <- quo_name(csunit)
+  # Taken from Dave Armstrong's DAMisc package.
   data$orig_order <- 1:nrow(data)
   data <- data[order(data[[csunit]], data[[tvar]]), ]
   spells <- function(x) {

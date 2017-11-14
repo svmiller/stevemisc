@@ -4,7 +4,7 @@ theme_steve <- function() {
           plot.caption=element_text(hjust=1, size=9,
                                     margin=margin(t=10),
                                     face="italic"),
-          plot.title=element_text(hjust=0, size=14,
+          plot.title=element_text(hjust=0, size=18,
                                   margin=margin(b=10),
                                   face="bold"),
           axis.title.y=element_text(size=12,hjust=1,

@@ -1,4 +1,6 @@
 show_ranef <- function(data, grp, reorder = TRUE){
+  require(broom)
+  # https://stackoverflow.com/questions/34344599/a-caterpillar-plot-of-just-the-significant-random-effects-from-a-mixed-effects
   augment.ranef.mer <- function(x,
                                 ci.level=0.9,
                                 reorder=TRUE,
@@ -36,7 +38,6 @@ show_ranef <- function(data, grp, reorder = TRUE){
               lb=estimate-ci.val*std.error,
               ub=estimate+ci.val*std.error)
   }
-  require(broom)
   require(ggplot2)
   data <- augment(ranef(data,condVar=TRUE))
   if(reorder) {
