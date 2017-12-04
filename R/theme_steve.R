@@ -9,6 +9,8 @@ theme_steve <- function() {
                                   face="bold"),
           axis.title.y=element_text(size=12,hjust=1,
                                     face="italic"),
-          axis.title.x=element_text(hjust=1, size=12, face="italic"))
+          axis.title.x=element_text(hjust=1, size=12, face="italic"),
+          legend.position = "bottom",
+          legend.title = element_text(face="bold"))
 
 }
