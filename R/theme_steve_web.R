@@ -20,26 +20,7 @@ theme_steve_web <- function() {
             plot.caption=element_text(hjust=1, size=9,
                                       margin=margin(t=10),
                                       face="italic"),
-            plot.title=element_text(hjust=0, size=16,
-                                    margin=margin(b=10),
-                                    face="bold", family='Titillium WebBold'),
-            plot.subtitle=element_text(hjust=0,
-                                       family='Open Sans'),
-            axis.title.y=element_text(size=10,hjust=1,
-                                      face="italic", family="Open Sans"),
-            axis.title.x=element_text(hjust=1, size=10, face="italic", family="Open Sans",
-                                      margin = margin(t = 10)), # , margin = margin(t = 10)
-            legend.position = "bottom",
-            legend.title = element_text(face="bold", family="Titillium WebBold"),
-            text=element_text(family="Open Sans"))
-  }
-  else {
-    theme_bw() +
-      theme(panel.border = element_blank(),
-            plot.caption=element_text(hjust=1, size=9,
-                                      margin=margin(t=10),
-                                      face="italic"),
-            plot.title=element_text(hjust=0, size=16,
+            plot.title=element_text(hjust=0, size=18,
                                     margin=margin(b=10),
                                     face="bold", family='Titillium Web'),
             plot.subtitle=element_text(hjust=0,
@@ -52,4 +33,29 @@ theme_steve_web <- function() {
             legend.title = element_text(face="bold", family="Titillium Web"),
             text=element_text(family="Open Sans"))
   }
+  else {
+    theme_bw() +
+      theme(panel.border = element_blank(),
+            plot.caption=element_text(hjust=1, size=9,
+                                      margin=margin(t=10),
+                                      face="italic"),
+            plot.title=element_text(hjust=0, size=18,
+                                    margin=margin(b=10),
+                                    face="bold", family='Titillium Web'),
+            plot.subtitle=element_text(hjust=0,
+                                       family='Open Sans'),
+            axis.title.y=element_text(size=10,hjust=1,
+                                      face="italic", family="Open Sans"),
+            axis.title.x=element_text(hjust=1, size=10, face="italic", family="Open Sans",
+                                      margin = margin(t = 10)), # , margin = margin(t = 10)
+            legend.position = "bottom",
+            legend.title = element_text(face="bold", family="Titillium Web"),
+            text=element_text(family="Open Sans"))
+  }
+}
+
+theme_steve_web2 <- function() {
+  theme_steve_web() +
+  theme(legend.title = element_text(family="Titillium WebBold"),
+        plot.title=element_text(family='Titillium WebBold'))
 }
