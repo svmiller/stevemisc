@@ -9,7 +9,7 @@ I cobbled together this data set of the professional clothes (polos, long-sleeve
 }
 \usage{data("steves_clothes")}
 \format{
-  A data frame with 70 observations on the following 4 variables.
+  A data frame with 72 observations on the following 4 variables.
   \describe{
     \item{\code{type}}{Type of clothing}
     \item{\code{brand}}{The brand of clothing (e.g. Apt. 9, Saddlebred)}
