@@ -1,0 +1,120 @@
+19/01/16 14:19:10 INFO SparkContext: Running Spark version 2.1.0
+19/01/16 14:19:10 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+19/01/16 14:19:10 INFO SecurityManager: Changing view acls to: svmille
+19/01/16 14:19:10 INFO SecurityManager: Changing modify acls to: svmille
+19/01/16 14:19:10 INFO SecurityManager: Changing view acls groups to: 
+19/01/16 14:19:10 INFO SecurityManager: Changing modify acls groups to: 
+19/01/16 14:19:10 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(svmille); groups with view permissions: Set(); users  with modify permissions: Set(svmille); groups with modify permissions: Set()
+19/01/16 14:19:10 INFO Utils: Successfully started service 'sparkDriver' on port 54672.
+19/01/16 14:19:10 INFO SparkEnv: Registering MapOutputTracker
+19/01/16 14:19:10 INFO SparkEnv: Registering BlockManagerMaster
+19/01/16 14:19:10 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+19/01/16 14:19:10 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+19/01/16 14:19:10 INFO DiskBlockManager: Created local directory at /private/var/folders/8c/c6h5vbk930bb83gh0b64f76w0000gn/T/blockmgr-d5227c22-5345-4085-9d87-33b011116bf5
+19/01/16 14:19:10 INFO MemoryStore: MemoryStore started with capacity 366.3 MB
+19/01/16 14:19:10 INFO SparkEnv: Registering OutputCommitCoordinator
+19/01/16 14:19:11 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+19/01/16 14:19:11 INFO SparkUI: Bound SparkUI to 127.0.0.1, and started at http://127.0.0.1:4040
+19/01/16 14:19:11 INFO SparkContext: Added JAR file:/Library/Frameworks/R.framework/Versions/3.4/Resources/library/sparklyr/java/sparklyr-2.1-2.11.jar at spark://127.0.0.1:54672/jars/sparklyr-2.1-2.11.jar with timestamp 1547666351030
+19/01/16 14:19:11 INFO Executor: Starting executor ID driver on host localhost
+19/01/16 14:19:11 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 54673.
+19/01/16 14:19:11 INFO NettyBlockTransferService: Server created on 127.0.0.1:54673
+19/01/16 14:19:11 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+19/01/16 14:19:11 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 127.0.0.1, 54673, None)
+19/01/16 14:19:11 INFO BlockManagerMasterEndpoint: Registering block manager 127.0.0.1:54673 with 366.3 MB RAM, BlockManagerId(driver, 127.0.0.1, 54673, None)
+19/01/16 14:19:11 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 127.0.0.1, 54673, None)
+19/01/16 14:19:11 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 127.0.0.1, 54673, None)
+19/01/16 14:19:11 WARN SparkContext: Using an existing SparkContext; some configuration may not take effect.
+19/01/16 14:19:11 INFO SharedState: Warehouse path is 'file:/Users/svmille/Dropbox/projects/stevemisc/spark-warehouse'.
+19/01/16 14:19:11 INFO HiveUtils: Initializing HiveMetastoreConnection version 1.2.1 using Spark classes.
+19/01/16 14:19:11 INFO HiveMetaStore: 0: Opening raw store with implemenation class:org.apache.hadoop.hive.metastore.ObjectStore
+19/01/16 14:19:12 INFO ObjectStore: ObjectStore, initialize called
+19/01/16 14:19:12 INFO Persistence: Property hive.metastore.integral.jdo.pushdown unknown - will be ignored
+19/01/16 14:19:12 INFO Persistence: Property datanucleus.cache.level2 unknown - will be ignored
+19/01/16 14:19:13 INFO ObjectStore: Setting MetaStore object pin classes with hive.metastore.cache.pinobjtypes="Table,StorageDescriptor,SerDeInfo,Partition,Database,Type,FieldSchema,Order"
+19/01/16 14:19:13 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MFieldSchema" is tagged as "embedded-only" so does not have its own datastore table.
+19/01/16 14:19:13 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MOrder" is tagged as "embedded-only" so does not have its own datastore table.
+19/01/16 14:19:14 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MFieldSchema" is tagged as "embedded-only" so does not have its own datastore table.
+19/01/16 14:19:14 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MOrder" is tagged as "embedded-only" so does not have its own datastore table.
+19/01/16 14:19:14 INFO MetaStoreDirectSql: Using direct SQL, underlying DB is DERBY
+19/01/16 14:19:14 INFO ObjectStore: Initialized ObjectStore
+19/01/16 14:19:14 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 1.2.0
+19/01/16 14:19:14 WARN ObjectStore: Failed to get database default, returning NoSuchObjectException
+19/01/16 14:19:15 INFO HiveMetaStore: Added admin role in metastore
+19/01/16 14:19:15 INFO HiveMetaStore: Added public role in metastore
+19/01/16 14:19:15 INFO HiveMetaStore: No user is added in admin role, since config is empty
+19/01/16 14:19:15 INFO HiveMetaStore: 0: get_all_databases
+19/01/16 14:19:15 INFO audit: ugi=svmille	ip=unknown-ip-addr	cmd=get_all_databases	
+19/01/16 14:19:15 INFO HiveMetaStore: 0: get_functions: db=default pat=*
+19/01/16 14:19:15 INFO audit: ugi=svmille	ip=unknown-ip-addr	cmd=get_functions: db=default pat=*	
+19/01/16 14:19:15 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MResourceUri" is tagged as "embedded-only" so does not have its own datastore table.
+19/01/16 14:19:15 INFO SessionState: Created local directory: /var/folders/8c/c6h5vbk930bb83gh0b64f76w0000gn/T/ed7bcbff-3370-4224-8dae-fe86f0b99459_resources
+19/01/16 14:19:15 INFO SessionState: Created HDFS directory: /tmp/hive/svmille/ed7bcbff-3370-4224-8dae-fe86f0b99459
+19/01/16 14:19:15 INFO SessionState: Created local directory: /var/folders/8c/c6h5vbk930bb83gh0b64f76w0000gn/T/svmille/ed7bcbff-3370-4224-8dae-fe86f0b99459
+19/01/16 14:19:15 INFO SessionState: Created HDFS directory: /tmp/hive/svmille/ed7bcbff-3370-4224-8dae-fe86f0b99459/_tmp_space.db
+19/01/16 14:19:15 INFO HiveClientImpl: Warehouse location for Hive client (version 1.2.1) is file:/Users/svmille/Dropbox/projects/stevemisc/spark-warehouse
+19/01/16 14:19:15 INFO HiveMetaStore: 0: get_database: default
+19/01/16 14:19:15 INFO audit: ugi=svmille	ip=unknown-ip-addr	cmd=get_database: default	
+19/01/16 14:19:15 INFO HiveMetaStore: 0: get_database: global_temp
+19/01/16 14:19:15 INFO audit: ugi=svmille	ip=unknown-ip-addr	cmd=get_database: global_temp	
+19/01/16 14:19:15 WARN ObjectStore: Failed to get database global_temp, returning NoSuchObjectException
+19/01/16 14:19:15 INFO SparkSqlParser: Parsing command: SHOW TABLES
+19/01/16 14:19:17 INFO HiveMetaStore: 0: get_database: default
+19/01/16 14:19:17 INFO audit: ugi=svmille	ip=unknown-ip-addr	cmd=get_database: default	
+19/01/16 14:19:17 INFO HiveMetaStore: 0: get_database: default
+19/01/16 14:19:17 INFO audit: ugi=svmille	ip=unknown-ip-addr	cmd=get_database: default	
+19/01/16 14:19:17 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+19/01/16 14:19:17 INFO audit: ugi=svmille	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+19/01/16 14:19:17 INFO SparkSqlParser: Parsing command: SHOW TABLES
+19/01/16 14:19:17 INFO HiveMetaStore: 0: get_database: default
+19/01/16 14:19:17 INFO audit: ugi=svmille	ip=unknown-ip-addr	cmd=get_database: default	
+19/01/16 14:19:17 INFO HiveMetaStore: 0: get_database: default
+19/01/16 14:19:17 INFO audit: ugi=svmille	ip=unknown-ip-addr	cmd=get_database: default	
+19/01/16 14:19:17 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+19/01/16 14:19:17 INFO audit: ugi=svmille	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+19/01/16 14:26:06 INFO SparkSqlParser: Parsing command: SHOW TABLES
+19/01/16 14:26:06 INFO HiveMetaStore: 0: get_database: default
+19/01/16 14:26:06 INFO audit: ugi=svmille	ip=unknown-ip-addr	cmd=get_database: default	
+19/01/16 14:26:06 INFO HiveMetaStore: 0: get_database: default
+19/01/16 14:26:06 INFO audit: ugi=svmille	ip=unknown-ip-addr	cmd=get_database: default	
+19/01/16 14:26:07 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+19/01/16 14:26:07 INFO audit: ugi=svmille	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+19/01/16 14:26:07 INFO CodeGenerator: Code generated in 269.918488 ms
+19/01/16 14:26:07 INFO SparkContext: Starting job: collect at utils.scala:44
+19/01/16 14:26:07 INFO DAGScheduler: Got job 0 (collect at utils.scala:44) with 1 output partitions
+19/01/16 14:26:07 INFO DAGScheduler: Final stage: ResultStage 0 (collect at utils.scala:44)
+19/01/16 14:26:07 INFO DAGScheduler: Parents of final stage: List()
+19/01/16 14:26:07 INFO DAGScheduler: Missing parents: List()
+19/01/16 14:26:07 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[7] at map at utils.scala:41), which has no missing parents
+19/01/16 14:26:07 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 8.7 KB, free 366.3 MB)
+19/01/16 14:26:07 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 4.6 KB, free 366.3 MB)
+19/01/16 14:26:07 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 127.0.0.1:54673 (size: 4.6 KB, free: 366.3 MB)
+19/01/16 14:26:07 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:996
+19/01/16 14:26:07 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[7] at map at utils.scala:41)
+19/01/16 14:26:07 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks
+19/01/16 14:26:07 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, executor driver, partition 0, PROCESS_LOCAL, 6042 bytes)
+19/01/16 14:26:07 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+19/01/16 14:26:07 INFO Executor: Fetching spark://127.0.0.1:54672/jars/sparklyr-2.1-2.11.jar with timestamp 1547666351030
+19/01/16 14:26:07 INFO TransportClientFactory: Successfully created connection to /127.0.0.1:54672 after 15 ms (0 ms spent in bootstraps)
+19/01/16 14:26:07 INFO Utils: Fetching spark://127.0.0.1:54672/jars/sparklyr-2.1-2.11.jar to /private/var/folders/8c/c6h5vbk930bb83gh0b64f76w0000gn/T/spark-a826d070-7815-4ebb-bd92-40957a733e1a/userFiles-820bcf5d-989f-4d45-89e1-3befb7d9b556/fetchFileTemp497704642576984375.tmp
+19/01/16 14:26:08 INFO Executor: Adding file:/private/var/folders/8c/c6h5vbk930bb83gh0b64f76w0000gn/T/spark-a826d070-7815-4ebb-bd92-40957a733e1a/userFiles-820bcf5d-989f-4d45-89e1-3befb7d9b556/sparklyr-2.1-2.11.jar to class loader
+19/01/16 14:26:08 INFO CodeGenerator: Code generated in 12.806596 ms
+19/01/16 14:26:08 INFO CodeGenerator: Code generated in 11.553314 ms
+19/01/16 14:26:08 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1304 bytes result sent to driver
+19/01/16 14:26:08 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 361 ms on localhost (executor driver) (1/1)
+19/01/16 14:26:08 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+19/01/16 14:26:08 INFO DAGScheduler: ResultStage 0 (collect at utils.scala:44) finished in 0.378 s
+19/01/16 14:26:08 INFO DAGScheduler: Job 0 finished: collect at utils.scala:44, took 0.539997 s
+19/01/16 14:30:23 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 127.0.0.1:54673 in memory (size: 4.6 KB, free: 366.3 MB)
+19/01/16 14:30:23 INFO ContextCleaner: Cleaned accumulator 1
+19/01/16 14:30:23 INFO ContextCleaner: Cleaned accumulator 0
+19/01/16 14:32:41 INFO SparkContext: Invoking stop() from shutdown hook
+19/01/16 14:32:41 INFO SparkUI: Stopped Spark web UI at http://127.0.0.1:4040
+19/01/16 14:32:41 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+19/01/16 14:32:41 INFO MemoryStore: MemoryStore cleared
+19/01/16 14:32:41 INFO BlockManager: BlockManager stopped
+19/01/16 14:32:41 INFO BlockManagerMaster: BlockManagerMaster stopped
+19/01/16 14:32:41 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+19/01/16 14:32:41 INFO SparkContext: Successfully stopped SparkContext
+19/01/16 14:32:41 INFO ShutdownHookManager: Shutdown hook called
+19/01/16 14:32:41 INFO ShutdownHookManager: Deleting directory /private/var/folders/8c/c6h5vbk930bb83gh0b64f76w0000gn/T/spark-a826d070-7815-4ebb-bd92-40957a733e1a
