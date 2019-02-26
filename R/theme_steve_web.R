@@ -17,6 +17,7 @@ theme_steve_web <- function() {
   if(get_os() == "osx") {
     theme_bw() +
       theme(panel.border = element_blank(),
+            plot.margin = margin(15, 15, 15, 15),
             plot.caption=element_text(hjust=1, size=9,
                                       margin=margin(t=10),
                                       face="italic"),
