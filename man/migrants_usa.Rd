@@ -16,7 +16,7 @@ This data set contains counts/estimates for the number of inbound migrants in th
     \item{\code{category}}{a character vector for whether the \code{count} is inbound to the U.S. from the \code{area} variable or outbound (i.e. American expats) to the  \code{area}  variable in a given year.}
     \item{\code{area}}{a character vector for the area of origin (if \code{category} == "Inbound") or destination for American migrants (if \code{category} == "Outbound")}
     \item{\code{count}}{a numeric vector for the count of inbound/outbound migrants}
-    \item{\code{ccode}}{a numeric vector for the Correlates of War country code. Two notes: First, Australia/New Zealand are (unfortunately) comboed in the data. Thus, its ccode is the unhelpful 900920. Second, this variable serves as a filter, of sorts, for if you want country-level information (e.g. inbound migration from Mexico to the U.S.) but want to contextualize it with more aggregate information (e.g. percentage of Western European migration to the U.S. that comes from the United Kingdom, or inbound migration from Mexico to the U.S. as percentage of total inbound migration).}
+    \item{\code{ccode}}{a numeric vector for the Correlates of War country code. This variable serves as a filter, of sorts, for if you want country-level information (e.g. inbound migration from Mexico to the U.S.) but want to contextualize it with more aggregate information (e.g. percentage of Western European migration to the U.S. that comes from the United Kingdom, or inbound migration from Mexico to the U.S. as percentage of total inbound migration).}
   }
 }
 \details{
