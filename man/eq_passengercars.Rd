@@ -1,5 +1,5 @@
-\name{edq_passengercars}
-\alias{edq_passengercars}
+\name{eq_passengercars}
+\alias{eq_passengercars}
 \docType{data}
 \title{
 Export Quality Data for Passenger Cars, 1963-2014
@@ -7,7 +7,7 @@ Export Quality Data for Passenger Cars, 1963-2014
 \description{
 Data from the International Monetary Fund for the export quality and unit/trade value of passenger cars for all available countries and years from 1963 to 2014.
 }
-\usage{data("edq_passengercars")}
+\usage{data("eq_passengercars")}
 \format{
   A data frame with 60424 observations on the following 6 variables.
   \describe{
@@ -29,10 +29,10 @@ Data from the International Monetary Fund for the export quality and unit/trade 
 %%  ~~ possibly secondary sources and usages ~~
 }
 \examples{
-data(edq_passengercars)
+data(eq_passengercars)
 library(tidyverse)
 
-edq_passengercars \%>\%
+eq_passengercars \%>\%
   filter(ccode \%in\% c(140, 732)) \%>\%
   filter(category == "Export Quality Index") \%>\%
   rename(Country = country) \%>\%
