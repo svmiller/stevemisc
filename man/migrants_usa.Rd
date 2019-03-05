@@ -34,13 +34,13 @@ library(tidyverse)
 data(migrants_usa)
 
 
-migrants_usa %>%
-  filter(category == "Inbound" & year == 2017) %>%
+migrants_usa \%>\%
+  filter(category == "Inbound" & year == 2017) \%>\%
   mutate(propn = count/max(count, na.rm=T),
-         labl = paste0(round(propn*100, 2),"%")) %>%
-  filter(!is.na(ccode)) %>%
-  arrange(-count) %>%
-  head(10) %>%
+         labl = paste0(round(propn*100, 2),"\%")) \%>\%
+  filter(!is.na(ccode)) \%>\%
+  arrange(-count) \%>\%
+  head(10) \%>\%
   ggplot(.,aes(reorder(area, -propn), propn)) + theme_steve_web() +
   geom_bar(stat="identity", alpha=0.8, color="black", fill="#619cff") +
   geom_text(aes(label=labl), vjust=-.5, colour="black",
@@ -52,13 +52,13 @@ migrants_usa %>%
        caption = "Data: United Nations Population Division (DESA)")
 
 
-migrants_usa %>%
-  filter(category == "Outbound" & year == 2017) %>%
+migrants_usa \%>\%
+  filter(category == "Outbound" & year == 2017) \%>\%
   mutate(propn = count/max(count, na.rm=T),
-         labl = paste0(round(propn*100, 2),"%")) %>%
-  filter(!is.na(ccode)) %>%
-  arrange(-count) %>%
-  head(10) %>%
+         labl = paste0(round(propn*100, 2),"\%")) \%>\%
+  filter(!is.na(ccode)) \%>\%
+  arrange(-count) \%>\%
+  head(10) \%>\%
   ggplot(.,aes(reorder(area, -propn), propn)) + theme_steve_web() +
   geom_bar(stat="identity", alpha=0.8, color="black", fill="#619cff") +
   geom_text(aes(label=labl), vjust=-.5, colour="black",

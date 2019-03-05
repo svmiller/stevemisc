@@ -30,10 +30,10 @@ library(stevemisc)
 data(mvprod)
 
 mvprod %>%
-  filter(country %in% c("South Korea", "Brazil")) %>%
+  filter(country \%in\% c("South Korea", "Brazil")) \%>\%
   rename(Country = country) %>%
   mutate(value = mvprod/1000,
-         lbl = prettyNum(round(value), ",")) %>%
+         lbl = prettyNum(round(value), ",")) \%>\%
   ggplot(.,aes(as.factor(year), value, fill=Country)) +
   theme_steve_web() +
   geom_bar(stat="identity", position = "dodge", color="black") +
