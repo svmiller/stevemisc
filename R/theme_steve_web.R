@@ -32,7 +32,8 @@ theme_steve_web <- function() {
                                       margin = margin(t = 10)), # , margin = margin(t = 10)
             legend.position = "bottom",
             legend.title = element_text(face="bold", family="Titillium Web"),
-            text=element_text(family="Open Sans"))
+            text=element_text(family="Open Sans")) +
+      theme(legend.spacing.x = unit(.1, 'cm'))
   }
   else {
     theme_bw() +
@@ -51,7 +52,8 @@ theme_steve_web <- function() {
                                       margin = margin(t = 10)), # , margin = margin(t = 10)
             legend.position = "bottom",
             legend.title = element_text(face="bold", family="Titillium Web"),
-            text=element_text(family="Open Sans"))
+            text=element_text(family="Open Sans")) +
+      theme(legend.spacing.x = unit(.1, 'cm'))
   }
 }
 

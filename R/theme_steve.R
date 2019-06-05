@@ -12,6 +12,7 @@ theme_steve <- function() {
                                     face="italic"),
           axis.title.x=element_text(hjust=1, size=12, face="italic"),
           legend.position = "bottom",
-          legend.title = element_text(face="bold"))
+          legend.title = element_text(face="bold")) +
+    theme(legend.spacing.x = unit(.1, 'cm'))
 
 }
