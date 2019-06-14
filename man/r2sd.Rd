@@ -18,7 +18,7 @@ r2sd(x, na.rm = T)
  A numeric vector
 }
   \item{na.rm}{
-What to do with missing values in the vector? By default, I ignore them. If you set this to \code{FALSE}, everything will come back with \code{NA} if there is a missing value in the vector.
+What to do with missing values in the vector? By default, I ignore them. If you set this to \code{FALSE}, everything will come back with \code{NA} if there is a missing value in the vector. If you ignore the \code{na.rm} field altogether and run something like \code{r2sd(x)}, the \code{na.rm=T} is assumed to be what you wanted.
 }
 }
 \details{
