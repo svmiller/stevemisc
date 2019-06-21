@@ -25,6 +25,7 @@ theme_steve_web <- function() {
                                     margin=margin(b=10),
                                     face="bold", family='Titillium Web'),
             plot.subtitle=element_text(hjust=0,
+                                       margin=margin(b=10),
                                        family='Open Sans'),
             axis.title.y=element_text(size=10,hjust=1,
                                       face="italic", family="Open Sans"),
@@ -33,11 +34,13 @@ theme_steve_web <- function() {
             legend.position = "bottom",
             legend.title = element_text(face="bold", family="Titillium Web"),
             text=element_text(family="Open Sans")) +
-      theme(legend.spacing.x = unit(.1, 'cm'))
+      theme(legend.spacing.x = unit(.1, 'cm'),
+            panel.spacing = grid::unit(1.5, "lines"))
   }
   else {
     theme_bw() +
       theme(panel.border = element_blank(),
+            plot.margin=margin(15, 15, 15, 15),
             plot.caption=element_text(hjust=1, size=9,
                                       margin=margin(t=10),
                                       face="italic"),
@@ -45,6 +48,7 @@ theme_steve_web <- function() {
                                     margin=margin(b=10),
                                     face="bold", family='Titillium Web'),
             plot.subtitle=element_text(hjust=0,
+                                       margin=margin(b=10),
                                        family='Open Sans'),
             axis.title.y=element_text(size=10,hjust=1,
                                       face="italic", family="Open Sans"),
@@ -53,7 +57,8 @@ theme_steve_web <- function() {
             legend.position = "bottom",
             legend.title = element_text(face="bold", family="Titillium Web"),
             text=element_text(family="Open Sans")) +
-      theme(legend.spacing.x = unit(.1, 'cm'))
+      theme(legend.spacing.x = unit(.1, 'cm'),
+            panel.spacing = grid::unit(1.5, "lines"))
   }
 }
 
