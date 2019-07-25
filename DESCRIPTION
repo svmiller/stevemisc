@@ -1,13 +1,14 @@
 Package: stevemisc
 Type: Package
 Title: Miscellaneous Functions/Data That Only Steve Finds Useful
-Version: 0.1.5.2
+Version: 0.1.5.4
 Authors@R: c(
     person("Steve", "Miller", email = "steven.v.miller@gmail.com",
     role = c("aut", "cre")),
     person("Ben", "Bolker", email = "bolker@mcmaster.ca", role = "ctb"),
     person("Dave", "Armstrong", email = "dave.armstrong@uwo.ca", role = "ctb"),
-    person("John", "Fox", email = "jfox@mcmaster.ca", role = "ctb")
+    person("John", "Fox", email = "jfox@mcmaster.ca", role = "ctb"),
+    person("Winston", "Chang", email = "winston@stdout.org", role = "ctb")
     )
 Description: These are miscellaneous scripts that I find useful for my research.
     This includes a better/faster "peace-year" function for binary time-series
