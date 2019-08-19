@@ -67,3 +67,10 @@ theme_steve_web2 <- function() {
   theme(legend.title = element_text(family="Titillium WebBold"),
         plot.title=element_text(family='Titillium WebBold'))
 }
+
+post_bg <- function() {
+  theme(plot.background = element_rect(fill = "#fdfdfd"),
+        panel.background = element_rect(fill = "#fdfdfd"),
+        legend.key = element_rect(fill = "#fdfdfd"),
+        legend.background = element_rect(fill = "#fdfdfd"))
+}
