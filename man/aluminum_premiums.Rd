@@ -2,7 +2,7 @@
 \alias{aluminum_premiums}
 \docType{data}
 \title{
-LME Aluminum Premiums Data, Jan. 2018-Jan.2019
+LME Aluminum Premiums Data, January 2018 - September 2019
 }
 \description{
 A near daily data set on the price of aluminum premiums (USD/MT) for LME in the U.S., Western Europe, East Asia, and Southeast Asia.
@@ -17,7 +17,7 @@ A near daily data set on the price of aluminum premiums (USD/MT) for LME in the 
   }
 }
 \details{
-LME aluminum premiums (monthly contracts going out to 15 months) work alongside LME aluminum contracts to allow market participants to hedge the all-in price and physically deliver or receive premium aluminium warrants in non-queued LME premium warehouses. The data may not be perfect for this exercise but they're available.
+LME aluminum premiums (monthly contracts going out to 15 months) work alongside LME aluminum contracts to allow market participants to hedge the all-in price and physically deliver or receive premium aluminium warrants in non-queued LME premium warehouses.
 }
 \source{
 LME Group
