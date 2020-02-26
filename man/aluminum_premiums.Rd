@@ -2,7 +2,7 @@
 \alias{aluminum_premiums}
 \docType{data}
 \title{
-LME Aluminum Premiums Data, January 2018 - September 2019
+LME Aluminum Premiums Data, January 2018 - January 2020
 }
 \description{
 A near daily data set on the price of aluminum premiums (USD/MT) for LME in the U.S., Western Europe, East Asia, and Southeast Asia.

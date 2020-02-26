@@ -2,10 +2,10 @@
 \alias{DJIA}
 \docType{data}
 \title{
-Dow Jones Industrial Average Data, 1885-2018
+Dow Jones Industrial Average Data, 1885-2019
 }
 \description{
-This data set contains the value of the Dow Jones Industrial Average on daily close for all available dates (to the best of my knowledge) from 1885 to 2018. Extensions to 2019 and beyond shouldn't be too difficult with existing packages.
+This data set contains the value of the Dow Jones Industrial Average on daily close for all available dates (to the best of my knowledge) from 1885 to 2019. Extensions to 2020 and beyond shouldn't be too difficult with existing packages.
 }
 \usage{data("DJIA")}
 \format{
@@ -27,6 +27,5 @@ Jeffrey A. Ryan and Joshua M. Ulrich, 'quantmod: Quantitative Financial Modellin
 }
 \examples{
 data(DJIA)
-## maybe str(DJIA) ; plot(DJIA) ...
 }
 \keyword{datasets}
