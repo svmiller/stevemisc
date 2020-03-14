@@ -8,7 +8,7 @@ Bounded Normal (Really: Scaled Beta) Distribution
 This is a function to randomly generate values from a bounded normal (really: a scaled beta) distribution with specified mean, standard deviation, and upper/lower bounds. I use this function to randomly generate data that we treat as interval for sake of getting means and standard  deviations, but have discernible bounds (and even skew) to teach students about things like random sampling and central limit theorem.
 }
 \usage{
-rbnorm(n, mean, sd, lowerbound, upperbound, round = FALSE)
+rbnorm(n, mean, sd, lowerbound, upperbound, round = FALSE, seed)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -29,6 +29,9 @@ An upper bound on the data to generate. I typically go with 100 here for illustr
 }
   \item{round}{
 Should the values be rounded to whole integers? Defaults to no rounding in the absence of this parameter.
+}
+  \item{seed}{
+OPTIONAL. set seed for the simulations.
 }
 }
 \details{
