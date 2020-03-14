@@ -9,7 +9,7 @@ This should be self-evident. Here are all U.S. presidents who have completed the
 }
 \usage{data("Presidents")}
 \format{
-  A data frame with 45 observations on the following 3 variables.
+  A data frame with 44 observations on the following 3 variables.
   \describe{
     \item{\code{president}}{a character vector for the name of the president}
     \item{\code{start}}{the start date of the term, as a Date column}
