@@ -9,14 +9,14 @@ This data set contains the value of the Dow Jones Industrial Average on daily cl
 }
 \usage{data("DJIA")}
 \format{
-  A data frame with 36698 observations on the following 2 variables.
+  A data frame with 36951 observations on the following 2 variables.
   \describe{
     \item{\code{date}}{a Date}
     \item{\code{djia}}{a numeric vector for the value of the Dow Jones Industrial Average at daily close.}
   }
 }
 \details{
-Observations before October 7, 1896 are from the single Dow Jones Average. Observations from October 7, 1896 to July 30, 1914 are from the first DJIA. Missing observations (since 1985) imputed from a call from quantmod, which scraped the DJIA since 1985.
+Observations before October 7, 1896 are from the single Dow Jones Average. Observations from October 7, 1896 to July 30, 1914 are from the first DJIA. Observations before the 1914 closure of the first DJIA in July 1914 come from MeasuringWorth. Observations from its reopening in Dec. 12, 1914 to January 28, 1985 come from Pinnacle Systems. Observations from January 29, 1985 to the most recent observation come from a \code{quantmod} call.
 }
 \source{
 }
