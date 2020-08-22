@@ -1,6 +1,6 @@
 corvectors <-
   function(data, corm, tol=0.005, conv=10000, cores=2,
-           splitsize=1000, verbose=T) {
+           splitsize=1000, verbose=T, seed) {
     if (is.vector(corm)) {
       corm <- createCorMatrix(data, corm)
     }
