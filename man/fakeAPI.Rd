@@ -9,11 +9,12 @@ This is a hypothetical universe of schools in a given territorial unit, patterne
 }
 \usage{data("fakeAPI")}
 \format{
-  A data frame with 20000 observations on the following 8 variables.
+  A data frame with 10000 observations on the following 8 variables.
   \describe{
     \item{\code{uid}}{a numeric vector as a unique identifier for schools}
     \item{\code{schooltype}}{a character vector for school type. E = elementary school. M = middle school. H = high school}
     \item{\code{county}}{a character vector for the county, named after an Ohio State All-American. ``County'' incidence is weighted by how many All-American honors the Ohio State player had. It's my fake data. You make your own if you have a problem with it.}
+    \item{\code{community}}{a character vector for the school's community, either rural, suburban, or urban.}
     \item{\code{api}}{a numeric vector vector an academic performance index for the school}
     \item{\code{meals}}{a numeric vector for the percentage of school students eligible for subsidized meals}
     \item{\code{colgrad}}{a numeric vector for the percentage of school parents with college degrees}
@@ -69,6 +70,7 @@ Data generated as follows:
 ##                 rbnorm(nobs, 87.52, 12.93, 0, 100)), cormatrix) %>% as.data.frame() %>% tbl_df() %>%
 ##  rename(meals = V1, colgrad = V2, fullqual = V3) %>%
 ##  mutate(schooltype = sample(c("E","M","H"), nobs, replace=TRUE, prob=c(.75, .15, .10)),
+##         community = sample(c("Urban", "Suburban", "Rural"), 1e4, replace=TRUE, prob=c(.31, .55, .14)),
 ##         county = sample(AAs$Player, nobs, replace=TRUE, prob=AAs$perc),
 ##         e = rnorm(nobs, 0, 2),
 ##         uid = seq(1:n())) %>%
@@ -77,6 +79,6 @@ Data generated as follows:
 ##                          schooltype == "M" ~ -8,
 ##                          schooltype == "H" ~ -30)) %>%
 ##  mutate(api = 600 + sbase + cbase +- 2.7*meals + 1.21*colgrad + 2*fullqual + e) %>%
-##  select(uid, schooltype, county, api, meals, colgrad, fullqual, sbase, cbase, e) -> fakeAPI
+##  select(uid, schooltype, county, community, api, meals, colgrad, fullqual, sbase, cbase, e) -> fakeAPI
 }
 \keyword{datasets}
