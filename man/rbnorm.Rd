@@ -1,6 +1,5 @@
 \name{rbnorm}
 \alias{rbnorm}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Bounded Normal (Really: Scaled Beta) Distribution
 }
@@ -57,5 +56,5 @@ I'm sure I ganked this from somewhere. I forget where.
 }
 \examples{
 Data <- rbnorm(10000, 57, 14, 0, 100)
-%\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+
+}

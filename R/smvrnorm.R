@@ -1,26 +1,30 @@
-smvrnorm <-
-  function(n = 1, mu, Sigma, tol=1e-6, empirical = FALSE, EISPACK = FALSE, seed)
-  {
-    if(missing(seed)) {
+smvrnorm <- function(n = 1, mu, sigma, tol = 1e-06,
+                     empirical = FALSE, eispack = FALSE, seed) {
+    if (missing(seed)) {
 
     } else {
-      set.seed(seed)
+        set.seed(seed)
     }
     p <- length(mu)
-    if(!all(dim(Sigma) == c(p,p))) stop("incompatible arguments")
-    if(EISPACK) stop("'EISPACK' is no longer supported by R", domain = NA)
-    eS <- eigen(Sigma, symmetric = TRUE)
-    ev <- eS$values
-    if(!all(ev >= -tol*abs(ev[1L]))) stop("'Sigma' is not positive definite")
-    X <- matrix(rnorm(p * n), n)
-    if(empirical) {
-      X <- scale(X, TRUE, FALSE) # remove means
-      X <- X %*% svd(X, nu = 0)$v # rotate to PCs
-      X <- scale(X, FALSE, TRUE) # rescale PCs to unit variance
+    if (!all(dim(sigma) == c(p, p)))
+        stop("incompatible arguments")
+    if (eispack)
+        stop("'EISPACK' is no longer supported by R", domain = NA)
+    es <- eigen(sigma, symmetric = TRUE)
+    ev <- es$values
+    if (!all(ev >= -tol * abs(ev[1L])))
+        stop("'Sigma' is not positive definite")
+    xmat <- matrix(rnorm(p * n), n)
+    if (empirical) {
+        xmat <- scale(xmat, TRUE, FALSE)  # remove means
+        xmat <- xmat %*% svd(xmat, nu = 0)$v  # rotate to PCs
+        xmat <- scale(xmat, FALSE, TRUE)  # rescale PCs to unit variance
     }
-    X <- drop(mu) + eS$vectors %*% diag(sqrt(pmax(ev, 0)), p) %*% t(X)
+    xmat <- drop(mu) + es$vectors %*% diag(sqrt(pmax(ev, 0)), p) %*% t(xmat)
     nm <- names(mu)
-    if(is.null(nm) && !is.null(dn <- dimnames(Sigma))) nm <- dn[[1L]]
-    dimnames(X) <- list(nm, NULL)
-    if(n == 1) drop(X) else t(X)
-  }
+    if (is.null(nm) && !is.null(dn <- dimnames(sigma)))
+        nm <- dn[[1L]]
+    dimnames(xmat) <- list(nm, NULL)
+    if (n == 1)
+        drop(xmat) else t(xmat)
+}

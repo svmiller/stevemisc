@@ -1,26 +1,23 @@
-get_sims <- function(model, newdata, nsim, seed){
-  # require(arm)
-  if(missing(seed)) {
+get_sims <- function(model, newdata, nsim, seed) {
+    if (missing(seed)) {
 
-  } else {
-    set.seed(seed)
-  }
-  modelsim <- arm::sim(model, n.sims=nsim)
-  MM = model.matrix(terms(model),newdata)
-  Sims <- tibble(y = numeric(),
-                 sim = numeric())
-  for(i in (1:nsim)) {
-    output <- NULL
-    if (is(model,"lm") == TRUE | is(model,"glm") == TRUE) {
-      yi <- MM %*% coef(modelsim)[i,] }
-    else { # assuming it's merMod
-      yi <- MM %*% coef(modelsim)$fixef[i,]
+    } else {
+        set.seed(seed)
     }
-    sim<-rep(i, length (yi))
-    hold_me <- suppressMessages(as_tibble(cbind(yi, sim))) %>% rename(y = V1)
-    Sims <- bind_rows(Sims, hold_me)
-  }
-  return(Sims)
-
+    modelsim <- arm::sim(model, n.sims = nsim)
+    modmat <- model.matrix(terms(model), newdata)
+    the_sims <- tibble::tibble(y = numeric(), sim = numeric())
+    for (i in (1:nsim)) {
+        if (is(model, "lm") == TRUE | is(model, "glm") == TRUE) {
+            yi <- modmat %*% coef(modelsim)[i, ]
+        } else {
+            # assuming it's merMod
+            yi <- modmat %*% coef(modelsim)$fixef[i, ]
+        }
+        sim <- rep(i, length(yi))
+        hold_me <- suppressMessages(tibble::as_tibble(cbind(yi, sim)))
+        names(hold_me) <- c("y", "sim")
+        the_sims <- dplyr::bind_rows(the_sims, hold_me)
+    }
+    return(the_sims)
 }
-
