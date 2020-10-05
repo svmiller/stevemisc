@@ -1,7 +1,8 @@
 Package: stevemisc
 Type: Package
 Title: Miscellaneous Functions/Data That Only Steve Finds Useful
-Version: 0.2
+Version: 0.2.2
+Depends: R (>= 3.5.0)
 Authors@R: c(
     person("Steve", "Miller", email = "steven.v.miller@gmail.com",
     role = c("aut", "cre")),

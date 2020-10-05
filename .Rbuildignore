@@ -3,3 +3,5 @@
 ^data-raw$
 ^deprecated$
 ^source-dir$
+^doc$
+^Meta$

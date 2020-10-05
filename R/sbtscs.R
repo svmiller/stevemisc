@@ -7,11 +7,11 @@
 #'
 
 sbtscs <- function(data, event, tvar, csunit, pad_ts = FALSE) {
-    require(magrittr)
+    require(tidyverse)
     tvar <- dplyr::enquo(tvar)
     event <- dplyr::enquo(event)
     csunit <- dplyr::enquo(csunit)
-    data <- dplyr::arrange_(data, csunit, tvar)
+    data <- dplyr::arrange(data, !!csunit, !!tvar)
     sumevents <- data %>%
         group_by(!!csunit) %>%
         mutate(tot = sum(!!event))

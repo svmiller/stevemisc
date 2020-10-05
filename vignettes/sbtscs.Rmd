@@ -1,0 +1,90 @@
+---
+title: "sbtscs: Quickly Create Peace Years for BTSCS Models in stevemisc"
+author: "Steven V. Miller"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{sbtscs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(tidyverse)
+library(stevemisc)
+```
+
+The first function I added to `stevemisc` is the `sbtscs()` function for creating peace years ("spells") in binary time-series cross-sectional (BTSCS) data. This function liberally copies Dave Armstrong's `btscs()` function from his `DAMisc` package, but provides some tidy syntax underneath to 1) speed up computation and 2) avoid errors that come when a lot of cross-sectional units don't have an event onset. I [first introduced this function in 2017](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/).
+
+Its use is simple. I'll show it by reference to the `usa_mids` data in `stevemisc`. The `usa_mids` data set is a non-directed dyad-year data set for all U.S. threats, displays, or uses of force (MIDs) against a state system member from 1816 to 2010. The data have 14,586 rows and six columns. 
+
+```{r}
+usa_mids
+```
+
+Observe that the six columns have a unique dyad identifier (`dyad`), a unique country code identifier for the United States (`ccode1`, which is always 2), a unique country code for the other side of the dyad (`ccode2`), an identifier for the time unit of interest (here: `year` for dyad-year data), a column for whether there is an active MID in the dyad-year (`midongoing`), and a column for whether there is a unique MID onset (`midonset`) in the dyad-year.
+
+A user interested in creating peace-years consistent with [Beck, Katz, and Tucker (1998)](https://www.jstor.org/stable/2991857?seq=1#metadata_info_tab_contents) would simply need to use the `sbtscs()` function in `stevemisc`. In order, specify the data (`usa_mids`), the column pertaining to the event (`midongoing`), the time unit (`year`), and the unique identifier for the cross-sectional unit (`dyad`). The output that the user gets is the full data, plus a `spell` column attached at the end. For convenience, the output will not be a tibble, but it's also not hard to add that as a pipe command at the end of the `sbtscs()` function.
+
+```{r}
+usa_mids <- sbtscs(usa_mids, midongoing, year, dyad) %>% as_tibble()
+
+usa_mids
+```
+
+Here's what it would look like for the United States and, say, Tuvalu. I select this dyad because I know it's relatively new. Tuvalu only joins the Correlates of War state system data in 2000. Observe that every peace year must start with 0.
+
+```{r}
+usa_mids %>%
+  filter(dyad == 1002947) %>%
+  knitr::kable(.,
+               align = "c")
+```
+
+
+Here's what it would look like for a trickier case: the United State and Haiti. Scholars of international conflict, U.S. foreign policy history, and "dollar diplomacy" will know this is a peculiar case in the data. Namely, the United States occupied Haiti from 1916 to 1933, at least as that's represented in these data. The military occupation drops Haiti from the international system for those years.
+
+```{r}
+
+usa_mids %>%
+  filter(dyad == 1002041) %>%
+  filter(year <= 1940) %>% 
+  knitr::kable(.,
+               align = "c")
+
+```
+
+Here, the `sbtscs()` function is doing what it's supposed to be doing. It starts the peace spell at 0 (because at least there was no MID between the United States and Haiti in the first year of the dyad). It stops at 10 because, at the 10th-year spell, the data record a MID between the United States and Haiti.[^mid1532] Despite 10 years of peace, there was a conflict. Upon the first peace year afterward (i.e. year with no MID ongoing), the counter starts again at 0.
+
+[^mid1532]: If you were curious, this was a show of force by the United States in which the U.S. dispatched ships to Port-au-Prince after Haiti publicly announced its intention to have its own analogue to a Monroe Doctrine.
+
+Look ahead to the 1880s, especially 1888 and 1889. Therein, the United States and Haiti had two unique dispute onsets in simultaneous years. The first, in 1888, was a U.S. show of force against the Haitian government after a U.S. ship was impounded during a period of civil unrest. The second, in 1889, followed when Benjamin Harrison dispatched an American fleet to Port-au-Prince to intimidate Haiti into leasing Môle Saint-Nicolas to the United States so that naval base could be established there. 
+
+This means the five-year peace spell was snapped in 1888 for that first case. The counter starts again at 0 for 1889, but there was a new dispute that year as well. Thus, the spell count starts again at 0 for 1890 and proceeds from there.
+
+There is the more difficult case of what happens when there is a break in the cross-sectional unit's history. These have emerged in various places in the CoW state system data. Germany occupied several countries during World War II. The U.S. occupied all of Cuba, Dominican Republic, and Haiti for a stretch spanning the late 19th century and early 20th century. Paraguay was occupied for six years following the Paraguayan War as well. These are just some examples.
+
+Where that happens, as it does here, the `sbtscs()` by way of Dave Armstrong's `btscs()` function appropriately acknowledges that temporal gap and starts the spells anew when the cross-sectional unit re-emerges in the data.
+
+# Conclusion
+
+You can use this package to calculate peace years and spells, which should be handy for those of you that do a lot of BTSCS models and need to adjust for temporal dependence. This is prominent in the conflict context. `sbtscs()` is analogous to the `btscs` function in Stata. Much of the underlying code comes from Dave Armstrong's port of it. I just offered some tidy-friendly syntax to speed up computation, as [I demonstrate here](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/).
+
+# References
+
+Armstrong, Dave. 2020. "DAMisc: Dave Armstrong's Miscellaneous Functions". *URL*: https://cran.r-project.org/web/packages/DAMisc/index.html
+
+Beck, Nathaniel, Jonathan N. Katz, and Richard Tucker. 1998. "Taking Time Seriously: Time-Series-Cross-Section Analysis with a Binary Dependent Variable." *American Journal of Political Science* 42(4): 1260--1288.
+
+Gibler, Douglas M., Steven V. Miller, and Erin K. Little. 2016. "An Analysis of the Militarized Interstate Dispute (MID) Dataset, 1816-2001." *International Studies Quarterly* 60(4): 719-730.
+
+Miller, Steven V. 2017. "Quickly Create Peace Years for BTSCS Models with sbtscs in stevemisc". URL: http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/
+
+
