@@ -5,7 +5,7 @@
 Steve's preferred ggplot theme
 }
 \description{
-I prefer this default theme to ggplot2, which is basically \code{theme_bw()} with me tweaking little things around it.
+I prefer this default theme for ggplot2, which is basically \code{theme_bw()} with me tweaking little things around it.
 }
 \usage{
 theme_steve()
@@ -48,7 +48,3 @@ labs(caption="Looks pretty, though. Right?")
 
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

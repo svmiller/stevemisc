@@ -1,4 +1,5 @@
 theme_steve <- function() {
+    require(ggplot2)
     theme_bw() + theme(panel.border = element_blank(),
                        plot.margin = margin(15, 15, 15, 15),
                        plot.caption = element_text(hjust = 1,

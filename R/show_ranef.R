@@ -1,5 +1,6 @@
 show_ranef <- function(data, grp, reorder = TRUE) {
   require(ggplot2)
+  require(broom.mixed)
   data <- augment(ranef(data, condVar = TRUE))
   if (reorder) {
     data <- data[data$grp == grp, ]

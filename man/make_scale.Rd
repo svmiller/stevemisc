@@ -51,15 +51,8 @@ Optional arguments
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x, max, min, ...)
-((max - min) * (x - min(x)))/(max(x) - min(x)) + min
+d <- rnorm(100, 0, 2.5)
+make_scale(d, 10, -10)
+make_scale(d, 0, 1)
+make_scale(d,-1,1)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

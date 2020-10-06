@@ -9,7 +9,7 @@ Create multivariate data by permutation
 Function to obtain a multivariate dataset by specifiying the relation between univariately specified variables. This is liberally copy-pasted from van Kooten and Vink's wonderful-but-no-longer-supported \code{correlate} package. They call it \code{correlate()} in their package, but I opt for \code{corvectors()} here.
 }
 \usage{
-corvectors(data, corm, tol = 0.005, conv = 10000, cores = 2, splitsize = 1000, verbose = T)
+corvectors(data, corm, tol = 0.005, conv = 10000, cores = 2, splitsize = 1000, verbose = T, seed)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -20,6 +20,7 @@ corvectors(data, corm, tol = 0.005, conv = 10000, cores = 2, splitsize = 1000, v
   \item{cores}{The number of cores to be used for parallel computing}
   \item{splitsize}{The size to use for splitting the data.}
   \item{verbose}{Logical statement. Default is TRUE}
+  \item{seed}{An optional seed to set.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -44,6 +45,8 @@ Pascal van Kooten and Gerko Vink, 2013
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+library(tidyverse)
+library(stevemisc)
 # bivariate example, start with zero correlation
 corvectors(replicate(2, rnorm(100)), .5)
 

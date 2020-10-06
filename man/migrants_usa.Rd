@@ -33,41 +33,5 @@ library(stevemisc)
 library(tidyverse)
 data(migrants_usa)
 
-
-migrants_usa \%>\%
-  filter(category == "Inbound" & year == 2017) \%>\%
-  mutate(propn = count/max(count, na.rm=T),
-         labl = paste0(round(propn*100, 2),"\%")) \%>\%
-  filter(!is.na(ccode)) \%>\%
-  arrange(-count) \%>\%
-  head(10) \%>\%
-  ggplot(.,aes(reorder(area, -propn), propn)) + theme_steve_web() +
-  geom_bar(stat="identity", alpha=0.8, color="black", fill="#619cff") +
-  geom_text(aes(label=labl), vjust=-.5, colour="black",
-            position=position_dodge(.9), size=4) +
-  xlab("Country") + ylab("U.S. Migrant Population as Share of all Migrants of all Origins") +
-  scale_y_continuous(labels=scales::percent) +
-  labs(title = "Mexico Accounts for More Than a Quarter of U.S. Inbound Migration in 2017",
-       subtitle = "Migration into the U.S. is still largely regional, though Asian countries are well-represented in this list.",
-       caption = "Data: United Nations Population Division (DESA)")
-
-
-migrants_usa \%>\%
-  filter(category == "Outbound" & year == 2017) \%>\%
-  mutate(propn = count/max(count, na.rm=T),
-         labl = paste0(round(propn*100, 2),"\%")) \%>\%
-  filter(!is.na(ccode)) \%>\%
-  arrange(-count) \%>\%
-  head(10) \%>\%
-  ggplot(.,aes(reorder(area, -propn), propn)) + theme_steve_web() +
-  geom_bar(stat="identity", alpha=0.8, color="black", fill="#619cff") +
-  geom_text(aes(label=labl), vjust=-.5, colour="black",
-            position=position_dodge(.9), size=4) +
-  xlab("Country") + ylab("U.S. Migrant Population as Share of all Migrants of all Expat Americans") +
-  scale_y_continuous(labels=scales::percent) +
-  labs(title = "Likewise: Almost 30\% of All American Expats are Residing in Mexico",
-       subtitle = "Generally, U.S. outbound migration follows to places where FDI is abundant, which may explain why Europe is well-represented on this list.",
-       caption = "Data: United Nations Population Division (DESA)")
-
 }
 \keyword{datasets}

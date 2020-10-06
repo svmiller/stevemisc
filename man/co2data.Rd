@@ -50,6 +50,7 @@ Meinshausen, M., Vogel, E., Nauels, A., Lorbacher, K., Meinshausen, N., Etheridg
 }
 \examples{
 data(co2data)
+library(ggplot2)
 ggplot(co2data,aes(year, co2)) + geom_line()
 }
 \keyword{datasets}

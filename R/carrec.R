@@ -11,7 +11,7 @@ carrec <- function(var, recodes, as_fac, as_num = TRUE, levels) {
     is_fac <- is.factor(var)
     if (missing(as_fac))
       as_fac <- is_fac
-    if (is.fac)
+    if (is_fac)
         var <- as.character(var)
     result <- var
     for (term in rec_list) {

@@ -42,6 +42,8 @@ I'm not great with writing functions. I wish I knew of an easier way to make the
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+library(tidyverse)
+library(stevemisc)
+
 normal_dist("blue","red")
-normal_dist("#522D80","#F66733", "Open Sans") + theme_steve_web() + labs(title = "Look, Ma! No Hands!")
 }

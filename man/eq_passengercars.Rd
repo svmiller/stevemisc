@@ -29,22 +29,10 @@ Data from the International Monetary Fund for the export quality and unit/trade 
 %%  ~~ possibly secondary sources and usages ~~
 }
 \examples{
-data(eq_passengercars)
-library(tidyverse)
 
-eq_passengercars \%>\%
-  filter(ccode \%in\% c(140, 732)) \%>\%
-  filter(category == "Export Quality Index") \%>\%
-  rename(Country = country) \%>\%
-  ggplot(.,aes(year, value, color=Country, group=Country,linetype=Country)) +
-  theme_steve_web() +
-  geom_line(size=1.1) +
-  scale_x_continuous(breaks=seq(1964, 2014, by =2)) +
-  scale_color_manual(values=c("#009B3A", "#C60C30")) +
-  xlab("Year") + ylab("Export Quality Index") +
-  labs(title = "South Korean Passenger Automobiles Surpassed Brazil's Autos in Export Quality Early into the 1970s",
-       subtitle = "South Koreas's first foray into the distant foreign market may have been Guam (through Hyundai) but cracking the U.S. market soon set it apart from Brazil.",
-       caption = "Data: International Monetary Fund")
+library(tidyverse)
+library(stevemisc)
+data(eq_passengercars)
 
 }
 \keyword{datasets}

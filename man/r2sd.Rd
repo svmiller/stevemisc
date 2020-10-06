@@ -10,15 +10,15 @@ Gelman (2008) argues that rescaling by two standard deviations puts regression i
 Importantly, I tend to rescale only the ordinal and interval inputs and leave the binary inputs as 0/1. So, my \code{r2sd} function doesn't have any of the fancier elseifs that Gelman's \code{rescale} function has.
 }
 \usage{
-r2sd(x, na.rm = T)
+r2sd(x, na = T)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
  A numeric vector
 }
-  \item{na.rm}{
-What to do with missing values in the vector? By default, I ignore them. If you set this to \code{FALSE}, everything will come back with \code{NA} if there is a missing value in the vector. If you ignore the \code{na.rm} field altogether and run something like \code{r2sd(x)}, the \code{na.rm=T} is assumed to be what you wanted.
+  \item{na}{
+What to do with missing values in the vector? By default, I ignore them. If you set this to \code{FALSE}, everything will come back with \code{NA} if there is a missing value in the vector. If you ignore the \code{na} field altogether and run something like \code{r2sd(x)}, the \code{na.rm=T} is assumed to be what you wanted.
 }
 }
 \details{

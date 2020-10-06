@@ -1,7 +1,7 @@
 Package: stevemisc
 Type: Package
 Title: Miscellaneous Functions/Data That Only Steve Finds Useful
-Version: 0.2.2
+Version: 0.3.0
 Depends: R (>= 3.5.0)
 Authors@R: c(
     person("Steve", "Miller", email = "steven.v.miller@gmail.com",
@@ -27,11 +27,15 @@ BugReports: https://github.com/svmiller/stevemisc/issues
 Encoding: UTF-8
 LazyData: true
 Imports:
+    ggplot2 (>= 3.3.0),
     tidyverse,
+    magrittr,
     broom,
+    broom.mixed,
     labelled,
     arm,
-    parallel
+    parallel,
+    emo
 Suggests:
     lme4,
     knitr,

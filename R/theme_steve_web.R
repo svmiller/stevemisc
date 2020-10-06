@@ -1,4 +1,5 @@
 theme_steve_web <- function() {
+  require(ggplot2)
   get_os <- function() {
     sysinf <- Sys.info()
     if (!is.null(sysinf)) {
@@ -67,12 +68,14 @@ theme_steve_web <- function() {
 }
 
 theme_steve_web2 <- function() {
+  require(ggplot2)
   theme_steve_web() +
   theme(legend.title = element_text(family = "Titillium WebBold"),
         plot.title = element_text(family = "Titillium WebBold"))
 }
 
 post_bg <- function() {
+  require(ggplot2)
   theme(plot.background = element_rect(fill = "#fdfdfd"),
         panel.background = element_rect(fill = "#fdfdfd"),
         legend.key = element_rect(fill = "#fdfdfd"),

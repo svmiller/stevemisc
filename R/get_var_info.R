@@ -1,8 +1,9 @@
 get_var_info <- function(x) {
-    # It should be obvious this will require labelled and tidyverse
+    require(labelled)
+    require(tibble)
     b <- labelled::var_label(x)
     c <- data.frame(r = unique(data.frame(labelled::val_labels(x))))
-    c <- rownames_to_column(c, "label")
+    c <- tibble::rownames_to_column(c, "label")
     names(c) <- c("label", "numeric")
     tribs <- tibble::tribble(~label, ~numeric, b, NA, NA, NA)
     tribs[is.na(tribs)] <- ""

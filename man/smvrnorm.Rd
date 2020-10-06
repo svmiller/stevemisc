@@ -8,19 +8,19 @@ Simulate from a Multivariate Normal Distribution
 Produces one or more samples from a multivariate normal distribution.
 }
 \usage{
-smvrnorm(n = 1, mu, Sigma, tol = 1e-06, empirical = FALSE, EISPACK = FALSE, seed)
+smvrnorm(n = 1, mu, sigma, tol = 1e-06, empirical = FALSE, eispack = FALSE, seed)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{n}{the number of samples required.}
   \item{mu}{a vector giving the means of the variables.}
-  \item{Sigma}{a positive-definite symmetric matrix specifying the
+  \item{sigma}{a positive-definite symmetric matrix specifying the
     covariance matrix of the variables.}
   \item{tol}{tolerance (relative to largest variance) for numerical lack
     of positive-definiteness in \code{Sigma}.}
   \item{empirical}{logical. If true, mu and Sigma specify the empirical
     not population mean and covariance matrix.}
-  \item{EISPACK}{logical: values other than \code{FALSE} are an error.}
+  \item{eispack}{logical: values other than \code{FALSE} are an error.}
   \item{seed}{set seed for (optional) reproducibility}
 }
 \details{
@@ -39,13 +39,9 @@ Causes creation of the dataset \code{.Random.seed} if it does
 }
 
 \examples{
+library(stevemisc)
 Sigma <- matrix(c(10,3,3,2),2,2)
 Sigma
-var(mvrnorm(n = 1000, rep(0, 2), Sigma))
-var(mvrnorm(n = 1000, rep(0, 2), Sigma, empirical = TRUE))
+var(smvrnorm(n = 1000, rep(0, 2), Sigma))
+var(smvrnorm(n = 1000, rep(0, 2), Sigma, empirical = TRUE))
 }
-
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{distribution }% use one of  RShowDoc("KEYWORDS")
-\keyword{multivariate }% __ONLY ONE__ keyword per line

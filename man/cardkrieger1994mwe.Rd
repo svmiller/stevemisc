@@ -31,7 +31,8 @@ This is a toy data set, derived from the Card and Krieger (1994) study, for asse
 %%  ~~ possibly secondary sources and usages ~~
 }
 \examples{
+library(tidyverse)
+library(stevemisc)
 data(cardkrieger1994mwe)
-## maybe str(cardkrieger1994mwe) ; plot(cardkrieger1994mwe) ...
 }
 \keyword{datasets}

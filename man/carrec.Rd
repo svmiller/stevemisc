@@ -10,9 +10,7 @@ This recodes a numeric vector, character vector, or factor according to fairly s
 The goal here is to minimize the number of function clashes with multiple packages that I use in my workflow. For example: \pkg{car}, \pkg{dplyr}, and \pkg{Hmisc} all have \code{recode} functions. I rely on the \pkg{car} package just for this function, but it conflicts with some other \pkg{tidyverse} functions that are vital to my workflow.
 }
 \usage{
-carrec(var, recodes, as.factor, as.numeric = TRUE, levels)
-
-carr(...)
+carrec(var, recodes, as_fac, as_num = TRUE, levels)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,10 +20,10 @@ numeric vector, character vector, or factor
   \item{recodes}{
   character string of recode specifications: see below, but former Stata users will find this stuff familiar.
 }
-  \item{as.factor}{
+  \item{as_fac}{
 return a factor; default is \code{TRUE} if \code{var} is a factor, \code{FALSE} otherwise.
 }
-  \item{as.numeric}{
+  \item{as_num}{
 if \code{TRUE} (which is the default) and \code{as.factor} is \code{FALSE}, the result will be coerced to a numeric if all values in the result are numeric. This should be what you want in 99\% of applications for regression analysis.
 }
   \item{levels}{
