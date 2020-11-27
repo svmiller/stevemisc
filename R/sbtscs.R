@@ -7,7 +7,7 @@
 #'
 
 sbtscs <- function(data, event, tvar, csunit, pad_ts = FALSE) {
-    require(tidyverse)
+    require(dplyr)
     tvar <- dplyr::enquo(tvar)
     event <- dplyr::enquo(event)
     csunit <- dplyr::enquo(csunit)
@@ -77,6 +77,6 @@ sbtscs <- function(data, event, tvar, csunit, pad_ts = FALSE) {
     data$orig_order <- NULL
     data <- bind_rows(data, noevents)
     data$tot <- NULL
-    data <- data[order(data[[csunit]], data[[tvar]]), ]
+    data <- as_tibble(data[order(data[[csunit]], data[[tvar]]), ])
     return(data)
 }

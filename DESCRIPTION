@@ -34,10 +34,10 @@ Imports:
     broom.mixed,
     labelled,
     arm,
-    parallel,
-    emo
+    parallel
 Suggests:
     lme4,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+RoxygenNote: 7.1.1
