@@ -21,13 +21,17 @@ Assuming a particular structure to the database, the function returns a
  some information about the query (e.g. through \code{show_query()}).
 }
 \description{
-\code{sum} returns the sum of all the values present in its arguments.
+\code{db_lselect} allows you to select variables from multiple
+ tables in an SQL database. It returns a lazy query that combines all the
+ variables together into one data frame (as a \code{tibble}). The user can
+ choose to run \code{collect()} after this query if they see fit.
 }
 \details{
-This is a generic function: methods can be defined for it directly
-or via the \code{\link{Summary}} group generic. For this to work properly,
-the arguments \code{...} should be unnamed, and dispatch is on the
-first argument.
+This is a wrapper function in which \code{purrr} and \code{dplyr}
+are doing the heavy lifting. The tables in the database are declared as a
+character (or character vector). The variables to select are also declared
+as a character (or character vector), which are then wrapped in a
+\code{one_of()} function within \code{select()} in \code{dplyr}.
 }
 \references{
 Miller, Steven V. 2020. "Clever Uses of Relational (SQL) Databases to Store Your Wider Data (with Some Assistance from \code{dplyr} and \code{purrr})" \url{http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/}

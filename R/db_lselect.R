@@ -1,11 +1,15 @@
 #' Lazily select variables from multiple tables in a relational database
 #'
-#' @description \code{sum} returns the sum of all the values present in its arguments.
+#' @description \code{db_lselect} allows you to select variables from multiple
+#'  tables in an SQL database. It returns a lazy query that combines all the
+#'  variables together into one data frame (as a \code{tibble}). The user can
+#'  choose to run \code{collect()} after this query if they see fit.
 #'
-#' @details This is a generic function: methods can be defined for it directly
-#' or via the \code{\link{Summary}} group generic. For this to work properly,
-#' the arguments \code{...} should be unnamed, and dispatch is on the
-#' first argument.
+#' @details This is a wrapper function in which \code{purrr} and \code{dplyr}
+#' are doing the heavy lifting. The tables in the database are declared as a
+#' character (or character vector). The variables to select are also declared
+#' as a character (or character vector), which are then wrapped in a
+#' \code{one_of()} function within \code{select()} in \code{dplyr}.
 #'
 #' @param data a character vector of the tables in a relational database
 #' @param connection the name of the connection object
