@@ -1,9 +1,45 @@
-#' Create 'Peace Years' by cross-sectional unit
+#' Create "peace years" or "spells" by cross-sectional unit
 #'
-#' @param data Data set with which you are working.
-#' @param event Some event (binary) for which you want peace years.
-#' @param tvar The time variable (likely the year).
-#' @param csunit The cross-sectional unit (likely a dyad, if you're doing IR stuff).
+#' @description \code{sbtscs()} allows you to create spells ("peace years" in
+#' the international conflict context) between observations of some event. This
+#' will allow the researcher to better model temporal dependence in binary time-series
+#' cross-section ("BTSCS") models.
+#'
+#' @details I should confess outright, and it should be obvious to anyone
+#' who looks at the code, that I liberally copy from Dave Armstrong's
+#' \code{btscs()} function in the \code{DAMisc} package. I offer two such improvements.
+#' One, the \code{btscs()} function chokes when a large number of cross-sectional units
+#' have no recorded "event." I don't know why this happens but it does. Further, "tidying"
+#' up the code by leaning on \code{dplyr} substantially speeds up computation. Incidentally,
+#' this concerns the same cross-sectional units with no recorded events that can choke the
+#' \code{btscs()} function in large numbers.
+#'
+#' @return \code{sbtscs()} takes a data frame and returns the data frame with a new variable
+#' named \code{spell}.
+#'
+#' @author David A. Armstrong, Steven V. Miller
+#'
+#' @references Armstrong, Dave. 2016. ``\code{DAMisc}: Dave Armstrong's Miscellaneous Functions.''
+#' \emph{R package version 1.4-3}.
+#' \href{https://cran.r-project.org/web/packages/DAMisc/index.html}{https://CRAN.R-project.org/package=DAMisc}
+#'
+#' Miller, Steven V. 2017. ``Quickly Create Peace Years for BTSCS Models with \code{sbtscs} in \code{stevemisc}.''
+#' \url{http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/}
+#'
+#' @param data the data set with which you are working
+#' @param event some event (0, 1) for which you want spells or peace years
+#' @param tvar the time variable (e.g. a year)
+#' @param csunit the cross-sectional unit (likely a dyad if you're doing boilerplate international conflict stuff)
+#' @param pad_ts should time-series be filled when panels are unbalanced/have gaps? Defaults to FALSE.
+#'
+#' @examples
+#' library(dplyr)
+#' library(stevemisc)
+#' data(usa_mids)
+#'
+#' # notice: no quotes
+#' usa_mids <- sbtscs(usa_mids, midongoing, year, dyad)
+#'
 #'
 
 sbtscs <- function(data, event, tvar, csunit, pad_ts = FALSE) {
