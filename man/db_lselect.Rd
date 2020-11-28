@@ -33,6 +33,45 @@ character (or character vector). The variables to select are also declared
 as a character (or character vector), which are then wrapped in a
 \code{one_of()} function within \code{select()} in \code{dplyr}.
 }
+\examples{
+library(DBI)
+library(RSQLite)
+library(dplyr)
+library(purrr)
+set.seed(8675309)
+
+A <- data.frame(uid = c(1:10),
+                a = rnorm(10),
+                b = sample(letters, 10),
+                c = rbinom(10, 1, .5))
+
+B <- data.frame(uid = c(11:20),
+                a = rnorm(10),
+                b = sample(letters, 10),
+                c = rbinom(10, 1, .5))
+
+C <- data.frame(uid = c(21:30), a = rnorm(10),
+                b = sample(letters, 10),
+                c = rbinom(10, 1, .5),
+                d = rnorm(10))
+
+con <- dbConnect(SQLite(), ":memory:")
+
+copy_to(con, A, "A",
+        temporary=FALSE)
+
+copy_to(con, B, "B",
+        temporary=FALSE)
+
+copy_to(con, C, "C",
+        temporary=FALSE)
+
+# This returns no warning because columns "a" and "b" are in all tables
+c("A", "B", "C") \%>\% db_lselect(con, c("uid", "a", "b"))
+
+# This returns two warnings because column "d" is not in 2 of 3 tables, but that's by design.
+c("A", "B", "C") \%>\% db_lselect(con, c("uid", "a", "b", "d"))
+}
 \references{
 Miller, Steven V. 2020. "Clever Uses of Relational (SQL) Databases to Store Your Wider Data (with Some Assistance from \code{dplyr} and \code{purrr})" \url{http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/}
 }
