@@ -58,7 +58,8 @@
 #' # This returns no warning because columns "a" and "b" are in all tables
 #' c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b"))
 #'
-#' # This returns two warnings because column "d" is not in 2 of 3 tables, but that's by design.
+#' # This returns two warnings because column "d" is not in 2 of 3 tables.
+#' # ^ this is by design. It'll inform the user about data availability.
 #' c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b", "d"))
 
 db_lselect <- function(data, connection, vars) {
