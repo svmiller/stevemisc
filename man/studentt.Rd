@@ -38,7 +38,8 @@ Student-t to the three-parameter version.
 }
 \details{
 This is a simple hack taken from Wikipedia. It's an itch I've been wanting to scratch for a while. I can probably
-generalize this outward to allow the tail and log stuff, but I wrote this mostly for the random number generation.
+generalize this outward to allow the tail and log stuff, but I wrote this mostly for the random number generation. Right now,
+I haven't written this to account for the fact that sigma should be non-negative, but that's on the user to know that (for now).
 }
 \seealso{
 \code{\link[stats:TDist]{TDist}}

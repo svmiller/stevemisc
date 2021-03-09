@@ -4,7 +4,7 @@
 #'  a magical p-value by reference to an area underneath the standard normal curve,
 #'  only to botch what the actual z-value is corresponding to the magical p-value.
 #'  This simple function converts the p-value you want (typically .05,
-#'  thanks to R.A. Fisher) to the z-value it actually is for the kind of inferential
+#'  thanks to R.A. Fisher) to the z-value it actually is for the kind of
 #'  claims we typically make in inferential statistics. If we're going to do
 #'  inference the wrong way, let's at least get the z-value right.
 #'
@@ -28,6 +28,7 @@
 #' p_z(c(.001, .01, .05, .1))
 #' p_z(.05, ts=FALSE)
 #' p_z(c(.001, .01, .05, .1), ts=FALSE)
+
 p_z <- function(x, ts=TRUE) {
   if(ts == TRUE) {
   return(qnorm(x/2, lower.tail = F))
