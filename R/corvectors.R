@@ -1,3 +1,41 @@
+#' Create multivariate data by permutation
+#'
+#' @description \code{corvectors()} is a function to obtain a multivariate dataset by specifiying
+#' the relation between univariately specified variables.
+#'
+#' @name corvectors
+#'
+#' @param data a data matrix containing the data
+#' @param corm A value containing the desired correlation or a vector or data matrix containing the desired correlations
+#' @param tol A single value or a vector of tolerances with length \code{ncol(data) - 1}. The default is 0.005
+#' @param cores The number of cores to be used for parallel computing
+#' @param splitsize The size to use for splitting the data
+#' @param verbose Logical statement. Default is TRUE
+#' @param seed An optional seed to set
+#'
+#' @return \code{corvectors()} returns a matrix given the specified multivariate relation.
+#'
+#' @author Pascal van Kooten and Gerko Vink
+#'
+#' @details This is liberally copy-pasted from van Kooten and Vink's wonderful-but-no-longer-supported \code{correlate} package.
+#' They call it \code{correlate()} in their package, but I opt for \code{corvectors()} here.
+#'
+#' @examples
+#' corvectors(replicate(2, rnorm(100)), .5)
+#' # bivariate example, start with zero correlation
+#' corvectors(replicate(2, rnorm(100)), .5)
+#'
+#' # bivariate example, start with perfect correlation
+#' x <- rnorm(100)
+#' corvectors(replicate(2, x), .5)
+#'
+#' # multivariate example
+#'
+#' corvectors(replicate(4, rnorm(1000)), c(.5, .6, .7))
+#'
+#' @export
+#'
+
 corvectors <- function(data, corm, tol = 0.005,
                        conv = 10000, cores = 2,
                        splitsize = 1000, verbose = T, seed) {
@@ -50,6 +88,9 @@ corvectors <- function(data, corm, tol = 0.005,
     return(data)
 }
 
+#' @nord
+#' @keywords internal
+
 cor_permute <- function(data, corm, tol, bool1, bool2) {
     on.exit(return(data))
     for (row in 1:c(nrow(corm) - 1)) {
@@ -86,6 +127,8 @@ cor_permute <- function(data, corm, tol, bool1, bool2) {
     }
 }
 
+#' @nord
+#' @keywords internal
 
 rough_cor <- function(data, corm, tol, conv, cores, splitsize, verbose) {
     if (splitsize <= nrow(data)) {
@@ -109,7 +152,8 @@ rough_cor <- function(data, corm, tol, conv, cores, splitsize, verbose) {
     rough_cor_permute(data, corm, tol, conv, verbose)
 }
 
-
+#' @nord
+#' @keywords internal
 
 rough_cor_permute <- function(data, corm, tol, conv, verbose) {
     on.exit(return(data))
@@ -146,7 +190,8 @@ rough_cor_permute <- function(data, corm, tol, conv, verbose) {
     }
 }
 
-
+#' @nord
+#' @keywords internal
 
 cor_split <- function(data, splitsize = 1000) {
     nr <- nrow(data)
@@ -162,6 +207,8 @@ cor_split <- function(data, splitsize = 1000) {
     list
 }
 
+#' @nord
+#' @keywords internal
 
 create_cor_matrix <- function(data, corm) {
     cor_mat <- matrix(0, nrow = dim(data)[2], ncol = dim(data)[2])
@@ -171,6 +218,9 @@ create_cor_matrix <- function(data, corm) {
     return(cor_mat)
 }
 
+
+#' @nord
+#' @keywords internal
 
 create_tol_matrix <- function(data, tol) {
     holder <- matrix(1, nrow = dim(data)[2], ncol = dim(data)[2])
