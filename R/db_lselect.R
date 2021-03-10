@@ -11,7 +11,7 @@
 #' as a character (or character vector), which are then wrapped in a
 #' \code{one_of()} function within \code{select()} in \code{dplyr}.
 #'
-#' @param data a character vector of the tables in a relational database
+#' @param .data a character vector of the tables in a relational database
 #' @param connection the name of the connection object
 #' @param vars the variables (entered as class "character") to select from the tables in the database
 #' @return Assuming a particular structure to the database, the function returns a
@@ -62,8 +62,8 @@
 #' # ^ this is by design. It'll inform the user about data availability.
 #' c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b", "d"))
 
-db_lselect <- function(data, connection, vars) {
-  return(data %>%
+db_lselect <- function(.data, connection, vars) {
+  return(.data %>%
            map(~{
              tbl(connection, .x) %>%
                select(one_of(vars))

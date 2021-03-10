@@ -8,6 +8,8 @@ r1sd(x, na = TRUE)
 }
 \arguments{
 \item{x}{a numeric vector}
+
+\item{na}{what to do with NAs in the vector. Defaults to TRUE (i.e. passes over the missing observations)}
 }
 \value{
 The function returns a numeric vector rescaled with a mean of 0 and a

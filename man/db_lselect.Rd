@@ -4,10 +4,10 @@
 \alias{db_lselect}
 \title{Lazily select variables from multiple tables in a relational database}
 \usage{
-db_lselect(data, connection, vars)
+db_lselect(.data, connection, vars)
 }
 \arguments{
-\item{data}{a character vector of the tables in a relational database}
+\item{.data}{a character vector of the tables in a relational database}
 
 \item{connection}{the name of the connection object}
 
