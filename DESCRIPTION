@@ -38,6 +38,7 @@ Imports:
 Suggests:
     lme4,
     knitr,
-    rmarkdown
+    rmarkdown,
+    emo
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1

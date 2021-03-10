@@ -88,7 +88,7 @@ corvectors <- function(data, corm, tol = 0.005,
     return(data)
 }
 
-#' @nord
+#' @noRd
 #' @keywords internal
 
 cor_permute <- function(data, corm, tol, bool1, bool2) {
@@ -127,7 +127,7 @@ cor_permute <- function(data, corm, tol, bool1, bool2) {
     }
 }
 
-#' @nord
+#' @noRd
 #' @keywords internal
 
 rough_cor <- function(data, corm, tol, conv, cores, splitsize, verbose) {
@@ -152,7 +152,7 @@ rough_cor <- function(data, corm, tol, conv, cores, splitsize, verbose) {
     rough_cor_permute(data, corm, tol, conv, verbose)
 }
 
-#' @nord
+#' @noRd
 #' @keywords internal
 
 rough_cor_permute <- function(data, corm, tol, conv, verbose) {
@@ -190,7 +190,7 @@ rough_cor_permute <- function(data, corm, tol, conv, verbose) {
     }
 }
 
-#' @nord
+#' @noRd
 #' @keywords internal
 
 cor_split <- function(data, splitsize = 1000) {
@@ -207,7 +207,7 @@ cor_split <- function(data, splitsize = 1000) {
     list
 }
 
-#' @nord
+#' @noRd
 #' @keywords internal
 
 create_cor_matrix <- function(data, corm) {
@@ -219,7 +219,7 @@ create_cor_matrix <- function(data, corm) {
 }
 
 
-#' @nord
+#' @noRd
 #' @keywords internal
 
 create_tol_matrix <- function(data, tol) {

@@ -106,7 +106,7 @@ carrec <- function(var, recodes, as_fac, as_num = TRUE, levels) {
     result
 }
 
-#' @nord
+#' @noRd
 #' @keywords internal
 
 squeeze_blanks <- function(text) {
