@@ -5,7 +5,7 @@
 United States Militarized Interstate Disputes (MIDs)
 }
 \description{
-This is a non-directed dyad-year data set for militarized interstate disputes involving the United States. I use this to illustrate the \code{sbtscs()} function in \code{stevemisc}.
+This is a non-directed dyad-year data set for militarized interstate disputes involving the United States. I use this to illustrate the \code{sbtscs()} function.
 }
 \usage{data("usa_mids")}
 \format{
@@ -26,7 +26,7 @@ Rare cases where there were multiple disputes ongoing in a given dyad-year were 
 Gibler, Douglas M., Steven V. Miller, and Erin K. Little. 2016. "An Analysis of the Militarized Interstate Dispute (MID) Dataset, 1816-2001." International Studies Quarterly 60(4): 719-730.
 }
 \references{
-http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/
+Miller, Steven V. 2017. "Quickly Create Peace Years for BTSCS Models with \code{sbtscs()} in \code{stevemisc}." \url{http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/}
 }
 \examples{
 data(usa_mids)

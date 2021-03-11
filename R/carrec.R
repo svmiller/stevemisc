@@ -3,7 +3,7 @@
 #' @description This recodes a numeric vector, character vector, or factor according to fairly
 #' simple recode specifications that former Stata users will appreciate. Yes, this is taken
 #' from John Fox's \code{recode()} function in his \pkg{car} package. I'm going with \code{carrec()}
-#' (i.e. shorthand for \code{car::recode()}, phoenetically here: "car-wreck")
+#' (i.e. shorthand for \code{car::recode()}, phonetically here: "car-wreck")
 #' for this package, with an additional shorthand of \code{carr} that does the same thing.
 #'
 #' The goal here is to minimize the number of function clashes with multiple packages
@@ -22,7 +22,7 @@
 #' @param levels an optional argument specifying the order of the levels in the returned factor; the default is to use the sort order of the level names.
 #' @param ... optional, only to make the shortcut (\code{carr}) work
 #'
-#' @return \code{carrec()} recturns a vector, recoded to the specifications of the user. \code{carr()} is a simple shortcut for \code{carrec()}.
+#' @return \code{carrec()} returns a vector, recoded to the specifications of the user. \code{carr()} is a simple shortcut for \code{carrec()}.
 #'
 #' @author John Fox
 #'

@@ -30,10 +30,10 @@ cross-section ("BTSCS") models.
 \details{
 I should confess outright, and it should be obvious to anyone
 who looks at the code, that I liberally copy from Dave Armstrong's
-\code{btscs()} function in the \code{DAMisc} package. I offer two such improvements.
+\code{btscs()} function in the \pkg{DAMisc} package. I offer two such improvements.
 One, the \code{btscs()} function chokes when a large number of cross-sectional units
 have no recorded "event." I don't know why this happens but it does. Further, "tidying"
-up the code by leaning on \code{dplyr} substantially speeds up computation. Incidentally,
+up the code by leaning on \pkg{dplyr} substantially speeds up computation. Incidentally,
 this concerns the same cross-sectional units with no recorded events that can choke the
 \code{btscs()} function in large numbers.
 }
@@ -49,7 +49,7 @@ sbtscs(usa_mids, midongoing, year, dyad)
 
 }
 \references{
-Armstrong, Dave. 2016. ``\code{DAMisc}: Dave Armstrong's Miscellaneous Functions.''
+Armstrong, Dave. 2016. ``\pkg{DAMisc}: Dave Armstrong's Miscellaneous Functions.''
 \emph{R package version 1.4-3}.
 \href{https://cran.r-project.org/web/packages/DAMisc/index.html}{https://CRAN.R-project.org/package=DAMisc}
 

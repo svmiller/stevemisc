@@ -28,7 +28,7 @@ Information gathered from the appendix of Thompson and Dreyer (2012). Ongoing ri
 }
 
 \references{
-Thomspon, William R. and David Dreyer. 2012. Handbook of International Rivalries. CQ Press.
+Thompson, William R. and David Dreyer. 2012. Handbook of International Rivalries. CQ Press.
 }
 \examples{
 data(strategic_rivalries)

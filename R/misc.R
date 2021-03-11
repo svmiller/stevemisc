@@ -28,7 +28,7 @@
   !a %in% b
 }
 
-#' Convert data frame to tibble
+#' Convert data frame to an object of class "tibble"
 #'
 #' @description \code{tbl_df()} ensures legacy compatibility with some of my scripts since the function is deprecated in \pkg{dplyr}.
 #'

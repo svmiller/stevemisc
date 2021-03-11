@@ -36,8 +36,8 @@ corvectors(
 \code{corvectors()} returns a matrix given the specified multivariate relation.
 }
 \description{
-\code{corvectors()} is a function to obtain a multivariate dataset by specifiying
-the relation between univariately specified variables.
+\code{corvectors()} is a function to obtain a multivariate dataset by specifying
+the relation between those specified variables.
 }
 \details{
 This is liberally copy-pasted from van Kooten and Vink's wonderful-but-no-longer-supported \pkg{correlate} package.

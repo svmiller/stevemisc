@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_ranef.R
 \name{show_ranef}
 \alias{show_ranef}
-\title{Get a caterpillor plot of random effects from a mixed model}
+\title{Get a caterpillar plot of random effects from a mixed model}
 \usage{
 show_ranef(data, grp, reorder = TRUE)
 }

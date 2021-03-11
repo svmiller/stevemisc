@@ -2,7 +2,7 @@
 % Please edit documentation in R/misc.R
 \name{tbl_df}
 \alias{tbl_df}
-\title{Convert data frame to tibble}
+\title{Convert data frame to an object of class "tibble"}
 \usage{
 tbl_df(...)
 }

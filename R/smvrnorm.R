@@ -4,7 +4,7 @@
 #'
 #' @details This is a simple port and rename of \code{mvrnorm()} from the \pkg{MASS} package. I elect
 #' to plagiarize/port it because the \pkg{MASS} package conflicts with a lot of things in my workflow,
-#' especially \code{select()}. Tis is useful for "informal Bayes" approaches to generating quantities
+#' especially \code{select()}. This is useful for "informal Bayes" approaches to generating quantities
 #' of interest from a regression model.
 #'
 #' @param n the number of observations to simulate

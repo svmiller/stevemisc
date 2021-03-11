@@ -1,4 +1,4 @@
-#' Get a caterpillor plot of random effects from a mixed model
+#' Get a caterpillar plot of random effects from a mixed model
 #'
 #' @description \code{show_ranef()} allows a user estimating a mixed model to quickly
 #' plot the random intercepts (with conditional variances) of a given random effect

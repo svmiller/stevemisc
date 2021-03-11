@@ -1,7 +1,7 @@
 #' Create multivariate data by permutation
 #'
-#' @description \code{corvectors()} is a function to obtain a multivariate dataset by specifiying
-#' the relation between univariately specified variables.
+#' @description \code{corvectors()} is a function to obtain a multivariate dataset by specifying
+#' the relation between those specified variables.
 #'
 #' @name corvectors
 #'

@@ -17,11 +17,9 @@ Authors@R: c(
     person("Paul", "Williamson", email = "william@liv.ac.uk", role = "ctb")
     )
 Description: These are miscellaneous scripts that I find useful for my research.
-    This includes a better/faster "peace-year" function for binary time-series
-    cross-section (BTSCS) research, my default ggplot theme that's flexible and
-    aesthetically pleasing for LaTeX and the web, and a function for plotting
-    levels of a random effect from a mixed effects model. I have also have some
-    toy data sets in here too.
+    The contents of this package include themes for plots, functions for simulating
+    quantities of interest from regression models, functions for simulating various 
+    forms of fake data for instructional/research purposes, and many more.
 License: GPL (>=2)
 BugReports: https://github.com/svmiller/stevemisc/issues
 Encoding: UTF-8
