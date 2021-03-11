@@ -113,5 +113,5 @@ There are infinite reproducible seeds. There is only one correct one. `jenny()` 
 
 ```{r, cache=F}
 jenny() # good
-jenny(12345) # bad
+jenny(12345) # bad, and no seed set. Use set.seed() instead, you goon.
 ```
