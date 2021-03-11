@@ -20,6 +20,7 @@
 #' the levels of the random effect by their estimated conditional mode.
 #'
 #' @examples
+#'
 #' library(lme4)
 #' library(stevemisc)
 #' data(sleepstudy)
@@ -30,15 +31,13 @@
 #'
 
 show_ranef <- function(data, grp, reorder = TRUE) {
-  require(ggplot2)
-  require(broom.mixed)
   data <- augment(ranef(data, condVar = TRUE))
   if (reorder) {
     data <- data[data$grp == grp, ]
     data$level <- as.character(data$level)
   } else {
     }
-  ggplot(data[data$grp == grp, ], aes(estimate, level, xmin = lb, xmax = ub)) +
+  ggplot(data[data$grp == grp, ], aes(.data$estimate, .data$level, xmin = .data$lb, xmax = .data$ub)) +
     geom_errorbarh(height = 0) +
     geom_vline(xintercept = 0, lty = 2) +
     geom_point() +

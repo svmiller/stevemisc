@@ -18,7 +18,7 @@ gently admonishes you for wasting its time.
 \code{jenny()} sets a reproducible seed of 8675309. It is the only reproducible seed you should use.
 }
 \details{
-\code{jenny()} comes with some additional perks if you have the \code{emo} package installed. The package
+\code{jenny()} comes with some additional perks if you have the \pkg{emo} package installed. The package
 is optional.
 }
 \examples{

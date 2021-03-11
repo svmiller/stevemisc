@@ -30,6 +30,7 @@ This function is a simple wrapper in which \code{broom.mixed} and, obviously
 \code{ggplot2} are doing the heavy lifting.
 }
 \examples{
+
 library(lme4)
 library(stevemisc)
 data(sleepstudy)

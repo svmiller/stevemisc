@@ -22,6 +22,8 @@ corvectors(
 
 \item{tol}{A single value or a vector of tolerances with length \code{ncol(data) - 1}. The default is 0.005}
 
+\item{conv}{The maximum iterations allowed. Defaults to 1000.}
+
 \item{cores}{The number of cores to be used for parallel computing}
 
 \item{splitsize}{The size to use for splitting the data}
@@ -38,7 +40,7 @@ corvectors(
 the relation between univariately specified variables.
 }
 \details{
-This is liberally copy-pasted from van Kooten and Vink's wonderful-but-no-longer-supported \code{correlate} package.
+This is liberally copy-pasted from van Kooten and Vink's wonderful-but-no-longer-supported \pkg{correlate} package.
 They call it \code{correlate()} in their package, but I opt for \code{corvectors()} here.
 }
 \examples{

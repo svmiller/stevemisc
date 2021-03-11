@@ -1,8 +1,8 @@
 Package: stevemisc
 Type: Package
 Title: Miscellaneous Functions/Data That Only Steve Finds Useful
-Version: 0.3.1
-Depends: R (>= 3.5.0)
+Version: 1.0.0
+Depends: R (>= 3.5.0), stats
 Authors@R: c(
     person("Steve", "Miller", email = "steven.v.miller@gmail.com",
     role = c("aut", "cre")),
@@ -34,9 +34,14 @@ Imports:
     broom.mixed,
     labelled,
     arm,
-    parallel
-Suggests:
+    parallel,
+    purrr,
+    tibble,
+    dplyr,
+    methods,
     lme4,
+    rlang
+Suggests:
     knitr,
     rmarkdown,
     emo

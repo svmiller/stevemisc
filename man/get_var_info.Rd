@@ -13,6 +13,8 @@ gvi(...)
 \item{.data}{a data frame}
 
 \item{x}{a column within the data frame}
+
+\item{...}{optional, only to make the shortcut (\code{gvi}) work}
 }
 \value{
 If the column in the data frame is not labelled, the function returns a message communicating
@@ -34,6 +36,8 @@ is designed to be used in a "pipe."
 \examples{
 
 library(tibble)
+library(dplyr)
+library(magrittr)
 
 ess9_labelled \%>\% get_var_info(netusoft) # works, as intended
 ess9_labelled \%>\% get_var_info(cntry) # works, as intended

@@ -4,16 +4,18 @@
 \alias{make_perclab}
 \title{Make Percentage Label for Proportion and Add Percentage Sign}
 \usage{
-make_perclab(x, n = 2)
+make_perclab(x, d = 2)
 }
 \arguments{
 \item{x}{a numeric vector}
+
+\item{d}{digits to round. Defaults to 2.}
 }
 \value{
 The function takes a proportion, multiplies it by 100, (optionally) rounds it to a set decimal point, and pastes a percentage sign next to it.
 }
 \description{
-\code{make_perclab()} takes a proportion, multiplies it by 100, optionally rounds it, and pastes a percentage sign next ot it.
+\code{make_perclab()} takes a proportion, multiplies it by 100, optionally rounds it, and pastes a percentage sign next to it.
 }
 \details{
 This function is useful if you're modeling proportions in something like a bar chart

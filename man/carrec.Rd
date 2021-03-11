@@ -21,6 +21,8 @@ the result will be coerced to a numeric if all values in the result are numeric.
 This should be what you want in 99\% of applications for regression analysis.}
 
 \item{levels}{an optional argument specifying the order of the levels in the returned factor; the default is to use the sort order of the level names.}
+
+\item{...}{optional, only to make the shortcut (\code{carr}) work}
 }
 \value{
 \code{carrec()} recturns a vector, recoded to the specifications of the user. \code{carr()} is a simple shortcut for \code{carrec()}.

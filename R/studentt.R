@@ -34,14 +34,14 @@ dst <- function(x, df, mu, sigma) {
 #' @rdname studentt
 #' @export
 pst <- function(q, df, mu, sigma) {
-  pt((x - mu)/sigma, df)
+  pt((q - mu)/sigma, df)
 }
 
 
 #' @rdname studentt
 #' @export
 qst <- function(p, df, mu, sigma) {
-  qt(prob, df)*sigma + mu
+  qt(p, df)*sigma + mu
 }
 
 

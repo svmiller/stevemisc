@@ -11,6 +11,7 @@
 #'
 #' @param .data a data frame
 #' @param x a column within the data frame
+#' @param ... optional, only to make the shortcut (\code{gvi}) work
 #'
 #' @return If the column in the data frame is not labelled, the function returns a message communicating
 #' the absence of labels. If the column in the data frame is labelled, the function returns
@@ -22,6 +23,8 @@
 #' @examples
 #'
 #' library(tibble)
+#' library(dplyr)
+#' library(magrittr)
 #'
 #' ess9_labelled %>% get_var_info(netusoft) # works, as intended
 #' ess9_labelled %>% get_var_info(cntry) # works, as intended
@@ -30,13 +33,13 @@
 
 
 get_var_info <- function(.data, x) {
-    if (is.labelled(.data[[deparse(substitute(x))]]) == FALSE) {
+    if (labelled::is.labelled(.data[[deparse(substitute(x))]]) == FALSE) {
         message("get_var_info() requires a labelled column. Otherwise, you get this message.")
     } else {
-        data.frame(code=val_labels(.data[[deparse(substitute(x))]])) -> dat
+        data.frame(code=labelled::val_labels(.data[[deparse(substitute(x))]])) -> dat
         rownames_to_column(dat, var="label") -> dat
-        dat$var <- var_label(.data[[deparse(substitute(x))]])
-        select(dat, var, code, label) -> dat
+        dat$var <- labelled::var_label(.data[[deparse(substitute(x))]])
+        dplyr::select(dat, .data$var, .data$code, .data$label) -> dat
         return(dat)
     }
 

@@ -38,13 +38,14 @@ this concerns the same cross-sectional units with no recorded events that can ch
 \code{btscs()} function in large numbers.
 }
 \examples{
+\dontrun{
 library(dplyr)
 library(stevemisc)
 data(usa_mids)
 
 # notice: no quotes
-usa_mids <- sbtscs(usa_mids, midongoing, year, dyad)
-
+sbtscs(usa_mids, midongoing, year, dyad)
+}
 
 }
 \references{

@@ -33,35 +33,35 @@
 #' @param pad_ts should time-series be filled when panels are unbalanced/have gaps? Defaults to FALSE.
 #'
 #' @examples
+#' \dontrun{
 #' library(dplyr)
 #' library(stevemisc)
 #' data(usa_mids)
 #'
 #' # notice: no quotes
-#' usa_mids <- sbtscs(usa_mids, midongoing, year, dyad)
-#'
+#' sbtscs(usa_mids, midongoing, year, dyad)
+#' }
 #'
 
 sbtscs <- function(data, event, tvar, csunit, pad_ts = FALSE) {
-    require(dplyr)
-    tvar <- dplyr::enquo(tvar)
-    event <- dplyr::enquo(event)
-    csunit <- dplyr::enquo(csunit)
-    data <- dplyr::arrange(data, !!csunit, !!tvar)
+    tvar <- enquo(tvar)
+    event <- enquo(event)
+    csunit <- enquo(csunit)
+    data <- arrange(data, !!csunit, !!tvar)
     sumevents <- data %>%
         group_by(!!csunit) %>%
         mutate(tot = sum(!!event))
     noevents <- sumevents %>%
         group_by(!!csunit) %>%
-        filter(tot == 0) %>%
+        filter(.data$tot == 0) %>%
         mutate(spell = seq_along(!!tvar) - 1)
     data <- sumevents %>%
         group_by(!!csunit) %>%
-        filter(tot > 0) %>%
+        filter(.data$tot > 0) %>%
         as.data.frame()
-    tvar <- dplyr::quo_name(tvar)
-    event <- dplyr::quo_name(event)
-    csunit <- dplyr::quo_name(csunit)
+    tvar <- quo_name(tvar)
+    event <- quo_name(event)
+    csunit <- quo_name(csunit)
     # Taken from Dave Armstrong's DAMisc package.
     data$orig_order <- 1:nrow(data)
     data <- data[order(data[[csunit]], data[[tvar]]), ]

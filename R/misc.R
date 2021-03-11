@@ -11,8 +11,6 @@
 #' it will report what matches and what does not. For comparing a vector within a data frame, it has the effect of reporting the rows
 #' in the data frame that do not match the supplied (second) vector.
 #'
-#' @name %nin%
-#'
 #' @examples
 #'
 #' library(tibble)
@@ -23,9 +21,10 @@
 #' dat <- tibble(x = seq(1:10), d = rnorm(10))
 #' filter(dat, x %nin% c(3, 6, 9))
 #'
-#' @noRd
+#' @rdname nin
+#' @export
 
-"%nin%" <- function(a, b) {
+`%nin%` <- function(a, b) {
   !a %in% b
 }
 
@@ -33,6 +32,8 @@
 #'
 #' @description \code{tbl_df()} ensures legacy compatibility with some of my scripts since the function is deprecated in \code{dplyr}.
 #'
+#' @keywords internal
+#' @export
 #' @noRd
 
 tbl_df <- tibble::as_tibble

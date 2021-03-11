@@ -8,6 +8,7 @@
 #' @param data a data matrix containing the data
 #' @param corm A value containing the desired correlation or a vector or data matrix containing the desired correlations
 #' @param tol A single value or a vector of tolerances with length \code{ncol(data) - 1}. The default is 0.005
+#' @param conv The maximum iterations allowed. Defaults to 1000.
 #' @param cores The number of cores to be used for parallel computing
 #' @param splitsize The size to use for splitting the data
 #' @param verbose Logical statement. Default is TRUE
@@ -17,7 +18,7 @@
 #'
 #' @author Pascal van Kooten and Gerko Vink
 #'
-#' @details This is liberally copy-pasted from van Kooten and Vink's wonderful-but-no-longer-supported \code{correlate} package.
+#' @details This is liberally copy-pasted from van Kooten and Vink's wonderful-but-no-longer-supported \pkg{correlate} package.
 #' They call it \code{correlate()} in their package, but I opt for \code{corvectors()} here.
 #'
 #' @examples
@@ -68,12 +69,12 @@ corvectors <- function(data, corm, tol = 0.005,
 
         if (cores > 1 && splits > 1) {
             if (Sys.info()["sysname"] == "Windows") {
-                cl <- parallel::makeCluster(cores)
-                temp <- parallel::parLapply(cl, ldata, function(x) cor_permute(x, corm, tol,
+                cl <- makeCluster(cores)
+                temp <- parLapply(cl, ldata, function(x) cor_permute(x, corm, tol,
                   bool1, bool2))
-                parallel::stopCluster(cl = cl)
+                stopCluster(cl = cl)
             } else {
-                temp <- parallel::mclapply(ldata, function(x) cor_permute(x, corm, tol, bool1,
+                temp <- mclapply(ldata, function(x) cor_permute(x, corm, tol, bool1,
                   bool2), mc.cores = cores)
             }
         } else {
@@ -88,8 +89,8 @@ corvectors <- function(data, corm, tol = 0.005,
     return(data)
 }
 
-#' @noRd
 #' @keywords internal
+#' @export
 
 cor_permute <- function(data, corm, tol, bool1, bool2) {
     on.exit(return(data))
@@ -127,20 +128,20 @@ cor_permute <- function(data, corm, tol, bool1, bool2) {
     }
 }
 
-#' @noRd
 #' @keywords internal
+#' @export
 
 rough_cor <- function(data, corm, tol, conv, cores, splitsize, verbose) {
     if (splitsize <= nrow(data)) {
-        if (cores > 1 & require(parallel)) {
+        if (cores > 1 & requireNamespace("parallel", quietly = TRUE)) {
             if (Sys.info()["sysname"] == "Windows") {
-                cl <- parallel::makeCluster(cores)
+                cl <- makeCluster(cores)
                 ldata <- cor_split(data, splitsize = splitsize)
-                temp <- parallel::parLapply(cl, ldata, function(x) rough_cor_permute(x, corm,
+                temp <- parLapply(cl, ldata, function(x) rough_cor_permute(x, corm,
                   tol, conv, verbose))
-                parallel::stopCluster(cl = cl)
+                stopCluster(cl = cl)
             } else {
-                temp <- parallel::mclapply(cor_split(data, splitsize = splitsize), function(x) rough_cor_permute(x,
+                temp <- mclapply(cor_split(data, splitsize = splitsize), function(x) rough_cor_permute(x,
                   corm, tol, conv, verbose), mc.cores = cores)
             }
         } else {
@@ -152,8 +153,8 @@ rough_cor <- function(data, corm, tol, conv, cores, splitsize, verbose) {
     rough_cor_permute(data, corm, tol, conv, verbose)
 }
 
-#' @noRd
 #' @keywords internal
+#' @export
 
 rough_cor_permute <- function(data, corm, tol, conv, verbose) {
     on.exit(return(data))
@@ -190,8 +191,8 @@ rough_cor_permute <- function(data, corm, tol, conv, verbose) {
     }
 }
 
-#' @noRd
 #' @keywords internal
+#' @export
 
 cor_split <- function(data, splitsize = 1000) {
     nr <- nrow(data)
@@ -207,8 +208,8 @@ cor_split <- function(data, splitsize = 1000) {
     list
 }
 
-#' @noRd
 #' @keywords internal
+#' @export
 
 create_cor_matrix <- function(data, corm) {
     cor_mat <- matrix(0, nrow = dim(data)[2], ncol = dim(data)[2])
@@ -219,8 +220,8 @@ create_cor_matrix <- function(data, corm) {
 }
 
 
-#' @noRd
 #' @keywords internal
+#' @export
 
 create_tol_matrix <- function(data, tol) {
     holder <- matrix(1, nrow = dim(data)[2], ncol = dim(data)[2])

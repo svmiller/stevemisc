@@ -1,3 +1,31 @@
+#' Simulate from a Multivariate Normal Distribution
+#'
+#' @description \code{smvrnorm()} simulates data from a multivariate normal distribution.
+#'
+#' @details This is a simple port and rename of \code{mvrnorm()} from the \pkg{MASS} package. I elect
+#' to plagiarize/port it because the \pkg{MASS} package conflicts with a lot of things in my workflow,
+#' especially \code{select()}. Tis is useful for "informal Bayes" approaches to generating quantities
+#' of interest from a regression model.
+#'
+#' @param n the number of observations to simulate
+#' @param mu a vector of means
+#' @param sigma a positive-definite symmetric matrix specifying the covariance matrix of the variables.
+#' @param tol tolerance (relative to largest variance) for numerical lack of positive-definiteness in \code{sigma}.
+#' @param empirical logical. If true, \code{mu} and \code{sigma} specify the empirical not population mean and covariance matrix.
+#' @param eispack logical. values other than FALSE result in an error
+#' @param seed set an optional seed
+#'
+#' @return The function returns simulated data from a multivariate normal distribution.
+#'
+#' @references  B. D. Ripley (1987) \emph{Stochastic Simulation.} Wiley. Page 98.
+#'
+#' @examples
+#'
+#' Sigma <- matrix(c(10,3,3,2),2,2)
+#' Sigma
+#' var(smvrnorm(n = 1000, rep(0, 2), Sigma))
+#' var(smvrnorm(n = 1000, rep(0, 2), Sigma, empirical = TRUE))
+#'
 smvrnorm <- function(n = 1, mu, sigma, tol = 1e-06,
                      empirical = FALSE, eispack = FALSE, seed) {
     if (missing(seed)) {

@@ -17,7 +17,7 @@ db_lselect(.data, connection, vars)
 Assuming a particular structure to the database, the function returns a
  combined table including all the requested variables from all the tables listed
  in the \code{data} character vector. The returned table will have other attributes
- inherited from how \code{dplyr} interfaces with SQL, allowing the user to extract
+ inherited from how \pkg{dplyr} interfaces with SQL, allowing the user to extract
  some information about the query (e.g. through \code{show_query()}).
 }
 \description{
@@ -27,13 +27,15 @@ Assuming a particular structure to the database, the function returns a
  choose to run \code{collect()} after this query if they see fit.
 }
 \details{
-This is a wrapper function in which \code{purrr} and \code{dplyr}
+This is a wrapper function in which \pkg{purrr} and \pkg{dplyr}
 are doing the heavy lifting. The tables in the database are declared as a
 character (or character vector). The variables to select are also declared
 as a character (or character vector), which are then wrapped in a
-\code{one_of()} function within \code{select()} in \code{dplyr}.
+\code{one_of()} function within \code{select()} in \pkg{dplyr}.
 }
 \examples{
+
+\dontrun{
 library(DBI)
 library(RSQLite)
 library(dplyr)
@@ -72,6 +74,7 @@ c("A", "B", "C") \%>\% db_lselect(con, c("uid", "a", "b"))
 # This returns two warnings because column "d" is not in 2 of 3 tables.
 # ^ this is by design. It'll inform the user about data availability.
 c("A", "B", "C") \%>\% db_lselect(con, c("uid", "a", "b", "d"))
+}
 }
 \references{
 Miller, Steven V. 2020. "Clever Uses of Relational (SQL) Databases to Store Your Wider Data (with Some Assistance from \code{dplyr} and \code{purrr})" \url{http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/}

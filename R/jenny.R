@@ -2,7 +2,7 @@
 #'
 #' @description \code{jenny()} sets a reproducible seed of 8675309. It is the only reproducible seed you should use.
 #'
-#' @details \code{jenny()} comes with some additional perks if you have the \code{emo} package installed. The package
+#' @details \code{jenny()} comes with some additional perks if you have the \pkg{emo} package installed. The package
 #' is optional.
 #'
 #' @param x a vector
@@ -19,7 +19,7 @@
 jenny <- function(x = 8675309) {
   if(missing(x)) {
     set.seed(x)
-    if(requireNamespace("emo", quietly=TRUE)) {
+    if(requireNamespace("emo", quietly = TRUE)) {
       message(paste0(emo::ji("music"), " Jenny, I got your number..."))
     } else {
       message("Jenny, I got your number...")
