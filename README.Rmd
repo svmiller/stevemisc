@@ -1,0 +1,117 @@
+---
+output: github_document
+---
+
+# Steve's Miscellaneous Functions
+
+```{r echo=FALSE, results="hide", message=FALSE}
+library("badger")
+```
+
+```{r, echo = FALSE, results='asis'}
+cat(
+	badge_cran_release("stevemisc", "green"),
+	badge_cran_download("stevemisc", "grand-total", "green"),
+	badge_cran_download("stevemisc", "last-month", "green"),
+	badge_cran_download("stevemisc", "last-week", "green")
+)
+```
+
+<img src="http://svmiller.com/images/stevemisc-hexlogo.png" alt="My stevemisc hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/>
+
+`{stevemisc}` is an R package that includes various functions and tools that I have written over the years to assist me in my research. I offer it here for a public release because 1) I am vain and think I privately want an entire, eponymous ecosystem in the R programming language (i.e. the "steveverse") and 2) I think there are tools here that are broadly useful for users that I'm trying to bundle with other things that I offer (prominently [{steveproj}](https://github.com/svmiller/steveproj)). The usage section will elaborate some of its uses.
+
+## Installation
+
+When the time comes, you can install this on CRAN.
+
+```r
+install.packages("stevemisc")
+```
+
+Right now, this package in development and is not available on CRAN. You can install the development version of `steveproj` from Github via the `devtools` package. I suppose using the `remotes` package would work as well.
+
+```r
+devtools::install_github("svmiller/stevemisc")
+```
+
+## Usage
+
+The documentation files will include several of these as "examples." I offer them here as proofs of concept.
+
+### `carrec()`: A Port of `car::recode()`
+
+`carrec()` (phonetically: "car-wreck") is a simple port of `car::recode()` that I put in this package because of various function clashes in the `{car}` package. For those who cut their teeth on Stata, this package offers Stata-like recoding features that are tough to find in the R programming language. It comes with a shortcut as well, `carr()`.
+
+For example, assume the following vector that is some variable of interest on a 1-10 scale. You want to code the variables that are 6 and above to be 1 and code the variables of 1-5 to be 0. Here's how you would do that.
+
+```{r, cache=F, message=F}
+library(tidyverse)
+library(stevemisc)
+x <- seq(1, 10)
+x
+
+carrec(x, "1:5=0;6:10=1")
+carr(x, "1:5=0;6:10=1")
+```
+
+### `cor2data()`: Simulate Variables from a Standard Normal Distribution with Pre-Specified Correlations
+
+`cor2data()` is great for instructional purposes for simulating data from a standard normal distribution in which the ensuing data are generated to approximate some pre-specified correlations. This is useful for teaching how statistical models are supposed to operate under some ideal circumstances. For example, here's how [I used this function to teach about instrumental variable models](http://post8000.svmiller.com/lab-scripts/instrumental-variables-lab.html). Notice the correlations I devise and how they satisfy they assumptions of exclusion, exogeneity, and relevance.
+
+```{r, cache=F, message=F}
+vars = c("control", "treat", "instr", "e")
+Cor <- matrix(cbind(1, 0, 0, 0,
+                    0, 1, 0.85, -0.5,
+                    0, 0.85, 1, 0,
+                    0, -0.5, 0, 1),nrow=4)
+rownames(Cor) <- colnames(Cor) <- vars
+
+Fake <- as_tibble(cor2data(Cor, 1000, 8675309)) # Jenny I got your number...
+Fake$y <- with(Fake, 5 + .5*control + .5*treat + e)
+
+Fake
+```
+
+### `corvectors()`: Create Multivariate Data by Permutation
+
+`corvectors()` is a port of `correlate()` from the `{correlate}` package. This package is no longer on CRAN, but it's wonderful for creating multivariate data with set correlations in which variables can be on any number of raw scales. I used this function to create fake data to mimic the API data in `{survey}`, which I make available as `fakeAPI` in the `{stevedata}` package. Here is a smaller version of that.
+
+```{r, cache=F}
+data(api, package="survey")
+cormatrix <- cor(apipop %>%
+                   select(meals, col.grad, full) %>% na.omit)
+
+nobs <- 1e3
+
+corvectors(cbind(runif(nobs, 0, 100),
+                 rbnorm(nobs, 20.73, 14.14, 0, 100),
+                 rbnorm(nobs, 87.52, 12.93, 0, 100)), cormatrix) %>% 
+  as.data.frame() %>% as_tibble() %>%
+  rename(meals = V1, colgrad = V2, fullqual = V3)
+```
+
+### `get_var_info()`: Get Labelled Data from Your Variables
+
+`get_var_info()` allows for what I like to term "peeking" at your labelled data. If you do not have a codebook handy, but you know the data are labelled, `get_var_info()` (and its shortcut: `gvi()`) will extract the pertinent information for you. `{stevemisc}` comes with a toy data set---`ess9_labelled`---in which there are two labelled variables for the country and internet consumption from the ninth round of the European Social Survey. You can extract that information with this package.
+
+Do note that it assumes a pipe-based workflow. It's there for when you're having to sit down in an R session and recode data without the assistance of a dual-monitor setup or physical codebook.
+
+```{r, cache=F}
+ess9_labelled
+
+# alternatively, below:
+# ess9_labelled %>% gvi(netusoft)
+# we'll do it this way, though...
+ess9_labelled %>% get_var_info(netusoft)
+```
+
+### `jenny()`: Set the Only Reproducible Seed that Matters, and Get a Nice Message for It
+
+There are infinite reproducible seeds. There is only one correct one. `jenny()` will set it for you and reward you with a nice message. It will get catty with you if try to use `jenny()` to set any other reproducible seed.
+
+
+```{r, cache=F}
+jenny() # good
+jenny(12345) # bad
+```

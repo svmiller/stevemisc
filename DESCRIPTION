@@ -1,6 +1,6 @@
 Package: stevemisc
 Type: Package
-Title: Miscellaneous Functions/Data That Only Steve Finds Useful
+Title: Steve's Miscellaneous Functions
 Version: 1.0.0
 Depends: R (>= 3.5.0), stats
 Authors@R: c(
