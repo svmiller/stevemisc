@@ -26,9 +26,7 @@ A simple summary of all strategic (inter-state) rivalries from Thompson and Drey
 \details{
 Information gathered from the appendix of Thompson and Dreyer (2012). Ongoing rivalries are right-bound at 2010, the date of publication for Thompson and Dreyer's handbook. Users are free to change this if they like.
 }
-\source{
-%%  ~~ reference to a publication or URL from which the data were obtained ~~
-}
+
 \references{
 Thomspon, William R. and David Dreyer. 2012. Handbook of International Rivalries. CQ Press.
 }
