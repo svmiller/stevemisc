@@ -41,10 +41,10 @@ corvectors <- function(data, corm, tol = 0.005,
                        conv = 10000, cores = 2,
                        splitsize = 1000, verbose = T, seed) {
     if (is.vector(corm)) {
-        corm <- create_cor_matrix(data, corm)
+        corm <- .create_cor_matrix(data, corm)
     }
     if (is.vector(tol)) {
-        tol <- create_tol_matrix(data, tol)
+        tol <- .create_tol_matrix(data, tol)
     }
 
     # identifiers of the direction; e.g. from 0.3 to 0.5
@@ -52,7 +52,7 @@ corvectors <- function(data, corm, tol = 0.005,
     bool2 <- abs(corm) > cor(data)
 
     # Step 1: roughly
-    data <- rough_cor(data, corm, tol, conv, cores, 25 * ncol(corm), verbose)
+    data <- .rough_cor(data, corm, tol, conv, cores, 25 * ncol(corm), verbose)
 
     # Step 2: until the end.
     while (!all(ifelse(bool1, corm < cor(data), cor(data) < corm)[tol != 1],
@@ -63,22 +63,22 @@ corvectors <- function(data, corm, tol = 0.005,
 
         data <- data[sample(nrow(data), nrow(data)), ]
 
-        ldata <- cor_split(data, splitsize)
+        ldata <- .cor_split(data, splitsize)
 
         splits <- length(ldata)
 
         if (cores > 1 && splits > 1) {
             if (Sys.info()["sysname"] == "Windows") {
                 cl <- makeCluster(cores)
-                temp <- parLapply(cl, ldata, function(x) cor_permute(x, corm, tol,
+                temp <- parLapply(cl, ldata, function(x) .cor_permute(x, corm, tol,
                   bool1, bool2))
                 stopCluster(cl = cl)
             } else {
-                temp <- mclapply(ldata, function(x) cor_permute(x, corm, tol, bool1,
+                temp <- mclapply(ldata, function(x) .cor_permute(x, corm, tol, bool1,
                   bool2), mc.cores = cores)
             }
         } else {
-            temp <- lapply(ldata, function(x) cor_permute(x, corm, tol, bool1, bool2))
+            temp <- lapply(ldata, function(x) .cor_permute(x, corm, tol, bool1, bool2))
         }
         data <- do.call(rbind, temp)
         splitsize <- splitsize * 4
@@ -92,7 +92,7 @@ corvectors <- function(data, corm, tol = 0.005,
 #' @keywords internal
 #' @export
 
-cor_permute <- function(data, corm, tol, bool1, bool2) {
+.cor_permute <- function(data, corm, tol, bool1, bool2) {
     on.exit(return(data))
     for (row in 1:c(nrow(corm) - 1)) {
         row <- row + 1
@@ -131,32 +131,32 @@ cor_permute <- function(data, corm, tol, bool1, bool2) {
 #' @keywords internal
 #' @export
 
-rough_cor <- function(data, corm, tol, conv, cores, splitsize, verbose) {
+.rough_cor <- function(data, corm, tol, conv, cores, splitsize, verbose) {
     if (splitsize <= nrow(data)) {
         if (cores > 1 & requireNamespace("parallel", quietly = TRUE)) {
             if (Sys.info()["sysname"] == "Windows") {
                 cl <- makeCluster(cores)
-                ldata <- cor_split(data, splitsize = splitsize)
-                temp <- parLapply(cl, ldata, function(x) rough_cor_permute(x, corm,
+                ldata <- .cor_split(data, splitsize = splitsize)
+                temp <- parLapply(cl, ldata, function(x) .rough_cor_permute(x, corm,
                   tol, conv, verbose))
                 stopCluster(cl = cl)
             } else {
-                temp <- mclapply(cor_split(data, splitsize = splitsize), function(x) rough_cor_permute(x,
+                temp <- mclapply(.cor_split(data, splitsize = splitsize), function(x) .rough_cor_permute(x,
                   corm, tol, conv, verbose), mc.cores = cores)
             }
         } else {
-            temp <- lapply(cor_split(data, splitsize = splitsize), function(x) rough_cor_permute(x,
+            temp <- lapply(.cor_split(data, splitsize = splitsize), function(x) .rough_cor_permute(x,
                 corm, tol, conv, verbose))
         }
         return(do.call(rbind, temp))
     }
-    rough_cor_permute(data, corm, tol, conv, verbose)
+    .rough_cor_permute(data, corm, tol, conv, verbose)
 }
 
 #' @keywords internal
 #' @export
 
-rough_cor_permute <- function(data, corm, tol, conv, verbose) {
+.rough_cor_permute <- function(data, corm, tol, conv, verbose) {
     on.exit(return(data))
     for (row in 1:c(nrow(corm) - 1)) {
         track_iter <- 0  # track iterations
@@ -194,7 +194,7 @@ rough_cor_permute <- function(data, corm, tol, conv, verbose) {
 #' @keywords internal
 #' @export
 
-cor_split <- function(data, splitsize = 1000) {
+.cor_split <- function(data, splitsize = 1000) {
     nr <- nrow(data)
     if (splitsize > nr) {
         splitsize <- nr
@@ -211,7 +211,7 @@ cor_split <- function(data, splitsize = 1000) {
 #' @keywords internal
 #' @export
 
-create_cor_matrix <- function(data, corm) {
+.create_cor_matrix <- function(data, corm) {
     cor_mat <- matrix(0, nrow = dim(data)[2], ncol = dim(data)[2])
     diag(cor_mat) <- 1
     cor_mat[1, -1] <- corm
@@ -223,7 +223,7 @@ create_cor_matrix <- function(data, corm) {
 #' @keywords internal
 #' @export
 
-create_tol_matrix <- function(data, tol) {
+.create_tol_matrix <- function(data, tol) {
     holder <- matrix(1, nrow = dim(data)[2], ncol = dim(data)[2])
     holder[-1, 1] <- tol
     return(holder)

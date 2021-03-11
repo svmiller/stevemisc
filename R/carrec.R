@@ -69,7 +69,7 @@ carrec <- function(var, recodes, as_fac, as_num = TRUE, levels) {
                 stop("\n  in recode term: ", term, "\n  message: ", target)
             }
             result[(var >= low) & (var <= high)] <- target
-        } else if (0 < length(grep("^else=", squeeze_blanks(term)))) {
+        } else if (0 < length(grep("^else=", .squeeze_blanks(term)))) {
             target <- try(eval(parse(text = strsplit(term, "=")[[1]][2])),
                           silent = TRUE)
             if (class(target) == "try-error") {
@@ -115,7 +115,7 @@ carrec <- function(var, recodes, as_fac, as_num = TRUE, levels) {
 #' @export
 #' @noRd
 
-squeeze_blanks <- function(text) {
+.squeeze_blanks <- function(text) {
   gsub(" *", "", text)
 }
 
