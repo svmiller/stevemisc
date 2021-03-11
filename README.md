@@ -38,7 +38,9 @@ devtools::install_github("svmiller/stevemisc")
 ## Usage
 
 The documentation files will include several of these as “examples.” I
-offer them here as proofs of concept.
+offer them here as proofs of concept. There are lots of cool stuff in
+`{stevemisc}` and I cannot review all of them here. Instead, I’ll offer
+what I think are the most important ones.
 
 ### `carrec()`: A Port of `car::recode()`
 
@@ -140,24 +142,112 @@ corvectors(cbind(runif(nobs, 0, 100),
 ```
 
     ##            [,1]       [,2]       [,3]
-    ## [1,]  1.0000000 -0.6820575 -0.4845344
-    ## [2,] -0.6820575  1.0000000  0.3107186
-    ## [3,] -0.4845344  0.3107186  1.0000000
+    ## [1,]  1.0000000 -0.6820601 -0.4844784
+    ## [2,] -0.6820601  1.0000000  0.3286409
+    ## [3,] -0.4844784  0.3286409  1.0000000
 
     ## # A tibble: 1,000 x 3
-    ##    meals colgrad fullqual
-    ##    <dbl>   <dbl>    <dbl>
-    ##  1  48.4  17.8       97.8
-    ##  2  19.6  58.2       76.1
-    ##  3  88.1   6.41      72.4
-    ##  4  52.1  11.7       86.6
-    ##  5  43.2  23.4       87.3
-    ##  6  81.0   0.361     54.5
-    ##  7  54.6   6.49      85.1
-    ##  8  87.1  12.0       88.0
-    ##  9  80.8   4.34     100. 
-    ## 10  73.0  13.9       74.9
+    ##     meals colgrad fullqual
+    ##     <dbl>   <dbl>    <dbl>
+    ##  1 17.9      5.15     98.4
+    ##  2 10.5     29.3      96.9
+    ##  3 17.0     47.4      99.4
+    ##  4 75.5      7.27     79.4
+    ##  5 71.6     10.4      82.6
+    ##  6 72.0      3.07     91.6
+    ##  7 65.3      9.76     81.7
+    ##  8 95.2      5.30     93.9
+    ##  9  0.100   57.6      98.3
+    ## 10  9.58     8.87     98.4
     ## # … with 990 more rows
+
+### `db_lselect()`: Lazily Select Variables From Multiple Tables in a Relational Database
+
+`db_lselect()` allows you to select variables from multiple tables in an
+SQL database. It returns a lazy query that combines all the variables
+together into one data frame (as a tibble). The user can choose to run
+collect() after this query if they see fit. [I wrote about this on my
+website in
+2020](http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/)
+and how it applies to real-world problems. Here is a proof of concept of
+how this works.
+
+``` r
+library(DBI)
+library(RSQLite)
+set.seed(8675309)
+
+A <- data.frame(uid = c(1:10),
+                a = rnorm(10),
+                b = sample(letters, 10),
+                c = rbinom(10, 1, .5))
+
+B <- data.frame(uid = c(11:20),
+                a = rnorm(10),
+                b = sample(letters, 10),
+                c = rbinom(10, 1, .5))
+
+C <- data.frame(uid = c(21:30), a = rnorm(10),
+                b = sample(letters, 10),
+                c = rbinom(10, 1, .5),
+                d = rnorm(10))
+
+con <- dbConnect(SQLite(), ":memory:")
+
+copy_to(con, A, "A",
+        temporary=FALSE)
+
+copy_to(con, B, "B",
+        temporary=FALSE)
+
+copy_to(con, C, "C",
+        temporary=FALSE)
+
+# This returns no warning because columns "a" and "b" are in all tables
+c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b"))
+```
+
+    ## # Source:   lazy query [?? x 3]
+    ## # Database: sqlite 3.34.1 [:memory:]
+    ##      uid       a b    
+    ##    <int>   <dbl> <chr>
+    ##  1     1 -0.997  f    
+    ##  2     2  0.722  z    
+    ##  3     3 -0.617  y    
+    ##  4     4  2.03   x    
+    ##  5     5  1.07   c    
+    ##  6     6  0.987  p    
+    ##  7     7  0.0275 e    
+    ##  8     8  0.673  i    
+    ##  9     9  0.572  o    
+    ## 10    10  0.904  n    
+    ## # … with more rows
+
+``` r
+# This returns two warnings because column "d" is not in 2 of 3 tables.
+# ^ this is by design. It'll inform the user about data availability.
+c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b", "d"))
+```
+
+    ## Warning: Unknown columns: `d`
+
+    ## Warning: Unknown columns: `d`
+
+    ## # Source:   lazy query [?? x 4]
+    ## # Database: sqlite 3.34.1 [:memory:]
+    ##      uid       a b         d
+    ##    <int>   <dbl> <chr> <dbl>
+    ##  1     1 -0.997  f        NA
+    ##  2     2  0.722  z        NA
+    ##  3     3 -0.617  y        NA
+    ##  4     4  2.03   x        NA
+    ##  5     5  1.07   c        NA
+    ##  6     6  0.987  p        NA
+    ##  7     7  0.0275 e        NA
+    ##  8     8  0.673  i        NA
+    ##  9     9  0.572  o        NA
+    ## 10    10  0.904  n        NA
+    ## # … with more rows
 
 ### `get_var_info()`: Get Labelled Data from Your Variables
 
@@ -228,3 +318,64 @@ jenny(12345) # bad, and no seed set. Use set.seed() instead, you goon.
 ```
 
     ## Why are you using this function with some other reproducible seed...
+
+### `p_z()`: Convert the *p*-value you want to the *z*-value it is
+
+I *loathe* how statistical instruction privileges obtaining a magical
+*p*-value by reference to an area underneath the standard normal curve,
+only to botch what the actual *z*-value is corresponding to the magical
+*p*-value. This simple function converts the *p*-value you want
+(typically .05, thanks to R.A. Fisher) to the *z*-value it actually is
+for the kind of claims we typically make in inferential statistics. If
+we’re going to do inference the wrong way, let’s at least get the
+*z*-value right.
+
+``` r
+p_z(.05)
+```
+
+    ## [1] 1.959964
+
+``` r
+p_z(c(.001, .01, .05, .1))
+```
+
+    ## [1] 3.290527 2.575829 1.959964 1.644854
+
+### `sbtscs()`: Create “Peace Years” or “Spells” by Cross-Sectional Unit
+
+`sbtscs()` allows you to create spells (“peace years” in the
+international conflict context) between observations of some event. This
+will allow the researcher to better model temporal dependence in binary
+time-series cross-section (“BTSCS”) models. Much of it is liberally
+copy-pasted from Dave Armstrong’s `{DAMisc}` package. I just added some
+`{dplyr}` stuff underneath to speed it up and prevent it from choking
+when there are a lot of cross-sectional units without an “event” for a
+“spell.”
+
+I explain this in [this blog post from
+2017](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/).
+It’s incidentally the first thing I added to `{stevemisc}`. I offer,
+with it, the `usa_mids` data frame that has all militarized interstate
+disputes for the United States in non-directed dyad-year form from the
+Gibler-Miller-Little (“GML”) data.
+
+``` r
+# ?usa_mids
+sbtscs(usa_mids, midongoing, year, dyad)
+```
+
+    ## # A tibble: 14,586 x 7
+    ##       dyad ccode1 ccode2  year midongoing midonset spell
+    ##      <dbl>  <dbl>  <dbl> <dbl>      <dbl>    <dbl> <dbl>
+    ##  1 1002020      2     20  1920          0        0     0
+    ##  2 1002020      2     20  1921          0        0     1
+    ##  3 1002020      2     20  1922          0        0     2
+    ##  4 1002020      2     20  1923          0        0     3
+    ##  5 1002020      2     20  1924          0        0     4
+    ##  6 1002020      2     20  1925          0        0     5
+    ##  7 1002020      2     20  1926          0        0     6
+    ##  8 1002020      2     20  1927          0        0     7
+    ##  9 1002020      2     20  1928          0        0     8
+    ## 10 1002020      2     20  1929          0        0     9
+    ## # … with 14,576 more rows

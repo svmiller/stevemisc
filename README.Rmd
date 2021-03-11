@@ -37,7 +37,7 @@ devtools::install_github("svmiller/stevemisc")
 
 ## Usage
 
-The documentation files will include several of these as "examples." I offer them here as proofs of concept.
+The documentation files will include several of these as "examples." I offer them here as proofs of concept. There are lots of cool stuff in `{stevemisc}` and I cannot review all of them here. Instead, I'll offer what I think are the most important ones.
 
 ### `carrec()`: A Port of `car::recode()`
 
@@ -91,6 +91,50 @@ corvectors(cbind(runif(nobs, 0, 100),
   rename(meals = V1, colgrad = V2, fullqual = V3)
 ```
 
+### `db_lselect()`: Lazily Select Variables From Multiple Tables in a Relational Database
+
+`db_lselect()` allows you to select variables from multiple tables in an SQL database. It returns a lazy query that combines all the variables together into one data frame (as a tibble). The user can choose to run collect() after this query if they see fit. [I wrote about this on my website in 2020](http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/) and how it applies to real-world problems. Here is a proof of concept of how this works.
+
+```{r, cache=F}
+library(DBI)
+library(RSQLite)
+set.seed(8675309)
+
+A <- data.frame(uid = c(1:10),
+                a = rnorm(10),
+                b = sample(letters, 10),
+                c = rbinom(10, 1, .5))
+
+B <- data.frame(uid = c(11:20),
+                a = rnorm(10),
+                b = sample(letters, 10),
+                c = rbinom(10, 1, .5))
+
+C <- data.frame(uid = c(21:30), a = rnorm(10),
+                b = sample(letters, 10),
+                c = rbinom(10, 1, .5),
+                d = rnorm(10))
+
+con <- dbConnect(SQLite(), ":memory:")
+
+copy_to(con, A, "A",
+        temporary=FALSE)
+
+copy_to(con, B, "B",
+        temporary=FALSE)
+
+copy_to(con, C, "C",
+        temporary=FALSE)
+
+# This returns no warning because columns "a" and "b" are in all tables
+c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b"))
+
+# This returns two warnings because column "d" is not in 2 of 3 tables.
+# ^ this is by design. It'll inform the user about data availability.
+c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b", "d"))
+
+```
+
 ### `get_var_info()`: Get Labelled Data from Your Variables
 
 `get_var_info()` allows for what I like to term "peeking" at your labelled data. If you do not have a codebook handy, but you know the data are labelled, `get_var_info()` (and its shortcut: `gvi()`) will extract the pertinent information for you. `{stevemisc}` comes with a toy data set---`ess9_labelled`---in which there are two labelled variables for the country and internet consumption from the ninth round of the European Social Survey. You can extract that information with this package.
@@ -115,3 +159,27 @@ There are infinite reproducible seeds. There is only one correct one. `jenny()` 
 jenny() # good
 jenny(12345) # bad, and no seed set. Use set.seed() instead, you goon.
 ```
+
+### `p_z()`: Convert the *p*-value you want to the *z*-value it is
+
+
+I *loathe* how statistical instruction privileges obtaining a magical *p*-value by reference to an area underneath the standard normal curve, only to botch what the actual *z*-value is corresponding to the magical *p*-value. This simple function converts the *p*-value you want (typically .05, thanks to R.A. Fisher) to the *z*-value it actually is for the kind of claims we typically make in inferential statistics. If we're going to do inference the wrong way, let's at least get the *z*-value right.
+
+```{r, cache=F}
+p_z(.05)
+p_z(c(.001, .01, .05, .1))
+```
+
+### `sbtscs()`: Create "Peace Years" or "Spells" by Cross-Sectional Unit
+
+`sbtscs()` allows you to create spells ("peace years" in the international conflict context) between observations of some event. This will allow the researcher to better model temporal dependence in binary time-series cross-section ("BTSCS") models. Much of it is liberally copy-pasted from Dave Armstrong's `{DAMisc}` package. I just added some `{dplyr}` stuff underneath to speed it up and prevent it from choking when there are a lot of cross-sectional units without an "event" for a "spell."
+
+I explain this in [this blog post from 2017](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/). It's incidentally the first thing I added to `{stevemisc}`. I offer, with it, the `usa_mids` data frame that has all militarized interstate disputes for the United States in non-directed dyad-year form from the Gibler-Miller-Little ("GML") data.
+
+```{r, cache=F}
+# ?usa_mids
+sbtscs(usa_mids, midongoing, year, dyad)
+```
+
+
+

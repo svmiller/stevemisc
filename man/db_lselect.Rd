@@ -21,7 +21,7 @@ Assuming a particular structure to the database, the function returns a
  some information about the query (e.g. through \code{show_query()}).
 }
 \description{
-\code{db_lselect} allows you to select variables from multiple
+\code{db_lselect()} allows you to select variables from multiple
  tables in an SQL database. It returns a lazy query that combines all the
  variables together into one data frame (as a \code{tibble}). The user can
  choose to run \code{collect()} after this query if they see fit.
@@ -39,7 +39,6 @@ as a character (or character vector), which are then wrapped in a
 library(DBI)
 library(RSQLite)
 library(dplyr)
-library(purrr)
 set.seed(8675309)
 
 A <- data.frame(uid = c(1:10),

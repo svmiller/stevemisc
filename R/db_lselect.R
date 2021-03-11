@@ -1,6 +1,6 @@
 #' Lazily select variables from multiple tables in a relational database
 #'
-#' @description \code{db_lselect} allows you to select variables from multiple
+#' @description \code{db_lselect()} allows you to select variables from multiple
 #'  tables in an SQL database. It returns a lazy query that combines all the
 #'  variables together into one data frame (as a \code{tibble}). The user can
 #'  choose to run \code{collect()} after this query if they see fit.
@@ -28,7 +28,6 @@
 #' library(DBI)
 #' library(RSQLite)
 #' library(dplyr)
-#' library(purrr)
 #' set.seed(8675309)
 #'
 #' A <- data.frame(uid = c(1:10),
