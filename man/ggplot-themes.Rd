@@ -24,7 +24,7 @@ fonts that I like so much. \code{post_bg()} is for changing the backgrounds on
 plots to better match my website for posts that I write.
 }
 \details{
-\code{theme_steve_web()} epends on having the fonts installed on your end.
+\code{theme_steve_web()} depends on having the fonts installed on your end.
 It's ultimately optional for you to have them.
 }
 \examples{
