@@ -30,12 +30,17 @@
 
 #' Convert data frame to tibble
 #'
-#' @description \code{tbl_df()} ensures legacy compatibility with some of my scripts since the function is deprecated in \code{dplyr}.
+#' @description \code{tbl_df()} ensures legacy compatibility with some of my scripts since the function is deprecated in \pkg{dplyr}.
 #'
-#' @keywords internal
+#' @param ... optional parameters, but don't put anything here. It's just there to quell CRAN checks.
+#'
+#' @examples
+#'
+#' tbl_df(mtcars)
+#' tbl_df(iris)
+#'
 #' @export
-#' @noRd
 
-tbl_df <- tibble::as_tibble
+tbl_df <- function(...) tibble::as_tibble(...)
 
 
