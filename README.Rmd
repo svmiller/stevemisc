@@ -2,6 +2,16 @@
 output: github_document
 ---
 
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "80%",
+  fig.align = "center"
+)
+```
+
 # Steve's Miscellaneous Functions
 
 ```{r echo=FALSE, results="hide", message=FALSE}
@@ -160,6 +170,7 @@ jenny() # good
 jenny(12345) # bad, and no seed set. Use set.seed() instead, you goon.
 ```
 
+
 ### `p_z()`: Convert the *p*-value you want to the *z*-value it is
 
 
@@ -168,6 +179,16 @@ I *loathe* how statistical instruction privileges obtaining a magical *p*-value 
 ```{r, cache=F}
 p_z(.05)
 p_z(c(.001, .01, .05, .1))
+```
+
+### `r1sd()` and `r2sd()`: Rescaling Data by One (or Two) Standard Deviations
+
+`r1sd()` and `r2sd()` allow the user to rescale data by one or two standard deviations. What functions does what should be intuitive from the function name. Generally, regression modelers should center their regression inputs so that everything has a meaningful center (and that the *y*-intercept should be meaningful). The regression coefficients that emerge communicate something more interesting as well: magnitude effects. [Gelman (2008)](http://www.stat.columbia.edu/~gelman/research/published/standardizing7.pdf) argues rescaling by two standard deviations has the added advantage of making binary inputs roughly comparable to anything that you standardized.
+
+```{r}
+x <- rnorm(50)
+r1sd(x)
+r2sd(x)
 ```
 
 ### `sbtscs()`: Create "Peace Years" or "Spells" by Cross-Sectional Unit
@@ -181,5 +202,66 @@ I explain this in [this blog post from 2017](http://svmiller.com/blog/2017/06/qu
 sbtscs(usa_mids, midongoing, year, dyad)
 ```
 
+### `show_ranef()`: Get a Caterpillar Plot of the Random Effects from a Mixed Model
 
+`show_ranef()` allows a user estimating a mixed model to quickly plot the random intercepts (with conditional variances) of a given random effect in a mixed model. In cases where there is a random slope over the intercept, the function plots the random slope as another caterpillar plot (as another facet). These are great for a quick visualization of the random intercepts.
 
+```{r, cache=F}
+library(lme4)
+
+M1 <- lmer(Reaction ~ Days + (Days | Subject), data=sleepstudy)
+show_ranef(M1, "Subject")
+show_ranef(M1, "Subject", reorder=FALSE)
+
+```
+
+### `smvrnorm()`: Simulate from a Multivariate Normal Distribution
+
+This is a simple port and rename of `mvrnorm()` from the `{MASS}` package. I do this because the `{MASS}` package conflicts with a lot of things in my workflow. This will be very handy doing so-called "informal Bayesian" approaches to generating quantitites of interest from a regression model.
+
+```{r}
+library(stevedata)
+
+M1 <- lm(immigsent ~ agea + female + eduyrs + uempla + hinctnta + lrscale, data=ESS9GB)
+
+broom::tidy(M1)
+
+as_tibble(smvrnorm(1000, coef(M1), vcov(M1)))
+```
+
+### `theme_steve()`, `theme_steve_web()`: Steve's Preferred `{ggplot2}` Themes
+
+`theme_steve()` was a preferred theme of mine a few years ago. It is basically `theme_bw()` from `{ggplot2}` theme, but with me tweaking a few things. I've since moved to `theme_steve_web()` for most things now, prominently on my website. It incorporates the "Open Sans" and "Titillium Web" fonts that I like so much. `post_bg()` is for changing the backgrounds on plots to better match my website for posts that I write.
+
+```{r}
+mtcars %>%
+  ggplot(.,aes(mpg, hp)) +
+  geom_point() +
+  theme_steve() +
+  labs(title = "A Plot with Steve's Preferred {ggplot2} Theme",
+       subtitle = "It's basically `theme_bw()` with some minor tweaks.")
+
+mtcars %>%
+  ggplot(.,aes(mpg, hp)) +
+  geom_point() +
+  theme_steve_web() +
+  labs(title = "A Plot with Steve's Preferred {ggplot2} Theme",
+       subtitle = "I use `theme_steve_web()` for most things. It has nicer fonts.")
+
+```
+
+### The Student-t Distribution (Location-Scale Version)
+
+Finally, i added a few functions for extending the "standard" t-distribution in R into the three-parameter "location-scale" version. This generalizes the Student-t and is useful for getting acclimated with more general Student-t distributions, which are quite common in Bayesian analyses. `dst()` (density), `pst()` (distribution function), `qst()` (quantile), and `rst()` (random number generation) are available. Here, for example, is using `rst()` to simulate data from one of the most common Student-t distributions in the world of Bayesian priors: the one with three degrees of freedom, a mean of 0, and a standard deviation of 1.
+
+```{r, cache=F}
+dat <- tibble(x = rst(10000, 3, 0, 1))
+
+dat %>%
+  ggplot(.,aes(x)) +
+  geom_density() +
+  theme_steve_web() +
+  labs(title = "Simulated Data from a Student-t Distribution",
+       subtitle = "This prior is very common in the world of Bayesian priors.")
+
+```

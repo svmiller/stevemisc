@@ -61,21 +61,13 @@ library(tidyverse)
 library(stevemisc)
 x <- seq(1, 10)
 x
-```
+#>  [1]  1  2  3  4  5  6  7  8  9 10
 
-    ##  [1]  1  2  3  4  5  6  7  8  9 10
-
-``` r
 carrec(x, "1:5=0;6:10=1")
-```
-
-    ##  [1] 0 0 0 0 0 1 1 1 1 1
-
-``` r
+#>  [1] 0 0 0 0 0 1 1 1 1 1
 carr(x, "1:5=0;6:10=1")
+#>  [1] 0 0 0 0 0 1 1 1 1 1
 ```
-
-    ##  [1] 0 0 0 0 0 1 1 1 1 1
 
 ### `cor2data()`: Simulate Variables from a Standard Normal Distribution with Pre-Specified Correlations
 
@@ -101,22 +93,21 @@ Fake <- as_tibble(cor2data(Cor, 1000, 8675309)) # Jenny I got your number...
 Fake$y <- with(Fake, 5 + .5*control + .5*treat + e)
 
 Fake
+#> # A tibble: 1,000 x 5
+#>    control   treat   instr       e     y
+#>      <dbl>   <dbl>   <dbl>   <dbl> <dbl>
+#>  1 -0.997   0.722   0.288  -0.220   4.64
+#>  2  1.07    0.987   0.854  -0.260   5.77
+#>  3  0.572   0.904  -0.0482 -1.38    4.36
+#>  4  0.150  -0.660  -1.08    0.148   4.89
+#>  5 -0.442  -0.901  -0.845   0.0682  4.40
+#>  6  1.99    0.0440 -0.176  -0.497   5.52
+#>  7 -0.415   0.683   0.944   0.383   5.52
+#>  8 -0.186   0.383   0.524   0.475   5.57
+#>  9  1.57    0.589   0.176  -0.863   5.22
+#> 10  0.0639 -0.313  -0.397  -0.0922  4.78
+#> # … with 990 more rows
 ```
-
-    ## # A tibble: 1,000 x 5
-    ##    control   treat   instr       e     y
-    ##      <dbl>   <dbl>   <dbl>   <dbl> <dbl>
-    ##  1 -0.997   0.722   0.288  -0.220   4.64
-    ##  2  1.07    0.987   0.854  -0.260   5.77
-    ##  3  0.572   0.904  -0.0482 -1.38    4.36
-    ##  4  0.150  -0.660  -1.08    0.148   4.89
-    ##  5 -0.442  -0.901  -0.845   0.0682  4.40
-    ##  6  1.99    0.0440 -0.176  -0.497   5.52
-    ##  7 -0.415   0.683   0.944   0.383   5.52
-    ##  8 -0.186   0.383   0.524   0.475   5.57
-    ##  9  1.57    0.589   0.176  -0.863   5.22
-    ## 10  0.0639 -0.313  -0.397  -0.0922  4.78
-    ## # … with 990 more rows
 
 ### `corvectors()`: Create Multivariate Data by Permutation
 
@@ -139,27 +130,25 @@ corvectors(cbind(runif(nobs, 0, 100),
                  rbnorm(nobs, 87.52, 12.93, 0, 100)), cormatrix) %>% 
   as.data.frame() %>% as_tibble() %>%
   rename(meals = V1, colgrad = V2, fullqual = V3)
+#>            [,1]       [,2]       [,3]
+#> [1,]  1.0000000 -0.6820921 -0.4860410
+#> [2,] -0.6820921  1.0000000  0.3380783
+#> [3,] -0.4860410  0.3380783  1.0000000
+#> # A tibble: 1,000 x 3
+#>     meals colgrad fullqual
+#>     <dbl>   <dbl>    <dbl>
+#>  1 17.9     32.4      99.4
+#>  2 10.5     22.9      96.9
+#>  3 17.0     21.8      89.6
+#>  4 75.5     16.8      92.1
+#>  5 71.6      6.64     82.6
+#>  6 72.0      1.46     91.6
+#>  7 65.3     27.2      99.9
+#>  8 95.2      5.46     93.9
+#>  9  0.100   41.8      98.3
+#> 10  9.58    35.5      93.1
+#> # … with 990 more rows
 ```
-
-    ##            [,1]       [,2]       [,3]
-    ## [1,]  1.0000000 -0.6820601 -0.4844784
-    ## [2,] -0.6820601  1.0000000  0.3286409
-    ## [3,] -0.4844784  0.3286409  1.0000000
-
-    ## # A tibble: 1,000 x 3
-    ##     meals colgrad fullqual
-    ##     <dbl>   <dbl>    <dbl>
-    ##  1 17.9      5.15     98.4
-    ##  2 10.5     29.3      96.9
-    ##  3 17.0     47.4      99.4
-    ##  4 75.5      7.27     79.4
-    ##  5 71.6     10.4      82.6
-    ##  6 72.0      3.07     91.6
-    ##  7 65.3      9.76     81.7
-    ##  8 95.2      5.30     93.9
-    ##  9  0.100   57.6      98.3
-    ## 10  9.58     8.87     98.4
-    ## # … with 990 more rows
 
 ### `db_lselect()`: Lazily Select Variables From Multiple Tables in a Relational Database
 
@@ -167,8 +156,8 @@ corvectors(cbind(runif(nobs, 0, 100),
 SQL database. It returns a lazy query that combines all the variables
 together into one data frame (as a tibble). The user can choose to run
 collect() after this query if they see fit. [I wrote about this on my
-website in
-2020](http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/)
+website
+in 2020](http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/)
 and how it applies to real-world problems. Here is a proof of concept of
 how this works.
 
@@ -205,49 +194,44 @@ copy_to(con, C, "C",
 
 # This returns no warning because columns "a" and "b" are in all tables
 c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b"))
-```
+#> # Source:   lazy query [?? x 3]
+#> # Database: sqlite 3.34.1 [:memory:]
+#>      uid       a b    
+#>    <int>   <dbl> <chr>
+#>  1     1 -0.997  f    
+#>  2     2  0.722  z    
+#>  3     3 -0.617  y    
+#>  4     4  2.03   x    
+#>  5     5  1.07   c    
+#>  6     6  0.987  p    
+#>  7     7  0.0275 e    
+#>  8     8  0.673  i    
+#>  9     9  0.572  o    
+#> 10    10  0.904  n    
+#> # … with more rows
 
-    ## # Source:   lazy query [?? x 3]
-    ## # Database: sqlite 3.34.1 [:memory:]
-    ##      uid       a b    
-    ##    <int>   <dbl> <chr>
-    ##  1     1 -0.997  f    
-    ##  2     2  0.722  z    
-    ##  3     3 -0.617  y    
-    ##  4     4  2.03   x    
-    ##  5     5  1.07   c    
-    ##  6     6  0.987  p    
-    ##  7     7  0.0275 e    
-    ##  8     8  0.673  i    
-    ##  9     9  0.572  o    
-    ## 10    10  0.904  n    
-    ## # … with more rows
-
-``` r
 # This returns two warnings because column "d" is not in 2 of 3 tables.
 # ^ this is by design. It'll inform the user about data availability.
 c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b", "d"))
+#> Warning: Unknown columns: `d`
+
+#> Warning: Unknown columns: `d`
+#> # Source:   lazy query [?? x 4]
+#> # Database: sqlite 3.34.1 [:memory:]
+#>      uid       a b         d
+#>    <int>   <dbl> <chr> <dbl>
+#>  1     1 -0.997  f        NA
+#>  2     2  0.722  z        NA
+#>  3     3 -0.617  y        NA
+#>  4     4  2.03   x        NA
+#>  5     5  1.07   c        NA
+#>  6     6  0.987  p        NA
+#>  7     7  0.0275 e        NA
+#>  8     8  0.673  i        NA
+#>  9     9  0.572  o        NA
+#> 10    10  0.904  n        NA
+#> # … with more rows
 ```
-
-    ## Warning: Unknown columns: `d`
-
-    ## Warning: Unknown columns: `d`
-
-    ## # Source:   lazy query [?? x 4]
-    ## # Database: sqlite 3.34.1 [:memory:]
-    ##      uid       a b         d
-    ##    <int>   <dbl> <chr> <dbl>
-    ##  1     1 -0.997  f        NA
-    ##  2     2  0.722  z        NA
-    ##  3     3 -0.617  y        NA
-    ##  4     4  2.03   x        NA
-    ##  5     5  1.07   c        NA
-    ##  6     6  0.987  p        NA
-    ##  7     7  0.0275 e        NA
-    ##  8     8  0.673  i        NA
-    ##  9     9  0.572  o        NA
-    ## 10    10  0.904  n        NA
-    ## # … with more rows
 
 ### `get_var_info()`: Get Labelled Data from Your Variables
 
@@ -266,39 +250,35 @@ assistance of a dual-monitor setup or physical codebook.
 
 ``` r
 ess9_labelled
-```
+#> # A tibble: 109 x 4
+#>    essround edition cntry                      netusoft
+#>       <dbl> <chr>   <chr+lbl>                 <dbl+lbl>
+#>  1        9 1.2     AT [Austria] 5 [Every day]         
+#>  2        9 1.2     AT [Austria] 1 [Never]             
+#>  3        9 1.2     AT [Austria] 4 [Most days]         
+#>  4        9 1.2     AT [Austria] 2 [Only occasionally] 
+#>  5        9 1.2     AT [Austria] 3 [A few times a week]
+#>  6        9 1.2     BE [Belgium] 5 [Every day]         
+#>  7        9 1.2     BE [Belgium] 2 [Only occasionally] 
+#>  8        9 1.2     BE [Belgium] 1 [Never]             
+#>  9        9 1.2     BE [Belgium] 4 [Most days]         
+#> 10        9 1.2     BE [Belgium] 3 [A few times a week]
+#> # … with 99 more rows
 
-    ## # A tibble: 109 x 4
-    ##    essround edition cntry                      netusoft
-    ##       <dbl> <chr>   <chr+lbl>                 <dbl+lbl>
-    ##  1        9 1.2     AT [Austria] 5 [Every day]         
-    ##  2        9 1.2     AT [Austria] 1 [Never]             
-    ##  3        9 1.2     AT [Austria] 4 [Most days]         
-    ##  4        9 1.2     AT [Austria] 2 [Only occasionally] 
-    ##  5        9 1.2     AT [Austria] 3 [A few times a week]
-    ##  6        9 1.2     BE [Belgium] 5 [Every day]         
-    ##  7        9 1.2     BE [Belgium] 2 [Only occasionally] 
-    ##  8        9 1.2     BE [Belgium] 1 [Never]             
-    ##  9        9 1.2     BE [Belgium] 4 [Most days]         
-    ## 10        9 1.2     BE [Belgium] 3 [A few times a week]
-    ## # … with 99 more rows
-
-``` r
 # alternatively, below:
 # ess9_labelled %>% gvi(netusoft)
 # we'll do it this way, though...
 ess9_labelled %>% get_var_info(netusoft)
+#>                       var code              label
+#> 1 Internet use, how often    1              Never
+#> 2 Internet use, how often    2  Only occasionally
+#> 3 Internet use, how often    3 A few times a week
+#> 4 Internet use, how often    4          Most days
+#> 5 Internet use, how often    5          Every day
+#> 6 Internet use, how often    7            Refusal
+#> 7 Internet use, how often    8         Don't know
+#> 8 Internet use, how often    9          No answer
 ```
-
-    ##                       var code              label
-    ## 1 Internet use, how often    1              Never
-    ## 2 Internet use, how often    2  Only occasionally
-    ## 3 Internet use, how often    3 A few times a week
-    ## 4 Internet use, how often    4          Most days
-    ## 5 Internet use, how often    5          Every day
-    ## 6 Internet use, how often    7            Refusal
-    ## 7 Internet use, how often    8         Don't know
-    ## 8 Internet use, how often    9          No answer
 
 ### `jenny()`: Set the Only Reproducible Seed that Matters, and Get a Nice Message for It
 
@@ -309,15 +289,10 @@ reproducible seed.
 
 ``` r
 jenny() # good
-```
-
-    ## 🎶 Jenny, I got your number...
-
-``` r
+#> 🎶 Jenny, I got your number...
 jenny(12345) # bad, and no seed set. Use set.seed() instead, you goon.
+#> Why are you using this function with some other reproducible seed...
 ```
-
-    ## Why are you using this function with some other reproducible seed...
 
 ### `p_z()`: Convert the *p*-value you want to the *z*-value it is
 
@@ -332,15 +307,48 @@ we’re going to do inference the wrong way, let’s at least get the
 
 ``` r
 p_z(.05)
+#> [1] 1.959964
+p_z(c(.001, .01, .05, .1))
+#> [1] 3.290527 2.575829 1.959964 1.644854
 ```
 
-    ## [1] 1.959964
+### `r1sd()` and `r2sd()`: Rescaling Data by One (or Two) Standard Deviations
+
+`r1sd()` and `r2sd()` allow the user to rescale data by one or two
+standard deviations. What functions does what should be intuitive from
+the function name. Generally, regression modelers should center their
+regression inputs so that everything has a meaningful center (and that
+the *y*-intercept should be meaningful). The regression coefficients
+that emerge communicate something more interesting as well: magnitude
+effects. [Gelman
+(2008)](http://www.stat.columbia.edu/~gelman/research/published/standardizing7.pdf)
+argues rescaling by two standard deviations has the added advantage of
+making binary inputs roughly comparable to anything that you
+standardized.
 
 ``` r
-p_z(c(.001, .01, .05, .1))
+x <- rnorm(50)
+r1sd(x)
+#>  [1] -1.27867343  0.72017341 -0.83738692  2.24113309  1.11983879  1.02888100
+#>  [7] -0.08751658  0.66323274  0.54597563  0.93170508 -1.92188701  1.07007924
+#> [13]  0.05512550 -0.88711962 -1.27635480  2.17490887 -0.63335367 -1.16707024
+#> [19] -0.29461480 -1.08245574  2.19045750 -0.06826436 -0.58971126 -0.66964185
+#> [25] -0.60197245  0.67528569  0.68338955  0.50110576 -0.33592760  0.32599086
+#> [31]  0.31812571  1.22233277  1.71247268  0.56512278 -0.83487019 -0.38571993
+#> [37] -0.04510276 -0.48408289 -0.40850491 -0.29834520 -0.85838051 -0.12386445
+#> [43] -0.06639135  0.67626020 -0.41262626 -0.29513863 -1.13716934 -2.41897849
+#> [49]  0.15699842 -0.07747006
+r2sd(x)
+#>  [1] -0.63933671  0.36008670 -0.41869346  1.12056655  0.55991940  0.51444050
+#>  [7] -0.04375829  0.33161637  0.27298781  0.46585254 -0.96094351  0.53503962
+#> [13]  0.02756275 -0.44355981 -0.63817740  1.08745443 -0.31667683 -0.58353512
+#> [19] -0.14730740 -0.54122787  1.09522875 -0.03413218 -0.29485563 -0.33482092
+#> [25] -0.30098622  0.33764285  0.34169477  0.25055288 -0.16796380  0.16299543
+#> [31]  0.15906286  0.61116639  0.85623634  0.28256139 -0.41743510 -0.19285996
+#> [37] -0.02255138 -0.24204144 -0.20425245 -0.14917260 -0.42919025 -0.06193223
+#> [43] -0.03319568  0.33813010 -0.20631313 -0.14756932 -0.56858467 -1.20948924
+#> [49]  0.07849921 -0.03873503
 ```
-
-    ## [1] 3.290527 2.575829 1.959964 1.644854
 
 ### `sbtscs()`: Create “Peace Years” or “Spells” by Cross-Sectional Unit
 
@@ -353,8 +361,8 @@ copy-pasted from Dave Armstrong’s `{DAMisc}` package. I just added some
 when there are a lot of cross-sectional units without an “event” for a
 “spell.”
 
-I explain this in [this blog post from
-2017](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/).
+I explain this in [this blog post
+from 2017](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/).
 It’s incidentally the first thing I added to `{stevemisc}`. I offer,
 with it, the `usa_mids` data frame that has all militarized interstate
 disputes for the United States in non-directed dyad-year form from the
@@ -363,19 +371,149 @@ Gibler-Miller-Little (“GML”) data.
 ``` r
 # ?usa_mids
 sbtscs(usa_mids, midongoing, year, dyad)
+#> # A tibble: 14,586 x 7
+#>       dyad ccode1 ccode2  year midongoing midonset spell
+#>      <dbl>  <dbl>  <dbl> <dbl>      <dbl>    <dbl> <dbl>
+#>  1 1002020      2     20  1920          0        0     0
+#>  2 1002020      2     20  1921          0        0     1
+#>  3 1002020      2     20  1922          0        0     2
+#>  4 1002020      2     20  1923          0        0     3
+#>  5 1002020      2     20  1924          0        0     4
+#>  6 1002020      2     20  1925          0        0     5
+#>  7 1002020      2     20  1926          0        0     6
+#>  8 1002020      2     20  1927          0        0     7
+#>  9 1002020      2     20  1928          0        0     8
+#> 10 1002020      2     20  1929          0        0     9
+#> # … with 14,576 more rows
 ```
 
-    ## # A tibble: 14,586 x 7
-    ##       dyad ccode1 ccode2  year midongoing midonset spell
-    ##      <dbl>  <dbl>  <dbl> <dbl>      <dbl>    <dbl> <dbl>
-    ##  1 1002020      2     20  1920          0        0     0
-    ##  2 1002020      2     20  1921          0        0     1
-    ##  3 1002020      2     20  1922          0        0     2
-    ##  4 1002020      2     20  1923          0        0     3
-    ##  5 1002020      2     20  1924          0        0     4
-    ##  6 1002020      2     20  1925          0        0     5
-    ##  7 1002020      2     20  1926          0        0     6
-    ##  8 1002020      2     20  1927          0        0     7
-    ##  9 1002020      2     20  1928          0        0     8
-    ## 10 1002020      2     20  1929          0        0     9
-    ## # … with 14,576 more rows
+### `show_ranef()`: Get a Caterpillar Plot of the Random Effects from a Mixed Model
+
+`show_ranef()` allows a user estimating a mixed model to quickly plot
+the random intercepts (with conditional variances) of a given random
+effect in a mixed model. In cases where there is a random slope over the
+intercept, the function plots the random slope as another caterpillar
+plot (as another facet). These are great for a quick visualization of
+the random intercepts.
+
+``` r
+library(lme4)
+#> Loading required package: Matrix
+#> 
+#> Attaching package: 'Matrix'
+#> The following objects are masked from 'package:tidyr':
+#> 
+#>     expand, pack, unpack
+
+M1 <- lmer(Reaction ~ Days + (Days | Subject), data=sleepstudy)
+show_ranef(M1, "Subject")
+```
+
+<img src="man/figures/README-unnamed-chunk-12-1.png" width="80%" style="display: block; margin: auto;" />
+
+``` r
+show_ranef(M1, "Subject", reorder=FALSE)
+```
+
+<img src="man/figures/README-unnamed-chunk-12-2.png" width="80%" style="display: block; margin: auto;" />
+
+### `smvrnorm()`: Simulate from a Multivariate Normal Distribution
+
+This is a simple port and rename of `mvrnorm()` from the `{MASS}`
+package. I do this because the `{MASS}` package conflicts with a lot of
+things in my workflow. This will be very handy doing so-called “informal
+Bayesian” approaches to generating quantitites of interest from a
+regression model.
+
+``` r
+library(stevedata)
+
+M1 <- lm(immigsent ~ agea + female + eduyrs + uempla + hinctnta + lrscale, data=ESS9GB)
+
+broom::tidy(M1)
+#> # A tibble: 7 x 5
+#>   term        estimate std.error statistic  p.value
+#>   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+#> 1 (Intercept) 11.7        1.06      11.0   4.89e-27
+#> 2 agea        -0.00185    0.0101    -0.183 8.55e- 1
+#> 3 female      -0.248      0.338     -0.735 4.62e- 1
+#> 4 eduyrs       0.488      0.0488    10.0   7.71e-23
+#> 5 uempla      -1.10       1.20      -0.915 3.60e- 1
+#> 6 hinctnta     0.338      0.0614     5.50  4.52e- 8
+#> 7 lrscale     -0.583      0.0881    -6.61  5.37e-11
+
+as_tibble(smvrnorm(1000, coef(M1), vcov(M1)))
+#> # A tibble: 1,000 x 7
+#>    `(Intercept)`       agea  female eduyrs  uempla hinctnta lrscale
+#>            <dbl>      <dbl>   <dbl>  <dbl>   <dbl>    <dbl>   <dbl>
+#>  1          10.7  0.0000469  0.0416  0.560 -1.76      0.308  -0.595
+#>  2          12.8 -0.0117    -0.355   0.471 -0.693     0.202  -0.476
+#>  3          10.4 -0.000743   0.101   0.532 -0.615     0.451  -0.685
+#>  4          10.6  0.0110    -0.204   0.523  1.37      0.280  -0.505
+#>  5          12.3  0.00483    0.411   0.448 -1.10      0.366  -0.706
+#>  6          10.7  0.0143    -0.425   0.469 -0.268     0.374  -0.531
+#>  7          12.0  0.00801    0.251   0.439 -0.0301    0.388  -0.746
+#>  8          12.2 -0.00687   -0.753   0.503 -1.81      0.204  -0.524
+#>  9          12.8  0.00885   -0.797   0.419 -1.95      0.369  -0.683
+#> 10          12.1  0.00209   -0.0546  0.450 -1.03      0.387  -0.668
+#> # … with 990 more rows
+```
+
+### `theme_steve()`, `theme_steve_web()`: Steve’s Preferred `{ggplot2}` Themes
+
+`theme_steve()` was a preferred theme of mine a few years ago. It is
+basically `theme_bw()` from `{ggplot2}` theme, but with me tweaking a
+few things. I’ve since moved to `theme_steve_web()` for most things now,
+prominently on my website. It incorporates the “Open Sans” and
+“Titillium Web” fonts that I like so much. `post_bg()` is for changing
+the backgrounds on plots to better match my website for posts that I
+write.
+
+``` r
+mtcars %>%
+  ggplot(.,aes(mpg, hp)) +
+  geom_point() +
+  theme_steve() +
+  labs(title = "A Plot with Steve's Preferred {ggplot2} Theme",
+       subtitle = "It's basically `theme_bw()` with some minor tweaks.")
+```
+
+<img src="man/figures/README-unnamed-chunk-14-1.png" width="80%" style="display: block; margin: auto;" />
+
+``` r
+
+mtcars %>%
+  ggplot(.,aes(mpg, hp)) +
+  geom_point() +
+  theme_steve_web() +
+  labs(title = "A Plot with Steve's Preferred {ggplot2} Theme",
+       subtitle = "I use `theme_steve_web()` for most things. It has nicer fonts.")
+```
+
+<img src="man/figures/README-unnamed-chunk-14-2.png" width="80%" style="display: block; margin: auto;" />
+
+### The Student-t Distribution (Location-Scale Version)
+
+Finally, i added a few functions for extending the “standard”
+t-distribution in R into the three-parameter “location-scale” version.
+This generalizes the Student-t and is useful for getting acclimated with
+more general Student-t distributions, which are quite common in Bayesian
+analyses. `dst()` (density), `pst()` (distribution function), `qst()`
+(quantile), and `rst()` (random number generation) are available. Here,
+for example, is using `rst()` to simulate data from one of the most
+common Student-t distributions in the world of Bayesian priors: the one
+with three degrees of freedom, a mean of 0, and a standard deviation of
+1.
+
+``` r
+dat <- tibble(x = rst(10000, 3, 0, 1))
+
+dat %>%
+  ggplot(.,aes(x)) +
+  geom_density() +
+  theme_steve_web() +
+  labs(title = "Simulated Data from a Student-t Distribution",
+       subtitle = "This prior is very common in the world of Bayesian priors.")
+```
+
+<img src="man/figures/README-unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;" />
