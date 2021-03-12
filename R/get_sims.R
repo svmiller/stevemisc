@@ -73,10 +73,12 @@ get_sims <- function(model, newdata, nsim, seed) {
             # assuming it's merMod
             yi <- modmat %*% coef(modelsim)$fixef[i, ]
         }
-        sim <- rep(i, length(yi))
-        hold_me <- suppressMessages(as_tibble(cbind(yi, sim)))
-        names(hold_me) <- c("y", "sim")
-        the_sims <- bind_rows(the_sims, hold_me)
+        simval <- rep(i, length(yi))
+        hold_me <-  suppressMessages(as.data.frame(cbind(yi, simval)))
+        the_sims <- rbind(the_sims, hold_me)
     }
+    names(the_sims) <- c("y", "sim")
+    the_sims <- as_tibble(the_sims)
     return(the_sims)
 }
+
