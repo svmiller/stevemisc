@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_sims.R
 \name{get_sims}
 \alias{get_sims}
-\title{Create multivariate data by permutation}
+\title{Get Simulations from a Model Object (with New Data)}
 \usage{
 get_sims(model, newdata, nsim, seed)
 }

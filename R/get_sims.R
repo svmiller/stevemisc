@@ -1,4 +1,4 @@
-#' Create multivariate data by permutation
+#' Get Simulations from a Model Object (with New Data)
 #'
 #' @description \code{get_sims()} is a function to simulate quantities of interest from a
 #' multivariate normal distribution for "new data" from a regression model.
