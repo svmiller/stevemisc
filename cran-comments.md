@@ -2,11 +2,13 @@
 
 - ubuntu 18.04, R 4.0.3
 
-## Comments to CRAN in Light of Initial Rejection
+## Comments to CRAN in Light of Initial Rejection and Feedback
 
 I addressed the partial argument match that came by way of a facet wrap call in `show_ranef()` and successfully disabled that note.
 
-I also moved `{emo}` to "Enhances:" in the DESCRIPTION file. That seems to do the trick.
+I also moved `{emo}` to "Enhances:" in the DESCRIPTION file. That seems to do the trick. A follow-up noted that this would be fine, but I should specify an `Additional_repositories:` entry in DESCRIPTION. I did just that to verify the existence of the package and how a user can obtain it.
+
+Another follow-up comment asked about referencing exact methods in the DESCRIPTION field. I think this came from scanning the `Description:` entry and seeing references to some various helper functions for processing regression models. However, the methods themselves are so broad, and covered by multiple people, that any particular reference to any particular work would seem out of place and would come at the expense of the readability of the description file. The README offers a bit more discussion about these entries for the user's own edification. 
 
 ## Initial Comments to CRAN
 
