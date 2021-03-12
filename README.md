@@ -130,23 +130,23 @@ corvectors(cbind(runif(nobs, 0, 100),
                  rbnorm(nobs, 87.52, 12.93, 0, 100)), cormatrix) %>% 
   as.data.frame() %>% as_tibble() %>%
   rename(meals = V1, colgrad = V2, fullqual = V3)
-#>            [,1]       [,2]       [,3]
-#> [1,]  1.0000000 -0.6820921 -0.4860410
-#> [2,] -0.6820921  1.0000000  0.3380783
-#> [3,] -0.4860410  0.3380783  1.0000000
+#>            [,1]      [,2]       [,3]
+#> [1,]  1.0000000 -0.682060 -0.4847219
+#> [2,] -0.6820600  1.000000  0.3162770
+#> [3,] -0.4847219  0.316277  1.0000000
 #> # A tibble: 1,000 x 3
 #>     meals colgrad fullqual
 #>     <dbl>   <dbl>    <dbl>
-#>  1 17.9     32.4      99.4
-#>  2 10.5     22.9      96.9
-#>  3 17.0     21.8      89.6
-#>  4 75.5     16.8      92.1
-#>  5 71.6      6.64     82.6
-#>  6 72.0      1.46     91.6
-#>  7 65.3     27.2      99.9
-#>  8 95.2      5.46     93.9
-#>  9  0.100   41.8      98.3
-#> 10  9.58    35.5      93.1
+#>  1 17.9    42.6       98.4
+#>  2 10.5    31.0       96.9
+#>  3 17.0    21.8       89.6
+#>  4 75.5     1.46      79.4
+#>  5 71.6    10.4       82.6
+#>  6 72.0    14.3       91.6
+#>  7 65.3    16.2       98.4
+#>  8 95.2     0.174     93.9
+#>  9  0.100  44.1       98.3
+#> 10  9.58   54.9       93.1
 #> # … with 990 more rows
 ```
 
@@ -231,6 +231,67 @@ c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b", "d"))
 #>  9     9  0.572  o        NA
 #> 10    10  0.904  n        NA
 #> # … with more rows
+```
+
+### `get_sims()`: Get Simulations from a Model Object (with New Data)
+
+`get_sims()` is a function to simulate quantities of interest by way of
+simulation from a multivariate normal distribution for “new data” from a
+regression model. This coincides with an “informal Bayesian” approach to
+calculated estimates quantities of interest with upper and lower bounds
+generated through simulation.
+
+It’s flexible to linear models, generalized linear models, and their
+mixed model equivalents. Of note: the simulations from the mixed models
+omit (alternatively: “do not consider”) the random intercepts. In my
+travels, this is because reviewers do not care about these quantities
+and just want to see quantities from the fixed effects in the model.
+
+Here is what this would look like for a linear model.
+
+``` r
+library(stevedata)
+
+M1 <- lm(immigsent ~ agea + female + eduyrs + uempla + hinctnta + lrscale, data=ESS9GB)
+
+broom::tidy(M1)
+#> # A tibble: 7 x 5
+#>   term        estimate std.error statistic  p.value
+#>   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+#> 1 (Intercept) 11.7        1.06      11.0   4.89e-27
+#> 2 agea        -0.00185    0.0101    -0.183 8.55e- 1
+#> 3 female      -0.248      0.338     -0.735 4.62e- 1
+#> 4 eduyrs       0.488      0.0488    10.0   7.71e-23
+#> 5 uempla      -1.10       1.20      -0.915 3.60e- 1
+#> 6 hinctnta     0.338      0.0614     5.50  4.52e- 8
+#> 7 lrscale     -0.583      0.0881    -6.61  5.37e-11
+
+library(modelr)
+# Note: the DV must be in the "new data". 
+# It doesn't matter what value it is.
+# It just needs to be there.
+ESS9GB %>%
+  data_grid(.model=M1, immigsent = 0, 
+            lrscale = c(min(lrscale, na.rm=T),
+                        max(lrscale, na.rm=T))) -> newdat
+
+Sims <- get_sims(M1, newdat, 1000, 8675309)
+
+Sims
+#> # A tibble: 2,000 x 2
+#>        y   sim
+#>    <dbl> <dbl>
+#>  1  19.4     1
+#>  2  13.6     1
+#>  3  19.1     2
+#>  4  13.6     2
+#>  5  19.6     3
+#>  6  12.8     3
+#>  7  19.2     4
+#>  8  13.8     4
+#>  9  19.4     5
+#> 10  13.5     5
+#> # … with 1,990 more rows
 ```
 
 ### `get_var_info()`: Get Labelled Data from Your Variables
@@ -409,13 +470,13 @@ M1 <- lmer(Reaction ~ Days + (Days | Subject), data=sleepstudy)
 show_ranef(M1, "Subject")
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-1.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-13-1.png" width="80%" style="display: block; margin: auto;" />
 
 ``` r
 show_ranef(M1, "Subject", reorder=FALSE)
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-2.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-13-2.png" width="80%" style="display: block; margin: auto;" />
 
 ### `smvrnorm()`: Simulate from a Multivariate Normal Distribution
 
@@ -426,8 +487,6 @@ Bayesian” approaches to generating quantitites of interest from a
 regression model.
 
 ``` r
-library(stevedata)
-
 M1 <- lm(immigsent ~ agea + female + eduyrs + uempla + hinctnta + lrscale, data=ESS9GB)
 
 broom::tidy(M1)
@@ -478,7 +537,7 @@ mtcars %>%
        subtitle = "It's basically `theme_bw()` with some minor tweaks.")
 ```
 
-<img src="man/figures/README-unnamed-chunk-14-1.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;" />
 
 ``` r
 
@@ -490,7 +549,7 @@ mtcars %>%
        subtitle = "I use `theme_steve_web()` for most things. It has nicer fonts.")
 ```
 
-<img src="man/figures/README-unnamed-chunk-14-2.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-15-2.png" width="80%" style="display: block; margin: auto;" />
 
 ### The Student-t Distribution (Location-Scale Version)
 
@@ -516,4 +575,4 @@ dat %>%
        subtitle = "This prior is very common in the world of Bayesian priors.")
 ```
 
-<img src="man/figures/README-unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-16-1.png" width="80%" style="display: block; margin: auto;" />

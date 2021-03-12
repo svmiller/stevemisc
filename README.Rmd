@@ -145,6 +145,36 @@ c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b", "d"))
 
 ```
 
+### `get_sims()`: Get Simulations from a Model Object (with New Data)
+
+`get_sims()` is a function to simulate quantities of interest by way of simulation from a multivariate normal distribution for "new data" from a regression model. This coincides with an "informal Bayesian" approach to calculated estimates quantities of interest with upper and lower bounds generated through simulation.
+
+It's flexible to linear models, generalized linear models, and their mixed model equivalents. Of note: the simulations from the mixed models omit (alternatively: "do not consider") the random intercepts. In my travels, this is because reviewers do not care about these quantities and just want to see quantities from the fixed effects in the model.
+
+Here is what this would look like for a linear model.
+
+```{r, cache=F, warning=F}
+library(stevedata)
+
+M1 <- lm(immigsent ~ agea + female + eduyrs + uempla + hinctnta + lrscale, data=ESS9GB)
+
+broom::tidy(M1)
+
+library(modelr)
+# Note: the DV must be in the "new data". 
+# It doesn't matter what value it is.
+# It just needs to be there.
+ESS9GB %>%
+  data_grid(.model=M1, immigsent = 0, 
+            lrscale = c(min(lrscale, na.rm=T),
+                        max(lrscale, na.rm=T))) -> newdat
+
+Sims <- get_sims(M1, newdat, 1000, 8675309)
+
+Sims
+```
+
+
 ### `get_var_info()`: Get Labelled Data from Your Variables
 
 `get_var_info()` allows for what I like to term "peeking" at your labelled data. If you do not have a codebook handy, but you know the data are labelled, `get_var_info()` (and its shortcut: `gvi()`) will extract the pertinent information for you. `{stevemisc}` comes with a toy data set---`ess9_labelled`---in which there are two labelled variables for the country and internet consumption from the ninth round of the European Social Survey. You can extract that information with this package.
@@ -220,8 +250,6 @@ show_ranef(M1, "Subject", reorder=FALSE)
 This is a simple port and rename of `mvrnorm()` from the `{MASS}` package. I do this because the `{MASS}` package conflicts with a lot of things in my workflow. This will be very handy doing so-called "informal Bayesian" approaches to generating quantitites of interest from a regression model.
 
 ```{r}
-library(stevedata)
-
 M1 <- lm(immigsent ~ agea + female + eduyrs + uempla + hinctnta + lrscale, data=ESS9GB)
 
 broom::tidy(M1)
