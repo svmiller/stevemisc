@@ -6,3 +6,4 @@
 ^doc$
 ^Meta$
 ^inst/fonts$
+^README\.Rmd$
