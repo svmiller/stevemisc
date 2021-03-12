@@ -51,7 +51,7 @@ sbtscs(usa_mids, midongoing, year, dyad)
 \references{
 Armstrong, Dave. 2016. ``\pkg{DAMisc}: Dave Armstrong's Miscellaneous Functions.''
 \emph{R package version 1.4-3}.
-\href{https://cran.r-project.org/web/packages/DAMisc/index.html}{https://CRAN.R-project.org/package=DAMisc}
+\href{https://CRAN.R-project.org/package=DAMisc}
 
 Miller, Steven V. 2017. ``Quickly Create Peace Years for BTSCS Models with \code{sbtscs} in \code{stevemisc}.''
 \url{http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/}
