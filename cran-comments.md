@@ -2,7 +2,13 @@
 
 - ubuntu 18.04, R 4.0.3
 
-## R CMD check results
+## Comments to CRAN in Light of Initial Rejection
+
+I addressed the partial argument match that came by way of a facet wrap call in `show_ranef()` and successfully disabled that note.
+
+I also moved `{emo}` to "Enhances:" in the DESCRIPTION file. That seems to do the trick.
+
+## Initial Comments to CRAN
 
 R CMD check done via `devtools::check()`, resulting in 0 errors, 0 warnings and 1 note. The note pertains to a partial argument match of "scale" to "scales" in a `facet_wrap(...)` call in the `show_ranef()` function. My understanding is, based on research for others who have encountered this, that this amounts to a false positive. However, I wanted to write here that I'm aware of this note.
 
