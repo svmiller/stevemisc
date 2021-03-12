@@ -8,3 +8,4 @@
 ^inst/fonts$
 ^README\.Rmd$
 ^cran-comments\.md$
+^CRAN-RELEASE$

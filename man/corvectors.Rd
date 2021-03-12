@@ -44,17 +44,12 @@ This is liberally copy-pasted from van Kooten and Vink's wonderful-but-no-longer
 They call it \code{correlate()} in their package, but I opt for \code{corvectors()} here.
 }
 \examples{
-corvectors(replicate(2, rnorm(100)), .5)
 # bivariate example, start with zero correlation
 corvectors(replicate(2, rnorm(100)), .5)
 
-# bivariate example, start with perfect correlation
-x <- rnorm(100)
-corvectors(replicate(2, x), .5)
-
 # multivariate example
 
-corvectors(replicate(4, rnorm(1000)), c(.5, .6, .7))
+corvectors(replicate(4, rnorm(100)), c(.5, .6, .7))
 
 }
 \author{
