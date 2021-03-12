@@ -27,9 +27,9 @@ install.packages("stevemisc")
 ```
 
 Right now, this package in development and is not available on CRAN. You
-can install the development version of `steveproj` from Github via the
-`devtools` package. I suppose using the `remotes` package would work as
-well.
+can install the development version of `{stevemisc}` from Github via the
+`{devtools}` package. I suppose using the `{remotes}` package would work
+as well.
 
 ``` r
 devtools::install_github("svmiller/stevemisc")
@@ -74,9 +74,9 @@ carr(x, "1:5=0;6:10=1")
 `cor2data()` is great for instructional purposes for simulating data
 from a standard normal distribution in which the ensuing data are
 generated to approximate some pre-specified correlations. This is useful
-for teaching how statistical models are supposed to operate under some
-ideal circumstances. For example, here’s how [I used this function to
-teach about instrumental variable
+for teaching how statistical models are supposed to operate under ideal
+circumstances. For example, here’s how [I used this function to teach
+about instrumental variable
 models](http://post8000.svmiller.com/lab-scripts/instrumental-variables-lab.html).
 Notice the correlations I devise and how they satisfy they assumptions
 of exclusion, exogeneity, and relevance.
@@ -130,23 +130,23 @@ corvectors(cbind(runif(nobs, 0, 100),
                  rbnorm(nobs, 87.52, 12.93, 0, 100)), cormatrix) %>% 
   as.data.frame() %>% as_tibble() %>%
   rename(meals = V1, colgrad = V2, fullqual = V3)
-#>            [,1]      [,2]       [,3]
-#> [1,]  1.0000000 -0.682060 -0.4847219
-#> [2,] -0.6820600  1.000000  0.3162770
-#> [3,] -0.4847219  0.316277  1.0000000
+#>            [,1]       [,2]       [,3]
+#> [1,]  1.0000000 -0.6820504 -0.4846780
+#> [2,] -0.6820504  1.0000000  0.2917351
+#> [3,] -0.4846780  0.2917351  1.0000000
 #> # A tibble: 1,000 x 3
-#>     meals colgrad fullqual
-#>     <dbl>   <dbl>    <dbl>
-#>  1 17.9    42.6       98.4
-#>  2 10.5    31.0       96.9
-#>  3 17.0    21.8       89.6
-#>  4 75.5     1.46      79.4
-#>  5 71.6    10.4       82.6
-#>  6 72.0    14.3       91.6
-#>  7 65.3    16.2       98.4
-#>  8 95.2     0.174     93.9
-#>  9  0.100  44.1       98.3
-#> 10  9.58   54.9       93.1
+#>    meals colgrad fullqual
+#>    <dbl>   <dbl>    <dbl>
+#>  1 75.4     8.78     96.1
+#>  2 33.6    33.8      85.0
+#>  3 10.5    27.2      79.6
+#>  4 62.7    10.0      82.4
+#>  5 61.0    25.7      97.3
+#>  6  9.25   32.7      85.1
+#>  7 10.5    35.2      97.8
+#>  8 12.5    66.7      95.7
+#>  9 83.2    17.4      59.4
+#> 10 22.0    15.9      99.9
 #> # … with 990 more rows
 ```
 
@@ -155,9 +155,9 @@ corvectors(cbind(runif(nobs, 0, 100),
 `db_lselect()` allows you to select variables from multiple tables in an
 SQL database. It returns a lazy query that combines all the variables
 together into one data frame (as a tibble). The user can choose to run
-collect() after this query if they see fit. [I wrote about this on my
-website
-in 2020](http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/)
+`collect()` after this query if they see fit. [I wrote about this on my
+website in
+2020](http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/)
 and how it applies to real-world problems. Here is a proof of concept of
 how this works.
 
@@ -236,16 +236,19 @@ c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b", "d"))
 ### `get_sims()`: Get Simulations from a Model Object (with New Data)
 
 `get_sims()` is a function to simulate quantities of interest by way of
-simulation from a multivariate normal distribution for “new data” from a
-regression model. This coincides with an “informal Bayesian” approach to
-calculated estimates quantities of interest with upper and lower bounds
-generated through simulation.
+a multivariate normal distribution for “new data” from a regression
+model. This coincides with an “informal Bayesian” approach to estimating
+quantities of interest that importantly also provide the user some idea
+of upper and lower bounds around an estimated quantity of interest.
 
 It’s flexible to linear models, generalized linear models, and their
 mixed model equivalents. Of note: the simulations from the mixed models
 omit (alternatively: “do not consider”) the random intercepts. In my
 travels, this is because reviewers do not care about these quantities
-and just want to see quantities from the fixed effects in the model.
+and just want to see quantities from the fixed effects in the model. If
+you’d like a more comprehensive simulation approach for those parameters
+in your mixed model, I recommend `{merTools}` for mixed models estimated
+in `{lme4}`.
 
 Here is what this would look like for a linear model.
 
@@ -269,7 +272,7 @@ broom::tidy(M1)
 library(modelr)
 # Note: the DV must be in the "new data". 
 # It doesn't matter what value it is.
-# It just needs to be there.
+# It just needs to be there as a column.
 ESS9GB %>%
   data_grid(.model=M1, immigsent = 0, 
             lrscale = c(min(lrscale, na.rm=T),
@@ -283,14 +286,14 @@ Sims
 #>    <dbl> <dbl>
 #>  1  19.4     1
 #>  2  13.6     1
-#>  3  19.1     2
-#>  4  13.6     2
+#>  3  19.0     2
+#>  4  13.5     2
 #>  5  19.6     3
 #>  6  12.8     3
-#>  7  19.2     4
-#>  8  13.8     4
-#>  9  19.4     5
-#> 10  13.5     5
+#>  7  19.5     4
+#>  8  13.4     4
+#>  9  19.8     5
+#> 10  13.8     5
 #> # … with 1,990 more rows
 ```
 
@@ -344,12 +347,12 @@ ess9_labelled %>% get_var_info(netusoft)
 ### `jenny()`: Set the Only Reproducible Seed that Matters, and Get a Nice Message for It
 
 There are infinite reproducible seeds. There is only one correct one.
-`jenny()` will set it for you and reward you with a nice message. It
-will get catty with you if try to use `jenny()` to set any other
-reproducible seed.
+`jenny()` will set a reproducible seed of 8675309 for you and reward you
+with a nice message. It will get catty with you if try to use `jenny()`
+to set any other reproducible seed.
 
 ``` r
-jenny() # good
+jenny() # good, seed set for 8675309
 #> 🎶 Jenny, I got your number...
 jenny(12345) # bad, and no seed set. Use set.seed() instead, you goon.
 #> Why are you using this function with some other reproducible seed...
@@ -390,25 +393,25 @@ standardized.
 ``` r
 x <- rnorm(50)
 r1sd(x)
-#>  [1] -1.27867343  0.72017341 -0.83738692  2.24113309  1.11983879  1.02888100
-#>  [7] -0.08751658  0.66323274  0.54597563  0.93170508 -1.92188701  1.07007924
-#> [13]  0.05512550 -0.88711962 -1.27635480  2.17490887 -0.63335367 -1.16707024
-#> [19] -0.29461480 -1.08245574  2.19045750 -0.06826436 -0.58971126 -0.66964185
-#> [25] -0.60197245  0.67528569  0.68338955  0.50110576 -0.33592760  0.32599086
-#> [31]  0.31812571  1.22233277  1.71247268  0.56512278 -0.83487019 -0.38571993
-#> [37] -0.04510276 -0.48408289 -0.40850491 -0.29834520 -0.85838051 -0.12386445
-#> [43] -0.06639135  0.67626020 -0.41262626 -0.29513863 -1.13716934 -2.41897849
-#> [49]  0.15699842 -0.07747006
+#>  [1] -0.1190274  0.7171285  0.4117106  1.0156978 -0.2068062  0.1606557
+#>  [7] -0.7395357  1.4085960 -0.9259416  0.5406867  1.0191484 -0.5178550
+#> [13]  0.4012748 -1.5496289  0.8900276  0.9969570  0.1858369 -0.1898000
+#> [19] -0.4448313  0.5583704  1.6175346  1.0004894 -1.9215076 -1.2206469
+#> [25]  0.6916162 -0.2378205 -0.3100310 -0.5796373 -0.8491230 -1.1567450
+#> [31] -0.6931739  0.8103296  0.7775902  1.1038601 -3.1223485  0.6301924
+#> [37]  1.0967107  0.9207464 -0.3878250 -0.2282749 -0.2192895  1.0772362
+#> [43] -1.3272140 -1.1021611 -1.0180288  0.6413200  1.7276621 -0.8376297
+#> [49] -0.8219427  0.3254472
 r2sd(x)
-#>  [1] -0.63933671  0.36008670 -0.41869346  1.12056655  0.55991940  0.51444050
-#>  [7] -0.04375829  0.33161637  0.27298781  0.46585254 -0.96094351  0.53503962
-#> [13]  0.02756275 -0.44355981 -0.63817740  1.08745443 -0.31667683 -0.58353512
-#> [19] -0.14730740 -0.54122787  1.09522875 -0.03413218 -0.29485563 -0.33482092
-#> [25] -0.30098622  0.33764285  0.34169477  0.25055288 -0.16796380  0.16299543
-#> [31]  0.15906286  0.61116639  0.85623634  0.28256139 -0.41743510 -0.19285996
-#> [37] -0.02255138 -0.24204144 -0.20425245 -0.14917260 -0.42919025 -0.06193223
-#> [43] -0.03319568  0.33813010 -0.20631313 -0.14756932 -0.56858467 -1.20948924
-#> [49]  0.07849921 -0.03873503
+#>  [1] -0.05951368  0.35856425  0.20585531  0.50784891 -0.10340308  0.08032785
+#>  [7] -0.36976786  0.70429799 -0.46297081  0.27034335  0.50957419 -0.25892750
+#> [13]  0.20063740 -0.77481445  0.44501382  0.49847849  0.09291843 -0.09490000
+#> [19] -0.22241566  0.27918521  0.80876729  0.50024471 -0.96075379 -0.61032347
+#> [25]  0.34580808 -0.11891026 -0.15501548 -0.28981865 -0.42456150 -0.57837251
+#> [31] -0.34658695  0.40516480  0.38879511  0.55193007 -1.56117424  0.31509618
+#> [37]  0.54835537  0.46037320 -0.19391252 -0.11413743 -0.10964475  0.53861808
+#> [43] -0.66360698 -0.55108055 -0.50901442  0.32066001  0.86383106 -0.41881485
+#> [49] -0.41097133  0.16272359
 ```
 
 ### `sbtscs()`: Create “Peace Years” or “Spells” by Cross-Sectional Unit
@@ -422,8 +425,8 @@ copy-pasted from Dave Armstrong’s `{DAMisc}` package. I just added some
 when there are a lot of cross-sectional units without an “event” for a
 “spell.”
 
-I explain this in [this blog post
-from 2017](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/).
+I explain this in [this blog post from
+2017](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/).
 It’s incidentally the first thing I added to `{stevemisc}`. I offer,
 with it, the `usa_mids` data frame that has all militarized interstate
 disputes for the United States in non-directed dyad-year form from the
@@ -483,7 +486,7 @@ show_ranef(M1, "Subject", reorder=FALSE)
 This is a simple port and rename of `mvrnorm()` from the `{MASS}`
 package. I do this because the `{MASS}` package conflicts with a lot of
 things in my workflow. This will be very handy doing so-called “informal
-Bayesian” approaches to generating quantitites of interest from a
+Bayesian” approaches to generating quantities of interest from a
 regression model.
 
 ``` r
@@ -503,18 +506,18 @@ broom::tidy(M1)
 
 as_tibble(smvrnorm(1000, coef(M1), vcov(M1)))
 #> # A tibble: 1,000 x 7
-#>    `(Intercept)`       agea  female eduyrs  uempla hinctnta lrscale
-#>            <dbl>      <dbl>   <dbl>  <dbl>   <dbl>    <dbl>   <dbl>
-#>  1          10.7  0.0000469  0.0416  0.560 -1.76      0.308  -0.595
-#>  2          12.8 -0.0117    -0.355   0.471 -0.693     0.202  -0.476
-#>  3          10.4 -0.000743   0.101   0.532 -0.615     0.451  -0.685
-#>  4          10.6  0.0110    -0.204   0.523  1.37      0.280  -0.505
-#>  5          12.3  0.00483    0.411   0.448 -1.10      0.366  -0.706
-#>  6          10.7  0.0143    -0.425   0.469 -0.268     0.374  -0.531
-#>  7          12.0  0.00801    0.251   0.439 -0.0301    0.388  -0.746
-#>  8          12.2 -0.00687   -0.753   0.503 -1.81      0.204  -0.524
-#>  9          12.8  0.00885   -0.797   0.419 -1.95      0.369  -0.683
-#> 10          12.1  0.00209   -0.0546  0.450 -1.03      0.387  -0.668
+#>    `(Intercept)`     agea  female eduyrs uempla hinctnta lrscale
+#>            <dbl>    <dbl>   <dbl>  <dbl>  <dbl>    <dbl>   <dbl>
+#>  1         11.2  -0.0100   0.0220  0.502  1.11     0.386  -0.595
+#>  2         10.5  -0.00595 -0.770   0.556 -0.801    0.245  -0.386
+#>  3         11.6  -0.0102  -0.711   0.557  0.509    0.300  -0.616
+#>  4         12.5  -0.00729 -0.528   0.503 -0.223    0.210  -0.590
+#>  5          9.44  0.00885  0.133   0.561  0.629    0.328  -0.492
+#>  6         10.0   0.0136   0.335   0.520 -1.62     0.353  -0.584
+#>  7         11.0   0.00145 -0.0980  0.511 -3.04     0.297  -0.536
+#>  8         12.6   0.00105 -0.157   0.480 -0.170    0.295  -0.736
+#>  9         11.8  -0.00841 -0.731   0.503 -0.457    0.372  -0.553
+#> 10         13.9  -0.00839 -0.508   0.463 -1.42     0.261  -0.727
 #> # … with 990 more rows
 ```
 
@@ -540,7 +543,6 @@ mtcars %>%
 <img src="man/figures/README-unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;" />
 
 ``` r
-
 mtcars %>%
   ggplot(.,aes(mpg, hp)) +
   geom_point() +
@@ -571,7 +573,7 @@ dat %>%
   ggplot(.,aes(x)) +
   geom_density() +
   theme_steve_web() +
-  labs(title = "Simulated Data from a Student-t Distribution",
+  labs(title = "Simulated Data from a Student-t (3,0,1) Distribution",
        subtitle = "This prior is very common in the world of Bayesian priors.")
 ```
 
