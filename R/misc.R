@@ -31,9 +31,10 @@
 #' Convert data frame to an object of class "tibble"
 #'
 #' @description \code{tbl_df()} ensures legacy compatibility with some of my scripts since the function is deprecated in \pkg{dplyr}.
+#' \code{to_tbl()} also added for fun.
 #'
 #' @param ... optional parameters, but don't put anything here. It's just there to quell CRAN checks.
-#'
+#' @rdname tbl_df
 #' @examples
 #'
 #' tbl_df(mtcars)
@@ -43,4 +44,29 @@
 
 tbl_df <- function(...) tibble::as_tibble(...)
 
+#' @rdname tbl_df
+#' @export
 
+to_tbl <- function(...) tibble::as_tibble(...)
+
+#' Reorganize a factor after "re-leveling" it
+#'
+#' @description \code{fct_reorg()} is a \pkg{forcats} hack that reorganizes a factor after re-leveling it. It has been
+#' situationally useful in my coefficient plots over the years.
+#'
+#' @details Solution comes by way of this issue on Github: \url{https://github.com/tidyverse/forcats/issues/45}
+#'
+#' @param fac a character or factor vector
+#' @param ... optional parameters to be supplied to \pkg{forcats} functions.
+#' @rdname fct_reorg
+#' @examples
+#'
+#' x<-factor(c("a","b","c"))
+#' fct_reorg(x, B="b", C="c")
+#'
+#' @export
+
+
+fct_reorg <- function(fac, ...) {
+  fct_recode(fct_relevel(fac, ...), ...)
+}

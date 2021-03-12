@@ -26,7 +26,6 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     ggplot2 (>= 3.3.0),
-    tidyverse,
     magrittr,
     broom,
     broom.mixed,
@@ -38,7 +37,8 @@ Imports:
     dplyr,
     methods,
     lme4,
-    rlang
+    rlang,
+    forcats
 Suggests:
     knitr,
     rmarkdown,

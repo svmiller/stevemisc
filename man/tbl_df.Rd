@@ -2,15 +2,19 @@
 % Please edit documentation in R/misc.R
 \name{tbl_df}
 \alias{tbl_df}
+\alias{to_tbl}
 \title{Convert data frame to an object of class "tibble"}
 \usage{
 tbl_df(...)
+
+to_tbl(...)
 }
 \arguments{
 \item{...}{optional parameters, but don't put anything here. It's just there to quell CRAN checks.}
 }
 \description{
 \code{tbl_df()} ensures legacy compatibility with some of my scripts since the function is deprecated in \pkg{dplyr}.
+\code{to_tbl()} also added for fun.
 }
 \examples{
 

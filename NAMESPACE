@@ -24,6 +24,10 @@ importFrom(parallel, "makeCluster", "parLapply", "stopCluster",
 
 importFrom(arm, "sim")
 
+# This is for `fct_reorg()` to work without complaints
+
+importFrom(forcats, "fct_recode", "fct_relevel")
+
 import(ggplot2)
 import(grid)
 import(labelled)
