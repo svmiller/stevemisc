@@ -41,7 +41,9 @@ show_ranef <- function(data, grp, reorder = TRUE) {
     geom_errorbarh(height = 0) +
     geom_vline(xintercept = 0, lty = 2) +
     geom_point() +
-    facet_wrap(~variable, scale = "free_x") +
+    ggplot2::facet_wrap(~variable, scale = "free_x") +
     ylab("Levels of the Random Effect") +
     xlab("Estimated Intercept")
 }
+
+# Something to look at for later: https://fishandwhistle.net/slides/rstudioconf2020/#1
