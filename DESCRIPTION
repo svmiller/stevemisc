@@ -42,6 +42,4 @@ Imports:
 Suggests:
     knitr,
     rmarkdown
-Enhances: emo
-Additional_repositories: https://github.com/hadley/emo
 RoxygenNote: 7.1.1
