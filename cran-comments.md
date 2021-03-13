@@ -2,6 +2,12 @@
 
 - ubuntu 18.04, R 4.0.3
 
+## (Hopefully Final) Comments to CRAN in Light of Issues with Additional Repositories
+
+I opted to remove the `{emo}` incorporation from this release. I thank CRAN for informing me about the `Additional_repositories:` field, but using it seems to require me setting up a repository of my own. `{drat}` offers some promise here, which I will explore in the next release.
+
+Absent `{emo}` functionality, the package passes all other checks and (I hope) would be suitable for addition to CRAN.
+
 ## Comments to CRAN in Light of Initial Rejection and Feedback
 
 I addressed the partial argument match that came by way of a facet wrap call in `show_ranef()` and successfully disabled that note.

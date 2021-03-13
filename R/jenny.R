@@ -19,11 +19,7 @@
 jenny <- function(x = 8675309) {
   if(missing(x)) {
     set.seed(x)
-    #if(requireNamespace("emo", quietly = TRUE)) {
-    #  message(paste0(emo::ji("music"), " Jenny, I got your number..."))
-    #} else {
-      message("Jenny, I got your number...")
-    #}
+    message("Jenny, I got your number...")
   } else {
     message("Why are you using this function with some other reproducible seed...")
   }
@@ -31,3 +27,8 @@ jenny <- function(x = 8675309) {
 
 #Enhances: emo
 # Additional_repositories: https://github.com/hadley/emo
+# if(requireNamespace("emo", quietly = TRUE)) {
+#   message(paste0(emo::ji("music"), " Jenny, I got your number..."))
+# } else {
+#   message("Jenny, I got your number...")
+# }

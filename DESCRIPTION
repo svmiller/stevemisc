@@ -27,7 +27,6 @@ LazyData: true
 Imports:
     ggplot2 (>= 3.3.0),
     magrittr,
-    broom,
     broom.mixed,
     labelled,
     arm,
