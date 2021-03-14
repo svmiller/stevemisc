@@ -22,12 +22,16 @@
 #' They call it \code{correlate()} in their package, but I opt for \code{corvectors()} here.
 #'
 #' @examples
+#'
+#' \dontrun{
 #' # bivariate example, start with zero correlation
 #' corvectors(replicate(2, rnorm(100)), .5)
 #'
 #' # multivariate example
 #'
 #' corvectors(replicate(4, rnorm(100)), c(.5, .6, .7))
+#'
+#' }
 #'
 #' @export
 #'
