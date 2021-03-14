@@ -8,6 +8,8 @@ I opted to remove the `{emo}` incorporation from this release. I thank CRAN for 
 
 Absent `{emo}` functionality, the package passes all other checks and (I hope) would be suitable for addition to CRAN.
 
+A check on CRAN failed for a reason that wasn't 100% clear. The failure occurred for the Windows build and not the Debian build. The language of the error implied it was a time issue since stuff in the `@examples` field is time-sensitive. The first submission I made to CRAN also resulted in this error, or seemed to flag this same error. I have since disabled that and this should be good right now. 
+
 ## Comments to CRAN in Light of Initial Rejection and Feedback
 
 I addressed the partial argument match that came by way of a facet wrap call in `show_ranef()` and successfully disabled that note.
