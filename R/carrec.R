@@ -98,9 +98,9 @@ carrec <- function(var, recodes, as_fac, as_num = TRUE, levels) {
             factor(result, levels = levels) else as.factor(result)
     } else if (as_num && (!is.numeric(result))) {
         valid_result <- na.omit(result)
-        opt <- options(warn = -1)
+        #opt <- options(warn = -1)
         valid_result <- as.numeric(valid_result)
-        options(opt)
+        #options(opt)
         if (!any(is.na(valid_result)))
             result <- as.numeric(result)
     }
