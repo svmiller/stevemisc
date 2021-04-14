@@ -30,7 +30,7 @@ cat(
 
 <img src="http://svmiller.com/images/stevemisc-hexlogo.png" alt="My stevemisc hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/>
 
-`{stevemisc}` is an R package that includes various functions and tools that I have written over the years to assist me in my research. I offer it here for a public release because 1) I am vain and think I privately want an entire, eponymous ecosystem in the R programming language (i.e. the "steveverse") and 2) I think there are tools here that are broadly useful for users that I'm trying to bundle with other things that I offer (prominently [`{steveproj}`](https://github.com/svmiller/steveproj)). The usage section will elaborate some of its uses.
+`{stevemisc}` is an R package that includes various functions and tools that I have written over the years to assist me in my research. I offer it here for a public release because 1) I am vain and think I privately want an entire, eponymous ecosystem in the R programming language (i.e. the "steveverse") and 2) I think there are tools here that are broadly useful for users that I'm trying to bundle with other things that I offer (prominently [`{steveproj}`](https://github.com/svmiller/steveproj)). Namely, `{stevemisc}` offers some tools to assist in data organization, data presentation, data recoding, and data simulation. The usage section will elaborate some of its uses.
 
 ## Installation
 

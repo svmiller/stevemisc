@@ -15,8 +15,10 @@ want an entire, eponymous ecosystem in the R programming language
 (i.e. the “steveverse”) and 2) I think there are tools here that are
 broadly useful for users that I’m trying to bundle with other things
 that I offer (prominently
-[`{steveproj}`](https://github.com/svmiller/steveproj)). The usage
-section will elaborate some of its uses.
+[`{steveproj}`](https://github.com/svmiller/steveproj)). Namely,
+`{stevemisc}` offers some tools to assist in data organization, data
+presentation, data recoding, and data simulation. The usage section will
+elaborate some of its uses.
 
 ## Installation
 
@@ -130,23 +132,19 @@ corvectors(cbind(runif(nobs, 0, 100),
                  rbnorm(nobs, 87.52, 12.93, 0, 100)), cormatrix) %>% 
   as.data.frame() %>% as_tibble() %>%
   rename(meals = V1, colgrad = V2, fullqual = V3)
-#>            [,1]       [,2]       [,3]
-#> [1,]  1.0000000 -0.6821926 -0.4844649
-#> [2,] -0.6821926  1.0000000  0.3405242
-#> [3,] -0.4844649  0.3405242  1.0000000
 #> # A tibble: 1,000 x 3
 #>     meals colgrad fullqual
 #>     <dbl>   <dbl>    <dbl>
-#>  1 17.9     32.4      98.4
-#>  2 10.5     14.0      97.7
-#>  3 17.0     21.8      95.4
-#>  4 75.5      7.39     79.4
-#>  5 71.6     10.4      82.6
-#>  6 72.0      8.08     49.0
-#>  7 65.3     10.9      74.4
-#>  8 95.2      5.46     90.1
-#>  9  0.100   66.3      98.3
-#> 10  9.58    31.8      93.1
+#>  1 21.6     16.5      98.6
+#>  2  0.841   57.2      93.2
+#>  3 66.9     34.4      89.0
+#>  4  5.76    47.5      68.4
+#>  5 91.6     11.9      59.0
+#>  6 92.8     12.9      86.6
+#>  7 58.0      7.82     97.5
+#>  8 70.6     13.9      88.1
+#>  9 67.3      6.78     89.6
+#> 10 90.1      2.66     79.8
 #> # … with 990 more rows
 ```
 
