@@ -11,7 +11,7 @@ corvectors(
   conv = 10000,
   cores = 2,
   splitsize = 1000,
-  verbose = T,
+  verbose = FALSE,
   seed
 )
 }
@@ -28,7 +28,7 @@ corvectors(
 
 \item{splitsize}{The size to use for splitting the data}
 
-\item{verbose}{Logical statement. Default is TRUE}
+\item{verbose}{Logical statement. Default is FALSE}
 
 \item{seed}{An optional seed to set}
 }
@@ -45,7 +45,7 @@ They call it \code{correlate()} in their package, but I opt for \code{corvectors
 }
 \examples{
 
-\dontrun{
+\donttest{
 # bivariate example, start with zero correlation
 corvectors(replicate(2, rnorm(100)), .5)
 

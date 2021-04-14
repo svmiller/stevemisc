@@ -11,7 +11,7 @@
 #' @param conv The maximum iterations allowed. Defaults to 1000.
 #' @param cores The number of cores to be used for parallel computing
 #' @param splitsize The size to use for splitting the data
-#' @param verbose Logical statement. Default is TRUE
+#' @param verbose Logical statement. Default is FALSE
 #' @param seed An optional seed to set
 #'
 #' @return \code{corvectors()} returns a matrix given the specified multivariate relation.
@@ -23,7 +23,7 @@
 #'
 #' @examples
 #'
-#' \dontrun{
+#' \donttest{
 #' # bivariate example, start with zero correlation
 #' corvectors(replicate(2, rnorm(100)), .5)
 #'
@@ -38,7 +38,7 @@
 
 corvectors <- function(data, corm, tol = 0.005,
                        conv = 10000, cores = 2,
-                       splitsize = 1000, verbose = TRUE, seed) {
+                       splitsize = 1000, verbose = FALSE, seed) {
     if (is.vector(corm)) {
         corm <- .create_cor_matrix(data, corm)
     }

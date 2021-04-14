@@ -29,6 +29,10 @@ rst(n, df, mu, sigma)
 
 \item{n}{Number of samples to draw from the distribution.}
 }
+\value{
+\code{dst()} returns the density. \code{pst()} returns the distribution function. \code{qst()} returns the quantile function.
+\code{rst()} returns random numbers.
+}
 \description{
 These are density, distribution function, quantile function and random generation
 for the Student-t distribution with location \code{mu}, scale \code{sigma},

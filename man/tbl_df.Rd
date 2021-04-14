@@ -12,6 +12,9 @@ to_tbl(...)
 \arguments{
 \item{...}{optional parameters, but don't put anything here. It's just there to quell CRAN checks.}
 }
+\value{
+This function takes a data frame and turns it into a tibble.
+}
 \description{
 \code{tbl_df()} ensures legacy compatibility with some of my scripts since the function is deprecated in \pkg{dplyr}.
 \code{to_tbl()} also added for fun.

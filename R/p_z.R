@@ -20,6 +20,12 @@
 #' @param ts a logical, defaults to TRUE. If TRUE, returns two-sided critical z-value.
 #'  If FALSE, the function returns a one-sized critical z-value.
 #'
+#' @return This function takes a numeric vector, corresponding to the p-value you want, and
+#' returns a numeric vector coinciding with the z-value you want under the standard normal
+#' distribution. For example, the z-value corresponding with the magic number of .05 (the
+#' conventional cutoff for assessing statistical significance) is not 1.96, it's something
+#' like 1.959964 (rounding to the default six decimal points).
+#'
 #' @examples
 #'
 #' library(stevemisc)

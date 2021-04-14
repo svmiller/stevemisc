@@ -147,6 +147,14 @@ plots to better match my website for posts that I write.</p>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>post_bg()</code> takes a <span class="pkg">ggplot2</span> plot and changes the background to have a color of
+"#fdfdfd". <code>theme_steve()</code> takes a <span class="pkg">ggplot2</span> plot and formats it to approximate
+<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw()</a></code> from <span class="pkg">ggplot2</span>, but with some other tweaks. <code>theme_steve_web()</code> extends
+<code>theme_steve()</code> to add custom fonts, notably "Open Sans" and "Titillium Web". In all cases, these
+functions take a <span class="pkg">ggplot2</span> plot and return another <span class="pkg">ggplot2</span> plot, but with some cosmetic
+changes.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>theme_steve_web()</code> depends on having the fonts installed on your end.
@@ -156,19 +164,28 @@ It's ultimately optional for you to have them.</p>
     <div class='dont-index'><p>[ggplot2::theme]</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mpg</span>, y <span class='op'>=</span> <span class='va'>hp</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>theme_steve</span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mpg</span>, y <span class='op'>=</span> <span class='va'>hp</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>theme_steve_web</span><span class='op'>(</span><span class='op'>)</span>
-
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>theme_steve</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"A ggplot2 Plot from the Motor Trend Car Road Tests Data"</span>,
+  subtitle <span class='op'>=</span> <span class='st'>"We've all seen this plot over a hundred times."</span>,
+  caption <span class='op'>=</span> <span class='st'>"Data: ?mtcars in {datasets} in base R."</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot-themes-1.png' alt='' width='1056' height='653' /></div><div class='input'>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mpg</span>, y <span class='op'>=</span> <span class='va'>hp</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>theme_steve_web</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>post_bg</span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>}</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"A ggplot2 Plot from the Motor Trend Car Road Tests Data"</span>,
+  subtitle <span class='op'>=</span> <span class='st'>"We've all seen this plot over a hundred times, but notice the change in theme and nicer fonts."</span>,
+  caption <span class='op'>=</span> <span class='st'>"Data: ?mtcars in {datasets} in base R."</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot-themes-2.png' alt='' width='1056' height='653' /></div><div class='input'>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mpg</span>, y <span class='op'>=</span> <span class='va'>hp</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>theme_steve_web</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>post_bg</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"A ggplot2 Plot from the Motor Trend Car Road Tests Data"</span>,
+  subtitle <span class='op'>=</span> <span class='st'>"We've all seen this plot over a hundred times, but notice the nicer theme and slight change in background color."</span>,
+  caption <span class='op'>=</span> <span class='st'>"Data: ?mtcars in {datasets} in base R."</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot-themes-3.png' alt='' width='1056' height='653' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

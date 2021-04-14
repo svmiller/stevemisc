@@ -35,6 +35,9 @@
 #'
 #' @param ... optional parameters, but don't put anything here. It's just there to quell CRAN checks.
 #' @rdname tbl_df
+#'
+#' @return This function takes a data frame and turns it into a tibble.
+#'
 #' @examples
 #'
 #' tbl_df(mtcars)
@@ -55,6 +58,9 @@ to_tbl <- function(...) tibble::as_tibble(...)
 #' situationally useful in my coefficient plots over the years.
 #'
 #' @details Solution comes by way of this issue on Github: \url{https://github.com/tidyverse/forcats/issues/45}
+#'
+#' @return This function takes a character or factor vector and first re-levels it before re-coding certain values. The end
+#' result is a factor.
 #'
 #' @param fac a character or factor vector
 #' @param ... optional parameters to be supplied to \pkg{forcats} functions.

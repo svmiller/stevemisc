@@ -11,6 +11,10 @@ fct_reorg(fac, ...)
 
 \item{...}{optional parameters to be supplied to \pkg{forcats} functions.}
 }
+\value{
+This function takes a character or factor vector and first re-levels it before re-coding certain values. The end
+result is a factor.
+}
 \description{
 \code{fct_reorg()} is a \pkg{forcats} hack that reorganizes a factor after re-leveling it. It has been
 situationally useful in my coefficient plots over the years.

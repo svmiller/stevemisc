@@ -10,21 +10,37 @@
 #' @details \code{theme_steve_web()} depends on having the fonts installed on your end.
 #' It's ultimately optional for you to have them.
 #'
+#' @return \code{post_bg()} takes a \pkg{ggplot2} plot and changes the background to have a color of
+#' "#fdfdfd". \code{theme_steve()} takes a \pkg{ggplot2} plot and formats it to approximate
+#' \code{theme_bw()} from \pkg{ggplot2}, but with some other tweaks. \code{theme_steve_web()} extends
+#' \code{theme_steve()} to add custom fonts, notably "Open Sans" and "Titillium Web". In all cases, these
+#' functions take a \pkg{ggplot2} plot and return another \pkg{ggplot2} plot, but with some cosmetic
+#' changes.
+#'
 #' @param ... optional stuff, but don't put anything in here. You won't need it.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(ggplot2)
 #'
 #' ggplot(mtcars, aes(x = mpg, y = hp)) +
-#'   geom_point() + theme_steve()
-#'
-#' ggplot(mtcars, aes(x = mpg, y = hp)) +
-#'   geom_point() + theme_steve_web()
+#'   geom_point() + theme_steve() +
+#'   labs(title = "A ggplot2 Plot from the Motor Trend Car Road Tests Data",
+#'   subtitle = "We've all seen this plot over a hundred times.",
+#'   caption = "Data: ?mtcars in {datasets} in base R.")
 #'
 #' ggplot(mtcars, aes(x = mpg, y = hp)) +
 #'   geom_point() + theme_steve_web() +
-#'   post_bg()
+#'   labs(title = "A ggplot2 Plot from the Motor Trend Car Road Tests Data",
+#'   subtitle = "We've all seen this plot over a hundred times, but notice the change in theme and nicer fonts.",
+#'   caption = "Data: ?mtcars in {datasets} in base R.")
+#'
+#' ggplot(mtcars, aes(x = mpg, y = hp)) +
+#'   geom_point() + theme_steve_web() +
+#'   post_bg() +
+#'   labs(title = "A ggplot2 Plot from the Motor Trend Car Road Tests Data",
+#'   subtitle = "We've all seen this plot over a hundred times, but notice the nicer theme and slight change in background color.",
+#'   caption = "Data: ?mtcars in {datasets} in base R.")
 #' }
 #' @rdname ggplot-themes
 #' @seealso [ggplot2::theme]

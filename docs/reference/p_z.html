@@ -150,6 +150,13 @@ If FALSE, the function returns a one-sized critical z-value.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>This function takes a numeric vector, corresponding to the p-value you want, and
+returns a numeric vector coinciding with the z-value you want under the standard normal
+distribution. For example, the z-value corresponding with the magic number of .05 (the
+conventional cutoff for assessing statistical significance) is not 1.96, it's something
+like 1.959964 (rounding to the default six decimal points).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>p_z()</code> takes a p-value of interest and converts it, with precision,

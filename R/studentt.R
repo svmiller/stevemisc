@@ -19,6 +19,9 @@
 #' generalize this outward to allow the tail and log stuff, but I wrote this mostly for the random number generation. Right now,
 #' I haven't written this to account for the fact that sigma should be non-negative, but that's on the user to know that (for now).
 #'
+#' @return \code{dst()} returns the density. \code{pst()} returns the distribution function. \code{qst()} returns the quantile function.
+#' \code{rst()} returns random numbers.
+#'
 #' @seealso \code{\link[stats:TDist]{TDist}}
 #'
 #' @export
