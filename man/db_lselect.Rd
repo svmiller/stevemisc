@@ -35,7 +35,7 @@ as a character (or character vector), which are then wrapped in a
 }
 \examples{
 
-\dontrun{
+\donttest{
 library(DBI)
 library(RSQLite)
 library(dplyr)

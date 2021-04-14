@@ -24,7 +24,7 @@
 #'
 #' @examples
 #'
-#' \dontrun{
+#' \donttest{
 #' library(DBI)
 #' library(RSQLite)
 #' library(dplyr)
