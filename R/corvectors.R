@@ -38,7 +38,7 @@
 
 corvectors <- function(data, corm, tol = 0.005,
                        conv = 10000, cores = 2,
-                       splitsize = 1000, verbose = T, seed) {
+                       splitsize = 1000, verbose = TRUE, seed) {
     if (is.vector(corm)) {
         corm <- .create_cor_matrix(data, corm)
     }

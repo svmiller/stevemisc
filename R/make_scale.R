@@ -24,6 +24,6 @@ make_scale <- function(x, minim, maxim) {
   if ( minim >= maxim) {
     message("The desired minimum should not be greater than or equal to the desired maximum. Try again.")
   } else {
-  ((maxim - minim) * (x - min(x))) / (max(x, na.rm=TRUE) - min(x, na.rm=TRUE)) + minim
+  ((maxim - minim) * (x - min(x))) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE)) + minim
 }
 }

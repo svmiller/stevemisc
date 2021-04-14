@@ -29,10 +29,10 @@
 #' p_z(.05, ts=FALSE)
 #' p_z(c(.001, .01, .05, .1), ts=FALSE)
 
-p_z <- function(x, ts=TRUE) {
+p_z <- function(x, ts = TRUE) {
   if(ts == TRUE) {
-  return(qnorm(x/2, lower.tail = F))
+  return(qnorm(x/2, lower.tail = FALSE))
 } else {
-  return(qnorm(x, lower.tail = F))
+  return(qnorm(x, lower.tail = FALSE))
 }
 }
