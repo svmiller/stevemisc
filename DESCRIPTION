@@ -20,7 +20,7 @@ Description: These are miscellaneous functions that I find useful for my researc
     The contents include themes for plots, functions for simulating
     quantities of interest from regression models, functions for simulating various 
     forms of fake data for instructional/research purposes, and many more. All told, the functions
-    provided here are broadly usefu for data organization, data presentation, data recoding, 
+    provided here are broadly useful for data organization, data presentation, data recoding, 
     and data simulation. 
 License: GPL (>=2)
 BugReports: https://github.com/svmiller/stevemisc/issues
