@@ -63,6 +63,7 @@
 #' # This returns two warnings because column "d" is not in 2 of 3 tables.
 #' # ^ this is by design. It'll inform the user about data availability.
 #' c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b", "d"))
+#' dbDisconnect(con)
 #' }
 
 db_lselect <- function(.data, connection, vars) {
