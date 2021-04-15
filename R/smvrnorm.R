@@ -21,10 +21,9 @@
 #'
 #' @examples
 #'
-#' Sigma <- matrix(c(10,3,3,2),2,2)
-#' Sigma
-#' var(smvrnorm(n = 1000, rep(0, 2), Sigma))
-#' var(smvrnorm(n = 1000, rep(0, 2), Sigma, empirical = TRUE))
+#' M1 <- lm(mpg ~ disp + cyl, mtcars)
+#'
+#' smvrnorm(100, coef(M1), vcov(M1))
 #'
 smvrnorm <- function(n = 1, mu, sigma, tol = 1e-06,
                      empirical = FALSE, eispack = FALSE, seed) {

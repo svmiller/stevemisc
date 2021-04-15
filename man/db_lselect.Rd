@@ -39,6 +39,7 @@ as a character (or character vector), which are then wrapped in a
 library(DBI)
 library(RSQLite)
 library(dplyr)
+library(dbplyr)
 set.seed(8675309)
 
 A <- data.frame(uid = c(1:10),

@@ -20,7 +20,7 @@
 #' @param ... optional stuff, but don't put anything in here. You won't need it.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' library(ggplot2)
 #'
 #' ggplot(mtcars, aes(x = mpg, y = hp)) +
@@ -32,14 +32,14 @@
 #' ggplot(mtcars, aes(x = mpg, y = hp)) +
 #'   geom_point() + theme_steve_web() +
 #'   labs(title = "A ggplot2 Plot from the Motor Trend Car Road Tests Data",
-#'   subtitle = "We've all seen this plot over a hundred times, but notice the change in theme and nicer fonts.",
+#'   subtitle = "Notice the prettier fonts, if you have them.",
 #'   caption = "Data: ?mtcars in {datasets} in base R.")
 #'
 #' ggplot(mtcars, aes(x = mpg, y = hp)) +
 #'   geom_point() + theme_steve_web() +
 #'   post_bg() +
 #'   labs(title = "A ggplot2 Plot from the Motor Trend Car Road Tests Data",
-#'   subtitle = "We've all seen this plot over a hundred times, but notice the nicer theme and slight change in background color.",
+#'   subtitle = "Notice the slight change in background color",
 #'   caption = "Data: ?mtcars in {datasets} in base R.")
 #' }
 #' @rdname ggplot-themes

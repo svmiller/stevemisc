@@ -2,6 +2,36 @@
 
 - ubuntu 18.04, R 4.0.3
 
+## Additional Comments to CRAN in Light of Further Issues Raised
+
+An email from CRAN dated March 16 highlighted the following issues with this package. I'll address them here.
+
+> If there are references describing the methods in your package, please add these in the description field of your DESCRIPTION file in the form
+
+There are no references to particular methods contained in the package. Given the diverse nature of the package as an amalgam of various functions, including particular references in the DESCRIPTION file would not make much sense and would only distract from what the package offers. The package offers multiple, diverse tools to assist in data organization, data presentation, data recoding, and data simulation. 
+
+> Please write TRUE and FALSE instead of T and F.
+
+That was my bad and I appreciate CRAN letting me know that this is 1) not allowed and 2) lazy and problematic function-writing on my part.
+
+> Please add \value to .Rd files regarding exported methods and explain the functions results in the documentation. 
+
+Every documentation file now contains a `value{}` entry.
+
+>  Please unwrap the examples if they are executable in < 5 sec, or replace \dontrun{} with \donttest{}.
+
+I struggled with this and offer here an explanation of the changes I made.
+
+First, I unwrapped the `db_lselect()` function and the example is now executable and testable for CRAN. This meant specifying some additional package dependencies in the DESCRIPTION file.
+
+Second, I changed the `corvectors()` function to a "don't test" wrapper because this apparently takes more than 10 seconds to test on CRAN. I'll admit here that I have zero idea why this is the case. It takes mere seconds on my end but testing it on CRAN seems to take forever. Because of this time issue, a "don't test" wrapper makes sense.
+
+Third, I opt to retain the "don't run" wrapper for the `{ggplot2}` themes. My justification for this is this wrapper is used for cases where the example cannot be executed because of missing additional software. I contend that the optional fonts amount to missing software and the exclusion of these fonts from CRAN's testing systems means the example will throw multiple errors.
+
+> You are setting options(warn=-1) in your function. This is not allowed. To avoid unnecessary warning output you could use e.g. suppressWarnings().
+
+That's my bad, again. I took out that line of code.
+
 ## (Hopefully Final) Comments to CRAN in Light of Issues with Additional Repositories
 
 I opted to remove the `{emo}` incorporation from this release. I thank CRAN for informing me about the `Additional_repositories:` field, but using it seems to require me setting up a repository of my own. `{drat}` offers some promise here, which I will explore in the next release.
