@@ -46,12 +46,14 @@ They call it \code{correlate()} in their package, but I opt for \code{corvectors
 \examples{
 
 \donttest{
+set.seed(8675309)
+library(tibble)
 # bivariate example, start with zero correlation
-corvectors(replicate(2, rnorm(100)), .5)
+as_tibble(data.frame(corvectors(replicate(2, rnorm(100)), .5)))
 
 # multivariate example
 
-corvectors(replicate(4, rnorm(100)), c(.5, .6, .7))
+as_tibble(data.frame(corvectors(replicate(4, rnorm(100)), c(.5, .6, .7))))
 
 }
 
