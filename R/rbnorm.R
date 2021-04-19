@@ -21,9 +21,11 @@
 #'
 #' @examples
 #'
-#' rbnorm(10000, 57, 14, 0, 100)
-#' rbnorm(10000, 57, 14, 0, 100, round = TRUE)
-#' rbnorm(10000, 57, 14, 0, 100, seed = 8675309)
+#' library(tibble)
+#'
+#' tibble(x = rbnorm(10000, 57, 14, 0, 100))
+#' tibble(x = rbnorm(10000, 57, 14, 0, 100, round = TRUE))
+#' tibble(x = rbnorm(10000, 57, 14, 0, 100, seed = 8675309))
 
 
 rbnorm <- function(n, mean, sd, lowerbound, upperbound, round = FALSE, seed) {
