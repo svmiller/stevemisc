@@ -1,7 +1,8 @@
 stevemisc 1.1.0
 ---------------------------------------------------------------------
 
-Add `ps_btscs()` for future use in `{peacesciencer}`.
+- Add `ps_btscs()` for future use in `{peacesciencer}`.
+- Moved a few `Imports:` entries to `Suggests:` for CRAN compliance. These import packages (`{DBI}`, `{RSQLite}`, and `{dbplyr}`) concern the `db_lselect()` function.
 
 
 stevemisc 1.0.0

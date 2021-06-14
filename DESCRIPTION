@@ -39,11 +39,11 @@ Imports:
     methods,
     lme4,
     rlang,
-    forcats,
+    forcats
+Suggests:
+    knitr,
+    rmarkdown,
     DBI,
     RSQLite,
     dbplyr
-Suggests:
-    knitr,
-    rmarkdown
 RoxygenNote: 7.1.1

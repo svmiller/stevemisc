@@ -82,3 +82,9 @@ importFrom(grid,grobName)
 importFrom(grid,grobTree)
 importFrom(grid,segmentsGrob)
 importFrom(grid,unit)
+
+# okie doke
+
+#importFrom(DBI, dbConnect)
+#importFrom(RSQLite, SQLite)
+#importFrom(dbplyr, union)
