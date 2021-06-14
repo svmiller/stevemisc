@@ -222,14 +222,17 @@ r1sd(x)
 r2sd(x)
 ```
 
-### `sbtscs()`: Create "Peace Years" or "Spells" by Cross-Sectional Unit
+### `ps_btscs()` and `sbtscs()`: Create "Peace Years" or "Spells" by Cross-Sectional Unit
 
 `sbtscs()` allows you to create spells ("peace years" in the international conflict context) between observations of some event. This will allow the researcher to better model temporal dependence in binary time-series cross-section ("BTSCS") models. Much of it is liberally copy-pasted from Dave Armstrong's `{DAMisc}` package. I just added some `{dplyr}` stuff underneath to speed it up and prevent it from choking when there are a lot of cross-sectional units without an "event" for a "spell."
 
-I explain this in [this blog post from 2017](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/). It's incidentally the first thing I added to `{stevemisc}`. I offer, with it, the `usa_mids` data frame that has all militarized interstate disputes for the United States in non-directed dyad-year form from the Gibler-Miller-Little ("GML") data.
+I explain this in [this blog post from 2017](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/). It's incidentally the first thing I added to `{stevemisc}`. I offer, with it, the `usa_mids` data frame that has all militarized interstate disputes for the United States in non-directed dyad-year form from the Gibler-Miller-Little ("GML") data. `ps_btscs()` is a more general version of `sbtscs()` that performs well when NAs bracket the event data.
 
 ```{r, cache=F}
 # ?usa_mids
+
+ps_btscs(usa_mids, midongoing, year, dyad)
+
 sbtscs(usa_mids, midongoing, year, dyad)
 ```
 

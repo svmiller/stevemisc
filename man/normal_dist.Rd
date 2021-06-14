@@ -15,7 +15,7 @@ normal_dist(curvecolor, fillcolor, fontfamily)
 }
 \value{
 The function returns a fancy plot of a normal distribution annotated with areas underneath the hood. Note that
-whatever color is supplied in \code{fillcolor} is automatically lightened for areas further from the center of the druve.
+whatever color is supplied in \code{fillcolor} is automatically lightened for areas further from the center of the curve.
 }
 \description{
 \code{normal_dist()} is a convenience function for making a plot of a normal distribution

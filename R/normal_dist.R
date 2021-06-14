@@ -10,7 +10,7 @@
 #' @param fontfamily Font family for labeling areas underneath the curve. OPTIONAL. You can omit this if you'd like.
 #'
 #' @return The function returns a fancy plot of a normal distribution annotated with areas underneath the hood. Note that
-#' whatever color is supplied in \code{fillcolor} is automatically lightened for areas further from the center of the druve.
+#' whatever color is supplied in \code{fillcolor} is automatically lightened for areas further from the center of the curve.
 #'
 #' @examples
 #'

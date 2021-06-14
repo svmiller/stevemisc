@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -102,7 +102,7 @@
 <p><code><a href="reference/carrec.html">carrec()</a></code> (phonetically: “car-wreck”) is a simple port of <code><a href="https://rdrr.io/pkg/car/man/recode.html">car::recode()</a></code> that I put in this package because of various function clashes in the <a href="https://r-forge.r-project.org/projects/car/">car</a> package. For those who cut their teeth on Stata, this package offers Stata-like recoding features that are tough to find in the R programming language. It comes with a shortcut as well, <code><a href="reference/carrec.html">carr()</a></code>.</p>
 <p>For example, assume the following vector that is some variable of interest on a 1-10 scale. You want to code the variables that are 6 and above to be 1 and code the variables of 1-5 to be 0. Here’s how you would do that.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stevemisc</span><span class="op">)</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>
 <span class="va">x</span>
@@ -147,7 +147,7 @@
 <div id="corvectors-create-multivariate-data-by-permutation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#corvectors-create-multivariate-data-by-permutation" class="anchor"></a><code>corvectors()</code>: Create Multivariate Data by Permutation</h3>
-<p><code><a href="reference/corvectors.html">corvectors()</a></code> is a port of <code>correlate()</code> from the <code>{correlate}</code> package. This package is no longer on CRAN, but it’s wonderful for creating multivariate data with set correlations in which variables can be on any number of raw scales. I used this function to create fake data to mimic the API data in <a href="http://r-survey.r-forge.r-project.org/survey/">survey</a>, which I make available as <code>fakeAPI</code> in the <a href="https://github.com/svmiller/stevedata">stevedata</a> package. Here is a smaller version of that.</p>
+<p><code><a href="reference/corvectors.html">corvectors()</a></code> is a port of <code>correlate()</code> from the <code>{correlate}</code> package. This package is no longer on CRAN, but it’s wonderful for creating multivariate data with set correlations in which variables can be on any number of raw scales. I used this function to create fake data to mimic the API data in <a href="http://r-survey.r-forge.r-project.org/survey/">survey</a>, which I make available as <code>fakeAPI</code> in the <a href="http://svmiller.com/stevedata/">stevedata</a> package. Here is a smaller version of that.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">api</span>, package<span class="op">=</span><span class="st">"survey"</span><span class="op">)</span>
 <span class="va">cormatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">apipop</span> <span class="op">%&gt;%</span>
@@ -163,16 +163,16 @@
 <span class="co">#&gt; # A tibble: 1,000 x 3</span>
 <span class="co">#&gt;     meals colgrad fullqual</span>
 <span class="co">#&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 21.6     16.5      98.6</span>
-<span class="co">#&gt;  2  0.841   57.2      93.2</span>
-<span class="co">#&gt;  3 66.9     34.4      89.0</span>
-<span class="co">#&gt;  4  5.76    47.5      68.4</span>
-<span class="co">#&gt;  5 91.6     11.9      59.0</span>
-<span class="co">#&gt;  6 92.8     12.9      86.6</span>
-<span class="co">#&gt;  7 58.0      7.82     97.5</span>
-<span class="co">#&gt;  8 70.6     13.9      88.1</span>
-<span class="co">#&gt;  9 67.3      6.78     89.6</span>
-<span class="co">#&gt; 10 90.1      2.66     79.8</span>
+<span class="co">#&gt;  1 17.9    37.0       98.4</span>
+<span class="co">#&gt;  2 10.5    41.9       96.9</span>
+<span class="co">#&gt;  3 17.0    41.6       89.6</span>
+<span class="co">#&gt;  4 75.5     5.30      61.6</span>
+<span class="co">#&gt;  5 71.6    10.4       98.1</span>
+<span class="co">#&gt;  6 72.0     1.46      91.6</span>
+<span class="co">#&gt;  7 65.3    17.0       82.2</span>
+<span class="co">#&gt;  8 95.2     0.174     89.9</span>
+<span class="co">#&gt;  9  0.100  38.9       98.3</span>
+<span class="co">#&gt; 10  9.58   30.3       93.1</span>
 <span class="co">#&gt; # … with 990 more rows</span></code></pre></div>
 </div>
 <div id="db_lselect-lazily-select-variables-from-multiple-tables-in-a-relational-database" class="section level3">
@@ -213,7 +213,7 @@
 <span class="co"># This returns no warning because columns "a" and "b" are in all tables</span>
 <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/db_lselect.html">db_lselect</a></span><span class="op">(</span><span class="va">con</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"uid"</span>, <span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # Source:   lazy query [?? x 3]</span>
-<span class="co">#&gt; # Database: sqlite 3.34.1 [:memory:]</span>
+<span class="co">#&gt; # Database: sqlite 3.35.5 [:memory:]</span>
 <span class="co">#&gt;      uid       a b    </span>
 <span class="co">#&gt;    &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;</span>
 <span class="co">#&gt;  1     1 -0.997  f    </span>
@@ -235,7 +235,7 @@
 
 <span class="co">#&gt; Warning: Unknown columns: `d`</span>
 <span class="co">#&gt; # Source:   lazy query [?? x 4]</span>
-<span class="co">#&gt; # Database: sqlite 3.34.1 [:memory:]</span>
+<span class="co">#&gt; # Database: sqlite 3.35.5 [:memory:]</span>
 <span class="co">#&gt;      uid       a b         d</span>
 <span class="co">#&gt;    &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt;  1     1 -0.997  f        NA</span>
@@ -257,7 +257,7 @@
 <p>It’s flexible to linear models, generalized linear models, and their mixed model equivalents. Of note: the simulations from the mixed models omit (alternatively: “do not consider”) the random intercepts. In my travels, this is because reviewers do not care about these quantities and just want to see quantities from the fixed effects in the model. If you’d like a more comprehensive simulation approach for those parameters in your mixed model, I recommend <code>{merTools}</code> for mixed models estimated in <a href="https://github.com/lme4/lme4/">lme4</a>.</p>
 <p>Here is what this would look like for a linear model.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/svmiller/stevedata">stevedata</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://svmiller.com/stevedata/">stevedata</a></span><span class="op">)</span>
 
 <span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">immigsent</span> <span class="op">~</span> <span class="va">agea</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">eduyrs</span> <span class="op">+</span> <span class="va">uempla</span> <span class="op">+</span> <span class="va">hinctnta</span> <span class="op">+</span> <span class="va">lrscale</span>, data<span class="op">=</span><span class="va">ESS9GB</span><span class="op">)</span>
 
@@ -383,13 +383,31 @@
 <span class="co">#&gt; [43] -0.03319568  0.33813010 -0.20631313 -0.14756932 -0.56858467 -1.20948924</span>
 <span class="co">#&gt; [49]  0.07849921 -0.03873503</span></code></pre></div>
 </div>
-<div id="sbtscs-create-peace-years-or-spells-by-cross-sectional-unit" class="section level3">
+<div id="ps_btscs-and-sbtscs-create-peace-years-or-spells-by-cross-sectional-unit" class="section level3">
 <h3 class="hasAnchor">
-<a href="#sbtscs-create-peace-years-or-spells-by-cross-sectional-unit" class="anchor"></a><code>sbtscs()</code>: Create “Peace Years” or “Spells” by Cross-Sectional Unit</h3>
+<a href="#ps_btscs-and-sbtscs-create-peace-years-or-spells-by-cross-sectional-unit" class="anchor"></a><code>ps_btscs()</code> and <code>sbtscs()</code>: Create “Peace Years” or “Spells” by Cross-Sectional Unit</h3>
 <p><code><a href="reference/sbtscs.html">sbtscs()</a></code> allows you to create spells (“peace years” in the international conflict context) between observations of some event. This will allow the researcher to better model temporal dependence in binary time-series cross-section (“BTSCS”) models. Much of it is liberally copy-pasted from Dave Armstrong’s <code>{DAMisc}</code> package. I just added some <a href="https://dplyr.tidyverse.org">dplyr</a> stuff underneath to speed it up and prevent it from choking when there are a lot of cross-sectional units without an “event” for a “spell.”</p>
-<p>I explain this in <a href="http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/">this blog post from 2017</a>. It’s incidentally the first thing I added to <code>{stevemisc}</code>. I offer, with it, the <code>usa_mids</code> data frame that has all militarized interstate disputes for the United States in non-directed dyad-year form from the Gibler-Miller-Little (“GML”) data.</p>
+<p>I explain this in <a href="http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/">this blog post from 2017</a>. It’s incidentally the first thing I added to <code>{stevemisc}</code>. I offer, with it, the <code>usa_mids</code> data frame that has all militarized interstate disputes for the United States in non-directed dyad-year form from the Gibler-Miller-Little (“GML”) data. <code><a href="reference/ps_btscs.html">ps_btscs()</a></code> is a more general version of <code><a href="reference/sbtscs.html">sbtscs()</a></code> that performs well when NAs bracket the event data.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># ?usa_mids</span>
+
+<span class="fu"><a href="reference/ps_btscs.html">ps_btscs</a></span><span class="op">(</span><span class="va">usa_mids</span>, <span class="va">midongoing</span>, <span class="va">year</span>, <span class="va">dyad</span><span class="op">)</span>
+<span class="co">#&gt; Joining, by = c("dyad", "year")</span>
+<span class="co">#&gt; # A tibble: 14,586 x 7</span>
+<span class="co">#&gt;       dyad ccode1 ccode2  year midongoing midonset spell</span>
+<span class="co">#&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 1002020      2     20  1920          0        0     0</span>
+<span class="co">#&gt;  2 1002020      2     20  1921          0        0     1</span>
+<span class="co">#&gt;  3 1002020      2     20  1922          0        0     2</span>
+<span class="co">#&gt;  4 1002020      2     20  1923          0        0     3</span>
+<span class="co">#&gt;  5 1002020      2     20  1924          0        0     4</span>
+<span class="co">#&gt;  6 1002020      2     20  1925          0        0     5</span>
+<span class="co">#&gt;  7 1002020      2     20  1926          0        0     6</span>
+<span class="co">#&gt;  8 1002020      2     20  1927          0        0     7</span>
+<span class="co">#&gt;  9 1002020      2     20  1928          0        0     8</span>
+<span class="co">#&gt; 10 1002020      2     20  1929          0        0     9</span>
+<span class="co">#&gt; # … with 14,576 more rows</span>
+
 <span class="fu"><a href="reference/sbtscs.html">sbtscs</a></span><span class="op">(</span><span class="va">usa_mids</span>, <span class="va">midongoing</span>, <span class="va">year</span>, <span class="va">dyad</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 14,586 x 7</span>
 <span class="co">#&gt;       dyad ccode1 ccode2  year midongoing midonset spell</span>

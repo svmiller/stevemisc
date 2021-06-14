@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create "peace years" or "spells" by cross-sectional unit — sbtscs • stevemisc</title>
+<title>Create "peace years" or "spells" by cross-sectional unit, more generally — ps_btscs • stevemisc</title>
 
 
 <!-- jquery -->
@@ -41,11 +41,13 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create "peace years" or "spells" by cross-sectional unit — sbtscs" />
-<meta property="og:description" content="sbtscs() allows you to create spells (&quot;peace years&quot; in
+<meta property="og:title" content="Create "peace years" or "spells" by cross-sectional unit, more generally — ps_btscs" />
+<meta property="og:description" content="ps_btscs() allows you to create spells (&quot;peace years&quot; in
 the international conflict context) between observations of some event. This
 will allow the researcher to better model temporal dependence in binary time-series
-cross-section (&quot;BTSCS&quot;) models." />
+cross-section (&quot;BTSCS&quot;) models. It is an improvement on sbtscs() (included in
+this package) by its ability to more flexibly work with data that have lots of NAs
+that bracket the observed event data. It is used in the peacesciencer package." />
 
 
 
@@ -116,19 +118,21 @@ cross-section (&quot;BTSCS&quot;) models." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create "peace years" or "spells" by cross-sectional unit</h1>
-    <small class="dont-index">Source: <a href='https://github.com/svmiller/stevemisc/blob/master/R/sbtscs.R'><code>R/sbtscs.R</code></a></small>
-    <div class="hidden name"><code>sbtscs.Rd</code></div>
+    <h1>Create "peace years" or "spells" by cross-sectional unit, more generally</h1>
+    <small class="dont-index">Source: <a href='https://github.com/svmiller/stevemisc/blob/master/R/ps_btscs.R'><code>R/ps_btscs.R</code></a></small>
+    <div class="hidden name"><code>ps_btscs.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>sbtscs()</code> allows you to create spells ("peace years" in
+    <p><code>ps_btscs()</code> allows you to create spells ("peace years" in
 the international conflict context) between observations of some event. This
 will allow the researcher to better model temporal dependence in binary time-series
-cross-section ("BTSCS") models.</p>
+cross-section ("BTSCS") models. It is an improvement on <code><a href='sbtscs.html'>sbtscs()</a></code> (included in
+this package) by its ability to more flexibly work with data that have lots of <code>NAs</code>
+that bracket the observed event data. It is used in the <code>peacesciencer</code> package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sbtscs</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>event</span>, <span class='va'>tvar</span>, <span class='va'>csunit</span>, pad_ts <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>ps_btscs</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>event</span>, <span class='va'>tvar</span>, <span class='va'>csunit</span>, pad_ts <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -157,18 +161,11 @@ cross-section ("BTSCS") models.</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>sbtscs()</code> takes a data frame and returns the data frame with a new variable
+    <p><code>ps_btscs()</code> takes a data frame and returns the data frame with a new variable
 named <code>spell</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>I should confess outright, and it should be obvious to anyone
-who looks at the code, that I liberally copy from Dave Armstrong's
-<code>btscs()</code> function in the <span class="pkg">DAMisc</span> package. I offer two such improvements.
-One, the <code>btscs()</code> function chokes when a large number of cross-sectional units
-have no recorded "event." I don't know why this happens but it does. Further, "tidying"
-up the code by leaning on <span class="pkg">dplyr</span> substantially speeds up computation. Incidentally,
-this concerns the same cross-sectional units with no recorded events that can choke the
-<code>btscs()</code> function in large numbers.</p>
+    <p>This function is derived from <code><a href='sbtscs.html'>sbtscs()</a></code>. See documentation there for more information.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Armstrong, Dave. 2016. ``<span class="pkg">DAMisc</span>: Dave Armstrong's Miscellaneous Functions.''
@@ -180,14 +177,27 @@ this concerns the same cross-sectional units with no recorded events that can ch
     <p>David A. Armstrong, Steven V. Miller</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>stevemisc</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>usa_mids</span><span class='op'>)</span>
 
 <span class='co'># notice: no quotes</span>
-<span class='fu'>sbtscs</span><span class='op'>(</span><span class='va'>usa_mids</span>, <span class='va'>midongoing</span>, <span class='va'>year</span>, <span class='va'>dyad</span><span class='op'>)</span>
-<span class='op'>}</span>
+<span class='fu'>ps_btscs</span><span class='op'>(</span><span class='va'>usa_mids</span>, <span class='va'>midongoing</span>, <span class='va'>year</span>, <span class='va'>dyad</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Joining, by = c("dyad", "year")</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 14,586 x 7</span>
+#&gt;       dyad ccode1 ccode2  year midongoing midonset spell
+#&gt;      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> 1<span style='text-decoration: underline;'>002</span>020      2     20  <span style='text-decoration: underline;'>1</span>920          0        0     0
+#&gt; <span style='color: #BCBCBC;'> 2</span> 1<span style='text-decoration: underline;'>002</span>020      2     20  <span style='text-decoration: underline;'>1</span>921          0        0     1
+#&gt; <span style='color: #BCBCBC;'> 3</span> 1<span style='text-decoration: underline;'>002</span>020      2     20  <span style='text-decoration: underline;'>1</span>922          0        0     2
+#&gt; <span style='color: #BCBCBC;'> 4</span> 1<span style='text-decoration: underline;'>002</span>020      2     20  <span style='text-decoration: underline;'>1</span>923          0        0     3
+#&gt; <span style='color: #BCBCBC;'> 5</span> 1<span style='text-decoration: underline;'>002</span>020      2     20  <span style='text-decoration: underline;'>1</span>924          0        0     4
+#&gt; <span style='color: #BCBCBC;'> 6</span> 1<span style='text-decoration: underline;'>002</span>020      2     20  <span style='text-decoration: underline;'>1</span>925          0        0     5
+#&gt; <span style='color: #BCBCBC;'> 7</span> 1<span style='text-decoration: underline;'>002</span>020      2     20  <span style='text-decoration: underline;'>1</span>926          0        0     6
+#&gt; <span style='color: #BCBCBC;'> 8</span> 1<span style='text-decoration: underline;'>002</span>020      2     20  <span style='text-decoration: underline;'>1</span>927          0        0     7
+#&gt; <span style='color: #BCBCBC;'> 9</span> 1<span style='text-decoration: underline;'>002</span>020      2     20  <span style='text-decoration: underline;'>1</span>928          0        0     8
+#&gt; <span style='color: #BCBCBC;'>10</span> 1<span style='text-decoration: underline;'>002</span>020      2     20  <span style='text-decoration: underline;'>1</span>929          0        0     9
+#&gt; <span style='color: #949494;'># … with 14,576 more rows</span></div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>

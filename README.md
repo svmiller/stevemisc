@@ -135,16 +135,16 @@ corvectors(cbind(runif(nobs, 0, 100),
 #> # A tibble: 1,000 x 3
 #>     meals colgrad fullqual
 #>     <dbl>   <dbl>    <dbl>
-#>  1 21.6     16.5      98.6
-#>  2  0.841   57.2      93.2
-#>  3 66.9     34.4      89.0
-#>  4  5.76    47.5      68.4
-#>  5 91.6     11.9      59.0
-#>  6 92.8     12.9      86.6
-#>  7 58.0      7.82     97.5
-#>  8 70.6     13.9      88.1
-#>  9 67.3      6.78     89.6
-#> 10 90.1      2.66     79.8
+#>  1 17.9    37.0       98.4
+#>  2 10.5    41.9       96.9
+#>  3 17.0    41.6       89.6
+#>  4 75.5     5.30      61.6
+#>  5 71.6    10.4       98.1
+#>  6 72.0     1.46      91.6
+#>  7 65.3    17.0       82.2
+#>  8 95.2     0.174     89.9
+#>  9  0.100  38.9       98.3
+#> 10  9.58   30.3       93.1
 #> # … with 990 more rows
 ```
 
@@ -193,7 +193,7 @@ copy_to(con, C, "C",
 # This returns no warning because columns "a" and "b" are in all tables
 c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b"))
 #> # Source:   lazy query [?? x 3]
-#> # Database: sqlite 3.34.1 [:memory:]
+#> # Database: sqlite 3.35.5 [:memory:]
 #>      uid       a b    
 #>    <int>   <dbl> <chr>
 #>  1     1 -0.997  f    
@@ -215,7 +215,7 @@ c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b", "d"))
 
 #> Warning: Unknown columns: `d`
 #> # Source:   lazy query [?? x 4]
-#> # Database: sqlite 3.34.1 [:memory:]
+#> # Database: sqlite 3.35.5 [:memory:]
 #>      uid       a b         d
 #>    <int>   <dbl> <chr> <dbl>
 #>  1     1 -0.997  f        NA
@@ -412,7 +412,7 @@ r2sd(x)
 #> [49]  0.07849921 -0.03873503
 ```
 
-### `sbtscs()`: Create “Peace Years” or “Spells” by Cross-Sectional Unit
+### `ps_btscs()` and `sbtscs()`: Create “Peace Years” or “Spells” by Cross-Sectional Unit
 
 `sbtscs()` allows you to create spells (“peace years” in the
 international conflict context) between observations of some event. This
@@ -428,10 +428,30 @@ I explain this in [this blog post from
 It’s incidentally the first thing I added to `{stevemisc}`. I offer,
 with it, the `usa_mids` data frame that has all militarized interstate
 disputes for the United States in non-directed dyad-year form from the
-Gibler-Miller-Little (“GML”) data.
+Gibler-Miller-Little (“GML”) data. `ps_btscs()` is a more general
+version of `sbtscs()` that performs well when NAs bracket the event
+data.
 
 ``` r
 # ?usa_mids
+
+ps_btscs(usa_mids, midongoing, year, dyad)
+#> Joining, by = c("dyad", "year")
+#> # A tibble: 14,586 x 7
+#>       dyad ccode1 ccode2  year midongoing midonset spell
+#>      <dbl>  <dbl>  <dbl> <dbl>      <dbl>    <dbl> <dbl>
+#>  1 1002020      2     20  1920          0        0     0
+#>  2 1002020      2     20  1921          0        0     1
+#>  3 1002020      2     20  1922          0        0     2
+#>  4 1002020      2     20  1923          0        0     3
+#>  5 1002020      2     20  1924          0        0     4
+#>  6 1002020      2     20  1925          0        0     5
+#>  7 1002020      2     20  1926          0        0     6
+#>  8 1002020      2     20  1927          0        0     7
+#>  9 1002020      2     20  1928          0        0     8
+#> 10 1002020      2     20  1929          0        0     9
+#> # … with 14,576 more rows
+
 sbtscs(usa_mids, midongoing, year, dyad)
 #> # A tibble: 14,586 x 7
 #>       dyad ccode1 ccode2  year midongoing midonset spell

@@ -49,7 +49,7 @@ sbtscs <- function(data, event, tvar, csunit, pad_ts = FALSE) {
     data <- arrange(data, !!csunit, !!tvar)
     sumevents <- data %>%
         group_by(!!csunit) %>%
-        mutate(tot = sum(!!event))
+        mutate(tot = sum(!!event, na.rm=T))
     noevents <- sumevents %>%
         group_by(!!csunit) %>%
         filter(.data$tot == 0) %>%
