@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Scale a vector by two standard deviations — r2sd • stevemisc</title>
+<title>Scale a vector (or vectors) by two standard deviations — r2sd • stevemisc</title>
 
 
 <!-- jquery -->
@@ -41,11 +41,11 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Scale a vector by two standard deviations — r2sd" />
+<meta property="og:title" content="Scale a vector (or vectors) by two standard deviations — r2sd" />
 <meta property="og:description" content="r2sd allows you to rescale a numeric vector such that the
 ensuing output has a mean of 0 and a standard deviation of .5. r2sd_at is a wrapper for
-mutate_at and rename_at from dplyr that does this kind of rescaling and naming
-conventions for these variables that I prefer." />
+mutate_at and rename_at from dplyr. It both rescales the supplied vectors to
+new vectors and renames the vectors to each have a prefix of z_." />
 
 
 
@@ -116,7 +116,7 @@ conventions for these variables that I prefer." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Scale a vector by two standard deviations</h1>
+    <h1>Scale a vector (or vectors) by two standard deviations</h1>
     <small class="dont-index">Source: <a href='https://github.com/svmiller/stevemisc/blob/master/R/r2sd.R'><code>R/r2sd.R</code></a></small>
     <div class="hidden name"><code>r2sd.Rd</code></div>
     </div>
@@ -124,8 +124,8 @@ conventions for these variables that I prefer." />
     <div class="ref-description">
     <p><code>r2sd</code> allows you to rescale a numeric vector such that the
 ensuing output has a mean of 0 and a standard deviation of .5. <code>r2sd_at</code> is a wrapper for
-<code>mutate_at</code> and <code>rename_at</code> from <span class="pkg">dplyr</span> that does this kind of rescaling and naming
-conventions for these variables that I prefer.</p>
+<code>mutate_at</code> and <code>rename_at</code> from <span class="pkg">dplyr</span>. It both rescales the supplied vectors to
+new vectors and renames the vectors to each have a prefix of <code>z_</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>r2sd</span><span class='op'>(</span><span class='va'>x</span>, na <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>

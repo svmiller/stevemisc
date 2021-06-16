@@ -1,9 +1,9 @@
-#' Scale a vector by two standard deviations
+#' Scale a vector (or vectors) by two standard deviations
 #'
 #' @description \code{r2sd} allows you to rescale a numeric vector such that the
 #' ensuing output has a mean of 0 and a standard deviation of .5. \code{r2sd_at} is a wrapper for
-#' \code{mutate_at} and \code{rename_at} from \pkg{dplyr} that does this kind of rescaling and naming
-#' conventions for these variables that I prefer.
+#' \code{mutate_at} and \code{rename_at} from \pkg{dplyr}. It both rescales the supplied vectors to
+#' new vectors and renames the vectors to each have a prefix of \code{z_}.
 #'
 #' @details By default, `na.rm` is set to TRUE. If you have missing data, the function will just pass
 #' over them.
