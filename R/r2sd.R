@@ -1,7 +1,9 @@
 #' Scale a vector by two standard deviations
 #'
 #' @description \code{r2sd} allows you to rescale a numeric vector such that the
-#' ensuing output has a mean of 0 and a standard deviation of .5.
+#' ensuing output has a mean of 0 and a standard deviation of .5. \code{r2sd_at} is a wrapper for
+#' \code{mutate_at} and \code{rename_at} from \pkg{dplyr} that does this kind of rescaling and naming
+#' conventions for these variables that I prefer.
 #'
 #' @details By default, `na.rm` is set to TRUE. If you have missing data, the function will just pass
 #' over them.
@@ -16,7 +18,8 @@
 #' So, my \code{r2sd} function doesn't have any of the fancier if-else statements that Gelman's \code{rescale}
 #' function has.
 #'
-#' @param x a numeric vector
+#' @param data a data frame
+#' @param x a vector, likely in your data frame
 #' @param na what to do with NAs in the vector. Defaults to TRUE (i.e. passes over the missing observations)
 #'
 #' @return The function returns a numeric vector rescaled with a mean of 0 and a
@@ -28,9 +31,26 @@
 #'
 #' x <- rnorm(100)
 #' r2sd(x)
+#'
+#' r2sd_at(mtcars, c("mpg", "hp", "disp"))
 
 
 
 r2sd <- function(x, na = TRUE) {
     return((x - mean(x, na.rm = na)) / (2 * sd(x, na.rm = na)))
+}
+
+
+#' @rdname r2sd
+#' @export
+
+r2sd_at <- function(data, x) {
+
+  data %>%
+  mutate_at(vars(all_of(x)),
+            list(z = ~r2sd(.))) %>%
+    rename_at(vars(contains("_z")),
+              ~paste("z", gsub("_z", "", .), sep = "_") ) -> data
+  return(data)
+
 }

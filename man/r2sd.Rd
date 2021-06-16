@@ -2,14 +2,19 @@
 % Please edit documentation in R/r2sd.R
 \name{r2sd}
 \alias{r2sd}
+\alias{r2sd_at}
 \title{Scale a vector by two standard deviations}
 \usage{
 r2sd(x, na = TRUE)
+
+r2sd_at(data, x)
 }
 \arguments{
-\item{x}{a numeric vector}
+\item{x}{a vector, likely in your data frame}
 
 \item{na}{what to do with NAs in the vector. Defaults to TRUE (i.e. passes over the missing observations)}
+
+\item{data}{a data frame}
 }
 \value{
 The function returns a numeric vector rescaled with a mean of 0 and a
@@ -17,7 +22,9 @@ standard deviation of .5.
 }
 \description{
 \code{r2sd} allows you to rescale a numeric vector such that the
-ensuing output has a mean of 0 and a standard deviation of .5.
+ensuing output has a mean of 0 and a standard deviation of .5. \code{r2sd_at} is a wrapper for
+\code{mutate_at} and \code{rename_at} from \pkg{dplyr} that does this kind of rescaling and naming
+conventions for these variables that I prefer.
 }
 \details{
 By default, `na.rm` is set to TRUE. If you have missing data, the function will just pass
@@ -37,6 +44,8 @@ function has.
 
 x <- rnorm(100)
 r2sd(x)
+
+r2sd_at(mtcars, c("mpg", "hp", "disp"))
 }
 \references{
 Gelman, Andrew. 2008. "Scaling Regression Inputs by Dividing by Two Standard Deviations." \emph{Statistics in Medicine} 27: 2865--2873.
