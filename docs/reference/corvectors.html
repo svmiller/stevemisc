@@ -191,18 +191,18 @@ They call it <code>correlate()</code> in their package, but I opt for <code>corv
 <span class='co'># bivariate example, start with zero correlation</span>
 <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'>corvectors</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span>, <span class='fl'>.5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 100 x 2</span>
-#&gt;          X1       X2
-#&gt;       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span>  0.722    1.20   
-#&gt; <span style='color: #BCBCBC;'> 2</span>  0.684    1.01   
-#&gt; <span style='color: #BCBCBC;'> 3</span> -<span style='color: #BB0000;'>1.31</span>     0.990  
-#&gt; <span style='color: #BCBCBC;'> 4</span>  1.57     1.49   
-#&gt; <span style='color: #BCBCBC;'> 5</span>  0.214    1.38   
-#&gt; <span style='color: #BCBCBC;'> 6</span> -<span style='color: #BB0000;'>0.415</span>   -<span style='color: #BB0000;'>0.698</span>  
-#&gt; <span style='color: #BCBCBC;'> 7</span> -<span style='color: #BB0000;'>0.652</span>   -<span style='color: #BB0000;'>2.09</span>   
-#&gt; <span style='color: #BCBCBC;'> 8</span> -<span style='color: #BB0000;'>0.151</span>    0.658  
-#&gt; <span style='color: #BCBCBC;'> 9</span> -<span style='color: #BB0000;'>0.003</span><span style='color: #BB0000; text-decoration: underline;'>79</span>  0.001<span style='text-decoration: underline;'>49</span>
-#&gt; <span style='color: #BCBCBC;'>10</span> -<span style='color: #BB0000;'>0.926</span>    0.146  
+#&gt;          X1     X2
+#&gt;       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>  0.722    0.213
+#&gt; <span style='color: #BCBCBC;'> 2</span>  0.684   -<span style='color: #BB0000;'>0.958</span>
+#&gt; <span style='color: #BCBCBC;'> 3</span> -<span style='color: #BB0000;'>1.31</span>     0.990
+#&gt; <span style='color: #BCBCBC;'> 4</span>  1.57     1.44 
+#&gt; <span style='color: #BCBCBC;'> 5</span>  0.214   -<span style='color: #BB0000;'>0.605</span>
+#&gt; <span style='color: #BCBCBC;'> 6</span> -<span style='color: #BB0000;'>0.415</span>   -<span style='color: #BB0000;'>0.319</span>
+#&gt; <span style='color: #BCBCBC;'> 7</span> -<span style='color: #BB0000;'>0.652</span>   -<span style='color: #BB0000;'>2.09</span> 
+#&gt; <span style='color: #BCBCBC;'> 8</span> -<span style='color: #BB0000;'>0.151</span>   -<span style='color: #BB0000;'>0.112</span>
+#&gt; <span style='color: #BCBCBC;'> 9</span> -<span style='color: #BB0000;'>0.003</span><span style='color: #BB0000; text-decoration: underline;'>79</span> -<span style='color: #BB0000;'>0.495</span>
+#&gt; <span style='color: #BCBCBC;'>10</span> -<span style='color: #BB0000;'>0.926</span>    0.146
 #&gt; <span style='color: #949494;'># … with 90 more rows</span></div><div class='input'>
 <span class='co'># multivariate example</span>
 

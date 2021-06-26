@@ -163,16 +163,16 @@
 <span class="co">#&gt; # A tibble: 1,000 x 3</span>
 <span class="co">#&gt;     meals colgrad fullqual</span>
 <span class="co">#&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 17.9    37.0       98.4</span>
-<span class="co">#&gt;  2 10.5    41.9       96.9</span>
-<span class="co">#&gt;  3 17.0    41.6       89.6</span>
-<span class="co">#&gt;  4 75.5     5.30      61.6</span>
-<span class="co">#&gt;  5 71.6    10.4       98.1</span>
-<span class="co">#&gt;  6 72.0     1.46      91.6</span>
-<span class="co">#&gt;  7 65.3    17.0       82.2</span>
-<span class="co">#&gt;  8 95.2     0.174     89.9</span>
-<span class="co">#&gt;  9  0.100  38.9       98.3</span>
-<span class="co">#&gt; 10  9.58   30.3       93.1</span>
+<span class="co">#&gt;  1 17.9     32.4      98.4</span>
+<span class="co">#&gt;  2 10.5     52.1      97.9</span>
+<span class="co">#&gt;  3 17.0     57.6      89.6</span>
+<span class="co">#&gt;  4 75.5     34.8      79.4</span>
+<span class="co">#&gt;  5 71.6     10.4      82.6</span>
+<span class="co">#&gt;  6 72.0      3.78     91.6</span>
+<span class="co">#&gt;  7 65.3     12.7      74.4</span>
+<span class="co">#&gt;  8 95.2     14.3      81.2</span>
+<span class="co">#&gt;  9  0.100   46.6      98.3</span>
+<span class="co">#&gt; 10  9.58    31.8      93.1</span>
 <span class="co">#&gt; # … with 990 more rows</span></code></pre></div>
 </div>
 <div id="db_lselect-lazily-select-variables-from-multiple-tables-in-a-relational-database" class="section level3">
@@ -383,12 +383,35 @@
 <span class="co">#&gt; [43] -0.03319568  0.33813010 -0.20631313 -0.14756932 -0.56858467 -1.20948924</span>
 <span class="co">#&gt; [49]  0.07849921 -0.03873503</span></code></pre></div>
 </div>
+</div>
+<div id="r2sd_at-rescale-multiple-columns-by-two-standard-deviations-and-rename" class="section level2">
+<h2 class="hasAnchor">
+<a href="#r2sd_at-rescale-multiple-columns-by-two-standard-deviations-and-rename" class="anchor"></a><code>r2sd_at()</code>: Rescale Multiple Columns by Two Standard Deviations (and Rename)</h2>
+<p><code><a href="reference/r2sd.html">r2sd_at()</a></code> is a wrapper for <code>mutate_at()</code> and <code>rename_at()</code> in <a href="https://dplyr.tidyverse.org">dplyr</a>. It both rescales the supplied vectors to new vectors and renames the vectors to all have a prefix of <code>z_</code>. This is my preferred convention for these things.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/tbl_df.html">tbl_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span>, <span class="va">hp</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="reference/r2sd.html">r2sd_at</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"hp"</span>, <span class="st">"disp"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 32 x 6</span>
+<span class="co">#&gt;      mpg  disp    hp   z_mpg   z_hp  z_disp</span>
+<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1  21    160    110  0.0754 -0.268 -0.285 </span>
+<span class="co">#&gt;  2  21    160    110  0.0754 -0.268 -0.285 </span>
+<span class="co">#&gt;  3  22.8  108     93  0.225  -0.392 -0.495 </span>
+<span class="co">#&gt;  4  21.4  258    110  0.109  -0.268  0.110 </span>
+<span class="co">#&gt;  5  18.7  360    175 -0.115   0.206  0.522 </span>
+<span class="co">#&gt;  6  18.1  225    105 -0.165  -0.304 -0.0231</span>
+<span class="co">#&gt;  7  14.3  360    245 -0.480   0.717  0.522 </span>
+<span class="co">#&gt;  8  24.4  147.    62  0.358  -0.618 -0.339 </span>
+<span class="co">#&gt;  9  22.8  141.    95  0.225  -0.377 -0.363 </span>
+<span class="co">#&gt; 10  19.2  168.   123 -0.0739 -0.173 -0.255 </span>
+<span class="co">#&gt; # … with 22 more rows</span></code></pre></div>
 <div id="ps_btscs-and-sbtscs-create-peace-years-or-spells-by-cross-sectional-unit" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ps_btscs-and-sbtscs-create-peace-years-or-spells-by-cross-sectional-unit" class="anchor"></a><code>ps_btscs()</code> and <code>sbtscs()</code>: Create “Peace Years” or “Spells” by Cross-Sectional Unit</h3>
 <p><code><a href="reference/sbtscs.html">sbtscs()</a></code> allows you to create spells (“peace years” in the international conflict context) between observations of some event. This will allow the researcher to better model temporal dependence in binary time-series cross-section (“BTSCS”) models. Much of it is liberally copy-pasted from Dave Armstrong’s <code>{DAMisc}</code> package. I just added some <a href="https://dplyr.tidyverse.org">dplyr</a> stuff underneath to speed it up and prevent it from choking when there are a lot of cross-sectional units without an “event” for a “spell.”</p>
 <p>I explain this in <a href="http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/">this blog post from 2017</a>. It’s incidentally the first thing I added to <code>{stevemisc}</code>. I offer, with it, the <code>usa_mids</code> data frame that has all militarized interstate disputes for the United States in non-directed dyad-year form from the Gibler-Miller-Little (“GML”) data. <code><a href="reference/ps_btscs.html">ps_btscs()</a></code> is a more general version of <code><a href="reference/sbtscs.html">sbtscs()</a></code> that performs well when NAs bracket the event data.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># ?usa_mids</span>
 
 <span class="fu"><a href="reference/ps_btscs.html">ps_btscs</a></span><span class="op">(</span><span class="va">usa_mids</span>, <span class="va">midongoing</span>, <span class="va">year</span>, <span class="va">dyad</span><span class="op">)</span>
@@ -424,11 +447,34 @@
 <span class="co">#&gt; 10 1002020      2     20  1929          0        0     9</span>
 <span class="co">#&gt; # … with 14,576 more rows</span></code></pre></div>
 </div>
+<div id="revcode-reverse-code-a-numeric-variable-ie-invert-the-scale" class="section level3">
+<h3 class="hasAnchor">
+<a href="#revcode-reverse-code-a-numeric-variable-ie-invert-the-scale" class="anchor"></a><code>revcode()</code>: Reverse Code a Numeric Variable (i.e. Invert the Scale)</h3>
+<p><code><a href="reference/revcode.html">revcode()</a></code> allows you to reverse code a numeric variable. This is useful, say, if you have a Likert item that ranges from 1 (“strongly disagree”) to 5 (“strongly agree”), but wants the 5s to be “strongly disagree” and the 1s to be “strongly agree.” This function passes over NAs you may have in your variable. It assumes that the observed values include both the minimum and the maximum and that the increments between them are 1. This is usually the case in a discrete ordered-categorical variable (like a Likert item).</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>,
+       y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>xrev <span class="op">=</span> <span class="fu"><a href="reference/revcode.html">revcode</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,
+         yrev <span class="op">=</span> <span class="fu"><a href="reference/revcode.html">revcode</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 10 x 4</span>
+<span class="co">#&gt;        x     y  xrev  yrev</span>
+<span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1     1     1    10     5</span>
+<span class="co">#&gt;  2     2     2     9     4</span>
+<span class="co">#&gt;  3     3     3     8     3</span>
+<span class="co">#&gt;  4     4     4     7     2</span>
+<span class="co">#&gt;  5     5     5     6     1</span>
+<span class="co">#&gt;  6     6     1     5     5</span>
+<span class="co">#&gt;  7     7     2     4     4</span>
+<span class="co">#&gt;  8     8     3     3     3</span>
+<span class="co">#&gt;  9     9     4     2     2</span>
+<span class="co">#&gt; 10    10     5     1     1</span></code></pre></div>
+</div>
 <div id="show_ranef-get-a-caterpillar-plot-of-the-random-effects-from-a-mixed-model" class="section level3">
 <h3 class="hasAnchor">
 <a href="#show_ranef-get-a-caterpillar-plot-of-the-random-effects-from-a-mixed-model" class="anchor"></a><code>show_ranef()</code>: Get a Caterpillar Plot of the Random Effects from a Mixed Model</h3>
 <p><code><a href="reference/show_ranef.html">show_ranef()</a></code> allows a user estimating a mixed model to quickly plot the random intercepts (with conditional variances) of a given random effect in a mixed model. In cases where there is a random slope over the intercept, the function plots the random slope as another caterpillar plot (as another facet). These are great for a quick visualization of the random intercepts.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: Matrix</span>
 <span class="co">#&gt; </span>
@@ -439,16 +485,16 @@
 
 <span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">Reaction</span> <span class="op">~</span> <span class="va">Days</span> <span class="op">+</span> <span class="op">(</span><span class="va">Days</span> <span class="op">|</span> <span class="va">Subject</span><span class="op">)</span>, data<span class="op">=</span><span class="va">sleepstudy</span><span class="op">)</span>
 <span class="fu"><a href="reference/show_ranef.html">show_ranef</a></span><span class="op">(</span><span class="va">M1</span>, <span class="st">"Subject"</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-13-1.png" width="80%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<p><img src="reference/figures/README-unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/show_ranef.html">show_ranef</a></span><span class="op">(</span><span class="va">M1</span>, <span class="st">"Subject"</span>, reorder<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-13-2.png" width="80%" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/README-unnamed-chunk-15-2.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
 <div id="smvrnorm-simulate-from-a-multivariate-normal-distribution" class="section level3">
 <h3 class="hasAnchor">
 <a href="#smvrnorm-simulate-from-a-multivariate-normal-distribution" class="anchor"></a><code>smvrnorm()</code>: Simulate from a Multivariate Normal Distribution</h3>
 <p>This is a simple port and rename of <code>mvrnorm()</code> from the <a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a> package. I do this because the <a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a> package conflicts with a lot of things in my workflow. This will be very handy doing so-called “informal Bayesian” approaches to generating quantities of interest from a regression model.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">immigsent</span> <span class="op">~</span> <span class="va">agea</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">eduyrs</span> <span class="op">+</span> <span class="va">uempla</span> <span class="op">+</span> <span class="va">hinctnta</span> <span class="op">+</span> <span class="va">lrscale</span>, data<span class="op">=</span><span class="va">ESS9GB</span><span class="op">)</span>
 
 <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span>
@@ -483,22 +529,22 @@
 <h3 class="hasAnchor">
 <a href="#theme_steve-theme_steve_web-steves-preferred-ggplot2-themes" class="anchor"></a><code>theme_steve()</code>, <code>theme_steve_web()</code>: Steve’s Preferred <code>{ggplot2}</code> Themes</h3>
 <p><code><a href="reference/theme_steve.html">theme_steve()</a></code> was a preferred theme of mine a few years ago. It is basically <code>theme_bw()</code> from <a href="https://ggplot2.tidyverse.org">ggplot2</a> theme, but with me tweaking a few things. I’ve since moved to <code><a href="reference/theme_steve.html">theme_steve_web()</a></code> for most things now, prominently on my website. It incorporates the “Open Sans” and “Titillium Web” fonts that I like so much. <code><a href="reference/theme_steve.html">post_bg()</a></code> is for changing the backgrounds on plots to better match my website for posts that I write.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mtcars</span> <span class="op">%&gt;%</span>
   <span class="fu">ggplot</span><span class="op">(</span><span class="va">.</span>,<span class="fu">aes</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="reference/theme_steve.html">theme_steve</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"A Plot with Steve's Preferred {ggplot2} Theme"</span>,
        subtitle <span class="op">=</span> <span class="st">"It's basically `theme_bw()` with some minor tweaks."</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<p><img src="reference/figures/README-unnamed-chunk-17-1.png" width="80%" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mtcars</span> <span class="op">%&gt;%</span>
   <span class="fu">ggplot</span><span class="op">(</span><span class="va">.</span>,<span class="fu">aes</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="reference/theme_steve.html">theme_steve_web</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"A Plot with Steve's Preferred {ggplot2} Theme"</span>,
        subtitle <span class="op">=</span> <span class="st">"I use `theme_steve_web()` for most things. It has nicer fonts."</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-15-2.png" width="80%" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/README-unnamed-chunk-17-2.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
 <div id="the-student-t-distribution-location-scale-version" class="section level3">
 <h3 class="hasAnchor">
@@ -506,7 +552,7 @@
 <p>Finally, i added a few functions for extending the “standard” t-distribution in R into the three-parameter “location-scale” version. This generalizes the Student-t and is useful for getting acclimated with more general Student-t distributions, which are quite common in Bayesian analyses. <code><a href="reference/studentt.html">dst()</a></code> (density), <code><a href="reference/studentt.html">pst()</a></code> (distribution function), <code><a href="reference/studentt.html">qst()</a></code> (quantile), and <code><a href="reference/studentt.html">rst()</a></code> (random number generation) are available. Here, for example, is using <code><a href="reference/studentt.html">rst()</a></code> to simulate data from one of the most common Student-t distributions in the world of Bayesian priors: the one with three degrees of freedom, a mean of 0, and a standard deviation of</p>
 <ol><li>
 </li></ol>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="reference/studentt.html">rst</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">3</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">dat</span> <span class="op">%&gt;%</span>
@@ -515,7 +561,7 @@
   <span class="fu"><a href="reference/theme_steve.html">theme_steve_web</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Simulated Data from a Student-t (3,0,1) Distribution"</span>,
        subtitle <span class="op">=</span> <span class="st">"This prior is very common in the world of Bayesian priors."</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-16-1.png" width="80%" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/README-unnamed-chunk-18-1.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
