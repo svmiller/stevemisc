@@ -135,16 +135,16 @@ corvectors(cbind(runif(nobs, 0, 100),
 #> # A tibble: 1,000 x 3
 #>     meals colgrad fullqual
 #>     <dbl>   <dbl>    <dbl>
-#>  1 17.9    37.0       98.4
-#>  2 10.5    41.9       96.9
-#>  3 17.0    41.6       89.6
-#>  4 75.5     5.30      61.6
-#>  5 71.6    10.4       98.1
-#>  6 72.0     1.46      91.6
-#>  7 65.3    17.0       82.2
-#>  8 95.2     0.174     89.9
-#>  9  0.100  38.9       98.3
-#> 10  9.58   30.3       93.1
+#>  1 17.9     32.4      98.4
+#>  2 10.5     52.1      97.9
+#>  3 17.0     57.6      89.6
+#>  4 75.5     34.8      79.4
+#>  5 71.6     10.4      82.6
+#>  6 72.0      3.78     91.6
+#>  7 65.3     12.7      74.4
+#>  8 95.2     14.3      81.2
+#>  9  0.100   46.6      98.3
+#> 10  9.58    31.8      93.1
 #> # … with 990 more rows
 ```
 
@@ -412,6 +412,33 @@ r2sd(x)
 #> [49]  0.07849921 -0.03873503
 ```
 
+## `r2sd_at()`: Rescale Multiple Columns by Two Standard Deviations (and Rename)
+
+`r2sd_at()` is a wrapper for `mutate_at()` and `rename_at()` in
+`{dplyr}`. It both rescales the supplied vectors to new vectors and
+renames the vectors to all have a prefix of `z_`. This is my preferred
+convention for these things.
+
+``` r
+mtcars %>% tbl_df() %>%
+  select(mpg, disp, hp) %>%
+  r2sd_at(c("mpg", "hp", "disp"))
+#> # A tibble: 32 x 6
+#>      mpg  disp    hp   z_mpg   z_hp  z_disp
+#>    <dbl> <dbl> <dbl>   <dbl>  <dbl>   <dbl>
+#>  1  21    160    110  0.0754 -0.268 -0.285 
+#>  2  21    160    110  0.0754 -0.268 -0.285 
+#>  3  22.8  108     93  0.225  -0.392 -0.495 
+#>  4  21.4  258    110  0.109  -0.268  0.110 
+#>  5  18.7  360    175 -0.115   0.206  0.522 
+#>  6  18.1  225    105 -0.165  -0.304 -0.0231
+#>  7  14.3  360    245 -0.480   0.717  0.522 
+#>  8  24.4  147.    62  0.358  -0.618 -0.339 
+#>  9  22.8  141.    95  0.225  -0.377 -0.363 
+#> 10  19.2  168.   123 -0.0739 -0.173 -0.255 
+#> # … with 22 more rows
+```
+
 ### `ps_btscs()` and `sbtscs()`: Create “Peace Years” or “Spells” by Cross-Sectional Unit
 
 `sbtscs()` allows you to create spells (“peace years” in the
@@ -469,6 +496,37 @@ sbtscs(usa_mids, midongoing, year, dyad)
 #> # … with 14,576 more rows
 ```
 
+### `revcode()`: Reverse Code a Numeric Variable (i.e. Invert the Scale)
+
+`revcode()` allows you to reverse code a numeric variable. This is
+useful, say, if you have a Likert item that ranges from 1 (“strongly
+disagree”) to 5 (“strongly agree”), but wants the 5s to be “strongly
+disagree” and the 1s to be “strongly agree.” This function passes over
+NAs you may have in your variable. It assumes that the observed values
+include both the minimum and the maximum and that the increments between
+them are 1. This is usually the case in a discrete ordered-categorical
+variable (like a Likert item).
+
+``` r
+tibble(x = c(1:10),
+       y = c(1:5, 1:5)) %>%
+  mutate(xrev = revcode(x),
+         yrev = revcode(y))
+#> # A tibble: 10 x 4
+#>        x     y  xrev  yrev
+#>    <int> <int> <dbl> <dbl>
+#>  1     1     1    10     5
+#>  2     2     2     9     4
+#>  3     3     3     8     3
+#>  4     4     4     7     2
+#>  5     5     5     6     1
+#>  6     6     1     5     5
+#>  7     7     2     4     4
+#>  8     8     3     3     3
+#>  9     9     4     2     2
+#> 10    10     5     1     1
+```
+
 ### `show_ranef()`: Get a Caterpillar Plot of the Random Effects from a Mixed Model
 
 `show_ranef()` allows a user estimating a mixed model to quickly plot
@@ -491,13 +549,13 @@ M1 <- lmer(Reaction ~ Days + (Days | Subject), data=sleepstudy)
 show_ranef(M1, "Subject")
 ```
 
-<img src="man/figures/README-unnamed-chunk-13-1.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;" />
 
 ``` r
 show_ranef(M1, "Subject", reorder=FALSE)
 ```
 
-<img src="man/figures/README-unnamed-chunk-13-2.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-15-2.png" width="80%" style="display: block; margin: auto;" />
 
 ### `smvrnorm()`: Simulate from a Multivariate Normal Distribution
 
@@ -558,7 +616,7 @@ mtcars %>%
        subtitle = "It's basically `theme_bw()` with some minor tweaks.")
 ```
 
-<img src="man/figures/README-unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-17-1.png" width="80%" style="display: block; margin: auto;" />
 
 ``` r
 mtcars %>%
@@ -569,7 +627,7 @@ mtcars %>%
        subtitle = "I use `theme_steve_web()` for most things. It has nicer fonts.")
 ```
 
-<img src="man/figures/README-unnamed-chunk-15-2.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-17-2.png" width="80%" style="display: block; margin: auto;" />
 
 ### The Student-t Distribution (Location-Scale Version)
 
@@ -595,4 +653,4 @@ dat %>%
        subtitle = "This prior is very common in the world of Bayesian priors.")
 ```
 
-<img src="man/figures/README-unnamed-chunk-16-1.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-18-1.png" width="80%" style="display: block; margin: auto;" />

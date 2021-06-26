@@ -222,6 +222,16 @@ r1sd(x)
 r2sd(x)
 ```
 
+## `r2sd_at()`: Rescale Multiple Columns by Two Standard Deviations (and Rename)
+
+`r2sd_at()` is a wrapper for `mutate_at()` and `rename_at()` in `{dplyr}`. It both rescales the supplied vectors to new vectors and renames the vectors to all have a prefix of `z_`. This is my preferred convention for these things.
+
+```{r}
+mtcars %>% tbl_df() %>%
+  select(mpg, disp, hp) %>%
+  r2sd_at(c("mpg", "hp", "disp"))
+```
+
 ### `ps_btscs()` and `sbtscs()`: Create "Peace Years" or "Spells" by Cross-Sectional Unit
 
 `sbtscs()` allows you to create spells ("peace years" in the international conflict context) between observations of some event. This will allow the researcher to better model temporal dependence in binary time-series cross-section ("BTSCS") models. Much of it is liberally copy-pasted from Dave Armstrong's `{DAMisc}` package. I just added some `{dplyr}` stuff underneath to speed it up and prevent it from choking when there are a lot of cross-sectional units without an "event" for a "spell."
@@ -234,6 +244,17 @@ I explain this in [this blog post from 2017](http://svmiller.com/blog/2017/06/qu
 ps_btscs(usa_mids, midongoing, year, dyad)
 
 sbtscs(usa_mids, midongoing, year, dyad)
+```
+
+### `revcode()`: Reverse Code a Numeric Variable (i.e. Invert the Scale)
+
+`revcode()` allows you to reverse code a numeric variable. This is useful, say, if you have a Likert item that ranges from 1 ("strongly disagree") to 5 ("strongly agree"), but wants the 5s to be "strongly disagree" and the 1s to be "strongly agree." This function passes over NAs you may have in your variable. It assumes that the observed values include both the minimum and the maximum and that the increments between them are 1. This is usually the case in a discrete ordered-categorical variable (like a Likert item).
+
+```{r}
+tibble(x = c(1:10),
+       y = c(1:5, 1:5)) %>%
+  mutate(xrev = revcode(x),
+         yrev = revcode(y))
 ```
 
 ### `show_ranef()`: Get a Caterpillar Plot of the Random Effects from a Mixed Model
