@@ -5,7 +5,8 @@
 #' tweaking a few things. I've since moved to \code{theme_steve_web()} for most things
 #' now, prominently on my website. It incorporates the "Open Sans" and "Titillium Web"
 #' fonts that I like so much. \code{post_bg()} is for changing the backgrounds on
-#' plots to better match my website for posts that I write.
+#' plots to better match my website for posts that I write. \code{theme_steve_ms()} is
+#' for \code{LaTeX} manuscripts that use the \code{cochineal} font package.
 #'
 #' @details \code{theme_steve_web()} depends on having the fonts installed on your end.
 #' It's ultimately optional for you to have them.
@@ -15,7 +16,8 @@
 #' \code{theme_bw()} from \pkg{ggplot2}, but with some other tweaks. \code{theme_steve_web()} extends
 #' \code{theme_steve()} to add custom fonts, notably "Open Sans" and "Titillium Web". In all cases, these
 #' functions take a \pkg{ggplot2} plot and return another \pkg{ggplot2} plot, but with some cosmetic
-#' changes.
+#' changes. \code{theme_steve_ms()} takes a \pkg{ggplot2} plot and overlays "Crimson Text" fonts, which is
+#' the basis of the \code{cochineal} font package in \code{LaTeX}.
 #'
 #' @param ... optional stuff, but don't put anything in here. You won't need it.
 #'
@@ -40,6 +42,12 @@
 #'   post_bg() +
 #'   labs(title = "A ggplot2 Plot from the Motor Trend Car Road Tests Data",
 #'   subtitle = "Notice the slight change in background color",
+#'   caption = "Data: ?mtcars in {datasets} in base R.")
+#'
+#' ggplot(mtcars, aes(x = mpg, y = hp)) +
+#'   geom_point() + theme_steve_ms() +
+#'   labs(title = "A ggplot2 Plot from the Motor Trend Car Road Tests Data",
+#'   subtitle = "Notice the fonts will match the 'cochineal' font package in LaTeX.",
 #'   caption = "Data: ?mtcars in {datasets} in base R.")
 #' }
 #' @rdname ggplot-themes
@@ -151,4 +159,76 @@ post_bg <- function(...) {
         panel.background = element_rect(fill = "#fdfdfd"),
         legend.key = element_rect(fill = "#fdfdfd"),
         legend.background = element_rect(fill = "#fdfdfd"))
+}
+
+#' @rdname ggplot-themes
+#' @export
+
+theme_steve_ms <- function(...) {
+  #require(ggplot2)
+  get_os <- function() {
+    sysinf <- Sys.info()
+    if (!is.null(sysinf)) {
+      os <- sysinf["sysname"]
+      if (os == "Darwin")
+        os <- "osx"
+    } else { ## mystery machine
+      os <- .Platform$OS.type
+      if (grepl("^darwin", R.version$os))
+        os <- "osx"
+      if (grepl("linux-gnu", R.version$os))
+        os <- "linux"
+    }
+    tolower(os)
+  }
+  if (get_os() == "osx") {
+    theme_bw() +
+      theme(panel.border = element_blank(),
+            plot.margin = ggplot2::margin(15, 15, 15, 15),
+            plot.caption = element_text(hjust = 1, size = 9,
+                                        margin = ggplot2::margin(t = 10),
+                                        face = "plain"),
+            plot.title = element_text(hjust = 0, size = 18,
+                                      margin = ggplot2::margin(b = 10),
+                                      face = "bold", family = "Crimson Text"),
+            plot.subtitle = element_text(hjust = 0,
+                                         margin = ggplot2::margin(b = 10),
+                                         family = "Crimson Text"),
+            axis.title.y = element_text(size = 10, hjust = 1,
+                                        face = "plain", family = "Crimson Text"),
+            axis.title.x = element_text(hjust = 1, size = 10, face = "plain",
+                                        family = "Crimson Text",
+                                        margin = ggplot2::margin(t = 10)),
+            legend.position = "bottom",
+            legend.title = element_text(face = "bold",
+                                        family = "Crimson Text"),
+            text = element_text(family = "Crimson Text")) +
+      theme(legend.spacing.x = unit(.1, "cm"),
+            panel.spacing = grid::unit(1.5, "lines"))
+  }
+  else {
+    theme_bw() +
+      theme(panel.border = element_blank(),
+            plot.margin = ggplot2::margin(15, 15, 15, 15),
+            plot.caption = element_text(hjust = 1, size = 9,
+                                        margin = ggplot2::margin(t = 10),
+                                        face = "plain"),
+            plot.title = element_text(hjust = 0, size = 18,
+                                      margin = ggplot2::margin(b = 10),
+                                      face = "bold", family = "Crimson Text"),
+            plot.subtitle = element_text(hjust = 0,
+                                         margin = ggplot2::margin(b = 10),
+                                         family = "Crimson Text"),
+            axis.title.y = element_text(size = 10, hjust = 1,
+                                        face = "plain", family = "Crimson Text"),
+            axis.title.x = element_text(hjust = 1, size = 10, face = "plain",
+                                        family = "Crimson Text",
+                                        margin = ggplot2::margin(t = 10)),
+            legend.position = "bottom",
+            legend.title = element_text(face = "bold",
+                                        family = "Crimson Text"),
+            text = element_text(family = "Crimson Text")) +
+      theme(legend.spacing.x = unit(.1, "cm"),
+            panel.spacing = grid::unit(1.5, "lines"))
+  }
 }

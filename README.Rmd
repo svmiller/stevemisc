@@ -282,9 +282,9 @@ broom::tidy(M1)
 as_tibble(smvrnorm(1000, coef(M1), vcov(M1)))
 ```
 
-### `theme_steve()`, `theme_steve_web()`: Steve's Preferred `{ggplot2}` Themes
+### `theme_steve()`, `theme_steve_web()`, `theme_steve_ms()`: Steve's Preferred `{ggplot2}` Themes
 
-`theme_steve()` was a preferred theme of mine a few years ago. It is basically `theme_bw()` from `{ggplot2}` theme, but with me tweaking a few things. I've since moved to `theme_steve_web()` for most things now, prominently on my website. It incorporates the "Open Sans" and "Titillium Web" fonts that I like so much. `post_bg()` is for changing the backgrounds on plots to better match my website for posts that I write.
+`theme_steve()` was a preferred theme of mine a few years ago. It is basically `theme_bw()` from `{ggplot2}` theme, but with me tweaking a few things. I've since moved to `theme_steve_web()` for most things now, prominently on my website. It incorporates the "Open Sans" and "Titillium Web" fonts that I like so much. `post_bg()` is for changing the backgrounds on plots to better match my website for posts that I write. `theme_steve_ms()` is a new addition that uses "Crimson Text" fonts to match my plots to my LaTeX manuscripts.
 
 ```{r}
 mtcars %>%
@@ -301,6 +301,12 @@ mtcars %>%
   labs(title = "A Plot with Steve's Preferred {ggplot2} Theme",
        subtitle = "I use `theme_steve_web()` for most things. It has nicer fonts.")
 
+mtcars %>%
+  ggplot(.,aes(mpg, hp)) +
+  geom_point() +
+  theme_steve_ms() +
+  labs(title = "A Plot with Steve's Preferred {ggplot2} Theme",
+       subtitle = "I use `theme_steve_ms()` will not look pretty in this application, but will in LaTeX.")
 ```
 
 ### The Student-t Distribution (Location-Scale Version)

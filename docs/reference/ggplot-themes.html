@@ -47,7 +47,8 @@ basically theme_bw() from ggplot2 theme, but with me
 tweaking a few things. I've since moved to theme_steve_web() for most things
 now, prominently on my website. It incorporates the &quot;Open Sans&quot; and &quot;Titillium Web&quot;
 fonts that I like so much. post_bg() is for changing the backgrounds on
-plots to better match my website for posts that I write." />
+plots to better match my website for posts that I write. theme_steve_ms() is
+for LaTeX manuscripts that use the cochineal font package." />
 
 
 
@@ -129,14 +130,17 @@ basically <code>theme_bw()</code> from <span class="pkg">ggplot2</span> theme, b
 tweaking a few things. I've since moved to <code>theme_steve_web()</code> for most things
 now, prominently on my website. It incorporates the "Open Sans" and "Titillium Web"
 fonts that I like so much. <code>post_bg()</code> is for changing the backgrounds on
-plots to better match my website for posts that I write.</p>
+plots to better match my website for posts that I write. <code>theme_steve_ms()</code> is
+for <code>LaTeX</code> manuscripts that use the <code>cochineal</code> font package.</p>
     </div>
 
     <pre class="usage"><span class='fu'>theme_steve</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>
 
 <span class='fu'>theme_steve_web</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>post_bg</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'>post_bg</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>
+
+<span class='fu'>theme_steve_ms</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,7 +158,8 @@ plots to better match my website for posts that I write.</p>
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw()</a></code> from <span class="pkg">ggplot2</span>, but with some other tweaks. <code>theme_steve_web()</code> extends
 <code>theme_steve()</code> to add custom fonts, notably "Open Sans" and "Titillium Web". In all cases, these
 functions take a <span class="pkg">ggplot2</span> plot and return another <span class="pkg">ggplot2</span> plot, but with some cosmetic
-changes.</p>
+changes. <code>theme_steve_ms()</code> takes a <span class="pkg">ggplot2</span> plot and overlays "Crimson Text" fonts, which is
+the basis of the <code>cochineal</code> font package in <code>LaTeX</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>theme_steve_web()</code> depends on having the fonts installed on your end.
@@ -184,6 +189,12 @@ It's ultimately optional for you to have them.</p>
   <span class='fu'>post_bg</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"A ggplot2 Plot from the Motor Trend Car Road Tests Data"</span>,
   subtitle <span class='op'>=</span> <span class='st'>"Notice the slight change in background color"</span>,
+  caption <span class='op'>=</span> <span class='st'>"Data: ?mtcars in {datasets} in base R."</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mpg</span>, y <span class='op'>=</span> <span class='va'>hp</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>theme_steve_ms</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"A ggplot2 Plot from the Motor Trend Car Road Tests Data"</span>,
+  subtitle <span class='op'>=</span> <span class='st'>"Notice the fonts will match the 'cochineal' font package in LaTeX."</span>,
   caption <span class='op'>=</span> <span class='st'>"Data: ?mtcars in {datasets} in base R."</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>

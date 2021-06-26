@@ -4,6 +4,7 @@
 \alias{theme_steve}
 \alias{theme_steve_web}
 \alias{post_bg}
+\alias{theme_steve_ms}
 \title{Steve's Preferred \pkg{ggplot2} Themes and Assorted Stuff}
 \usage{
 theme_steve(...)
@@ -11,6 +12,8 @@ theme_steve(...)
 theme_steve_web(...)
 
 post_bg(...)
+
+theme_steve_ms(...)
 }
 \arguments{
 \item{...}{optional stuff, but don't put anything in here. You won't need it.}
@@ -21,7 +24,8 @@ post_bg(...)
 \code{theme_bw()} from \pkg{ggplot2}, but with some other tweaks. \code{theme_steve_web()} extends
 \code{theme_steve()} to add custom fonts, notably "Open Sans" and "Titillium Web". In all cases, these
 functions take a \pkg{ggplot2} plot and return another \pkg{ggplot2} plot, but with some cosmetic
-changes.
+changes. \code{theme_steve_ms()} takes a \pkg{ggplot2} plot and overlays "Crimson Text" fonts, which is
+the basis of the \code{cochineal} font package in \code{LaTeX}.
 }
 \description{
 \code{theme_steve()} was a preferred theme of mine a few years ago. It is
@@ -29,7 +33,8 @@ basically \code{theme_bw()} from \pkg{ggplot2} theme, but with me
 tweaking a few things. I've since moved to \code{theme_steve_web()} for most things
 now, prominently on my website. It incorporates the "Open Sans" and "Titillium Web"
 fonts that I like so much. \code{post_bg()} is for changing the backgrounds on
-plots to better match my website for posts that I write.
+plots to better match my website for posts that I write. \code{theme_steve_ms()} is
+for \code{LaTeX} manuscripts that use the \code{cochineal} font package.
 }
 \details{
 \code{theme_steve_web()} depends on having the fonts installed on your end.
@@ -56,6 +61,12 @@ ggplot(mtcars, aes(x = mpg, y = hp)) +
   post_bg() +
   labs(title = "A ggplot2 Plot from the Motor Trend Car Road Tests Data",
   subtitle = "Notice the slight change in background color",
+  caption = "Data: ?mtcars in {datasets} in base R.")
+
+ggplot(mtcars, aes(x = mpg, y = hp)) +
+  geom_point() + theme_steve_ms() +
+  labs(title = "A ggplot2 Plot from the Motor Trend Car Road Tests Data",
+  subtitle = "Notice the fonts will match the 'cochineal' font package in LaTeX.",
   caption = "Data: ?mtcars in {datasets} in base R.")
 }
 }
