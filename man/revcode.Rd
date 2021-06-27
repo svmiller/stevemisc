@@ -21,7 +21,11 @@ the scale so that 1 = 5, 2 = 4, 3 = 3, 4 = 2, and 5 = 1.
 \details{
 This function passes over NAs you may have in your variable. It does assume,
 reasonably might I add, that the observed values include both the minimum and the maximum.
-This is usually the case in a discrete ordered-categorical variable (like a Likert item).
+This is usually the case in a discrete ordered-categorical variable (like a Likert item). It
+also assumes that the numeric vector supplied to it contains all possible values and that
+the minimum observed value is 1. This is usually a safe assumption in survey data where the variable of
+interest is ordinal (either on a 1:4 scale, or 1:5 scale, or 1:10 scale). No matter, use the function
+with that in mind.
 }
 \examples{
 
