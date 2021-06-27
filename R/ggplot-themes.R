@@ -20,6 +20,8 @@
 #' the basis of the \code{cochineal} font package in \code{LaTeX}.
 #'
 #' @param ... optional stuff, but don't put anything in here. You won't need it.
+#' @param axis_face font face ("plain", "italic", "bold", "bold.italic"). Optional, defaults to "italic". Applicable only to \code{theme_steve_ms()}.
+#' @param caption_face font face ("plain", "italic", "bold", "bold.italic"). Optional, defaults to "italic". Applicable only to \code{theme_steve_ms()}.
 #'
 #' @examples
 #' \dontrun{
@@ -164,7 +166,7 @@ post_bg <- function(...) {
 #' @rdname ggplot-themes
 #' @export
 
-theme_steve_ms <- function(...) {
+theme_steve_ms <- function(axis_face = "italic", caption_face = "italic", ...) {
   #require(ggplot2)
   get_os <- function() {
     sysinf <- Sys.info()
@@ -184,10 +186,10 @@ theme_steve_ms <- function(...) {
   if (get_os() == "osx") {
     theme_bw() +
       theme(panel.border = element_blank(),
-            plot.margin = ggplot2::margin(15, 15, 15, 15),
+            plot.margin = ggplot2::margin(20, 20, 20, 20),
             plot.caption = element_text(hjust = 1, size = 9,
                                         margin = ggplot2::margin(t = 10),
-                                        face = "plain"),
+                                        face = caption_face),
             plot.title = element_text(hjust = 0, size = 18,
                                       margin = ggplot2::margin(b = 10),
                                       face = "bold", family = "Crimson Text"),
@@ -195,8 +197,8 @@ theme_steve_ms <- function(...) {
                                          margin = ggplot2::margin(b = 10),
                                          family = "Crimson Text"),
             axis.title.y = element_text(size = 10, hjust = 1,
-                                        face = "plain", family = "Crimson Text"),
-            axis.title.x = element_text(hjust = 1, size = 10, face = "plain",
+                                        face = axis_face, family = "Crimson Text"),
+            axis.title.x = element_text(hjust = 1, size = 10, face = axis_face,
                                         family = "Crimson Text",
                                         margin = ggplot2::margin(t = 10)),
             legend.position = "bottom",
@@ -209,10 +211,10 @@ theme_steve_ms <- function(...) {
   else {
     theme_bw() +
       theme(panel.border = element_blank(),
-            plot.margin = ggplot2::margin(15, 15, 15, 15),
+            plot.margin = ggplot2::margin(20, 20, 20, 20),
             plot.caption = element_text(hjust = 1, size = 9,
                                         margin = ggplot2::margin(t = 10),
-                                        face = "plain"),
+                                        face = caption_face),
             plot.title = element_text(hjust = 0, size = 18,
                                       margin = ggplot2::margin(b = 10),
                                       face = "bold", family = "Crimson Text"),
@@ -220,8 +222,8 @@ theme_steve_ms <- function(...) {
                                          margin = ggplot2::margin(b = 10),
                                          family = "Crimson Text"),
             axis.title.y = element_text(size = 10, hjust = 1,
-                                        face = "plain", family = "Crimson Text"),
-            axis.title.x = element_text(hjust = 1, size = 10, face = "plain",
+                                        face = axis_face, family = "Crimson Text"),
+            axis.title.x = element_text(hjust = 1, size = 10, face = axis_face,
                                         family = "Crimson Text",
                                         margin = ggplot2::margin(t = 10)),
             legend.position = "bottom",

@@ -13,10 +13,14 @@ theme_steve_web(...)
 
 post_bg(...)
 
-theme_steve_ms(...)
+theme_steve_ms(axis_face = "italic", caption_face = "italic", ...)
 }
 \arguments{
 \item{...}{optional stuff, but don't put anything in here. You won't need it.}
+
+\item{axis_face}{font face ("plain", "italic", "bold", "bold.italic"). Optional, defaults to "italic". Applicable only to \code{theme_steve_ms()}.}
+
+\item{caption_face}{font face ("plain", "italic", "bold", "bold.italic"). Optional, defaults to "italic". Applicable only to \code{theme_steve_ms()}.}
 }
 \value{
 \code{post_bg()} takes a \pkg{ggplot2} plot and changes the background to have a color of
