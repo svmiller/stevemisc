@@ -30,17 +30,17 @@ cat(
 
 <img src="http://svmiller.com/images/stevemisc-hexlogo.png" alt="My stevemisc hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/>
 
-`{stevemisc}` is an R package that includes various functions and tools that I have written over the years to assist me in my research. I offer it here for a public release because 1) I am vain and think I privately want an entire, eponymous ecosystem in the R programming language (i.e. the "steveverse") and 2) I think there are tools here that are broadly useful for users that I'm trying to bundle with other things that I offer (prominently [`{steveproj}`](https://github.com/svmiller/steveproj)). Namely, `{stevemisc}` offers some tools to assist in data organization, data presentation, data recoding, and data simulation. The usage section will elaborate some of its uses.
+`{stevemisc}` is an R package that includes various functions and tools that I have written over the years to assist me in my research, teaching, and public presentations (i.e. stuff I put on my blog). I offer it here for a public release because 1) I am vain and think I want an entire, eponymous ecosystem in the R programming language (i.e. the "steveverse") and 2) I think there are tools here that are broadly useful for users that I'm trying to bundle with other things that I offer (prominently [`{steveproj}`](https://github.com/svmiller/steveproj)). Namely, `{stevemisc}` offers tools to assist in data organization, data presentation, data recoding, and data simulation. The usage section will elaborate some of its uses.
 
 ## Installation
 
-When the time comes, you can install this on CRAN.
+You can install this on CRAN.
 
 ```r
 install.packages("stevemisc")
 ```
 
-Right now, this package in development and is not available on CRAN. You can install the development version of `{stevemisc}` from Github via the `{devtools}` package. I suppose using the `{remotes}` package would work as well.
+You can install the development version of `{stevemisc}` from Github via the `{devtools}` package. I suppose using the `{remotes}` package would work as well.
 
 ```r
 devtools::install_github("svmiller/stevemisc")
@@ -236,7 +236,7 @@ mtcars %>% tbl_df() %>%
 
 `sbtscs()` allows you to create spells ("peace years" in the international conflict context) between observations of some event. This will allow the researcher to better model temporal dependence in binary time-series cross-section ("BTSCS") models. Much of it is liberally copy-pasted from Dave Armstrong's `{DAMisc}` package. I just added some `{dplyr}` stuff underneath to speed it up and prevent it from choking when there are a lot of cross-sectional units without an "event" for a "spell."
 
-I explain this in [this blog post from 2017](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/). It's incidentally the first thing I added to `{stevemisc}`. I offer, with it, the `usa_mids` data frame that has all militarized interstate disputes for the United States in non-directed dyad-year form from the Gibler-Miller-Little ("GML") data. `ps_btscs()` is a more general version of `sbtscs()` that performs well when NAs bracket the event data.
+I explain this in [this blog post from 2017](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/). It's incidentally the first thing I added to `{stevemisc}`. I offer, with it, the `usa_mids` data frame that has all militarized interstate disputes for the United States in non-directed dyad-year form from the Gibler-Miller-Little ("GML") data. `ps_btscs()` is a more general version of `sbtscs()` that performs well when NAs bracket the event data. The latter function features prominently in [`{peacesciencer}`](http://svmiller.com/peacesciencer).
 
 ```{r, cache=F}
 # ?usa_mids
@@ -248,7 +248,7 @@ sbtscs(usa_mids, midongoing, year, dyad)
 
 ### `revcode()`: Reverse Code a Numeric Variable (i.e. Invert the Scale)
 
-`revcode()` allows you to reverse code a numeric variable. This is useful, say, if you have a Likert item that ranges from 1 ("strongly disagree") to 5 ("strongly agree"), but wants the 5s to be "strongly disagree" and the 1s to be "strongly agree." This function passes over NAs you may have in your variable. It assumes that the observed values include both the minimum and the maximum and that the increments between them are 1. This is usually the case in a discrete ordered-categorical variable (like a Likert item).
+`revcode()` allows you to reverse code a numeric variable. This is useful, say, if you have a Likert item that ranges from 1 ("strongly disagree") to 5 ("strongly agree"), but wants the 5s to be "strongly disagree" and the 1s to be "strongly agree." This function passes over NAs you may have in your variable. It assumes that the observed values include both the minimum and the maximum and that the increments between them are 1. This is usually the case in a discrete ordered-categorical variable (like a Likert item). Use this function with that in mind.
 
 ```{r}
 tibble(x = c(1:10),
@@ -284,7 +284,7 @@ as_tibble(smvrnorm(1000, coef(M1), vcov(M1)))
 
 ### `theme_steve()`, `theme_steve_web()`, `theme_steve_ms()`: Steve's Preferred `{ggplot2}` Themes
 
-`theme_steve()` was a preferred theme of mine a few years ago. It is basically `theme_bw()` from `{ggplot2}` theme, but with me tweaking a few things. I've since moved to `theme_steve_web()` for most things now, prominently on my website. It incorporates the "Open Sans" and "Titillium Web" fonts that I like so much. `post_bg()` is for changing the backgrounds on plots to better match my website for posts that I write. `theme_steve_ms()` is a new addition that uses "Crimson Text" fonts to match my plots to my LaTeX manuscripts.
+`theme_steve()` was a preferred theme of mine a few years ago. It is basically `theme_bw()` from `{ggplot2}` theme, but with me tweaking a few things. I've since moved to `theme_steve_web()` for most things now, prominently on my website. It incorporates the "Open Sans" and "Titillium Web" fonts that I like so much. `post_bg()` is for changing the backgrounds on plots to better match my website for posts that I write. `theme_steve_ms()` is a new addition that uses [the "Crimson Text" font](https://fonts.google.com/specimen/Crimson+Text) to match my plots to my LaTeX manuscripts. For those unaware, "Crimson Text" is basically what [`cochineal`](https://ctan.org/pkg/cochineal?lang=en) is.
 
 ```{r}
 mtcars %>%
@@ -311,16 +311,16 @@ mtcars %>%
 
 ### The Student-t Distribution (Location-Scale Version)
 
-Finally, i added a few functions for extending the "standard" t-distribution in R into the three-parameter "location-scale" version. This generalizes the Student-t and is useful for getting acclimated with more general Student-t distributions, which are quite common in Bayesian analyses. `dst()` (density), `pst()` (distribution function), `qst()` (quantile), and `rst()` (random number generation) are available. Here, for example, is using `rst()` to simulate data from one of the most common Student-t distributions in the world of Bayesian priors: the one with three degrees of freedom, a mean of 0, and a standard deviation of 1.
+Finally, I added a few functions for extending the "standard" t-distribution in R into the three-parameter "location-scale" version. This generalizes the Student-t and is useful for getting acclimated with more general Student-t distributions, which are quite common in Bayesian analyses. `dst()` (density), `pst()` (distribution function), `qst()` (quantile), and `rst()` (random number generation) are available. Here, for example, is using `rst()` to simulate data from one of the most common Student-t distributions in the world of Bayesian priors: the one with three degrees of freedom, a mean of 0, and a standard deviation of 10.
 
 ```{r, cache=F}
-dat <- tibble(x = rst(10000, 3, 0, 1))
+dat <- tibble(x = rst(10000, 3, 0, 10))
 
 dat %>%
   ggplot(.,aes(x)) +
   geom_density() +
   theme_steve_web() +
-  labs(title = "Simulated Data from a Student-t (3,0,1) Distribution",
-       subtitle = "This prior is very common in the world of Bayesian priors.")
+  labs(title = "Simulated Data from a Student-t (3,0,10) Distribution",
+       subtitle = "This prior is common in the world of Bayesian priors and used to be a common default prior in {brms}.")
 
 ```

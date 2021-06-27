@@ -9,29 +9,29 @@
 <img src="http://svmiller.com/images/stevemisc-hexlogo.png" alt="My stevemisc hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/>
 
 `{stevemisc}` is an R package that includes various functions and tools
-that I have written over the years to assist me in my research. I offer
-it here for a public release because 1) I am vain and think I privately
-want an entire, eponymous ecosystem in the R programming language
-(i.e. the “steveverse”) and 2) I think there are tools here that are
-broadly useful for users that I’m trying to bundle with other things
-that I offer (prominently
+that I have written over the years to assist me in my research,
+teaching, and public presentations (i.e. stuff I put on my blog). I
+offer it here for a public release because 1) I am vain and think I want
+an entire, eponymous ecosystem in the R programming language (i.e. the
+“steveverse”) and 2) I think there are tools here that are broadly
+useful for users that I’m trying to bundle with other things that I
+offer (prominently
 [`{steveproj}`](https://github.com/svmiller/steveproj)). Namely,
-`{stevemisc}` offers some tools to assist in data organization, data
+`{stevemisc}` offers tools to assist in data organization, data
 presentation, data recoding, and data simulation. The usage section will
 elaborate some of its uses.
 
 ## Installation
 
-When the time comes, you can install this on CRAN.
+You can install this on CRAN.
 
 ``` r
 install.packages("stevemisc")
 ```
 
-Right now, this package in development and is not available on CRAN. You
-can install the development version of `{stevemisc}` from Github via the
-`{devtools}` package. I suppose using the `{remotes}` package would work
-as well.
+You can install the development version of `{stevemisc}` from Github via
+the `{devtools}` package. I suppose using the `{remotes}` package would
+work as well.
 
 ``` r
 devtools::install_github("svmiller/stevemisc")
@@ -133,18 +133,18 @@ corvectors(cbind(runif(nobs, 0, 100),
   as.data.frame() %>% as_tibble() %>%
   rename(meals = V1, colgrad = V2, fullqual = V3)
 #> # A tibble: 1,000 x 3
-#>    meals colgrad fullqual
-#>    <dbl>   <dbl>    <dbl>
-#>  1 53.0   11.5       96.8
-#>  2 84.0   12.4       68.9
-#>  3  3.34  22.9       95.2
-#>  4 88.0    1.65      91.1
-#>  5 93.3    2.66      91.6
-#>  6 96.8   21.3       71.8
-#>  7 75.9    3.04      90.0
-#>  8 53.6   14.8       36.7
-#>  9 86.2    0.668     90.4
-#> 10 87.4    6.38      46.2
+#>     meals colgrad fullqual
+#>     <dbl>   <dbl>    <dbl>
+#>  1 17.9      32.4     98.4
+#>  2 10.5      39.5     99.4
+#>  3 17.0      21.8     98.4
+#>  4 75.5      10.2     79.4
+#>  5 71.6      16.0     68.5
+#>  6 72.0      14.3     91.6
+#>  7 65.3      13.5     74.4
+#>  8 95.2      20.3     93.9
+#>  9  0.100    61.3     98.3
+#> 10  9.58     34.6     93.1
 #> # … with 990 more rows
 ```
 
@@ -457,7 +457,8 @@ with it, the `usa_mids` data frame that has all militarized interstate
 disputes for the United States in non-directed dyad-year form from the
 Gibler-Miller-Little (“GML”) data. `ps_btscs()` is a more general
 version of `sbtscs()` that performs well when NAs bracket the event
-data.
+data. The latter function features prominently in
+[`{peacesciencer}`](http://svmiller.com/peacesciencer).
 
 ``` r
 # ?usa_mids
@@ -505,7 +506,7 @@ disagree” and the 1s to be “strongly agree.” This function passes over
 NAs you may have in your variable. It assumes that the observed values
 include both the minimum and the maximum and that the increments between
 them are 1. This is usually the case in a discrete ordered-categorical
-variable (like a Likert item).
+variable (like a Likert item). Use this function with that in mind.
 
 ``` r
 tibble(x = c(1:10),
@@ -605,8 +606,10 @@ few things. I’ve since moved to `theme_steve_web()` for most things now,
 prominently on my website. It incorporates the “Open Sans” and
 “Titillium Web” fonts that I like so much. `post_bg()` is for changing
 the backgrounds on plots to better match my website for posts that I
-write. `theme_steve_ms()` is a new addition that uses “Crimson Text”
-fonts to match my plots to my LaTeX manuscripts.
+write. `theme_steve_ms()` is a new addition that uses [the “Crimson
+Text” font](https://fonts.google.com/specimen/Crimson+Text) to match
+my plots to my LaTeX manuscripts. For those unaware, “Crimson Text” is
+basically what [`cochineal`](https://ctan.org/pkg/cochineal?lang=en) is.
 
 ``` r
 mtcars %>%
@@ -645,7 +648,7 @@ mtcars %>%
 
 ### The Student-t Distribution (Location-Scale Version)
 
-Finally, i added a few functions for extending the “standard”
+Finally, I added a few functions for extending the “standard”
 t-distribution in R into the three-parameter “location-scale” version.
 This generalizes the Student-t and is useful for getting acclimated with
 more general Student-t distributions, which are quite common in Bayesian
@@ -654,17 +657,17 @@ analyses. `dst()` (density), `pst()` (distribution function), `qst()`
 for example, is using `rst()` to simulate data from one of the most
 common Student-t distributions in the world of Bayesian priors: the one
 with three degrees of freedom, a mean of 0, and a standard deviation of
-1.
+10.
 
 ``` r
-dat <- tibble(x = rst(10000, 3, 0, 1))
+dat <- tibble(x = rst(10000, 3, 0, 10))
 
 dat %>%
   ggplot(.,aes(x)) +
   geom_density() +
   theme_steve_web() +
-  labs(title = "Simulated Data from a Student-t (3,0,1) Distribution",
-       subtitle = "This prior is very common in the world of Bayesian priors.")
+  labs(title = "Simulated Data from a Student-t (3,0,10) Distribution",
+       subtitle = "This prior is common in the world of Bayesian priors and used to be a common default prior in {brms}.")
 ```
 
 <img src="man/figures/README-unnamed-chunk-18-1.png" width="80%" style="display: block; margin: auto;" />
