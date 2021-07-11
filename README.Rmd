@@ -307,11 +307,18 @@ mtcars %>%
   theme_steve_ms() +
   labs(title = "A Plot with Steve's Preferred {ggplot2} Theme",
        subtitle = "I use `theme_steve_ms()` will not look pretty in this application, but will in LaTeX.")
+
+mtcars %>%
+  ggplot(.,aes(mpg, hp)) +
+  geom_point() +
+  theme_steve_font(font = "Comic Sans MS") +
+  labs(title = "A Plot with Steve's Preferred {ggplot2} Theme",
+       subtitle = "I use `theme_steve_font()` for the occasional document that uses Palatino type fonts. Here: it's Comic Sans.")
 ```
 
 ### The Student-t Distribution (Location-Scale Version)
 
-Finally, I added a few functions for extending the "standard" t-distribution in R into the three-parameter "location-scale" version. This generalizes the Student-t and is useful for getting acclimated with more general Student-t distributions, which are quite common in Bayesian analyses. `dst()` (density), `pst()` (distribution function), `qst()` (quantile), and `rst()` (random number generation) are available. Here, for example, is using `rst()` to simulate data from one of the most common Student-t distributions in the world of Bayesian priors: the one with three degrees of freedom, a mean of 0, and a standard deviation of 10.
+Finally, I added a few functions for extending the "standard" t-distribution in R into the three-parameter "location-scale" version. This generalizes the Student-t and is useful for getting acclimated with more general Student-t distributions, which are quite common in Bayesian analyses. `dst()` (density), `pst()` (distribution function), `qst()` (quantile), and `rst()` (random number generation) are available. Here, for example, is using `rst()` to simulate data from one of the most common Student-t distributions in the world of Bayesian priors: the one with three degrees of freedom, a mean of zero, and a standard deviation of ten.
 
 ```{r, cache=F}
 dat <- tibble(x = rst(10000, 3, 0, 10))

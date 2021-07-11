@@ -163,16 +163,16 @@
 <span class="co">#&gt; # A tibble: 1,000 x 3</span>
 <span class="co">#&gt;     meals colgrad fullqual</span>
 <span class="co">#&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 17.9      32.4     98.4</span>
-<span class="co">#&gt;  2 10.5      39.5     99.4</span>
-<span class="co">#&gt;  3 17.0      21.8     98.4</span>
-<span class="co">#&gt;  4 75.5      10.2     79.4</span>
-<span class="co">#&gt;  5 71.6      16.0     68.5</span>
-<span class="co">#&gt;  6 72.0      14.3     91.6</span>
-<span class="co">#&gt;  7 65.3      13.5     74.4</span>
-<span class="co">#&gt;  8 95.2      20.3     93.9</span>
-<span class="co">#&gt;  9  0.100    61.3     98.3</span>
-<span class="co">#&gt; 10  9.58     34.6     93.1</span>
+<span class="co">#&gt;  1 17.9     32.4      98.4</span>
+<span class="co">#&gt;  2 10.5     43.1      96.9</span>
+<span class="co">#&gt;  3 17.0     41.6      89.6</span>
+<span class="co">#&gt;  4 75.5      1.98     79.4</span>
+<span class="co">#&gt;  5 71.6     22.8      82.6</span>
+<span class="co">#&gt;  6 72.0      7.39     91.6</span>
+<span class="co">#&gt;  7 65.3     13.4      74.4</span>
+<span class="co">#&gt;  8 95.2     10.2      65.5</span>
+<span class="co">#&gt;  9  0.100   25.9      98.3</span>
+<span class="co">#&gt; 10  9.58    47.5      93.1</span>
 <span class="co">#&gt; # … with 990 more rows</span></code></pre></div>
 </div>
 <div id="db_lselect-lazily-select-variables-from-multiple-tables-in-a-relational-database" class="section level3">
@@ -555,14 +555,21 @@
   <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"A Plot with Steve's Preferred {ggplot2} Theme"</span>,
        subtitle <span class="op">=</span> <span class="st">"I use `theme_steve_ms()` will not look pretty in this application, but will in LaTeX."</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-17-3.png" width="80%" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">mtcars</span> <span class="op">%&gt;%</span>
+  <span class="fu">ggplot</span><span class="op">(</span><span class="va">.</span>,<span class="fu">aes</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="reference/theme_steve.html">theme_steve_font</a></span><span class="op">(</span>font <span class="op">=</span> <span class="st">"Comic Sans MS"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"A Plot with Steve's Preferred {ggplot2} Theme"</span>,
+       subtitle <span class="op">=</span> <span class="st">"I use `theme_steve_font()` for the occasional document that uses Palatino type fonts. Here: it's Comic Sans."</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-17-4.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
 <div id="the-student-t-distribution-location-scale-version" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-student-t-distribution-location-scale-version" class="anchor"></a>The Student-t Distribution (Location-Scale Version)</h3>
-<p>Finally, I added a few functions for extending the “standard” t-distribution in R into the three-parameter “location-scale” version. This generalizes the Student-t and is useful for getting acclimated with more general Student-t distributions, which are quite common in Bayesian analyses. <code><a href="reference/studentt.html">dst()</a></code> (density), <code><a href="reference/studentt.html">pst()</a></code> (distribution function), <code><a href="reference/studentt.html">qst()</a></code> (quantile), and <code><a href="reference/studentt.html">rst()</a></code> (random number generation) are available. Here, for example, is using <code><a href="reference/studentt.html">rst()</a></code> to simulate data from one of the most common Student-t distributions in the world of Bayesian priors: the one with three degrees of freedom, a mean of 0, and a standard deviation of</p>
-<ol><li>
-</li></ol>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<p>Finally, I added a few functions for extending the “standard” t-distribution in R into the three-parameter “location-scale” version. This generalizes the Student-t and is useful for getting acclimated with more general Student-t distributions, which are quite common in Bayesian analyses. <code><a href="reference/studentt.html">dst()</a></code> (density), <code><a href="reference/studentt.html">pst()</a></code> (distribution function), <code><a href="reference/studentt.html">qst()</a></code> (quantile), and <code><a href="reference/studentt.html">rst()</a></code> (random number generation) are available. Here, for example, is using <code><a href="reference/studentt.html">rst()</a></code> to simulate data from one of the most common Student-t distributions in the world of Bayesian priors: the one with three degrees of freedom, a mean of zero, and a standard deviation of ten.</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="reference/studentt.html">rst</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">3</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">dat</span> <span class="op">%&gt;%</span>

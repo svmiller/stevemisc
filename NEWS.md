@@ -3,7 +3,7 @@ stevemisc 1.2.0 (in development)
 
 - Add `r2sd_at()`.
 - Add `revcode()`.
-- Add `theme_steve_ms()`.
+- Add `theme_steve_ms()` and `theme_steve_font()`.
 
 stevemisc 1.1.0
 ---------------------------------------------------------------------

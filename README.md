@@ -135,16 +135,16 @@ corvectors(cbind(runif(nobs, 0, 100),
 #> # A tibble: 1,000 x 3
 #>     meals colgrad fullqual
 #>     <dbl>   <dbl>    <dbl>
-#>  1 17.9      32.4     98.4
-#>  2 10.5      39.5     99.4
-#>  3 17.0      21.8     98.4
-#>  4 75.5      10.2     79.4
-#>  5 71.6      16.0     68.5
-#>  6 72.0      14.3     91.6
-#>  7 65.3      13.5     74.4
-#>  8 95.2      20.3     93.9
-#>  9  0.100    61.3     98.3
-#> 10  9.58     34.6     93.1
+#>  1 17.9     32.4      98.4
+#>  2 10.5     43.1      96.9
+#>  3 17.0     41.6      89.6
+#>  4 75.5      1.98     79.4
+#>  5 71.6     22.8      82.6
+#>  6 72.0      7.39     91.6
+#>  7 65.3     13.4      74.4
+#>  8 95.2     10.2      65.5
+#>  9  0.100   25.9      98.3
+#> 10  9.58    47.5      93.1
 #> # … with 990 more rows
 ```
 
@@ -646,6 +646,18 @@ mtcars %>%
 
 <img src="man/figures/README-unnamed-chunk-17-3.png" width="80%" style="display: block; margin: auto;" />
 
+``` r
+
+mtcars %>%
+  ggplot(.,aes(mpg, hp)) +
+  geom_point() +
+  theme_steve_font(font = "Comic Sans MS") +
+  labs(title = "A Plot with Steve's Preferred {ggplot2} Theme",
+       subtitle = "I use `theme_steve_font()` for the occasional document that uses Palatino type fonts. Here: it's Comic Sans.")
+```
+
+<img src="man/figures/README-unnamed-chunk-17-4.png" width="80%" style="display: block; margin: auto;" />
+
 ### The Student-t Distribution (Location-Scale Version)
 
 Finally, I added a few functions for extending the “standard”
@@ -656,8 +668,8 @@ analyses. `dst()` (density), `pst()` (distribution function), `qst()`
 (quantile), and `rst()` (random number generation) are available. Here,
 for example, is using `rst()` to simulate data from one of the most
 common Student-t distributions in the world of Bayesian priors: the one
-with three degrees of freedom, a mean of 0, and a standard deviation of
-10.
+with three degrees of freedom, a mean of zero, and a standard deviation
+of ten.
 
 ``` r
 dat <- tibble(x = rst(10000, 3, 0, 10))
