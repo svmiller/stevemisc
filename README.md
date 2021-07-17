@@ -133,18 +133,18 @@ corvectors(cbind(runif(nobs, 0, 100),
   as.data.frame() %>% as_tibble() %>%
   rename(meals = V1, colgrad = V2, fullqual = V3)
 #> # A tibble: 1,000 x 3
-#>     meals colgrad fullqual
-#>     <dbl>   <dbl>    <dbl>
-#>  1 17.9     32.4      98.4
-#>  2 10.5     43.1      96.9
-#>  3 17.0     41.6      89.6
-#>  4 75.5      1.98     79.4
-#>  5 71.6     22.8      82.6
-#>  6 72.0      7.39     91.6
-#>  7 65.3     13.4      74.4
-#>  8 95.2     10.2      65.5
-#>  9  0.100   25.9      98.3
-#> 10  9.58    47.5      93.1
+#>    meals colgrad fullqual
+#>    <dbl>   <dbl>    <dbl>
+#>  1  96.7    6.20     48.1
+#>  2  58.5   10.3      86.5
+#>  3  62.5    3.11     91.3
+#>  4  30.8   31.0      99.4
+#>  5  29.4   29.3      97.4
+#>  6  74.0   26.8      84.4
+#>  7  35.1   17.0     100. 
+#>  8  30.9   30.0      93.5
+#>  9  31.7   28.6      95.7
+#> 10  10.8   57.8      99.9
 #> # … with 990 more rows
 ```
 
@@ -154,8 +154,8 @@ corvectors(cbind(runif(nobs, 0, 100),
 SQL database. It returns a lazy query that combines all the variables
 together into one data frame (as a tibble). The user can choose to run
 `collect()` after this query if they see fit. [I wrote about this on my
-website
-in 2020](http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/)
+website in
+2020](http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/)
 and how it applies to real-world problems. Here is a proof of concept of
 how this works.
 
@@ -193,7 +193,7 @@ copy_to(con, C, "C",
 # This returns no warning because columns "a" and "b" are in all tables
 c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b"))
 #> # Source:   lazy query [?? x 3]
-#> # Database: sqlite 3.34.1 [:memory:]
+#> # Database: sqlite 3.35.5 [:memory:]
 #>      uid       a b    
 #>    <int>   <dbl> <chr>
 #>  1     1 -0.997  f    
@@ -215,7 +215,7 @@ c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b", "d"))
 
 #> Warning: Unknown columns: `d`
 #> # Source:   lazy query [?? x 4]
-#> # Database: sqlite 3.34.1 [:memory:]
+#> # Database: sqlite 3.35.5 [:memory:]
 #>      uid       a b         d
 #>    <int>   <dbl> <chr> <dbl>
 #>  1     1 -0.997  f        NA
@@ -284,14 +284,14 @@ Sims
 #>    <dbl> <dbl>
 #>  1  19.4     1
 #>  2  13.6     1
-#>  3  19.1     2
-#>  4  13.6     2
+#>  3  19.0     2
+#>  4  13.5     2
 #>  5  19.6     3
 #>  6  12.8     3
-#>  7  19.2     4
-#>  8  13.8     4
-#>  9  19.4     5
-#> 10  13.5     5
+#>  7  19.5     4
+#>  8  13.4     4
+#>  9  19.8     5
+#> 10  13.8     5
 #> # … with 1,990 more rows
 ```
 
@@ -374,6 +374,80 @@ p_z(c(.001, .01, .05, .1))
 #> [1] 3.290527 2.575829 1.959964 1.644854
 ```
 
+### `print_refs()`: Print and Format  Entries as References
+
+`print_refs()` takes a `.bib` entry (or entries) and formats it as a
+reference (or set of references). This function is useful if you want to
+populate a syllabus with a reading list and have more agency over how
+it’s formatted.
+
+For example, here’s a list of things you should read and cite, along
+with an illustration of the defaults by which the function works
+(American Political Science Association style, to LaTeX).
+
+Remember: *extremely Smokey Bear voice* “only YOU can jack my *h*-index
+to infinity.”
+
+``` r
+some_of_my_pubs <- "@Article{miller2018etttc,
+  Title                    = {External Territorial Threats and Tolerance of Corruption: A Private/Government Distinction},
+  Author                   = {Steven V. Miller},
+  Journal                  = {Peace Economics, Peace Science and Public Policy},
+  Year                     = {2018},
+  Number                   = {1},
+  Volume                   = {24}
+}
+
+@Article{miller2017etst,
+  Title                    = {Economic Threats or Societal Turmoil? Understanding Preferences for Authoritarian Political Systems},
+  Author                   = {Steven V. Miller},
+  Journal                  = {Political Behavior},
+  Year                     = {2017},
+  Number                   = {2},
+  Pages                    = {457--478},
+  Volume                   = {39}
+}
+
+@Article{miller2017ieea,
+  Title                    = {Individual-Level Expectations of Executive Authority under Territorial Threat},
+  Author                   = {Steven V. Miller},
+  Journal                  = {Conflict Management and Peace Science},
+  Year                     = {2017},
+  Number                   = {5},
+  Pages                    = {526--545},
+  Volume                   = {34}
+}
+
+@Article{miller2013tdpi,
+  Title                    = {Territorial Disputes and the Politics of Individual Well-Being},
+  Author                   = {Steven V. Miller},
+  Journal                  = {Journal of Peace Research},
+  Year                     = {2013},
+  Number                   = {6},
+  Pages                    = {677--690},
+  Volume                   = {50}
+}"
+
+cat(print_refs(some_of_my_pubs), sep="\n")
+#> I'm going to assume this is a .bib entry...
+#> Downloading CSL from https://raw.githubusercontent.com/citation-style-language/styles/master/american-political-science-association.csl
+#> Miller, Steven V. 2013. {``Territorial Disputes and the Politics of
+#> Individual Well-Being.''} \emph{Journal of Peace Research} 50(6):
+#> 677--90.
+#> 
+#> ---------. 2017a. {``Economic Threats or Societal Turmoil? Understanding
+#> Preferences for Authoritarian Political Systems.''} \emph{Political
+#> Behavior} 39(2): 457--78.
+#> 
+#> ---------. 2017b. {``Individual-Level Expectations of Executive
+#> Authority Under Territorial Threat.''} \emph{Conflict Management and
+#> Peace Science} 34(5): 526--45.
+#> 
+#> ---------. 2018. {``External Territorial Threats and Tolerance of
+#> Corruption: A Private/Government Distinction.''} \emph{Peace Economics,
+#> Peace Science and Public Policy} 24(1).
+```
+
 ### `r1sd()` and `r2sd()`: Rescaling Data by One (or Two) Standard Deviations
 
 `r1sd()` and `r2sd()` allow the user to rescale data by one or two
@@ -450,8 +524,8 @@ copy-pasted from Dave Armstrong’s `{DAMisc}` package. I just added some
 when there are a lot of cross-sectional units without an “event” for a
 “spell.”
 
-I explain this in [this blog post
-from 2017](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/).
+I explain this in [this blog post from
+2017](http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/).
 It’s incidentally the first thing I added to `{stevemisc}`. I offer,
 with it, the `usa_mids` data frame that has all militarized interstate
 disputes for the United States in non-directed dyad-year form from the
@@ -550,13 +624,13 @@ M1 <- lmer(Reaction ~ Days + (Days | Subject), data=sleepstudy)
 show_ranef(M1, "Subject")
 ```
 
-<img src="man/figures/README-unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-16-1.png" width="80%" style="display: block; margin: auto;" />
 
 ``` r
 show_ranef(M1, "Subject", reorder=FALSE)
 ```
 
-<img src="man/figures/README-unnamed-chunk-15-2.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-16-2.png" width="80%" style="display: block; margin: auto;" />
 
 ### `smvrnorm()`: Simulate from a Multivariate Normal Distribution
 
@@ -583,18 +657,18 @@ broom::tidy(M1)
 
 as_tibble(smvrnorm(1000, coef(M1), vcov(M1)))
 #> # A tibble: 1,000 x 7
-#>    `(Intercept)`       agea  female eduyrs  uempla hinctnta lrscale
-#>            <dbl>      <dbl>   <dbl>  <dbl>   <dbl>    <dbl>   <dbl>
-#>  1          10.7  0.0000469  0.0416  0.560 -1.76      0.308  -0.595
-#>  2          12.8 -0.0117    -0.355   0.471 -0.693     0.202  -0.476
-#>  3          10.4 -0.000743   0.101   0.532 -0.615     0.451  -0.685
-#>  4          10.6  0.0110    -0.204   0.523  1.37      0.280  -0.505
-#>  5          12.3  0.00483    0.411   0.448 -1.10      0.366  -0.706
-#>  6          10.7  0.0143    -0.425   0.469 -0.268     0.374  -0.531
-#>  7          12.0  0.00801    0.251   0.439 -0.0301    0.388  -0.746
-#>  8          12.2 -0.00687   -0.753   0.503 -1.81      0.204  -0.524
-#>  9          12.8  0.00885   -0.797   0.419 -1.95      0.369  -0.683
-#> 10          12.1  0.00209   -0.0546  0.450 -1.03      0.387  -0.668
+#>    `(Intercept)`      agea  female eduyrs  uempla hinctnta lrscale
+#>            <dbl>     <dbl>   <dbl>  <dbl>   <dbl>    <dbl>   <dbl>
+#>  1          10.7  0.000949 -0.386   0.573 -1.76      0.302  -0.588
+#>  2          12.8 -0.0118   -0.311   0.469 -0.693     0.203  -0.477
+#>  3          10.3  0.000331 -0.408   0.547 -0.618     0.444  -0.676
+#>  4          10.6  0.0109   -0.165   0.522  1.37      0.280  -0.505
+#>  5          12.2  0.00781  -1.00    0.491 -1.11      0.348  -0.682
+#>  6          10.7  0.0132    0.0609  0.454 -0.264     0.380  -0.539
+#>  7          11.9  0.0103   -0.815   0.472 -0.0370    0.374  -0.728
+#>  8          12.3 -0.00884   0.177   0.474 -1.80      0.216  -0.540
+#>  9          12.9  0.00692   0.118   0.391 -1.94      0.380  -0.699
+#> 10          12.1  0.00306  -0.512   0.465 -1.03      0.381  -0.660
 #> # … with 990 more rows
 ```
 
@@ -607,8 +681,8 @@ prominently on my website. It incorporates the “Open Sans” and
 “Titillium Web” fonts that I like so much. `post_bg()` is for changing
 the backgrounds on plots to better match my website for posts that I
 write. `theme_steve_ms()` is a new addition that uses [the “Crimson
-Text” font](https://fonts.google.com/specimen/Crimson+Text) to match
-my plots to my LaTeX manuscripts. For those unaware, “Crimson Text” is
+Text” font](https://fonts.google.com/specimen/Crimson+Text) to match my
+plots to my LaTeX manuscripts. For those unaware, “Crimson Text” is
 basically what [`cochineal`](https://ctan.org/pkg/cochineal?lang=en) is.
 
 ``` r
@@ -620,10 +694,9 @@ mtcars %>%
        subtitle = "It's basically `theme_bw()` with some minor tweaks.")
 ```
 
-<img src="man/figures/README-unnamed-chunk-17-1.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-18-1.png" width="80%" style="display: block; margin: auto;" />
 
 ``` r
-
 mtcars %>%
   ggplot(.,aes(mpg, hp)) +
   geom_point() +
@@ -632,10 +705,9 @@ mtcars %>%
        subtitle = "I use `theme_steve_web()` for most things. It has nicer fonts.")
 ```
 
-<img src="man/figures/README-unnamed-chunk-17-2.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-18-2.png" width="80%" style="display: block; margin: auto;" />
 
 ``` r
-
 mtcars %>%
   ggplot(.,aes(mpg, hp)) +
   geom_point() +
@@ -644,10 +716,9 @@ mtcars %>%
        subtitle = "I use `theme_steve_ms()` will not look pretty in this application, but will in LaTeX.")
 ```
 
-<img src="man/figures/README-unnamed-chunk-17-3.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-18-3.png" width="80%" style="display: block; margin: auto;" />
 
 ``` r
-
 mtcars %>%
   ggplot(.,aes(mpg, hp)) +
   geom_point() +
@@ -656,7 +727,7 @@ mtcars %>%
        subtitle = "I use `theme_steve_font()` for the occasional document that uses Palatino type fonts. Here: it's Comic Sans.")
 ```
 
-<img src="man/figures/README-unnamed-chunk-17-4.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-18-4.png" width="80%" style="display: block; margin: auto;" />
 
 ### The Student-t Distribution (Location-Scale Version)
 
@@ -682,4 +753,4 @@ dat %>%
        subtitle = "This prior is common in the world of Bayesian priors and used to be a common default prior in {brms}.")
 ```
 
-<img src="man/figures/README-unnamed-chunk-18-1.png" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-19-1.png" width="80%" style="display: block; margin: auto;" />

@@ -88,3 +88,11 @@ importFrom(grid,unit)
 #importFrom(DBI, dbConnect)
 #importFrom(RSQLite, SQLite)
 #importFrom(dbplyr, union)
+
+# This is for print_refs()
+
+importFrom(httr, "GET", "write_disk", "http_error", "status_code")
+#importFrom(rmarkdown, "find_pandoc", "pandoc", "with_pandoc_safe_environment")
+import(rmarkdown)
+importFrom(stringr, "str_subset")
+importFrom(tools, "file_ext")
