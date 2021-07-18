@@ -71,7 +71,12 @@ print_refs <- function(bib, csl="american-political-science-association.csl",
     file.remove(csl)
   }
 
+  if (toformat == "latex") {
   result <- str_subset(result, "\\leavevmode|\\\\begin|\\\\end|\\\\hyper", negate=TRUE)
+  result <- str_replace(result, "\\{``", "``")
+  result <- str_replace(result, "''\\}", "''")
+
+  }
   return(result)
 }
 
