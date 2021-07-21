@@ -216,54 +216,13 @@ p_z(c(.001, .01, .05, .1))
 
 `print_refs()` takes a `.bib` entry (or entries) and formats it as a reference (or set of references). This function is useful if you want to populate a syllabus with a reading list and have more agency over how it's formatted.
 
-For example, here's a list of things you should read and cite, along with an illustration of the defaults by which the function works (American Political Science Association style, to LaTeX). 
+For example, here's a list of things you should read and cite, along with an illustration of the defaults by which the function works (American Political Science Association style, to LaTeX). `stevepubs`, in this package, contains an incomplete list of my publications.
 
 Remember: *extremely Smokey Bear voice* "only YOU can jack my *h*-index to infinity."
 
 ```{r, cache=F}
-
-some_of_my_pubs <- "@Article{miller2018etttc,
-  Title                    = {External Territorial Threats and Tolerance of Corruption: A Private/Government Distinction},
-  Author                   = {Steven V. Miller},
-  Journal                  = {Peace Economics, Peace Science and Public Policy},
-  Year                     = {2018},
-  Number                   = {1},
-  Volume                   = {24}
-}
-
-@Article{miller2017etst,
-  Title                    = {Economic Threats or Societal Turmoil? Understanding Preferences for Authoritarian Political Systems},
-  Author                   = {Steven V. Miller},
-  Journal                  = {Political Behavior},
-  Year                     = {2017},
-  Number                   = {2},
-  Pages                    = {457--478},
-  Volume                   = {39}
-}
-
-@Article{miller2017ieea,
-  Title                    = {Individual-Level Expectations of Executive Authority under Territorial Threat},
-  Author                   = {Steven V. Miller},
-  Journal                  = {Conflict Management and Peace Science},
-  Year                     = {2017},
-  Number                   = {5},
-  Pages                    = {526--545},
-  Volume                   = {34}
-}
-
-@Article{miller2013tdpi,
-  Title                    = {Territorial Disputes and the Politics of Individual Well-Being},
-  Author                   = {Steven V. Miller},
-  Journal                  = {Journal of Peace Research},
-  Year                     = {2013},
-  Number                   = {6},
-  Pages                    = {677--690},
-  Volume                   = {50}
-}"
-
-cat(print_refs(some_of_my_pubs), sep="\n")
-
-
+library(bib2df)
+cat(print_refs(capture.output(df2bib(stevepubs))), sep="\n")
 ```
 
 ### `r1sd()` and `r2sd()`: Rescaling Data by One (or Two) Standard Deviations

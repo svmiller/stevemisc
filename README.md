@@ -133,18 +133,18 @@ corvectors(cbind(runif(nobs, 0, 100),
   as.data.frame() %>% as_tibble() %>%
   rename(meals = V1, colgrad = V2, fullqual = V3)
 #> # A tibble: 1,000 x 3
-#>    meals colgrad fullqual
-#>    <dbl>   <dbl>    <dbl>
-#>  1  96.7    6.20     48.1
-#>  2  58.5   10.3      86.5
-#>  3  62.5    3.11     91.3
-#>  4  30.8   31.0      99.4
-#>  5  29.4   29.3      97.4
-#>  6  74.0   26.8      84.4
-#>  7  35.1   17.0     100. 
-#>  8  30.9   30.0      93.5
-#>  9  31.7   28.6      95.7
-#> 10  10.8   57.8      99.9
+#>     meals colgrad fullqual
+#>     <dbl>   <dbl>    <dbl>
+#>  1 17.9     32.4      98.4
+#>  2 10.5     55.0      95.2
+#>  3 17.0     21.8      99.4
+#>  4 75.5      7.39     79.4
+#>  5 71.6     10.4      80.4
+#>  6 72.0      5.46     89.3
+#>  7 65.3     28.0      74.4
+#>  8 95.2     10.3      49.6
+#>  9  0.100   46.7      98.3
+#> 10  9.58    47.5      93.1
 #> # … with 990 more rows
 ```
 
@@ -383,69 +383,85 @@ it’s formatted.
 
 For example, here’s a list of things you should read and cite, along
 with an illustration of the defaults by which the function works
-(American Political Science Association style, to LaTeX).
+(American Political Science Association style, to LaTeX). `stevepubs`,
+in this package, contains an incomplete list of my publications.
 
 Remember: *extremely Smokey Bear voice* “only YOU can jack my *h*-index
 to infinity.”
 
 ``` r
-some_of_my_pubs <- "@Article{miller2018etttc,
-  Title                    = {External Territorial Threats and Tolerance of Corruption: A Private/Government Distinction},
-  Author                   = {Steven V. Miller},
-  Journal                  = {Peace Economics, Peace Science and Public Policy},
-  Year                     = {2018},
-  Number                   = {1},
-  Volume                   = {24}
-}
-
-@Article{miller2017etst,
-  Title                    = {Economic Threats or Societal Turmoil? Understanding Preferences for Authoritarian Political Systems},
-  Author                   = {Steven V. Miller},
-  Journal                  = {Political Behavior},
-  Year                     = {2017},
-  Number                   = {2},
-  Pages                    = {457--478},
-  Volume                   = {39}
-}
-
-@Article{miller2017ieea,
-  Title                    = {Individual-Level Expectations of Executive Authority under Territorial Threat},
-  Author                   = {Steven V. Miller},
-  Journal                  = {Conflict Management and Peace Science},
-  Year                     = {2017},
-  Number                   = {5},
-  Pages                    = {526--545},
-  Volume                   = {34}
-}
-
-@Article{miller2013tdpi,
-  Title                    = {Territorial Disputes and the Politics of Individual Well-Being},
-  Author                   = {Steven V. Miller},
-  Journal                  = {Journal of Peace Research},
-  Year                     = {2013},
-  Number                   = {6},
-  Pages                    = {677--690},
-  Volume                   = {50}
-}"
-
-cat(print_refs(some_of_my_pubs), sep="\n")
+library(bib2df)
+cat(print_refs(capture.output(df2bib(stevepubs))), sep="\n")
+#> Warning in if (!file.exists(bib)) {: the condition has length > 1 and only the
+#> first element will be used
 #> I'm going to assume this is a .bib entry...
+#> Warning in if (!validUTF8(bib)) {: the condition has length > 1 and only the
+#> first element will be used
 #> Downloading CSL from https://raw.githubusercontent.com/citation-style-language/styles/master/american-political-science-association.csl
-#> Miller, Steven V. 2013. {``Territorial Disputes and the Politics of
-#> Individual Well-Being.''} \emph{Journal of Peace Research} 50(6):
+#> Curtis, K. Amber, and Steven V. Miller. 2021. ``A (Supra)nationalist
+#> Personality? The Big Five's Effects on Political-Territorial
+#> Identification.'' \emph{European Union Politics} 22(2): 202--26.
+#> 
+#> Gibler, Douglas M., Marc L. Hutchison, and Steven V. Miller. 2012.
+#> ``Individual Identity Attachments and International Conflict: The
+#> Importance of Territorial Threat.'' \emph{Comparative Political
+#> Studies} 45(12): 1655--83.
+#> 
+#> Gibler, Douglas M., and Steven V. Miller. 2012. ``Comparing the Foreign
+#> Aid Policies of Presidents Bush and Obama.'' \emph{Social Science
+#> Quarterly} 93(5): 1202--17.
+#> 
+#> ---------. 2013. ``Quick Victories? Territory, Democracies, and Their
+#> Disputes.'' \emph{Journal of Conflict Resolution} 57(2): 258--84.
+#> 
+#> ---------. 2014. ``External Territorial Threat, State Capacity, and
+#> Civil War.'' \emph{Journal of Peace Research} 51(5): 634--46.
+#> 
+#> Gibler, Douglas M., Steven V. Miller, and Erin K. Little. 2016. ``An
+#> Analysis of the {M}ilitarized {I}nterstate {D}ispute {(MID)} Dataset,
+#> 1816-2001.'' \emph{International Studies Quarterly} 60(4): 719--30.
+#> 
+#> ---------. 2020. ``The Importance of Correct Measurement.''
+#> \emph{International Studies Quarterly} 64(2): 476--79.
+#> 
+#> Miller, Steven V. 2013. ``Territorial Disputes and the Politics of
+#> Individual Well-Being.'' \emph{Journal of Peace Research} 50(6):
 #> 677--90.
 #> 
-#> ---------. 2017a. {``Economic Threats or Societal Turmoil? Understanding
-#> Preferences for Authoritarian Political Systems.''} \emph{Political
+#> ---------. 2017a. ``Economic Threats or Societal Turmoil? Understanding
+#> Preferences for Authoritarian Political Systems.'' \emph{Political
 #> Behavior} 39(2): 457--78.
 #> 
-#> ---------. 2017b. {``Individual-Level Expectations of Executive
-#> Authority Under Territorial Threat.''} \emph{Conflict Management and
+#> ---------. 2017b. ``Individual-Level Expectations of Executive
+#> Authority Under Territorial Threat.'' \emph{Conflict Management and
 #> Peace Science} 34(5): 526--45.
 #> 
-#> ---------. 2018. {``External Territorial Threats and Tolerance of
-#> Corruption: A Private/Government Distinction.''} \emph{Peace Economics,
+#> ---------. 2017c. ``The Effect of Terrorism on Judicial Confidence.''
+#> \emph{Political Research Quarterly} 70(4): 790--802.
+#> 
+#> ---------. 2018. ``External Territorial Threats and Tolerance of
+#> Corruption: A Private/Government Distinction.'' \emph{Peace Economics,
 #> Peace Science and Public Policy} 24(1).
+#> 
+#> ---------. 2019. ``What Americans Think about Gun Control: Evidence
+#> from the General Social Survey, 1972-2016.'' \emph{Social Science
+#> Quarterly} 100(1): 272--88.
+#> 
+#> ---------. ``Economic Anxiety or Ethnocentrism? An Evaluation of
+#> Attitudes Toward Immigration in the {U.S.} From 1992 to 2017.''
+#> \emph{The Social Science Journal}.
+#> 
+#> Miller, Steven V., and Nicholas T. Davis. Forthcoming. ``The Effect of
+#> White Social Prejudice on Support for American Democracy.''
+#> \emph{Journal of Race, Ethnicity, and Politics} 6(2): 334--51.
+#> 
+#> Miller, Steven V., and Doublas M. Gibler. 2011. ``Democracies,
+#> Territory, and Negotiated Compromises.'' \emph{Conflict Management and
+#> Peace Science} 28(3): 261--79.
+#> 
+#> Miller, Steven V., Jaroslav Tir, and John A. Vasquez. 2020.
+#> ``Geography, Territory, and Conflict.'' In \emph{Oxford Research
+#> Encyclopedia of International Studies}, Oxford University Press.
 ```
 
 ### `r1sd()` and `r2sd()`: Rescaling Data by One (or Two) Standard Deviations
