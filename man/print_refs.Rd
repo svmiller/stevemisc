@@ -8,7 +8,8 @@ print_refs(
   bib,
   csl = "american-political-science-association.csl",
   toformat = "latex",
-  cslrepo = "https://raw.githubusercontent.com/citation-style-language/styles/master"
+  cslrepo = "https://raw.githubusercontent.com/citation-style-language/styles/master",
+  spit_out = TRUE
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ print_refs(
 \item{toformat}{the output wanted by the user. Default is "latex".}
 
 \item{cslrepo}{a directory of CSL files. Defaults to the one on Github.}
+
+\item{spit_out}{logical, defaults to TRUE. If TRUE, wraps ("spits out") formatted citations in a \code{writeLines()} output for the console. If `FALSE`, returns a character vector.}
 }
 \value{
 \code{print_refs()} takes a \code{.bib} entry and returns a formatted reference from it.
@@ -41,6 +44,6 @@ example <- "@Book{vasquez2009twp, Title = {The War Puzzle Revisited},
 Author = {Vasquez, John A}, Publisher = {New York, NY: Cambridge University Press},
 Year = {2009}}"
 
-cat(print_refs(example), sep = "\n")
+print_refs(example)
 }
 }

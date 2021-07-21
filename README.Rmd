@@ -220,9 +220,11 @@ For example, here's a list of things you should read and cite, along with an ill
 
 Remember: *extremely Smokey Bear voice* "only YOU can jack my *h*-index to infinity."
 
-```{r, cache=F}
+```{r, cache=F, message = F, warning = F}
+# Note, this function does spam with some messages/warnings.
+# You can disable that in a chunk, as I do here.
 library(bib2df)
-cat(print_refs(capture.output(df2bib(stevepubs))), sep="\n")
+print_refs(capture.output(df2bib(stevepubs)))
 ```
 
 ### `r1sd()` and `r2sd()`: Rescaling Data by One (or Two) Standard Deviations

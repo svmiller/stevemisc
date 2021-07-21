@@ -135,16 +135,16 @@ corvectors(cbind(runif(nobs, 0, 100),
 #> # A tibble: 1,000 x 3
 #>     meals colgrad fullqual
 #>     <dbl>   <dbl>    <dbl>
-#>  1 17.9     32.4      98.4
-#>  2 10.5     55.0      95.2
-#>  3 17.0     21.8      99.4
-#>  4 75.5      7.39     79.4
-#>  5 71.6     10.4      80.4
-#>  6 72.0      5.46     89.3
-#>  7 65.3     28.0      74.4
-#>  8 95.2     10.3      49.6
-#>  9  0.100   46.7      98.3
-#> 10  9.58    47.5      93.1
+#>  1 17.9     13.8      98.4
+#>  2 10.5     14.0      99.9
+#>  3 17.0     21.8      89.6
+#>  4 75.5      1.38     79.4
+#>  5 71.6      5.33     82.6
+#>  6 72.0     14.3      61.6
+#>  7 65.3     16.5      74.4
+#>  8 95.2      4.02     89.5
+#>  9  0.100   61.3      98.3
+#> 10  9.58    36.1      99.8
 #> # … with 990 more rows
 ```
 
@@ -390,14 +390,10 @@ Remember: *extremely Smokey Bear voice* “only YOU can jack my *h*-index
 to infinity.”
 
 ``` r
+# Note, this function does spam with some messages/warnings.
+# You can disable that in a chunk, as I do here.
 library(bib2df)
-cat(print_refs(capture.output(df2bib(stevepubs))), sep="\n")
-#> Warning in if (!file.exists(bib)) {: the condition has length > 1 and only the
-#> first element will be used
-#> I'm going to assume this is a .bib entry...
-#> Warning in if (!validUTF8(bib)) {: the condition has length > 1 and only the
-#> first element will be used
-#> Downloading CSL from https://raw.githubusercontent.com/citation-style-language/styles/master/american-political-science-association.csl
+print_refs(capture.output(df2bib(stevepubs)))
 #> Curtis, K. Amber, and Steven V. Miller. 2021. ``A (Supra)nationalist
 #> Personality? The Big Five's Effects on Political-Territorial
 #> Identification.'' \emph{European Union Politics} 22(2): 202--26.

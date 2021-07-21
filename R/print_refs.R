@@ -13,6 +13,7 @@
 #' @param csl a CSL file, matching one available on the Github repository, that the user wants to format the references. Default is "american-political-science-association.csl".
 #' @param toformat the output wanted by the user. Default is "latex".
 #' @param cslrepo a directory of CSL files. Defaults to the one on Github.
+#' @param spit_out logical, defaults to TRUE. If TRUE, wraps ("spits out") formatted citations in a \code{writeLines()} output for the console. If `FALSE`, returns a character vector.
 #'
 #' @return  \code{print_refs()} takes a \code{.bib} entry and returns a formatted reference from it.
 #'
@@ -23,12 +24,13 @@
 #' Author = {Vasquez, John A}, Publisher = {New York, NY: Cambridge University Press},
 #' Year = {2009}}"
 #'
-#' cat(print_refs(example), sep = "\n")
+#' print_refs(example)
 #' }
 
 print_refs <- function(bib, csl="american-political-science-association.csl",
                       toformat="latex",
-                      cslrepo="https://raw.githubusercontent.com/citation-style-language/styles/master") {
+                      cslrepo="https://raw.githubusercontent.com/citation-style-language/styles/master",
+                      spit_out = TRUE) {
   if (!file.exists(bib)) {
     message("I'm going to assume this is a .bib entry...")
     tmpbib <- tempfile(fileext = ".bib")
@@ -77,7 +79,12 @@ print_refs <- function(bib, csl="american-political-science-association.csl",
   result <- str_replace(result, "''\\}", "''")
 
   }
-  return(result)
+
+  if (spit_out == TRUE) {
+  writeLines(result, sep="\n")
+  } else {
+    return(result)
+  }
 }
 
 
