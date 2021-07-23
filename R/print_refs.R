@@ -14,6 +14,7 @@
 #' @param toformat the output wanted by the user. Default is "latex".
 #' @param cslrepo a directory of CSL files. Defaults to the one on Github.
 #' @param spit_out logical, defaults to TRUE. If TRUE, wraps ("spits out") formatted citations in a \code{writeLines()} output for the console. If `FALSE`, returns a character vector.
+#' @param delete_after logical, defaults to TRUE. If TRUE, deletes CSL file when it's done. If FALSE, retains CSL for (potential) future use.
 #'
 #' @return  \code{print_refs()} takes a \code{.bib} entry and returns a formatted reference from it.
 #'
@@ -30,7 +31,8 @@
 print_refs <- function(bib, csl="american-political-science-association.csl",
                       toformat="latex",
                       cslrepo="https://raw.githubusercontent.com/citation-style-language/styles/master",
-                      spit_out = TRUE) {
+                      spit_out = TRUE,
+                      delete_after = TRUE) {
   if (!file.exists(bib)) {
     message("I'm going to assume this is a .bib entry...")
     tmpbib <- tempfile(fileext = ".bib")
@@ -68,15 +70,15 @@ print_refs <- function(bib, csl="american-political-science-association.csl",
     Encoding(result) <- "UTF-8"
   })
 
-  if (file.exists(csl)) {
+  if (file.exists(csl) && delete_after == TRUE) {
     #Delete file if it exists
     file.remove(csl)
   }
 
   if (toformat == "latex") {
   result <- str_subset(result, "\\leavevmode|\\\\begin|\\\\end|\\\\hyper", negate=TRUE)
-  result <- str_replace(result, "\\{``", "``")
-  result <- str_replace(result, "''\\}", "''")
+  result <- str_replace(result, "\\{``", '"')
+  result <- str_replace(result, "''\\}", '"')
 
   }
 

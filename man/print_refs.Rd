@@ -9,7 +9,8 @@ print_refs(
   csl = "american-political-science-association.csl",
   toformat = "latex",
   cslrepo = "https://raw.githubusercontent.com/citation-style-language/styles/master",
-  spit_out = TRUE
+  spit_out = TRUE,
+  delete_after = TRUE
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ print_refs(
 \item{cslrepo}{a directory of CSL files. Defaults to the one on Github.}
 
 \item{spit_out}{logical, defaults to TRUE. If TRUE, wraps ("spits out") formatted citations in a \code{writeLines()} output for the console. If `FALSE`, returns a character vector.}
+
+\item{delete_after}{logical, defaults to TRUE. If TRUE, deletes CSL file when it's done. If FALSE, retains CSL for (potential) future use.}
 }
 \value{
 \code{print_refs()} takes a \code{.bib} entry and returns a formatted reference from it.
