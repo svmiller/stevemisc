@@ -22,7 +22,8 @@ prepare_refs(bib2df_refs, toformat = "plain")
 \details{
 The function is designed to work more generally in the absence of various fields. Assume,
 for example, that your data frame has no \code{BOOK} field. The function uses the \code{one_of()} wrapper
-to work around this. This function may be expanded as I think of more use cases.
+to work around this. The "warning" returned by the function is more of a message. This function may be expanded as
+I think of more use cases.
 }
 \examples{
 
