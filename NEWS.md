@@ -1,7 +1,7 @@
 stevemisc 1.2.0 (in development)
 ---------------------------------------------------------------------
 
-- Add `print_refs()`
+- Add `prepare_refs()` and `print_refs()`
 - Add `r2sd_at()`.
 - Add `revcode()`.
 - Add `stevepubs`.
