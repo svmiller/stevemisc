@@ -29,7 +29,8 @@ prepare_refs <- function(bib2df_refs, toformat = "plain") {
 
   if (toformat == "plain") {
   bib2df_refs %>%
-    mutate_at(vars(one_of("BOOKTITLE", "BOOK", "JOURNAL")), ~ifelse(!is.na(.), paste0('*', ., "*"), .)) -> result
+    mutate_at(vars(one_of("BOOKTITLE", "BOOK", "JOURNAL")), ~ifelse(!is.na(.), paste0('*', ., "*"), .)) %>%
+  mutate_at(vars(one_of("MAINTITLE", "TITLE")), ~ifelse(!is.na(.) & CATEGORY == "BOOK", paste0('*', ., "*"), .)) -> result
 
   }
 

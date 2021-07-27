@@ -75,7 +75,7 @@ bib2df so that it can be formatted nicely to various outputs." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -147,7 +147,8 @@ bib2df so that it can be formatted nicely to various outputs." />
 
     <p>The function is designed to work more generally in the absence of various fields. Assume,
 for example, that your data frame has no <code>BOOK</code> field. The function uses the <code><a href='https://tidyselect.r-lib.org/reference/one_of.html'>one_of()</a></code> wrapper
-to work around this. This function may be expanded as I think of more use cases.</p>
+to work around this. The "warning" returned by the function is more of a message. This function may be expanded as
+I think of more use cases.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='print_refs.html'>print_refs()</a></code> for formatting a <code>.bib</code> references to various outputs.</p></div>
@@ -155,7 +156,7 @@ to work around this. This function may be expanded as I think of more use cases.
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'>prepare_refs</span><span class='op'>(</span><span class='va'>stevepubs</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown columns: `BOOK`</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 17 x 12</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown columns: `BOOK`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown columns: `MAINTITLE`</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 17 x 12</span>
 #&gt;    CATEGORY  BIBTEXKEY  AUTHOR BOOKTITLE  JOURNAL  NUMBER PAGES PUBLISHER TITLE 
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> 
 #&gt; <span style='color: #BCBCBC;'> 1</span> ARTICLE   millergib… <span style='color: #949494;'>&lt;chr </span>… <span style='color: #BB0000;'>NA</span>         *Confli… 3      261-… <span style='color: #BB0000;'>NA</span>        Democ…

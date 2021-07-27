@@ -1,4 +1,4 @@
-stevemisc 1.2.0 (in development)
+stevemisc 1.2.0
 ---------------------------------------------------------------------
 
 - Add `prepare_refs()` and `print_refs()`
