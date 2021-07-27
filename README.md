@@ -135,16 +135,16 @@ corvectors(cbind(runif(nobs, 0, 100),
 #> # A tibble: 1,000 x 3
 #>     meals colgrad fullqual
 #>     <dbl>   <dbl>    <dbl>
-#>  1 17.9     13.8      98.4
-#>  2 10.5     14.0      99.9
-#>  3 17.0     21.8      89.6
-#>  4 75.5      1.38     79.4
-#>  5 71.6      5.33     82.6
-#>  6 72.0     14.3      61.6
-#>  7 65.3     16.5      74.4
-#>  8 95.2      4.02     89.5
-#>  9  0.100   61.3      98.3
-#> 10  9.58    36.1      99.8
+#>  1 17.9     32.4      98.4
+#>  2 10.5     55.0      99.5
+#>  3 17.0     21.8      94.6
+#>  4 75.5     15.0      79.4
+#>  5 71.6     10.4      68.5
+#>  6 72.0      7.27     91.6
+#>  7 65.3      5.22     74.4
+#>  8 95.2      3.68     78.0
+#>  9  0.100   44.3      98.3
+#> 10  9.58    29.3      93.1
 #> # … with 990 more rows
 ```
 
@@ -394,69 +394,69 @@ to infinity.”
 # You can disable that in a chunk, as I do here.
 library(bib2df)
 print_refs(capture.output(df2bib(stevepubs)))
-#> Curtis, K. Amber, and Steven V. Miller. 2021. ``A (Supra)nationalist
+#> Curtis, K. Amber, and Steven V. Miller. 2021. "A (Supra)nationalist
 #> Personality? The Big Five's Effects on Political-Territorial
-#> Identification.'' \emph{European Union Politics} 22(2): 202--26.
+#> Identification." \emph{European Union Politics} 22(2): 202--26.
 #> 
 #> Gibler, Douglas M., Marc L. Hutchison, and Steven V. Miller. 2012.
-#> ``Individual Identity Attachments and International Conflict: The
-#> Importance of Territorial Threat.'' \emph{Comparative Political
+#> "Individual Identity Attachments and International Conflict: The
+#> Importance of Territorial Threat." \emph{Comparative Political
 #> Studies} 45(12): 1655--83.
 #> 
-#> Gibler, Douglas M., and Steven V. Miller. 2012. ``Comparing the Foreign
-#> Aid Policies of Presidents Bush and Obama.'' \emph{Social Science
+#> Gibler, Douglas M., and Steven V. Miller. 2012. "Comparing the Foreign
+#> Aid Policies of Presidents Bush and Obama." \emph{Social Science
 #> Quarterly} 93(5): 1202--17.
 #> 
-#> ---------. 2013. ``Quick Victories? Territory, Democracies, and Their
-#> Disputes.'' \emph{Journal of Conflict Resolution} 57(2): 258--84.
+#> ---------. 2013. "Quick Victories? Territory, Democracies, and Their
+#> Disputes." \emph{Journal of Conflict Resolution} 57(2): 258--84.
 #> 
-#> ---------. 2014. ``External Territorial Threat, State Capacity, and
-#> Civil War.'' \emph{Journal of Peace Research} 51(5): 634--46.
+#> ---------. 2014. "External Territorial Threat, State Capacity, and
+#> Civil War." \emph{Journal of Peace Research} 51(5): 634--46.
 #> 
-#> Gibler, Douglas M., Steven V. Miller, and Erin K. Little. 2016. ``An
+#> Gibler, Douglas M., Steven V. Miller, and Erin K. Little. 2016. "An
 #> Analysis of the {M}ilitarized {I}nterstate {D}ispute {(MID)} Dataset,
-#> 1816-2001.'' \emph{International Studies Quarterly} 60(4): 719--30.
+#> 1816-2001." \emph{International Studies Quarterly} 60(4): 719--30.
 #> 
-#> ---------. 2020. ``The Importance of Correct Measurement.''
+#> ---------. 2020. "The Importance of Correct Measurement."
 #> \emph{International Studies Quarterly} 64(2): 476--79.
 #> 
-#> Miller, Steven V. 2013. ``Territorial Disputes and the Politics of
-#> Individual Well-Being.'' \emph{Journal of Peace Research} 50(6):
+#> Miller, Steven V. 2013. "Territorial Disputes and the Politics of
+#> Individual Well-Being." \emph{Journal of Peace Research} 50(6):
 #> 677--90.
 #> 
-#> ---------. 2017a. ``Economic Threats or Societal Turmoil? Understanding
-#> Preferences for Authoritarian Political Systems.'' \emph{Political
+#> ---------. 2017a. "Economic Threats or Societal Turmoil? Understanding
+#> Preferences for Authoritarian Political Systems." \emph{Political
 #> Behavior} 39(2): 457--78.
 #> 
-#> ---------. 2017b. ``Individual-Level Expectations of Executive
-#> Authority Under Territorial Threat.'' \emph{Conflict Management and
+#> ---------. 2017b. "Individual-Level Expectations of Executive
+#> Authority Under Territorial Threat." \emph{Conflict Management and
 #> Peace Science} 34(5): 526--45.
 #> 
-#> ---------. 2017c. ``The Effect of Terrorism on Judicial Confidence.''
+#> ---------. 2017c. "The Effect of Terrorism on Judicial Confidence."
 #> \emph{Political Research Quarterly} 70(4): 790--802.
 #> 
-#> ---------. 2018. ``External Territorial Threats and Tolerance of
-#> Corruption: A Private/Government Distinction.'' \emph{Peace Economics,
+#> ---------. 2018. "External Territorial Threats and Tolerance of
+#> Corruption: A Private/Government Distinction." \emph{Peace Economics,
 #> Peace Science and Public Policy} 24(1).
 #> 
-#> ---------. 2019. ``What Americans Think about Gun Control: Evidence
-#> from the General Social Survey, 1972-2016.'' \emph{Social Science
+#> ---------. 2019. "What Americans Think about Gun Control: Evidence
+#> from the General Social Survey, 1972-2016." \emph{Social Science
 #> Quarterly} 100(1): 272--88.
 #> 
-#> ---------. ``Economic Anxiety or Ethnocentrism? An Evaluation of
-#> Attitudes Toward Immigration in the {U.S.} From 1992 to 2017.''
+#> ---------. "Economic Anxiety or Ethnocentrism? An Evaluation of
+#> Attitudes Toward Immigration in the {U.S.} From 1992 to 2017."
 #> \emph{The Social Science Journal}.
 #> 
-#> Miller, Steven V., and Nicholas T. Davis. Forthcoming. ``The Effect of
-#> White Social Prejudice on Support for American Democracy.''
-#> \emph{Journal of Race, Ethnicity, and Politics} 6(2): 334--51.
+#> Miller, Steven V., and Nicholas T. Davis. 2021. "The Effect of White
+#> Social Prejudice on Support for American Democracy." \emph{Journal of
+#> Race, Ethnicity, and Politics} 6(2): 334--51.
 #> 
-#> Miller, Steven V., and Doublas M. Gibler. 2011. ``Democracies,
-#> Territory, and Negotiated Compromises.'' \emph{Conflict Management and
+#> Miller, Steven V., and Doublas M. Gibler. 2011. "Democracies,
+#> Territory, and Negotiated Compromises." \emph{Conflict Management and
 #> Peace Science} 28(3): 261--79.
 #> 
 #> Miller, Steven V., Jaroslav Tir, and John A. Vasquez. 2020.
-#> ``Geography, Territory, and Conflict.'' In \emph{Oxford Research
+#> "Geography, Territory, and Conflict." In \emph{Oxford Research
 #> Encyclopedia of International Studies}, Oxford University Press.
 ```
 
@@ -544,7 +544,7 @@ disputes for the United States in non-directed dyad-year form from the
 Gibler-Miller-Little (“GML”) data. `ps_btscs()` is a more general
 version of `sbtscs()` that performs well when NAs bracket the event
 data. The latter function features prominently in
-[`{peacesciencer}`](http://svmiller.com/peacesciencer).
+[`{peacesciencer}`](https://github.com/svmiller/peacesciencer).
 
 ``` r
 # ?usa_mids

@@ -10,7 +10,7 @@ R CMD check done via `devtools::check()`, resulting in 0 errors, 0 warnings and 
  
 ## Changes upon manual inspection at CRAN
 
-Not applicable right now.
+I fixed a link in the README. I ended up pointing it to the secure Github repository rather than my unsecure link on top of that.
 
 ## Downstream dependencies
 
