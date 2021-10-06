@@ -78,7 +78,7 @@ about things like random sampling and central limit theorem." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.9</span>
       </span>
     </div>
 
@@ -178,7 +178,7 @@ much of this code from somewhere. I forget where.</p>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tibble.tidyverse.org/'>tibble</a></span><span class='op'>)</span>
 
 <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'>rbnorm</span><span class='op'>(</span><span class='fl'>10000</span>, <span class='fl'>57</span>, <span class='fl'>14</span>, <span class='fl'>0</span>, <span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10,000 x 1</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10,000 × 1</span>
 #&gt;        x
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
 #&gt; <span style='color: #BCBCBC;'> 1</span>  51.3
@@ -192,7 +192,7 @@ much of this code from somewhere. I forget where.</p>
 #&gt; <span style='color: #BCBCBC;'> 9</span>  66.2
 #&gt; <span style='color: #BCBCBC;'>10</span>  56.2
 #&gt; <span style='color: #949494;'># … with 9,990 more rows</span></div><div class='input'><span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'>rbnorm</span><span class='op'>(</span><span class='fl'>10000</span>, <span class='fl'>57</span>, <span class='fl'>14</span>, <span class='fl'>0</span>, <span class='fl'>100</span>, round <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10,000 x 1</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10,000 × 1</span>
 #&gt;        x
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
 #&gt; <span style='color: #BCBCBC;'> 1</span>    58
@@ -206,7 +206,7 @@ much of this code from somewhere. I forget where.</p>
 #&gt; <span style='color: #BCBCBC;'> 9</span>    61
 #&gt; <span style='color: #BCBCBC;'>10</span>    76
 #&gt; <span style='color: #949494;'># … with 9,990 more rows</span></div><div class='input'><span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'>rbnorm</span><span class='op'>(</span><span class='fl'>10000</span>, <span class='fl'>57</span>, <span class='fl'>14</span>, <span class='fl'>0</span>, <span class='fl'>100</span>, seed <span class='op'>=</span> <span class='fl'>8675309</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10,000 x 1</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10,000 × 1</span>
 #&gt;        x
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
 #&gt; <span style='color: #BCBCBC;'> 1</span>  72.8

@@ -96,3 +96,6 @@ importFrom(httr, "GET", "write_disk", "http_error", "status_code")
 import(rmarkdown)
 importFrom(stringr, "str_subset", "str_replace")
 importFrom(tools, "file_ext")
+
+# This is for linloess_plot()
+importFrom(tidyr, "gather")

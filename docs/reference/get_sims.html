@@ -75,7 +75,7 @@ multivariate normal distribution for &quot;new data&quot; from a regression mode
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.9</span>
       </span>
     </div>
 
@@ -176,7 +176,7 @@ random intercepts or slope could find that support in the <span class="pkg">merT
                             <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>$</span><span class='va'>hp</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>$</span><span class='va'>hp</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'>get_sims</span><span class='op'>(</span><span class='va'>M1</span>, <span class='va'>newdat</span>, <span class='fl'>100</span>, <span class='fl'>8675309</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 300 x 2</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 300 × 2</span>
 #&gt;        y   sim
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
 #&gt; <span style='color: #BCBCBC;'> 1</span>  23.8     1
@@ -201,7 +201,7 @@ random intercepts or slope could find that support in the <span class="pkg">merT
 <span class='co'># Note: the simulations are returned on their original "link". Here, that's a "logit"</span>
 <span class='co'># You can adjust that accordingly. `plogis(y)` will convert those to probabilities.</span>
 <span class='fu'>get_sims</span><span class='op'>(</span><span class='va'>M2</span>, <span class='va'>newdat</span>, <span class='fl'>100</span>, <span class='fl'>8675309</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 300 x 2</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 300 × 2</span>
 #&gt;          y   sim
 #&gt;      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
 #&gt; <span style='color: #BCBCBC;'> 1</span>   0.312     1
@@ -220,7 +220,7 @@ random intercepts or slope could find that support in the <span class="pkg">merT
 
 <span class='co'># Random effects are not required here since we're passing over them.</span>
 <span class='fu'>get_sims</span><span class='op'>(</span><span class='va'>M3</span>, <span class='va'>newdat</span>, <span class='fl'>100</span>, <span class='fl'>8675309</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 300 x 2</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 300 × 2</span>
 #&gt;        y   sim
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
 #&gt; <span style='color: #BCBCBC;'> 1</span>  21.7     1
