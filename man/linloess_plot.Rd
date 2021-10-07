@@ -4,14 +4,18 @@
 \alias{linloess_plot}
 \title{Compare Linear Smoother to LOESS Smoother for Your OLS Model}
 \usage{
-linloess_plot(mod)
+linloess_plot(mod, ...)
 }
 \arguments{
 \item{mod}{a fitted OLS model}
+
+\item{...}{optional parameters, passed to the scatterplot (\code{geom_point()}) component of this function. Useful if you want to make the smoothers more legible against the points.}
 }
 \value{
-\code{linloess_plot()} returns a faceted scatterplot as a \pkg{ggplot2} object. You can add cosmetic features
-to it after the fact.
+\code{linloess_plot()} returns a faceted scatterplot as a \pkg{ggplot2} object. The linear smoother is in solid blue (with blue
+standard error bands) and the LOESS smoother is a dashed black line (with gray/default standard error bands). You can add
+cosmetic features to it after the fact. The function may spit warnings to you related to the LOESS smoother, depending your data. I think
+these to be fine the extent to which this is really just a visual aid and an informal diagnostic for the linearity assumption.
 }
 \description{
 \code{linloess_plot()} provides a visual diagnostic of the linearity assumption of the OLS model.
@@ -30,7 +34,7 @@ This function makes an implicit assumption that there is no variable in the regr
 M1 <- lm(mpg ~ ., data=mtcars)
 
 linloess_plot(M1)
-
+linloess_plot(M1, color="black", pch=21)
 }
 \author{
 Steven V. Miller

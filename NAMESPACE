@@ -99,3 +99,5 @@ importFrom(tools, "file_ext")
 
 # This is for linloess_plot()
 importFrom(tidyr, "gather")
+importFrom(ggplot2, "facet_wrap")
+importFrom(stats, "model.frame")
