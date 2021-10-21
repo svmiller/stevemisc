@@ -95,7 +95,7 @@ Fake <- as_tibble(cor2data(Cor, 1000, 8675309)) # Jenny I got your number...
 Fake$y <- with(Fake, 5 + .5*control + .5*treat + e)
 
 Fake
-#> # A tibble: 1,000 x 5
+#> # A tibble: 1,000 × 5
 #>    control   treat   instr       e     y
 #>      <dbl>   <dbl>   <dbl>   <dbl> <dbl>
 #>  1 -0.997   0.722   0.288  -0.220   4.64
@@ -132,19 +132,19 @@ corvectors(cbind(runif(nobs, 0, 100),
                  rbnorm(nobs, 87.52, 12.93, 0, 100)), cormatrix) %>% 
   as.data.frame() %>% as_tibble() %>%
   rename(meals = V1, colgrad = V2, fullqual = V3)
-#> # A tibble: 1,000 x 3
+#> # A tibble: 1,000 × 3
 #>     meals colgrad fullqual
 #>     <dbl>   <dbl>    <dbl>
-#>  1 17.9     32.4      98.4
-#>  2 10.5     55.0      99.5
-#>  3 17.0     21.8      94.6
-#>  4 75.5     15.0      79.4
-#>  5 71.6     10.4      68.5
-#>  6 72.0      7.27     91.6
-#>  7 65.3      5.22     74.4
-#>  8 95.2      3.68     78.0
-#>  9  0.100   44.3      98.3
-#> 10  9.58    29.3      93.1
+#>  1 17.9     31.9      80.1
+#>  2 10.5     52.1      96.9
+#>  3 17.0     73.8      89.6
+#>  4 75.5      9.86     79.4
+#>  5 71.6     14.4      82.6
+#>  6 72.0     14.3      91.6
+#>  7 65.3      9.76     74.4
+#>  8 95.2      3.07     66.7
+#>  9  0.100   30.6      98.3
+#> 10  9.58    58.6      98.8
 #> # … with 990 more rows
 ```
 
@@ -193,7 +193,7 @@ copy_to(con, C, "C",
 # This returns no warning because columns "a" and "b" are in all tables
 c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b"))
 #> # Source:   lazy query [?? x 3]
-#> # Database: sqlite 3.35.5 [:memory:]
+#> # Database: sqlite 3.36.0 [:memory:]
 #>      uid       a b    
 #>    <int>   <dbl> <chr>
 #>  1     1 -0.997  f    
@@ -215,7 +215,7 @@ c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b", "d"))
 
 #> Warning: Unknown columns: `d`
 #> # Source:   lazy query [?? x 4]
-#> # Database: sqlite 3.35.5 [:memory:]
+#> # Database: sqlite 3.36.0 [:memory:]
 #>      uid       a b         d
 #>    <int>   <dbl> <chr> <dbl>
 #>  1     1 -0.997  f        NA
@@ -256,7 +256,7 @@ library(stevedata)
 M1 <- lm(immigsent ~ agea + female + eduyrs + uempla + hinctnta + lrscale, data=ESS9GB)
 
 broom::tidy(M1)
-#> # A tibble: 7 x 5
+#> # A tibble: 7 × 5
 #>   term        estimate std.error statistic  p.value
 #>   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 #> 1 (Intercept) 11.7        1.06      11.0   4.89e-27
@@ -279,7 +279,7 @@ ESS9GB %>%
 Sims <- get_sims(M1, newdat, 1000, 8675309)
 
 Sims
-#> # A tibble: 2,000 x 2
+#> # A tibble: 2,000 × 2
 #>        y   sim
 #>    <dbl> <dbl>
 #>  1  19.4     1
@@ -312,7 +312,7 @@ assistance of a dual-monitor setup or physical codebook.
 
 ``` r
 ess9_labelled
-#> # A tibble: 109 x 4
+#> # A tibble: 109 × 4
 #>    essround edition cntry                      netusoft
 #>       <dbl> <chr>   <chr+lbl>                 <dbl+lbl>
 #>  1        9 1.2     AT [Austria] 5 [Every day]         
@@ -509,7 +509,7 @@ convention for these things.
 mtcars %>% tbl_df() %>%
   select(mpg, disp, hp) %>%
   r2sd_at(c("mpg", "hp", "disp"))
-#> # A tibble: 32 x 6
+#> # A tibble: 32 × 6
 #>      mpg  disp    hp   z_mpg   z_hp  z_disp
 #>    <dbl> <dbl> <dbl>   <dbl>  <dbl>   <dbl>
 #>  1  21    160    110  0.0754 -0.268 -0.285 
@@ -551,7 +551,7 @@ data. The latter function features prominently in
 
 ps_btscs(usa_mids, midongoing, year, dyad)
 #> Joining, by = c("dyad", "year")
-#> # A tibble: 14,586 x 7
+#> # A tibble: 14,586 × 7
 #>       dyad ccode1 ccode2  year midongoing midonset spell
 #>      <dbl>  <dbl>  <dbl> <dbl>      <dbl>    <dbl> <dbl>
 #>  1 1002020      2     20  1920          0        0     0
@@ -567,7 +567,7 @@ ps_btscs(usa_mids, midongoing, year, dyad)
 #> # … with 14,576 more rows
 
 sbtscs(usa_mids, midongoing, year, dyad)
-#> # A tibble: 14,586 x 7
+#> # A tibble: 14,586 × 7
 #>       dyad ccode1 ccode2  year midongoing midonset spell
 #>      <dbl>  <dbl>  <dbl> <dbl>      <dbl>    <dbl> <dbl>
 #>  1 1002020      2     20  1920          0        0     0
@@ -599,7 +599,7 @@ tibble(x = c(1:10),
        y = c(1:5, 1:5)) %>%
   mutate(xrev = revcode(x),
          yrev = revcode(y))
-#> # A tibble: 10 x 4
+#> # A tibble: 10 × 4
 #>        x     y  xrev  yrev
 #>    <int> <int> <dbl> <dbl>
 #>  1     1     1    10     5
@@ -656,7 +656,7 @@ regression model.
 M1 <- lm(immigsent ~ agea + female + eduyrs + uempla + hinctnta + lrscale, data=ESS9GB)
 
 broom::tidy(M1)
-#> # A tibble: 7 x 5
+#> # A tibble: 7 × 5
 #>   term        estimate std.error statistic  p.value
 #>   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 #> 1 (Intercept) 11.7        1.06      11.0   4.89e-27
@@ -668,7 +668,7 @@ broom::tidy(M1)
 #> 7 lrscale     -0.583      0.0881    -6.61  5.37e-11
 
 as_tibble(smvrnorm(1000, coef(M1), vcov(M1)))
-#> # A tibble: 1,000 x 7
+#> # A tibble: 1,000 × 7
 #>    `(Intercept)`      agea  female eduyrs  uempla hinctnta lrscale
 #>            <dbl>     <dbl>   <dbl>  <dbl>   <dbl>    <dbl>   <dbl>
 #>  1          10.7  0.000949 -0.386   0.573 -1.76      0.302  -0.588

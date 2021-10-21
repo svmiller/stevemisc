@@ -129,7 +129,7 @@
 <span class="va">Fake</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">Fake</span>, <span class="fl">5</span> <span class="op">+</span> <span class="fl">.5</span><span class="op">*</span><span class="va">control</span> <span class="op">+</span> <span class="fl">.5</span><span class="op">*</span><span class="va">treat</span> <span class="op">+</span> <span class="va">e</span><span class="op">)</span>
 
 <span class="va">Fake</span>
-<span class="co">#&gt; # A tibble: 1,000 x 5</span>
+<span class="co">#&gt; # A tibble: 1,000 × 5</span>
 <span class="co">#&gt;    control   treat   instr       e     y</span>
 <span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 -0.997   0.722   0.288  -0.220   4.64</span>
@@ -160,19 +160,19 @@
                  <span class="fu"><a href="reference/rbnorm.html">rbnorm</a></span><span class="op">(</span><span class="va">nobs</span>, <span class="fl">87.52</span>, <span class="fl">12.93</span>, <span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span>, <span class="va">cormatrix</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">rename</span><span class="op">(</span>meals <span class="op">=</span> <span class="va">V1</span>, colgrad <span class="op">=</span> <span class="va">V2</span>, fullqual <span class="op">=</span> <span class="va">V3</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1,000 x 3</span>
+<span class="co">#&gt; # A tibble: 1,000 × 3</span>
 <span class="co">#&gt;     meals colgrad fullqual</span>
 <span class="co">#&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 17.9     32.4      98.4</span>
-<span class="co">#&gt;  2 10.5     55.0      99.5</span>
-<span class="co">#&gt;  3 17.0     21.8      94.6</span>
-<span class="co">#&gt;  4 75.5     15.0      79.4</span>
-<span class="co">#&gt;  5 71.6     10.4      68.5</span>
-<span class="co">#&gt;  6 72.0      7.27     91.6</span>
-<span class="co">#&gt;  7 65.3      5.22     74.4</span>
-<span class="co">#&gt;  8 95.2      3.68     78.0</span>
-<span class="co">#&gt;  9  0.100   44.3      98.3</span>
-<span class="co">#&gt; 10  9.58    29.3      93.1</span>
+<span class="co">#&gt;  1 17.9     31.9      80.1</span>
+<span class="co">#&gt;  2 10.5     52.1      96.9</span>
+<span class="co">#&gt;  3 17.0     73.8      89.6</span>
+<span class="co">#&gt;  4 75.5      9.86     79.4</span>
+<span class="co">#&gt;  5 71.6     14.4      82.6</span>
+<span class="co">#&gt;  6 72.0     14.3      91.6</span>
+<span class="co">#&gt;  7 65.3      9.76     74.4</span>
+<span class="co">#&gt;  8 95.2      3.07     66.7</span>
+<span class="co">#&gt;  9  0.100   30.6      98.3</span>
+<span class="co">#&gt; 10  9.58    58.6      98.8</span>
 <span class="co">#&gt; # … with 990 more rows</span></code></pre></div>
 </div>
 <div id="db_lselect-lazily-select-variables-from-multiple-tables-in-a-relational-database" class="section level3">
@@ -213,7 +213,7 @@
 <span class="co"># This returns no warning because columns "a" and "b" are in all tables</span>
 <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/db_lselect.html">db_lselect</a></span><span class="op">(</span><span class="va">con</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"uid"</span>, <span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # Source:   lazy query [?? x 3]</span>
-<span class="co">#&gt; # Database: sqlite 3.35.5 [:memory:]</span>
+<span class="co">#&gt; # Database: sqlite 3.36.0 [:memory:]</span>
 <span class="co">#&gt;      uid       a b    </span>
 <span class="co">#&gt;    &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;</span>
 <span class="co">#&gt;  1     1 -0.997  f    </span>
@@ -235,7 +235,7 @@
 
 <span class="co">#&gt; Warning: Unknown columns: `d`</span>
 <span class="co">#&gt; # Source:   lazy query [?? x 4]</span>
-<span class="co">#&gt; # Database: sqlite 3.35.5 [:memory:]</span>
+<span class="co">#&gt; # Database: sqlite 3.36.0 [:memory:]</span>
 <span class="co">#&gt;      uid       a b         d</span>
 <span class="co">#&gt;    &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt;  1     1 -0.997  f        NA</span>
@@ -262,7 +262,7 @@
 <span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">immigsent</span> <span class="op">~</span> <span class="va">agea</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">eduyrs</span> <span class="op">+</span> <span class="va">uempla</span> <span class="op">+</span> <span class="va">hinctnta</span> <span class="op">+</span> <span class="va">lrscale</span>, data<span class="op">=</span><span class="va">ESS9GB</span><span class="op">)</span>
 
 <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 7 x 5</span>
+<span class="co">#&gt; # A tibble: 7 × 5</span>
 <span class="co">#&gt;   term        estimate std.error statistic  p.value</span>
 <span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 (Intercept) 11.7        1.06      11.0   4.89e-27</span>
@@ -285,7 +285,7 @@
 <span class="va">Sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_sims.html">get_sims</a></span><span class="op">(</span><span class="va">M1</span>, <span class="va">newdat</span>, <span class="fl">1000</span>, <span class="fl">8675309</span><span class="op">)</span>
 
 <span class="va">Sims</span>
-<span class="co">#&gt; # A tibble: 2,000 x 2</span>
+<span class="co">#&gt; # A tibble: 2,000 × 2</span>
 <span class="co">#&gt;        y   sim</span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt;  1  19.4     1</span>
@@ -307,7 +307,7 @@
 <p>Do note that it assumes a pipe-based workflow. It’s there for when you’re having to sit down in an R session and recode data without the assistance of a dual-monitor setup or physical codebook.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ess9_labelled</span>
-<span class="co">#&gt; # A tibble: 109 x 4</span>
+<span class="co">#&gt; # A tibble: 109 × 4</span>
 <span class="co">#&gt;    essround edition cntry                      netusoft</span>
 <span class="co">#&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;chr+lbl&gt;                 &lt;dbl+lbl&gt;</span>
 <span class="co">#&gt;  1        9 1.2     AT [Austria] 5 [Every day]         </span>
@@ -468,7 +468,7 @@
 <code class="sourceCode R"><span class="va">mtcars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/tbl_df.html">tbl_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span>, <span class="va">hp</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="reference/r2sd.html">r2sd_at</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"hp"</span>, <span class="st">"disp"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 32 x 6</span>
+<span class="co">#&gt; # A tibble: 32 × 6</span>
 <span class="co">#&gt;      mpg  disp    hp   z_mpg   z_hp  z_disp</span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span>
 <span class="co">#&gt;  1  21    160    110  0.0754 -0.268 -0.285 </span>
@@ -492,7 +492,7 @@
 
 <span class="fu"><a href="reference/ps_btscs.html">ps_btscs</a></span><span class="op">(</span><span class="va">usa_mids</span>, <span class="va">midongoing</span>, <span class="va">year</span>, <span class="va">dyad</span><span class="op">)</span>
 <span class="co">#&gt; Joining, by = c("dyad", "year")</span>
-<span class="co">#&gt; # A tibble: 14,586 x 7</span>
+<span class="co">#&gt; # A tibble: 14,586 × 7</span>
 <span class="co">#&gt;       dyad ccode1 ccode2  year midongoing midonset spell</span>
 <span class="co">#&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 1002020      2     20  1920          0        0     0</span>
@@ -508,7 +508,7 @@
 <span class="co">#&gt; # … with 14,576 more rows</span>
 
 <span class="fu"><a href="reference/sbtscs.html">sbtscs</a></span><span class="op">(</span><span class="va">usa_mids</span>, <span class="va">midongoing</span>, <span class="va">year</span>, <span class="va">dyad</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 14,586 x 7</span>
+<span class="co">#&gt; # A tibble: 14,586 × 7</span>
 <span class="co">#&gt;       dyad ccode1 ccode2  year midongoing midonset spell</span>
 <span class="co">#&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 1002020      2     20  1920          0        0     0</span>
@@ -532,7 +532,7 @@
        y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>xrev <span class="op">=</span> <span class="fu"><a href="reference/revcode.html">revcode</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,
          yrev <span class="op">=</span> <span class="fu"><a href="reference/revcode.html">revcode</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 10 x 4</span>
+<span class="co">#&gt; # A tibble: 10 × 4</span>
 <span class="co">#&gt;        x     y  xrev  yrev</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt;  1     1     1    10     5</span>
@@ -574,7 +574,7 @@
 <code class="sourceCode R"><span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">immigsent</span> <span class="op">~</span> <span class="va">agea</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">eduyrs</span> <span class="op">+</span> <span class="va">uempla</span> <span class="op">+</span> <span class="va">hinctnta</span> <span class="op">+</span> <span class="va">lrscale</span>, data<span class="op">=</span><span class="va">ESS9GB</span><span class="op">)</span>
 
 <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 7 x 5</span>
+<span class="co">#&gt; # A tibble: 7 × 5</span>
 <span class="co">#&gt;   term        estimate std.error statistic  p.value</span>
 <span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 (Intercept) 11.7        1.06      11.0   4.89e-27</span>
@@ -586,7 +586,7 @@
 <span class="co">#&gt; 7 lrscale     -0.583      0.0881    -6.61  5.37e-11</span>
 
 <span class="fu">as_tibble</span><span class="op">(</span><span class="fu"><a href="reference/smvrnorm.html">smvrnorm</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/vcov.html">vcov</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1,000 x 7</span>
+<span class="co">#&gt; # A tibble: 1,000 × 7</span>
 <span class="co">#&gt;    `(Intercept)`      agea  female eduyrs  uempla hinctnta lrscale</span>
 <span class="co">#&gt;            &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span>
 <span class="co">#&gt;  1          10.7  0.000949 -0.386   0.573 -1.76      0.302  -0.588</span>
