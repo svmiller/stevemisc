@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Find Non-Matching Elements — %nin% • stevemisc</title>
+<title>German Dyad-Years, 1816-2020 — gmy_dyadyears • stevemisc</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,12 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Find Non-Matching Elements — %nin%" />
-<meta property="og:description" content="%nin% finds non-matching elements in a given vector. It is the negation of %in%." />
+<meta property="og:title" content="German Dyad-Years, 1816-2020 — gmy_dyadyears" />
+<meta property="og:description" content="These are data generated in peacesciencer for all German (and Prussian) dyad-years from 1816 to 2020. These
+are going to be useful in stress-testing what &quot;peace spell&quot; calculations may look like when there is a huge gap
+in between years. In the Correlates of War context, Germany disappears from the international system from 1945 to 1990. It'll
+also serve as a nice test for making sure spell calculations don't misbehave in the context of missing data. In this application,
+there are no data for disputes between 2011 and 2020, but the dyad-years include 2011 to 2020." />
 
 
 
@@ -113,59 +117,43 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Find Non-Matching Elements</h1>
-    <small class="dont-index">Source: <a href='https://github.com/svmiller/stevemisc/blob/master/R/misc.R'><code>R/misc.R</code></a></small>
-    <div class="hidden name"><code>nin.Rd</code></div>
+    <h1>German Dyad-Years, 1816-2020</h1>
+    <small class="dont-index">Source: <a href='https://github.com/svmiller/stevemisc/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>gmy_dyadyears.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>%nin%</code> finds non-matching elements in a given vector. It is the negation of <code><a href='https://rdrr.io/r/base/match.html'>%in%</a></code>.</p>
+    <p>These are data generated in <span class="pkg">peacesciencer</span> for all German (and Prussian) dyad-years from 1816 to 2020. These
+are going to be useful in stress-testing what "peace spell" calculations may look like when there is a huge gap
+in between years. In the Correlates of War context, Germany disappears from the international system from 1945 to 1990. It'll
+also serve as a nice test for making sure spell calculations don't misbehave in the context of missing data. In this application,
+there are no data for disputes between 2011 and 2020, but the dyad-years include 2011 to 2020.</p>
     </div>
 
-    <pre class="usage"><span class='va'>a</span> <span class='op'>%nin%</span> <span class='va'>b</span></pre>
+    <pre class="usage"><span class='va'>gmy_dyadyears</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>a</th>
-      <td><p>a vector (character, factor, or numeric)</p></td>
-    </tr>
-    <tr>
-      <th>b</th>
-      <td><p>a vector (character, factor, or numeric)</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p><code>%nin%</code> finds non-matching elements and returns one of two things, depending on the use. For two simple vectors,
-it will report what matches and what does not. For comparing a vector within a data frame, it has the effect of reporting the rows
-in the data frame that do not match the supplied (second) vector.</p>
+    <p>A data frame with 11174 observations on the following 6 variables.</p><dl>
+<dt><code>dyad</code></dt><dd><p>a unique identifier for the dyad</p></dd>
+<dt><code>ccode1</code></dt><dd><p>the Correlates of War state code for Germany (255)</p></dd>
+<dt><code>ccode2</code></dt><dd><p>the Correlates of War state code for the other state in the dyad</p></dd>
+<dt><code>year</code></dt><dd><p>an observation year for the dyad</p></dd>
+<dt><code>gmlmidongoing</code></dt><dd><p>was there an ongoing inter-state dispute in the dyad-year?</p></dd>
+<dt><code>gmlmidonset</code></dt><dd><p>was there a new inter-state dispute onset in the dyad-year</p></dd>
+
+</dl>
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This is a simple negation of <code><a href='https://rdrr.io/r/base/match.html'>%in%</a></code>. I use it mostly for columns in a data frame.</p>
+    <p>Data are generated in the development version (scheduled release of v. 0.7) of <span class="pkg">peacesciencer</span>. Conflict data
+come from the GML MID data (v. 2.2.1).</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tibble.tidyverse.org/'>tibble</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
+    <p>Gibler, Douglas M., Steven V. Miller, and Erin K. Little. 2016. “An Analysis of the Militarized
+Interstate Dispute (MID) Dataset, 1816-2001.” International Studies Quarterly 60(4): 719-730.</p>
 
-<span class='co'># Watch this subset stuff</span>
-
-<span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>, d <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>dat</span>, <span class='va'>x</span> <span class='op'>%nin%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>6</span>, <span class='fl'>9</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 7 × 2</span>
-#&gt;       x      d
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span>     1 -<span style='color: #BB0000;'>0.319</span>
-#&gt; <span style='color: #BCBCBC;'>2</span>     2  0.915
-#&gt; <span style='color: #BCBCBC;'>3</span>     4 -<span style='color: #BB0000;'>1.10</span> 
-#&gt; <span style='color: #BCBCBC;'>4</span>     5 -<span style='color: #BB0000;'>0.605</span>
-#&gt; <span style='color: #BCBCBC;'>5</span>     7 -<span style='color: #BB0000;'>2.09</span> 
-#&gt; <span style='color: #BCBCBC;'>6</span>     8 -<span style='color: #BB0000;'>0.934</span>
-#&gt; <span style='color: #BCBCBC;'>7</span>    10 -<span style='color: #BB0000;'>0.398</span></div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

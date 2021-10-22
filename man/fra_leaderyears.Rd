@@ -3,7 +3,7 @@
 \docType{data}
 \name{fra_leaderyears}
 \alias{fra_leaderyears}
-\title{French Leader Years, 1874-2015}
+\title{French Leader-Years, 1874-2015}
 \format{
 A data frame with 255 observations on the following 10 variables.
 \describe{
@@ -29,7 +29,7 @@ as these are.
 }
 \details{
 Data are generated in the development version (scheduled release of v. 0.7) of \pkg{peacesciencer}. Conflict data
-come from the GML MID data. Leader data come from Archigos.
+come from the GML MID data (v. 2.2.1). Leader data come from Archigos (v. 4.1).
 }
 \references{
 Goemans, Henk E., Kristian Skrede Gleditsch, and Giacomo Chiozza. 2009. "Introducing Archigos: A Dataset of Political Leaders"

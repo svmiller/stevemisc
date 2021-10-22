@@ -4,13 +4,9 @@
 
 ## Initial Comments to CRAN
 
-R CMD check done via `devtools::check()`, resulting in 0 errors, 0 warnings and 0 notes. Ultimately, there are just some simple additions to this package, all of which are CRAN-compliant.
+R CMD check done via `devtools::check()`, resulting in 0 errors, 0 warnings and 0 notes. The package comes with two new functions that are CRAN-compliant.
 
 `devtools::spell_check()` results in a lot of typos, all of which are false positives.
- 
-## Changes upon manual inspection at CRAN
-
-I fixed a link in the README. I ended up pointing it to the secure Github repository rather than my unsecure link on top of that.
 
 ## Downstream dependencies
 
