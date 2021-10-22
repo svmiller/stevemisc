@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>An Incomplete List of My Publications, All of Which You Should Cite — stevepubs • stevemisc</title>
+<title>French Leader Years, 1874-2015 — fra_leaderyears • stevemisc</title>
 
 
 <!-- jquery -->
@@ -41,9 +41,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="An Incomplete List of My Publications, All of Which You Should Cite — stevepubs" />
-<meta property="og:description" content="These are data on my publications, barring a few things like book reviews and some forthcoming pieces.
-I use these data to illustrate the print_refs() function. You should cite my publications more." />
+<meta property="og:title" content="French Leader Years, 1874-2015 — fra_leaderyears" />
+<meta property="og:description" content="These are data generated in peacesciencer for all French leader-years from 1874 to 2015. I'm going to use
+these data for stress-testing the calculation of so-called &quot;peace spells&quot; for data that are decidedly imbalanced,
+as these are." />
 
 
 
@@ -114,40 +115,46 @@ I use these data to illustrate the print_refs() function. You should cite my pub
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>An Incomplete List of My Publications, All of Which You Should Cite</h1>
+    <h1>French Leader Years, 1874-2015</h1>
     <small class="dont-index">Source: <a href='https://github.com/svmiller/stevemisc/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>stevepubs.Rd</code></div>
+    <div class="hidden name"><code>fra_leaderyears.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>These are data on my publications, barring a few things like book reviews and some forthcoming pieces.
-I use these data to illustrate the <code><a href='print_refs.html'>print_refs()</a></code> function. You should cite my publications more.</p>
+    <p>These are data generated in <span class="pkg">peacesciencer</span> for all French leader-years from 1874 to 2015. I'm going to use
+these data for stress-testing the calculation of so-called "peace spells" for data that are decidedly imbalanced,
+as these are.</p>
     </div>
 
-    <pre class="usage"><span class='va'>stevepubs</span></pre>
+    <pre class="usage"><span class='va'>fra_leaderyears</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with the following 14 variables.</p><dl>
-<dt><code>CATEGORY</code></dt><dd><p>the entry type</p></dd>
-<dt><code>BIBTEXKEY</code></dt><dd><p>the unique entry key</p></dd>
-<dt><code>AUTHOR</code></dt><dd><p>a list of authors for this entry</p></dd>
-<dt><code>BOOKTITLE</code></dt><dd><p>the book title, if appropriate</p></dd>
-<dt><code>JOURNAL</code></dt><dd><p>the journal title, if appropriate</p></dd>
-<dt><code>NUMBER</code></dt><dd><p>the journal volume number, if appropriate</p></dd>
-<dt><code>PAGES</code></dt><dd><p>the range of page numbers, if appropriate</p></dd>
-<dt><code>PUBLISHER</code></dt><dd><p>the book publisher, if appropriate</p></dd>
-<dt><code>TITLE</code></dt><dd><p>the title of the publication</p></dd>
-<dt><code>VOLUME</code></dt><dd><p>the journal volume number, if appropriate</p></dd>
-<dt><code>YEAR</code></dt><dd><p>the year of publication, as a character. Publications with no year are assumed to be forthcoming</p></dd>
-<dt><code>DOI</code></dt><dd><p>a DOI, if I entered one</p></dd>
+    <p>A data frame with 255 observations on the following 10 variables.</p><dl>
+<dt><code>obsid</code></dt><dd><p>the unique observation ID in the Archigos data</p></dd>
+<dt><code>ccode</code></dt><dd><p>the Correlates of War state code for France (220)</p></dd>
+<dt><code>leader</code></dt><dd><p>a name---typically last name---for the leader</p></dd>
+<dt><code>year</code></dt><dd><p>an observation year for the leader</p></dd>
+<dt><code>startdate</code></dt><dd><p>the start date for the leader's period in office</p></dd>
+<dt><code>enddate</code></dt><dd><p>the end date for the leader's period in office</p></dd>
+<dt><code>gmlmidongoing</code></dt><dd><p>was there an ongoing inter-state dispute for the leader?</p></dd>
+<dt><code>gmlmidonset</code></dt><dd><p>was there a new inter-state dispute onset for the leader?</p></dd>
+<dt><code>gmlmidongoing_init</code></dt><dd><p>was there an ongoing inter-state dispute for the leader that the leader initiated?</p></dd>
+<dt><code>gmlmidonset_init</code></dt><dd><p>was there a new inter-state dispute onset for the leader that the leader initiated?</p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Cite my publications more, you goons. *Extremely Smokey Bear voice* Only YOU can jack my h-index to infinity.</p>
+    <p>Data are generated in the development version (scheduled release of v. 0.7) of <span class="pkg">peacesciencer</span>. Conflict data
+come from the GML MID data. Leader data come from Archigos.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Goemans, Henk E., Kristian Skrede Gleditsch, and Giacomo Chiozza. 2009. "Introducing Archigos: A Dataset of Political Leaders"
+<em>Journal of Peace Research</em> 46(2): 269--83.</p>
+<p>Gibler, Douglas M., Steven V. Miller, and Erin K. Little. 2016. “An Analysis of the Militarized
+Interstate Dispute (MID) Dataset, 1816-2001.” International Studies Quarterly 60(4): 719-730.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

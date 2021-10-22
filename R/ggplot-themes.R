@@ -59,7 +59,7 @@
 #' ggplot(mtcars, aes(x = mpg, y = hp)) +
 #'   geom_point() + theme_steve_font(font = "Comic Sans MS") +
 #'   labs(title = "A ggplot2 Plot from the Motor Trend Car Road Tests Data",
-#'   subtitle = "Notice the fonts will match the 'cochineal' font package in LaTeX.",
+#'   subtitle = "Notice that this will look ridiculous",
 #'   caption = "Data: ?mtcars in {datasets} in base R.")
 #' }
 #' @rdname ggplot-themes

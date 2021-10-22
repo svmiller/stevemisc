@@ -23,14 +23,13 @@
 #'
 #' @examples
 #'
-#' \donttest{
+#' \dontrun{
 #' set.seed(8675309)
 #' library(tibble)
 #' # bivariate example, start with zero correlation
 #' as_tibble(data.frame(corvectors(replicate(2, rnorm(100)), .5)))
 #'
 #' # multivariate example
-#'
 #' as_tibble(data.frame(corvectors(replicate(4, rnorm(100)), c(.5, .6, .7))))
 #'
 #' }

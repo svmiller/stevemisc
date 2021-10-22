@@ -1,6 +1,7 @@
 stevemisc 1.3.0
 ---------------------------------------------------------------------
 
+- Add data set on French leaders (`fra_leaderyears`). This will be a data set for stress-testing peace spell calculations where cross-sectional units are decidedly imbalanced.
 - Add `linloess_plot()`. With it, add `{tidyr}` as a dependency.
 
 

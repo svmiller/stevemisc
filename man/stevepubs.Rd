@@ -5,7 +5,7 @@
 \alias{stevepubs}
 \title{An Incomplete List of My Publications, All of Which You Should Cite}
 \format{
-A data frame the following 14 variables.
+A data frame with the following 14 variables.
 \describe{
 \item{\code{CATEGORY}}{the entry type}
 \item{\code{BIBTEXKEY}}{the unique entry key}
