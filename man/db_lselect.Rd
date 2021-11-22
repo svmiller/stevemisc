@@ -15,16 +15,16 @@ db_lselect(.data, connection, vars)
 }
 \value{
 Assuming a particular structure to the database, the function returns a
- combined table including all the requested variables from all the tables listed
- in the \code{data} character vector. The returned table will have other attributes
- inherited from how \pkg{dplyr} interfaces with SQL, allowing the user to extract
- some information about the query (e.g. through \code{show_query()}).
+combined table including all the requested variables from all the tables listed
+in the \code{data} character vector. The returned table will have other attributes
+inherited from how \pkg{dplyr} interfaces with SQL, allowing the user to extract
+some information about the query (e.g. through \code{show_query()}).
 }
 \description{
 \code{db_lselect()} allows you to select variables from multiple
- tables in an SQL database. It returns a lazy query that combines all the
- variables together into one data frame (as a \code{tibble}). The user can
- choose to run \code{collect()} after this query if they see fit.
+tables in an SQL database. It returns a lazy query that combines all the
+variables together into one data frame (as a \code{tibble}). The user can
+choose to run \code{collect()} after this query if they see fit.
 }
 \details{
 This is a wrapper function in which \pkg{purrr} and \pkg{dplyr}

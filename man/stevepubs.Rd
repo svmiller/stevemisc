@@ -29,6 +29,6 @@ These are data on my publications, barring a few things like book reviews and so
 I use these data to illustrate the \code{print_refs()} function. You should cite my publications more.
 }
 \details{
-Cite my publications more, you goons. *Extremely Smokey Bear voice* Only YOU can jack my h-index to infinity.
+Cite my publications more, you goons. \emph{Extremely Smokey Bear voice} Only YOU can jack my h-index to infinity.
 }
 \keyword{datasets}

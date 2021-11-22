@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create multivariate data by permutation — carrec • stevemisc</title>
+<title>Recode a Variable — carrec • stevemisc</title>
 
 
 <!-- jquery -->
@@ -41,16 +41,18 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create multivariate data by permutation — carrec" />
-<meta property="og:description" content="This recodes a numeric vector, character vector, or factor according to fairly
-simple recode specifications that former Stata users will appreciate. Yes, this is taken
-from John Fox's recode() function in his car package. I'm going with carrec()
-(i.e. shorthand for car::recode(), phonetically here: &quot;car-wreck&quot;)
-for this package, with an additional shorthand of carr that does the same thing.
-The goal here is to minimize the number of function clashes with multiple packages
-that I use in my workflow. For example: car, dplyr, and Hmisc
-all have recode() functions. I rely on the car package just for this function,
-but it conflicts with some other tidyverse functions that are vital to my workflow." />
+<meta property="og:title" content="Recode a Variable — carrec" />
+<meta property="og:description" content="This recodes a numeric vector, character vector, or factor
+according to fairly simple recode specifications that former Stata users
+will appreciate. Yes, this is taken from John Fox's recode() unction in
+his car package. I'm going with carrec() (i.e. shorthand for
+car::recode(), phonetically here: &quot;car-wreck&quot;) for this package, with
+an additional shorthand of carr that does the same thing.
+The goal here is to minimize the number of function clashes with
+multiple packages that I use in my workflow. For example: car,
+dplyr, and Hmisc all have recode() functions. I rely on
+the car package just for this function, but it conflicts with some
+other tidyverse functions that are vital to my workflow." />
 
 
 
@@ -82,7 +84,7 @@ but it conflicts with some other tidyverse functions that are vital to my workfl
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.9</span>
       </span>
     </div>
 
@@ -121,21 +123,23 @@ but it conflicts with some other tidyverse functions that are vital to my workfl
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create multivariate data by permutation</h1>
+    <h1>Recode a Variable</h1>
     <small class="dont-index">Source: <a href='https://github.com/svmiller/stevemisc/blob/master/R/carrec.R'><code>R/carrec.R</code></a></small>
     <div class="hidden name"><code>carrec.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This recodes a numeric vector, character vector, or factor according to fairly
-simple recode specifications that former Stata users will appreciate. Yes, this is taken
-from John Fox's <code>recode()</code> function in his <span class="pkg">car</span> package. I'm going with <code>carrec()</code>
-(i.e. shorthand for <code><a href='https://rdrr.io/pkg/car/man/recode.html'>car::recode()</a></code>, phonetically here: "car-wreck")
-for this package, with an additional shorthand of <code>carr</code> that does the same thing.</p>
-<p>The goal here is to minimize the number of function clashes with multiple packages
-that I use in my workflow. For example: <span class="pkg">car</span>, <span class="pkg">dplyr</span>, and <span class="pkg">Hmisc</span>
-all have <code>recode()</code> functions. I rely on the <span class="pkg">car</span> package just for this function,
-but it conflicts with some other <span class="pkg">tidyverse</span> functions that are vital to my workflow.</p>
+    <p>This recodes a numeric vector, character vector, or factor
+according to fairly simple recode specifications that former Stata users
+will appreciate. Yes, this is taken from John Fox's <code>recode()</code> unction in
+his <span class="pkg">car</span> package. I'm going with <code>carrec()</code> (i.e. shorthand for
+<code><a href='https://rdrr.io/pkg/car/man/recode.html'>car::recode()</a></code>, phonetically here: "car-wreck") for this package, with
+an additional shorthand of <code>carr</code> that does the same thing.</p>
+<p>The goal here is to minimize the number of function clashes with
+multiple packages that I use in my workflow. For example: <span class="pkg">car</span>,
+<span class="pkg">dplyr</span>, and <span class="pkg">Hmisc</span> all have <code>recode()</code> functions. I rely on
+the <span class="pkg">car</span> package just for this function, but it conflicts with some
+other <span class="pkg">tidyverse</span> functions that are vital to my workflow.</p>
     </div>
 
     <pre class="usage"><span class='fu'>carrec</span><span class='op'>(</span><span class='va'>var</span>, <span class='va'>recodes</span>, <span class='va'>as_fac</span>, as_num <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>levels</span><span class='op'>)</span>
@@ -151,11 +155,13 @@ but it conflicts with some other <span class="pkg">tidyverse</span> functions th
     </tr>
     <tr>
       <th>recodes</th>
-      <td><p>character string of recode specifications: see below, but former Stata users will find this stuff familiar</p></td>
+      <td><p>character string of recode specifications: see below, but
+former Stata users will find this stuff familiar</p></td>
     </tr>
     <tr>
       <th>as_fac</th>
-      <td><p>return a factor; default is <code>TRUE</code> if <code>var</code> is a factor, <code>FALSE</code> otherwise</p></td>
+      <td><p>return a factor; default is <code>TRUE</code> if <code>var</code> is a
+factor,  <code>FALSE</code> otherwise</p></td>
     </tr>
     <tr>
       <th>as_num</th>
@@ -165,23 +171,26 @@ This should be what you want in 99% of applications for regression analysis.</p>
     </tr>
     <tr>
       <th>levels</th>
-      <td><p>an optional argument specifying the order of the levels in the returned factor; the default is to use the sort order of the level names.</p></td>
+      <td><p>an optional argument specifying the order of the levels in the
+returned factor; the default is to use the sort order of the level names.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>optional, only to make the shortcut (<code>carr</code>) work</p></td>
+      <td><p>optional, only to make the shortcut (<code>carr()</code>) work</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>carrec()</code> returns a vector, recoded to the specifications of the user. <code>carr()</code> is a simple shortcut for <code>carrec()</code>.</p>
+    <p><code>carrec()</code> returns a vector, recoded to the specifications of the
+user. <code>carr()</code> is a simple shortcut for<code>carrec()</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Recode specifications appear in a character string, separated by semicolons
-(see the examples below), of the form input=output. If an input value satisfies more than one
-specification, then the first (from left to right) applies. If no specification is satisfied,
-then the input value is carried over to the result. NA is allowed on input and output.</p>
+    <p>Recode specifications appear in a character string, separated by
+semicolons (see the examples below), of the form input=output. If an input
+value satisfies more than one specification, then the first (from left to
+right) applies. If no specification is satisfied, then the input value is
+carried over to the result. NA is allowed on input and output.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Fox, J. and Weisberg, S. (2019). <em>An R Companion to Applied Regression</em>, Third Edition, Sage.</p>

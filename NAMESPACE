@@ -101,3 +101,7 @@ importFrom(tools, "file_ext")
 importFrom(tidyr, "gather")
 importFrom(ggplot2, "facet_wrap")
 importFrom(stats, "model.frame")
+
+# This is for filter_refs()
+importFrom(bib2df, "df2bib")
+importFrom("utils", "capture.output")

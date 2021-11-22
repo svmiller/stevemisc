@@ -22,7 +22,7 @@ print_refs(
 
 \item{cslrepo}{a directory of CSL files. Defaults to the one on Github.}
 
-\item{spit_out}{logical, defaults to TRUE. If TRUE, wraps ("spits out") formatted citations in a \code{writeLines()} output for the console. If `FALSE`, returns a character vector.}
+\item{spit_out}{logical, defaults to TRUE. If TRUE, wraps ("spits out") formatted citations in a \code{writeLines()} output for the console. If \code{FALSE}, returns a character vector.}
 
 \item{delete_after}{logical, defaults to TRUE. If TRUE, deletes CSL file when it's done. If FALSE, retains CSL for (potential) future use.}
 }

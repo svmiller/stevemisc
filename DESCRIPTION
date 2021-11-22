@@ -1,7 +1,7 @@
 Package: stevemisc
 Type: Package
 Title: Steve's Miscellaneous Functions
-Version: 1.3.0
+Version: 1.3.9
 Depends: R (>= 3.6.0), stats
 Authors@R: c(
     person("Steve", "Miller", email = "steven.v.miller@gmail.com",
@@ -44,10 +44,12 @@ Imports:
     stringr,
     httr,
     rmarkdown,
-    tidyr
+    tidyr,
+    bib2df
 Suggests:
     knitr,
     DBI,
     RSQLite,
     dbplyr
 RoxygenNote: 7.1.2
+Roxygen: list(markdown = TRUE)

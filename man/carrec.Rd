@@ -3,7 +3,7 @@
 \name{carrec}
 \alias{carrec}
 \alias{carr}
-\title{Create multivariate data by permutation}
+\title{Recode a Variable}
 \usage{
 carrec(var, recodes, as_fac, as_num = TRUE, levels)
 
@@ -12,38 +12,45 @@ carr(...)
 \arguments{
 \item{var}{numeric vector, character vector, or factor}
 
-\item{recodes}{character string of recode specifications: see below, but former Stata users will find this stuff familiar}
+\item{recodes}{character string of recode specifications: see below, but
+former Stata users will find this stuff familiar}
 
-\item{as_fac}{return a factor; default is \code{TRUE} if \code{var} is a factor, \code{FALSE} otherwise}
+\item{as_fac}{return a factor; default is \code{TRUE} if \code{var} is a
+factor,  \code{FALSE} otherwise}
 
 \item{as_num}{if \code{TRUE} (which is the default) and \code{as.factor} is \code{FALSE},
 the result will be coerced to a numeric if all values in the result are numeric.
 This should be what you want in 99\% of applications for regression analysis.}
 
-\item{levels}{an optional argument specifying the order of the levels in the returned factor; the default is to use the sort order of the level names.}
+\item{levels}{an optional argument specifying the order of the levels in the
+returned factor; the default is to use the sort order of the level names.}
 
-\item{...}{optional, only to make the shortcut (\code{carr}) work}
+\item{...}{optional, only to make the shortcut (\code{carr()}) work}
 }
 \value{
-\code{carrec()} returns a vector, recoded to the specifications of the user. \code{carr()} is a simple shortcut for \code{carrec()}.
+\code{carrec()} returns a vector, recoded to the specifications of the
+user. \code{carr()} is a simple shortcut for\code{carrec()}.
 }
 \description{
-This recodes a numeric vector, character vector, or factor according to fairly
-simple recode specifications that former Stata users will appreciate. Yes, this is taken
-from John Fox's \code{recode()} function in his \pkg{car} package. I'm going with \code{carrec()}
-(i.e. shorthand for \code{car::recode()}, phonetically here: "car-wreck")
-for this package, with an additional shorthand of \code{carr} that does the same thing.
+This recodes a numeric vector, character vector, or factor
+according to fairly simple recode specifications that former Stata users
+will appreciate. Yes, this is taken from John Fox's \code{recode()} unction in
+his \pkg{car} package. I'm going with \code{carrec()} (i.e. shorthand for
+\code{car::recode()}, phonetically here: "car-wreck") for this package, with
+an additional shorthand of \code{carr} that does the same thing.
 
-The goal here is to minimize the number of function clashes with multiple packages
-that I use in my workflow. For example: \pkg{car}, \pkg{dplyr}, and \pkg{Hmisc}
-all have \code{recode()} functions. I rely on the \pkg{car} package just for this function,
-but it conflicts with some other \pkg{tidyverse} functions that are vital to my workflow.
+The goal here is to minimize the number of function clashes with
+multiple packages that I use in my workflow. For example: \pkg{car},
+\pkg{dplyr}, and \pkg{Hmisc} all have \code{recode()} functions. I rely on
+the \pkg{car} package just for this function, but it conflicts with some
+other \pkg{tidyverse} functions that are vital to my workflow.
 }
 \details{
-Recode specifications appear in a character string, separated by semicolons
-(see the examples below), of the form input=output. If an input value satisfies more than one
-specification, then the first (from left to right) applies. If no specification is satisfied,
-then the input value is carried over to the result. NA is allowed on input and output.
+Recode specifications appear in a character string, separated by
+semicolons (see the examples below), of the form input=output. If an input
+value satisfies more than one specification, then the first (from left to
+right) applies. If no specification is satisfied, then the input value is
+carried over to the result. NA is allowed on input and output.
 }
 \examples{
 x <- seq(1,10)

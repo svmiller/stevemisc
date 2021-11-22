@@ -27,7 +27,7 @@ ensuing output has a mean of 0 and a standard deviation of .5. \code{r2sd_at} is
 new vectors and renames the vectors to each have a prefix of \code{z_}.
 }
 \details{
-By default, `na.rm` is set to TRUE. If you have missing data, the function will just pass
+By default, \code{na.rm} is set to TRUE. If you have missing data, the function will just pass
 over them.
 
 Gelman (2008) argues that rescaling by two standard deviations puts regression inputs

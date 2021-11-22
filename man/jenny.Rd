@@ -10,8 +10,8 @@ jenny(x = 8675309)
 \item{x}{a vector}
 }
 \value{
-When `x` is not specified or is 8675309, the function sets a reproducible seed of 8675309 and returns
-a nice message congratulating you for it. If `x` is not 8675309, the function sets no reproducible seed and
+When \code{x} is not specified or is 8675309, the function sets a reproducible seed of 8675309 and returns
+a nice message congratulating you for it. If \code{x} is not 8675309, the function sets no reproducible seed and
 gently admonishes you for wasting its time.
 }
 \description{

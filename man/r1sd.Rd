@@ -20,9 +20,9 @@ standard deviation of 1.
 ensuing output has a mean of 0 and a standard deviation of 1.
 }
 \details{
-This is a convenience function since the default `rescale()` function
+This is a convenience function since the default \code{rescale()} function
 has some additional weirdness that is not welcome for my use cases. By default,
-`na.rm` is set to TRUE.
+\code{na.rm} is set to TRUE.
 }
 \examples{
 

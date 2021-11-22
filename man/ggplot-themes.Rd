@@ -88,5 +88,5 @@ ggplot(mtcars, aes(x = mpg, y = hp)) +
 }
 }
 \seealso{
-[ggplot2::theme]
+\link[ggplot2:theme]{ggplot2::theme}
 }

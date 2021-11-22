@@ -21,12 +21,12 @@ like 1.959964 (rounding to the default six decimal points).
 }
 \description{
 I \emph{loathe} how statistical instruction privileges obtaining
- a magical p-value by reference to an area underneath the standard normal curve,
- only to botch what the actual z-value is corresponding to the magical p-value.
- This simple function converts the p-value you want (typically .05,
- thanks to R.A. Fisher) to the z-value it actually is for the kind of
- claims we typically make in inferential statistics. If we're going to do
- inference the wrong way, let's at least get the z-value right.
+a magical p-value by reference to an area underneath the standard normal curve,
+only to botch what the actual z-value is corresponding to the magical p-value.
+This simple function converts the p-value you want (typically .05,
+thanks to R.A. Fisher) to the z-value it actually is for the kind of
+claims we typically make in inferential statistics. If we're going to do
+inference the wrong way, let's at least get the z-value right.
 }
 \details{
 \code{p_z()} takes a p-value of interest and converts it, with precision,
