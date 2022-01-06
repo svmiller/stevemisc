@@ -25,6 +25,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,18 +39,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.9</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -58,7 +54,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/svmiller/stevemisc/">
+  <a href="https://github.com/svmiller/stevemisc/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -75,36 +71,37 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="steves-miscellaneous-functions" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#steves-miscellaneous-functions" class="anchor"></a>Steve’s Miscellaneous Functions</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="steves-miscellaneous-functions">Steve’s Miscellaneous Functions<a class="anchor" aria-label="anchor" href="#steves-miscellaneous-functions"></a>
+</h1></div>
 
 <p><img src="http://svmiller.com/images/stevemisc-hexlogo.png" alt="My stevemisc hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"></p>
-<p><code>{stevemisc}</code> is an R package that includes various functions and tools that I have written over the years to assist me in my research, teaching, and public presentations (i.e. stuff I put on my blog). I offer it here for a public release because 1) I am vain and think I want an entire, eponymous ecosystem in the R programming language (i.e. the “steveverse”) and 2) I think there are tools here that are broadly useful for users that I’m trying to bundle with other things that I offer (prominently <a href="https://github.com/svmiller/steveproj"><code>{steveproj}</code></a>). Namely, <code>{stevemisc}</code> offers tools to assist in data organization, data presentation, data recoding, and data simulation. The usage section will elaborate some of its uses.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<p><code>{stevemisc}</code> is an R package that includes various functions and tools that I have written over the years to assist me in my research, teaching, and public presentations (i.e. stuff I put on my blog). I offer it here for a public release because 1) I am vain and think I want an entire, eponymous ecosystem in the R programming language (i.e. the “steveverse”) and 2) I think there are tools here that are broadly useful for users that I’m trying to bundle with other things that I offer (prominently <a href="https://github.com/svmiller/steveproj" class="external-link"><code>{steveproj}</code></a>). Namely, <code>{stevemisc}</code> offers tools to assist in data organization, data presentation, data recoding, and data simulation. The usage section will elaborate some of its uses.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>You can install this on CRAN.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"stevemisc"</span><span class="op">)</span></code></pre></div>
-<p>You can install the development version of <code>{stevemisc}</code> from Github via the <a href="https://devtools.r-lib.org/">devtools</a> package. I suppose using the <a href="https://remotes.r-lib.org">remotes</a> package would work as well.</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"stevemisc"</span><span class="op">)</span></code></pre></div>
+<p>You can install the development version of <code>{stevemisc}</code> from Github via the <a href="https://devtools.r-lib.org/" class="external-link">devtools</a> package. I suppose using the <a href="https://remotes.r-lib.org" class="external-link">remotes</a> package would work as well.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"svmiller/stevemisc"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"svmiller/stevemisc"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <p>The documentation files will include several of these as “examples.” I offer them here as proofs of concept. There are lots of cool stuff in <code>{stevemisc}</code> and I cannot review all of them here. Instead, I’ll offer what I think are the most important ones.</p>
-<div id="carrec-a-port-of-carrecode" class="section level3">
-<h3 class="hasAnchor">
-<a href="#carrec-a-port-of-carrecode" class="anchor"></a><code>carrec()</code>: A Port of <code>car::recode()</code>
+<div class="section level3">
+<h3 id="carrec-a-port-of-carrecode">
+<code>carrec()</code>: A Port of <code>car::recode()</code>
+<a class="anchor" aria-label="anchor" href="#carrec-a-port-of-carrecode"></a>
 </h3>
-<p><code><a href="reference/carrec.html">carrec()</a></code> (phonetically: “car-wreck”) is a simple port of <code><a href="https://rdrr.io/pkg/car/man/recode.html">car::recode()</a></code> that I put in this package because of various function clashes in the <a href="https://r-forge.r-project.org/projects/car/">car</a> package. For those who cut their teeth on Stata, this package offers Stata-like recoding features that are tough to find in the R programming language. It comes with a shortcut as well, <code><a href="reference/carrec.html">carr()</a></code>.</p>
+<p><code><a href="reference/carrec.html">carrec()</a></code> (phonetically: “car-wreck”) is a simple port of <code><a href="https://rdrr.io/pkg/car/man/recode.html" class="external-link">car::recode()</a></code> that I put in this package because of various function clashes in the <a href="https://r-forge.r-project.org/projects/car/" class="external-link">car</a> package. For those who cut their teeth on Stata, this package offers Stata-like recoding features that are tough to find in the R programming language. It comes with a shortcut as well, <code><a href="reference/carrec.html">carr()</a></code>.</p>
 <p>For example, assume the following vector that is some variable of interest on a 1-10 scale. You want to code the variables that are 6 and above to be 1 and code the variables of 1-5 to be 0. Here’s how you would do that.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stevemisc</span><span class="op">)</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">stevemisc</span><span class="op">)</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>
 <span class="va">x</span>
 <span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span>
 
@@ -113,20 +110,21 @@
 <span class="fu"><a href="reference/carrec.html">carr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"1:5=0;6:10=1"</span><span class="op">)</span>
 <span class="co">#&gt;  [1] 0 0 0 0 0 1 1 1 1 1</span></code></pre></div>
 </div>
-<div id="cor2data-simulate-variables-from-a-standard-normal-distribution-with-pre-specified-correlations" class="section level3">
-<h3 class="hasAnchor">
-<a href="#cor2data-simulate-variables-from-a-standard-normal-distribution-with-pre-specified-correlations" class="anchor"></a><code>cor2data()</code>: Simulate Variables from a Standard Normal Distribution with Pre-Specified Correlations</h3>
-<p><code><a href="reference/cor2data.html">cor2data()</a></code> is great for instructional purposes for simulating data from a standard normal distribution in which the ensuing data are generated to approximate some pre-specified correlations. This is useful for teaching how statistical models are supposed to operate under ideal circumstances. For example, here’s how <a href="http://post8000.svmiller.com/lab-scripts/instrumental-variables-lab.html">I used this function to teach about instrumental variable models</a>. Notice the correlations I devise and how they satisfy they assumptions of exclusion, exogeneity, and relevance.</p>
+<div class="section level3">
+<h3 id="cor2data-simulate-variables-from-a-standard-normal-distribution-with-pre-specified-correlations">
+<code>cor2data()</code>: Simulate Variables from a Standard Normal Distribution with Pre-Specified Correlations<a class="anchor" aria-label="anchor" href="#cor2data-simulate-variables-from-a-standard-normal-distribution-with-pre-specified-correlations"></a>
+</h3>
+<p><code><a href="reference/cor2data.html">cor2data()</a></code> is great for instructional purposes for simulating data from a standard normal distribution in which the ensuing data are generated to approximate some pre-specified correlations. This is useful for teaching how statistical models are supposed to operate under ideal circumstances. For example, here’s how <a href="http://post8000.svmiller.com/lab-scripts/instrumental-variables-lab.html" class="external-link">I used this function to teach about instrumental variable models</a>. Notice the correlations I devise and how they satisfy they assumptions of exclusion, exogeneity, and relevance.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">vars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"control"</span>, <span class="st">"treat"</span>, <span class="st">"instr"</span>, <span class="st">"e"</span><span class="op">)</span>
-<span class="va">Cor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>,
+<code class="sourceCode R"><span class="va">vars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"control"</span>, <span class="st">"treat"</span>, <span class="st">"instr"</span>, <span class="st">"e"</span><span class="op">)</span>
+<span class="va">Cor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>,
                     <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.85</span>, <span class="op">-</span><span class="fl">0.5</span>,
                     <span class="fl">0</span>, <span class="fl">0.85</span>, <span class="fl">1</span>, <span class="fl">0</span>,
                     <span class="fl">0</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,nrow<span class="op">=</span><span class="fl">4</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">Cor</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">Cor</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">vars</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">Cor</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">Cor</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">vars</span>
 
-<span class="va">Fake</span> <span class="op">&lt;-</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="fu"><a href="reference/cor2data.html">cor2data</a></span><span class="op">(</span><span class="va">Cor</span>, <span class="fl">1000</span>, <span class="fl">8675309</span><span class="op">)</span><span class="op">)</span> <span class="co"># Jenny I got your number...</span>
-<span class="va">Fake</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">Fake</span>, <span class="fl">5</span> <span class="op">+</span> <span class="fl">.5</span><span class="op">*</span><span class="va">control</span> <span class="op">+</span> <span class="fl">.5</span><span class="op">*</span><span class="va">treat</span> <span class="op">+</span> <span class="va">e</span><span class="op">)</span>
+<span class="va">Fake</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="reference/cor2data.html">cor2data</a></span><span class="op">(</span><span class="va">Cor</span>, <span class="fl">1000</span>, <span class="fl">8675309</span><span class="op">)</span><span class="op">)</span> <span class="co"># Jenny I got your number...</span>
+<span class="va">Fake</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Fake</span>, <span class="fl">5</span> <span class="op">+</span> <span class="fl">.5</span><span class="op">*</span><span class="va">control</span> <span class="op">+</span> <span class="fl">.5</span><span class="op">*</span><span class="va">treat</span> <span class="op">+</span> <span class="va">e</span><span class="op">)</span>
 
 <span class="va">Fake</span>
 <span class="co">#&gt; # A tibble: 1,000 × 5</span>
@@ -144,22 +142,23 @@
 <span class="co">#&gt; 10  0.0639 -0.313  -0.397  -0.0922  4.78</span>
 <span class="co">#&gt; # … with 990 more rows</span></code></pre></div>
 </div>
-<div id="corvectors-create-multivariate-data-by-permutation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#corvectors-create-multivariate-data-by-permutation" class="anchor"></a><code>corvectors()</code>: Create Multivariate Data by Permutation</h3>
-<p><code><a href="reference/corvectors.html">corvectors()</a></code> is a port of <code>correlate()</code> from the <code>{correlate}</code> package. This package is no longer on CRAN, but it’s wonderful for creating multivariate data with set correlations in which variables can be on any number of raw scales. I used this function to create fake data to mimic the API data in <a href="http://r-survey.r-forge.r-project.org/survey/">survey</a>, which I make available as <code>fakeAPI</code> in the <a href="http://svmiller.com/stevedata/">stevedata</a> package. Here is a smaller version of that.</p>
+<div class="section level3">
+<h3 id="corvectors-create-multivariate-data-by-permutation">
+<code>corvectors()</code>: Create Multivariate Data by Permutation<a class="anchor" aria-label="anchor" href="#corvectors-create-multivariate-data-by-permutation"></a>
+</h3>
+<p><code><a href="reference/corvectors.html">corvectors()</a></code> is a port of <code>correlate()</code> from the <code>{correlate}</code> package. This package is no longer on CRAN, but it’s wonderful for creating multivariate data with set correlations in which variables can be on any number of raw scales. I used this function to create fake data to mimic the API data in <a href="http://r-survey.r-forge.r-project.org/survey/" class="external-link">survey</a>, which I make available as <code>fakeAPI</code> in the <a href="http://svmiller.com/stevedata/">stevedata</a> package. Here is a smaller version of that.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">api</span>, package<span class="op">=</span><span class="st">"survey"</span><span class="op">)</span>
-<span class="va">cormatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">apipop</span> <span class="op">%&gt;%</span>
-                   <span class="fu">select</span><span class="op">(</span><span class="va">meals</span>, <span class="va">col.grad</span>, <span class="va">full</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="va">na.omit</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">api</span>, package<span class="op">=</span><span class="st">"survey"</span><span class="op">)</span>
+<span class="va">cormatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">apipop</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+                   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">meals</span>, <span class="va">col.grad</span>, <span class="va">full</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">na.omit</span><span class="op">)</span>
 
 <span class="va">nobs</span> <span class="op">&lt;-</span> <span class="fl">1e3</span>
 
-<span class="fu"><a href="reference/corvectors.html">corvectors</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">nobs</span>, <span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span>,
+<span class="fu"><a href="reference/corvectors.html">corvectors</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">nobs</span>, <span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span>,
                  <span class="fu"><a href="reference/rbnorm.html">rbnorm</a></span><span class="op">(</span><span class="va">nobs</span>, <span class="fl">20.73</span>, <span class="fl">14.14</span>, <span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span>,
-                 <span class="fu"><a href="reference/rbnorm.html">rbnorm</a></span><span class="op">(</span><span class="va">nobs</span>, <span class="fl">87.52</span>, <span class="fl">12.93</span>, <span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span>, <span class="va">cormatrix</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">rename</span><span class="op">(</span>meals <span class="op">=</span> <span class="va">V1</span>, colgrad <span class="op">=</span> <span class="va">V2</span>, fullqual <span class="op">=</span> <span class="va">V3</span><span class="op">)</span>
+                 <span class="fu"><a href="reference/rbnorm.html">rbnorm</a></span><span class="op">(</span><span class="va">nobs</span>, <span class="fl">87.52</span>, <span class="fl">12.93</span>, <span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span>, <span class="va">cormatrix</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>meals <span class="op">=</span> <span class="va">V1</span>, colgrad <span class="op">=</span> <span class="va">V2</span>, fullqual <span class="op">=</span> <span class="va">V3</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1,000 × 3</span>
 <span class="co">#&gt;     meals colgrad fullqual</span>
 <span class="co">#&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span>
@@ -175,43 +174,44 @@
 <span class="co">#&gt; 10  9.58    58.6      98.8</span>
 <span class="co">#&gt; # … with 990 more rows</span></code></pre></div>
 </div>
-<div id="db_lselect-lazily-select-variables-from-multiple-tables-in-a-relational-database" class="section level3">
-<h3 class="hasAnchor">
-<a href="#db_lselect-lazily-select-variables-from-multiple-tables-in-a-relational-database" class="anchor"></a><code>db_lselect()</code>: Lazily Select Variables From Multiple Tables in a Relational Database</h3>
-<p><code><a href="reference/db_lselect.html">db_lselect()</a></code> allows you to select variables from multiple tables in an SQL database. It returns a lazy query that combines all the variables together into one data frame (as a tibble). The user can choose to run <code>collect()</code> after this query if they see fit. <a href="http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/">I wrote about this on my website in 2020</a> and how it applies to real-world problems. Here is a proof of concept of how this works.</p>
+<div class="section level3">
+<h3 id="db_lselect-lazily-select-variables-from-multiple-tables-in-a-relational-database">
+<code>db_lselect()</code>: Lazily Select Variables From Multiple Tables in a Relational Database<a class="anchor" aria-label="anchor" href="#db_lselect-lazily-select-variables-from-multiple-tables-in-a-relational-database"></a>
+</h3>
+<p><code><a href="reference/db_lselect.html">db_lselect()</a></code> allows you to select variables from multiple tables in an SQL database. It returns a lazy query that combines all the variables together into one data frame (as a tibble). The user can choose to run <code><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect()</a></code> after this query if they see fit. <a href="http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/">I wrote about this on my website in 2020</a> and how it applies to real-world problems. Here is a proof of concept of how this works.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org">DBI</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsqlite.r-dbi.org">RSQLite</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">8675309</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org" class="external-link">DBI</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rsqlite.r-dbi.org" class="external-link">RSQLite</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">8675309</span><span class="op">)</span>
 
-<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>uid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>,
-                a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,
-                b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">letters</span>, <span class="fl">10</span><span class="op">)</span>,
-                c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">.5</span><span class="op">)</span><span class="op">)</span>
+<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>uid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>,
+                a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,
+                b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span>, <span class="fl">10</span><span class="op">)</span>,
+                c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">.5</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>uid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">11</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span>,
-                a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,
-                b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">letters</span>, <span class="fl">10</span><span class="op">)</span>,
-                c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">.5</span><span class="op">)</span><span class="op">)</span>
+<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>uid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">11</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span>,
+                a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,
+                b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span>, <span class="fl">10</span><span class="op">)</span>,
+                c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">.5</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>uid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">21</span><span class="op">:</span><span class="fl">30</span><span class="op">)</span>, a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,
-                b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">letters</span>, <span class="fl">10</span><span class="op">)</span>,
-                c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">.5</span><span class="op">)</span>,
-                d <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>
+<span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>uid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">21</span><span class="op">:</span><span class="fl">30</span><span class="op">)</span>, a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,
+                b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span>, <span class="fl">10</span><span class="op">)</span>,
+                c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">.5</span><span class="op">)</span>,
+                d <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html">SQLite</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">":memory:"</span><span class="op">)</span>
+<span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html" class="external-link">SQLite</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">":memory:"</span><span class="op">)</span>
 
-<span class="fu">copy_to</span><span class="op">(</span><span class="va">con</span>, <span class="va">A</span>, <span class="st">"A"</span>,
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/copy_to.html" class="external-link">copy_to</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">A</span>, <span class="st">"A"</span>,
         temporary<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">copy_to</span><span class="op">(</span><span class="va">con</span>, <span class="va">B</span>, <span class="st">"B"</span>,
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/copy_to.html" class="external-link">copy_to</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">B</span>, <span class="st">"B"</span>,
         temporary<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">copy_to</span><span class="op">(</span><span class="va">con</span>, <span class="va">C</span>, <span class="st">"C"</span>,
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/copy_to.html" class="external-link">copy_to</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">C</span>, <span class="st">"C"</span>,
         temporary<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="co"># This returns no warning because columns "a" and "b" are in all tables</span>
-<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/db_lselect.html">db_lselect</a></span><span class="op">(</span><span class="va">con</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"uid"</span>, <span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="reference/db_lselect.html">db_lselect</a></span><span class="op">(</span><span class="va">con</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"uid"</span>, <span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # Source:   lazy query [?? x 3]</span>
 <span class="co">#&gt; # Database: sqlite 3.36.0 [:memory:]</span>
 <span class="co">#&gt;      uid       a b    </span>
@@ -230,7 +230,7 @@
 
 <span class="co"># This returns two warnings because column "d" is not in 2 of 3 tables.</span>
 <span class="co"># ^ this is by design. It'll inform the user about data availability.</span>
-<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/db_lselect.html">db_lselect</a></span><span class="op">(</span><span class="va">con</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"uid"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"d"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="reference/db_lselect.html">db_lselect</a></span><span class="op">(</span><span class="va">con</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"uid"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"d"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Unknown columns: `d`</span>
 
 <span class="co">#&gt; Warning: Unknown columns: `d`</span>
@@ -250,18 +250,19 @@
 <span class="co">#&gt; 10    10  0.904  n        NA</span>
 <span class="co">#&gt; # … with more rows</span></code></pre></div>
 </div>
-<div id="get_sims-get-simulations-from-a-model-object-with-new-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get_sims-get-simulations-from-a-model-object-with-new-data" class="anchor"></a><code>get_sims()</code>: Get Simulations from a Model Object (with New Data)</h3>
+<div class="section level3">
+<h3 id="get_sims-get-simulations-from-a-model-object-with-new-data">
+<code>get_sims()</code>: Get Simulations from a Model Object (with New Data)<a class="anchor" aria-label="anchor" href="#get_sims-get-simulations-from-a-model-object-with-new-data"></a>
+</h3>
 <p><code><a href="reference/get_sims.html">get_sims()</a></code> is a function to simulate quantities of interest by way of a multivariate normal distribution for “new data” from a regression model. This coincides with an “informal Bayesian” approach to estimating quantities of interest that importantly also provide the user some idea of upper and lower bounds around an estimated quantity of interest.</p>
-<p>It’s flexible to linear models, generalized linear models, and their mixed model equivalents. Of note: the simulations from the mixed models omit (alternatively: “do not consider”) the random intercepts. In my travels, this is because reviewers do not care about these quantities and just want to see quantities from the fixed effects in the model. If you’d like a more comprehensive simulation approach for those parameters in your mixed model, I recommend <code>{merTools}</code> for mixed models estimated in <a href="https://github.com/lme4/lme4/">lme4</a>.</p>
+<p>It’s flexible to linear models, generalized linear models, and their mixed model equivalents. Of note: the simulations from the mixed models omit (alternatively: “do not consider”) the random intercepts. In my travels, this is because reviewers do not care about these quantities and just want to see quantities from the fixed effects in the model. If you’d like a more comprehensive simulation approach for those parameters in your mixed model, I recommend <code>{merTools}</code> for mixed models estimated in <a href="https://github.com/lme4/lme4/" class="external-link">lme4</a>.</p>
 <p>Here is what this would look like for a linear model.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://svmiller.com/stevedata/">stevedata</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://svmiller.com/stevedata/">stevedata</a></span><span class="op">)</span>
 
-<span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">immigsent</span> <span class="op">~</span> <span class="va">agea</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">eduyrs</span> <span class="op">+</span> <span class="va">uempla</span> <span class="op">+</span> <span class="va">hinctnta</span> <span class="op">+</span> <span class="va">lrscale</span>, data<span class="op">=</span><span class="va">ESS9GB</span><span class="op">)</span>
+<span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">immigsent</span> <span class="op">~</span> <span class="va">agea</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">eduyrs</span> <span class="op">+</span> <span class="va">uempla</span> <span class="op">+</span> <span class="va">hinctnta</span> <span class="op">+</span> <span class="va">lrscale</span>, data<span class="op">=</span><span class="va">ESS9GB</span><span class="op">)</span>
 
-<span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span>
+<span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 7 × 5</span>
 <span class="co">#&gt;   term        estimate std.error statistic  p.value</span>
 <span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span>
@@ -273,14 +274,14 @@
 <span class="co">#&gt; 6 hinctnta     0.338      0.0614     5.50  4.52e- 8</span>
 <span class="co">#&gt; 7 lrscale     -0.583      0.0881    -6.61  5.37e-11</span>
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://modelr.tidyverse.org">modelr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://modelr.tidyverse.org" class="external-link">modelr</a></span><span class="op">)</span>
 <span class="co"># Note: the DV must be in the "new data". </span>
 <span class="co"># It doesn't matter what value it is.</span>
 <span class="co"># It just needs to be there as a column.</span>
-<span class="va">ESS9GB</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://modelr.tidyverse.org/reference/data_grid.html">data_grid</a></span><span class="op">(</span>.model<span class="op">=</span><span class="va">M1</span>, immigsent <span class="op">=</span> <span class="fl">0</span>, 
-            lrscale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">lrscale</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,
-                        <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">lrscale</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">newdat</span>
+<span class="va">ESS9GB</span> <span class="op"><a href="https://modelr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://modelr.tidyverse.org/reference/data_grid.html" class="external-link">data_grid</a></span><span class="op">(</span>.model<span class="op">=</span><span class="va">M1</span>, immigsent <span class="op">=</span> <span class="fl">0</span>, 
+            lrscale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">lrscale</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,
+                        <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">lrscale</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">newdat</span>
 
 <span class="va">Sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_sims.html">get_sims</a></span><span class="op">(</span><span class="va">M1</span>, <span class="va">newdat</span>, <span class="fl">1000</span>, <span class="fl">8675309</span><span class="op">)</span>
 
@@ -300,9 +301,10 @@
 <span class="co">#&gt; 10  13.8     5</span>
 <span class="co">#&gt; # … with 1,990 more rows</span></code></pre></div>
 </div>
-<div id="get_var_info-get-labelled-data-from-your-variables" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get_var_info-get-labelled-data-from-your-variables" class="anchor"></a><code>get_var_info()</code>: Get Labelled Data from Your Variables</h3>
+<div class="section level3">
+<h3 id="get_var_info-get-labelled-data-from-your-variables">
+<code>get_var_info()</code>: Get Labelled Data from Your Variables<a class="anchor" aria-label="anchor" href="#get_var_info-get-labelled-data-from-your-variables"></a>
+</h3>
 <p><code><a href="reference/get_var_info.html">get_var_info()</a></code> allows for what I like to term “peeking” at your labelled data. If you do not have a codebook handy, but you know the data are labelled, <code><a href="reference/get_var_info.html">get_var_info()</a></code> (and its shortcut: <code><a href="reference/get_var_info.html">gvi()</a></code>) will extract the pertinent information for you. <code>{stevemisc}</code> comes with a toy data set—<code>ess9_labelled</code>—in which there are two labelled variables for the country and internet consumption from the ninth round of the European Social Survey. You can extract that information with this package.</p>
 <p>Do note that it assumes a pipe-based workflow. It’s there for when you’re having to sit down in an R session and recode data without the assistance of a dual-monitor setup or physical codebook.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -325,7 +327,7 @@
 <span class="co"># alternatively, below:</span>
 <span class="co"># ess9_labelled %&gt;% gvi(netusoft)</span>
 <span class="co"># we'll do it this way, though...</span>
-<span class="va">ess9_labelled</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/get_var_info.html">get_var_info</a></span><span class="op">(</span><span class="va">netusoft</span><span class="op">)</span>
+<span class="va">ess9_labelled</span> <span class="op"><a href="https://modelr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="reference/get_var_info.html">get_var_info</a></span><span class="op">(</span><span class="va">netusoft</span><span class="op">)</span>
 <span class="co">#&gt;                       var code              label</span>
 <span class="co">#&gt; 1 Internet use, how often    1              Never</span>
 <span class="co">#&gt; 2 Internet use, how often    2  Only occasionally</span>
@@ -336,9 +338,10 @@
 <span class="co">#&gt; 7 Internet use, how often    8         Don't know</span>
 <span class="co">#&gt; 8 Internet use, how often    9          No answer</span></code></pre></div>
 </div>
-<div id="jenny-set-the-only-reproducible-seed-that-matters-and-get-a-nice-message-for-it" class="section level3">
-<h3 class="hasAnchor">
-<a href="#jenny-set-the-only-reproducible-seed-that-matters-and-get-a-nice-message-for-it" class="anchor"></a><code>jenny()</code>: Set the Only Reproducible Seed that Matters, and Get a Nice Message for It</h3>
+<div class="section level3">
+<h3 id="jenny-set-the-only-reproducible-seed-that-matters-and-get-a-nice-message-for-it">
+<code>jenny()</code>: Set the Only Reproducible Seed that Matters, and Get a Nice Message for It<a class="anchor" aria-label="anchor" href="#jenny-set-the-only-reproducible-seed-that-matters-and-get-a-nice-message-for-it"></a>
+</h3>
 <p>There are infinite reproducible seeds. There is only one correct one. <code><a href="reference/jenny.html">jenny()</a></code> will set a reproducible seed of 8675309 for you and reward you with a nice message. It will get catty with you if try to use <code><a href="reference/jenny.html">jenny()</a></code> to set any other reproducible seed.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/jenny.html">jenny</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># good, seed set for 8675309</span>
@@ -346,27 +349,29 @@
 <span class="fu"><a href="reference/jenny.html">jenny</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span> <span class="co"># bad, and no seed set. Use set.seed() instead, you goon.</span>
 <span class="co">#&gt; Why are you using this function with some other reproducible seed...</span></code></pre></div>
 </div>
-<div id="p_z-convert-the-p-value-you-want-to-the-z-value-it-is" class="section level3">
-<h3 class="hasAnchor">
-<a href="#p_z-convert-the-p-value-you-want-to-the-z-value-it-is" class="anchor"></a><code>p_z()</code>: Convert the <em>p</em>-value you want to the <em>z</em>-value it is</h3>
+<div class="section level3">
+<h3 id="p_z-convert-the-p-value-you-want-to-the-z-value-it-is">
+<code>p_z()</code>: Convert the <em>p</em>-value you want to the <em>z</em>-value it is<a class="anchor" aria-label="anchor" href="#p_z-convert-the-p-value-you-want-to-the-z-value-it-is"></a>
+</h3>
 <p>I <em>loathe</em> how statistical instruction privileges obtaining a magical <em>p</em>-value by reference to an area underneath the standard normal curve, only to botch what the actual <em>z</em>-value is corresponding to the magical <em>p</em>-value. This simple function converts the <em>p</em>-value you want (typically .05, thanks to R.A. Fisher) to the <em>z</em>-value it actually is for the kind of claims we typically make in inferential statistics. If we’re going to do inference the wrong way, let’s at least get the <em>z</em>-value right.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/p_z.html">p_z</a></span><span class="op">(</span><span class="fl">.05</span><span class="op">)</span>
 <span class="co">#&gt; [1] 1.959964</span>
-<span class="fu"><a href="reference/p_z.html">p_z</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.001</span>, <span class="fl">.01</span>, <span class="fl">.05</span>, <span class="fl">.1</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="reference/p_z.html">p_z</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.001</span>, <span class="fl">.01</span>, <span class="fl">.05</span>, <span class="fl">.1</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 3.290527 2.575829 1.959964 1.644854</span></code></pre></div>
 </div>
-<div id="print_refs-print-and-format-entries-as-references" class="section level3">
-<h3 class="hasAnchor">
-<a href="#print_refs-print-and-format-entries-as-references" class="anchor"></a><code>print_refs()</code>: Print and Format Entries as References</h3>
+<div class="section level3">
+<h3 id="print_refs-print-and-format-entries-as-references">
+<code>print_refs()</code>: Print and Format Entries as References<a class="anchor" aria-label="anchor" href="#print_refs-print-and-format-entries-as-references"></a>
+</h3>
 <p><code><a href="reference/print_refs.html">print_refs()</a></code> takes a <code>.bib</code> entry (or entries) and formats it as a reference (or set of references). This function is useful if you want to populate a syllabus with a reading list and have more agency over how it’s formatted.</p>
 <p>For example, here’s a list of things you should read and cite, along with an illustration of the defaults by which the function works (American Political Science Association style, to LaTeX). <code>stevepubs</code>, in this package, contains an incomplete list of my publications.</p>
 <p>Remember: <em>extremely Smokey Bear voice</em> “only YOU can jack my <em>h</em>-index to infinity.”</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Note, this function does spam with some messages/warnings.</span>
 <span class="co"># You can disable that in a chunk, as I do here.</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/bib2df">bib2df</a></span><span class="op">)</span>
-<span class="fu"><a href="reference/print_refs.html">print_refs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/capture.output.html">capture.output</a></span><span class="op">(</span><span class="fu"><a href="https://docs.ropensci.org/bib2df/reference/df2bib.html">df2bib</a></span><span class="op">(</span><span class="va">stevepubs</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/bib2df" class="external-link">bib2df</a></span><span class="op">)</span>
+<span class="fu"><a href="reference/print_refs.html">print_refs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/capture.output.html" class="external-link">capture.output</a></span><span class="op">(</span><span class="fu"><a href="https://docs.ropensci.org/bib2df/reference/df2bib.html" class="external-link">df2bib</a></span><span class="op">(</span><span class="va">stevepubs</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Curtis, K. Amber, and Steven V. Miller. 2021. "A (Supra)nationalist</span>
 <span class="co">#&gt; Personality? The Big Five's Effects on Political-Territorial</span>
 <span class="co">#&gt; Identification." \emph{European Union Politics} 22(2): 202--26.</span>
@@ -432,12 +437,13 @@
 <span class="co">#&gt; "Geography, Territory, and Conflict." In \emph{Oxford Research</span>
 <span class="co">#&gt; Encyclopedia of International Studies}, Oxford University Press.</span></code></pre></div>
 </div>
-<div id="r1sd-and-r2sd-rescaling-data-by-one-or-two-standard-deviations" class="section level3">
-<h3 class="hasAnchor">
-<a href="#r1sd-and-r2sd-rescaling-data-by-one-or-two-standard-deviations" class="anchor"></a><code>r1sd()</code> and <code>r2sd()</code>: Rescaling Data by One (or Two) Standard Deviations</h3>
-<p><code><a href="reference/r1sd.html">r1sd()</a></code> and <code><a href="reference/r2sd.html">r2sd()</a></code> allow the user to rescale data by one or two standard deviations. What functions does what should be intuitive from the function name. Generally, regression modelers should center their regression inputs so that everything has a meaningful center (and that the <em>y</em>-intercept should be meaningful). The regression coefficients that emerge communicate something more interesting as well: magnitude effects. <a href="http://www.stat.columbia.edu/~gelman/research/published/standardizing7.pdf">Gelman (2008)</a> argues rescaling by two standard deviations has the added advantage of making binary inputs roughly comparable to anything that you standardized.</p>
+<div class="section level3">
+<h3 id="r1sd-and-r2sd-rescaling-data-by-one-or-two-standard-deviations">
+<code>r1sd()</code> and <code>r2sd()</code>: Rescaling Data by One (or Two) Standard Deviations<a class="anchor" aria-label="anchor" href="#r1sd-and-r2sd-rescaling-data-by-one-or-two-standard-deviations"></a>
+</h3>
+<p><code><a href="reference/r1sd.html">r1sd()</a></code> and <code><a href="reference/r2sd.html">r2sd()</a></code> allow the user to rescale data by one or two standard deviations. What functions does what should be intuitive from the function name. Generally, regression modelers should center their regression inputs so that everything has a meaningful center (and that the <em>y</em>-intercept should be meaningful). The regression coefficients that emerge communicate something more interesting as well: magnitude effects. <a href="http://www.stat.columbia.edu/~gelman/research/published/standardizing7.pdf" class="external-link">Gelman (2008)</a> argues rescaling by two standard deviations has the added advantage of making binary inputs roughly comparable to anything that you standardized.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span>
 <span class="fu"><a href="reference/r1sd.html">r1sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
 <span class="co">#&gt;  [1] -1.27867343  0.72017341 -0.83738692  2.24113309  1.11983879  1.02888100</span>
 <span class="co">#&gt;  [7] -0.08751658  0.66323274  0.54597563  0.93170508 -1.92188701  1.07007924</span>
@@ -460,14 +466,15 @@
 <span class="co">#&gt; [49]  0.07849921 -0.03873503</span></code></pre></div>
 </div>
 </div>
-<div id="r2sd_at-rescale-multiple-columns-by-two-standard-deviations-and-rename" class="section level2">
-<h2 class="hasAnchor">
-<a href="#r2sd_at-rescale-multiple-columns-by-two-standard-deviations-and-rename" class="anchor"></a><code>r2sd_at()</code>: Rescale Multiple Columns by Two Standard Deviations (and Rename)</h2>
-<p><code><a href="reference/r2sd.html">r2sd_at()</a></code> is a wrapper for <code>mutate_at()</code> and <code>rename_at()</code> in <a href="https://dplyr.tidyverse.org">dplyr</a>. It both rescales the supplied vectors to new vectors and renames the vectors to all have a prefix of <code>z_</code>. This is my preferred convention for these things.</p>
+<div class="section level2">
+<h2 id="r2sd_at-rescale-multiple-columns-by-two-standard-deviations-and-rename">
+<code>r2sd_at()</code>: Rescale Multiple Columns by Two Standard Deviations (and Rename)<a class="anchor" aria-label="anchor" href="#r2sd_at-rescale-multiple-columns-by-two-standard-deviations-and-rename"></a>
+</h2>
+<p><code><a href="reference/r2sd.html">r2sd_at()</a></code> is a wrapper for <code><a href="https://dplyr.tidyverse.org/reference/mutate_all.html" class="external-link">mutate_at()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/select_all.html" class="external-link">rename_at()</a></code> in <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a>. It both rescales the supplied vectors to new vectors and renames the vectors to all have a prefix of <code>z_</code>. This is my preferred convention for these things.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mtcars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/tbl_df.html">tbl_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span>, <span class="va">hp</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/r2sd.html">r2sd_at</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"hp"</span>, <span class="st">"disp"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op"><a href="https://modelr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="reference/tbl_df.html">tbl_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://modelr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span>, <span class="va">hp</span><span class="op">)</span> <span class="op"><a href="https://modelr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/r2sd.html">r2sd_at</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"hp"</span>, <span class="st">"disp"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 32 × 6</span>
 <span class="co">#&gt;      mpg  disp    hp   z_mpg   z_hp  z_disp</span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span>
@@ -482,11 +489,12 @@
 <span class="co">#&gt;  9  22.8  141.    95  0.225  -0.377 -0.363 </span>
 <span class="co">#&gt; 10  19.2  168.   123 -0.0739 -0.173 -0.255 </span>
 <span class="co">#&gt; # … with 22 more rows</span></code></pre></div>
-<div id="ps_btscs-and-sbtscs-create-peace-years-or-spells-by-cross-sectional-unit" class="section level3">
-<h3 class="hasAnchor">
-<a href="#ps_btscs-and-sbtscs-create-peace-years-or-spells-by-cross-sectional-unit" class="anchor"></a><code>ps_btscs()</code> and <code>sbtscs()</code>: Create “Peace Years” or “Spells” by Cross-Sectional Unit</h3>
-<p><code><a href="reference/sbtscs.html">sbtscs()</a></code> allows you to create spells (“peace years” in the international conflict context) between observations of some event. This will allow the researcher to better model temporal dependence in binary time-series cross-section (“BTSCS”) models. Much of it is liberally copy-pasted from Dave Armstrong’s <code>{DAMisc}</code> package. I just added some <a href="https://dplyr.tidyverse.org">dplyr</a> stuff underneath to speed it up and prevent it from choking when there are a lot of cross-sectional units without an “event” for a “spell.”</p>
-<p>I explain this in <a href="http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/">this blog post from 2017</a>. It’s incidentally the first thing I added to <code>{stevemisc}</code>. I offer, with it, the <code>usa_mids</code> data frame that has all militarized interstate disputes for the United States in non-directed dyad-year form from the Gibler-Miller-Little (“GML”) data. <code><a href="reference/ps_btscs.html">ps_btscs()</a></code> is a more general version of <code><a href="reference/sbtscs.html">sbtscs()</a></code> that performs well when NAs bracket the event data. The latter function features prominently in <a href="https://github.com/svmiller/peacesciencer"><code>{peacesciencer}</code></a>.</p>
+<div class="section level3">
+<h3 id="ps_btscs-and-sbtscs-create-peace-years-or-spells-by-cross-sectional-unit">
+<code>ps_btscs()</code> and <code>sbtscs()</code>: Create “Peace Years” or “Spells” by Cross-Sectional Unit<a class="anchor" aria-label="anchor" href="#ps_btscs-and-sbtscs-create-peace-years-or-spells-by-cross-sectional-unit"></a>
+</h3>
+<p><code><a href="reference/sbtscs.html">sbtscs()</a></code> allows you to create spells (“peace years” in the international conflict context) between observations of some event. This will allow the researcher to better model temporal dependence in binary time-series cross-section (“BTSCS”) models. Much of it is liberally copy-pasted from Dave Armstrong’s <code>{DAMisc}</code> package. I just added some <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> stuff underneath to speed it up and prevent it from choking when there are a lot of cross-sectional units without an “event” for a “spell.”</p>
+<p>I explain this in <a href="http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/">this blog post from 2017</a>. It’s incidentally the first thing I added to <code>{stevemisc}</code>. I offer, with it, the <code>usa_mids</code> data frame that has all militarized interstate disputes for the United States in non-directed dyad-year form from the Gibler-Miller-Little (“GML”) data. <code><a href="reference/ps_btscs.html">ps_btscs()</a></code> is a more general version of <code><a href="reference/sbtscs.html">sbtscs()</a></code> that performs well when NAs bracket the event data. The latter function features prominently in <a href="https://github.com/svmiller/peacesciencer" class="external-link"><code>{peacesciencer}</code></a>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># ?usa_mids</span>
 
@@ -523,14 +531,15 @@
 <span class="co">#&gt; 10 1002020      2     20  1929          0        0     9</span>
 <span class="co">#&gt; # … with 14,576 more rows</span></code></pre></div>
 </div>
-<div id="revcode-reverse-code-a-numeric-variable-ie-invert-the-scale" class="section level3">
-<h3 class="hasAnchor">
-<a href="#revcode-reverse-code-a-numeric-variable-ie-invert-the-scale" class="anchor"></a><code>revcode()</code>: Reverse Code a Numeric Variable (i.e. Invert the Scale)</h3>
+<div class="section level3">
+<h3 id="revcode-reverse-code-a-numeric-variable-ie-invert-the-scale">
+<code>revcode()</code>: Reverse Code a Numeric Variable (i.e. Invert the Scale)<a class="anchor" aria-label="anchor" href="#revcode-reverse-code-a-numeric-variable-ie-invert-the-scale"></a>
+</h3>
 <p><code><a href="reference/revcode.html">revcode()</a></code> allows you to reverse code a numeric variable. This is useful, say, if you have a Likert item that ranges from 1 (“strongly disagree”) to 5 (“strongly agree”), but wants the 5s to be “strongly disagree” and the 1s to be “strongly agree.” This function passes over NAs you may have in your variable. It assumes that the observed values include both the minimum and the maximum and that the increments between them are 1. This is usually the case in a discrete ordered-categorical variable (like a Likert item). Use this function with that in mind.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>,
-       y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>xrev <span class="op">=</span> <span class="fu"><a href="reference/revcode.html">revcode</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>,
+       y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://modelr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>xrev <span class="op">=</span> <span class="fu"><a href="reference/revcode.html">revcode</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,
          yrev <span class="op">=</span> <span class="fu"><a href="reference/revcode.html">revcode</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 10 × 4</span>
 <span class="co">#&gt;        x     y  xrev  yrev</span>
@@ -546,12 +555,13 @@
 <span class="co">#&gt;  9     9     4     2     2</span>
 <span class="co">#&gt; 10    10     5     1     1</span></code></pre></div>
 </div>
-<div id="show_ranef-get-a-caterpillar-plot-of-the-random-effects-from-a-mixed-model" class="section level3">
-<h3 class="hasAnchor">
-<a href="#show_ranef-get-a-caterpillar-plot-of-the-random-effects-from-a-mixed-model" class="anchor"></a><code>show_ranef()</code>: Get a Caterpillar Plot of the Random Effects from a Mixed Model</h3>
+<div class="section level3">
+<h3 id="show_ranef-get-a-caterpillar-plot-of-the-random-effects-from-a-mixed-model">
+<code>show_ranef()</code>: Get a Caterpillar Plot of the Random Effects from a Mixed Model<a class="anchor" aria-label="anchor" href="#show_ranef-get-a-caterpillar-plot-of-the-random-effects-from-a-mixed-model"></a>
+</h3>
 <p><code><a href="reference/show_ranef.html">show_ranef()</a></code> allows a user estimating a mixed model to quickly plot the random intercepts (with conditional variances) of a given random effect in a mixed model. In cases where there is a random slope over the intercept, the function plots the random slope as another caterpillar plot (as another facet). These are great for a quick visualization of the random intercepts.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: Matrix</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'Matrix'</span>
@@ -559,21 +569,22 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     expand, pack, unpack</span>
 
-<span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">Reaction</span> <span class="op">~</span> <span class="va">Days</span> <span class="op">+</span> <span class="op">(</span><span class="va">Days</span> <span class="op">|</span> <span class="va">Subject</span><span class="op">)</span>, data<span class="op">=</span><span class="va">sleepstudy</span><span class="op">)</span>
+<span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span><span class="va">Reaction</span> <span class="op">~</span> <span class="va">Days</span> <span class="op">+</span> <span class="op">(</span><span class="va">Days</span> <span class="op">|</span> <span class="va">Subject</span><span class="op">)</span>, data<span class="op">=</span><span class="va">sleepstudy</span><span class="op">)</span>
 <span class="fu"><a href="reference/show_ranef.html">show_ranef</a></span><span class="op">(</span><span class="va">M1</span>, <span class="st">"Subject"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-16-1.png" width="80%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/show_ranef.html">show_ranef</a></span><span class="op">(</span><span class="va">M1</span>, <span class="st">"Subject"</span>, reorder<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-16-2.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
-<div id="smvrnorm-simulate-from-a-multivariate-normal-distribution" class="section level3">
-<h3 class="hasAnchor">
-<a href="#smvrnorm-simulate-from-a-multivariate-normal-distribution" class="anchor"></a><code>smvrnorm()</code>: Simulate from a Multivariate Normal Distribution</h3>
-<p>This is a simple port and rename of <code>mvrnorm()</code> from the <a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a> package. I do this because the <a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a> package conflicts with a lot of things in my workflow. This will be very handy doing so-called “informal Bayesian” approaches to generating quantities of interest from a regression model.</p>
+<div class="section level3">
+<h3 id="smvrnorm-simulate-from-a-multivariate-normal-distribution">
+<code>smvrnorm()</code>: Simulate from a Multivariate Normal Distribution<a class="anchor" aria-label="anchor" href="#smvrnorm-simulate-from-a-multivariate-normal-distribution"></a>
+</h3>
+<p>This is a simple port and rename of <code>mvrnorm()</code> from the <a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a> package. I do this because the <a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a> package conflicts with a lot of things in my workflow. This will be very handy doing so-called “informal Bayesian” approaches to generating quantities of interest from a regression model.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">immigsent</span> <span class="op">~</span> <span class="va">agea</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">eduyrs</span> <span class="op">+</span> <span class="va">uempla</span> <span class="op">+</span> <span class="va">hinctnta</span> <span class="op">+</span> <span class="va">lrscale</span>, data<span class="op">=</span><span class="va">ESS9GB</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">immigsent</span> <span class="op">~</span> <span class="va">agea</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">eduyrs</span> <span class="op">+</span> <span class="va">uempla</span> <span class="op">+</span> <span class="va">hinctnta</span> <span class="op">+</span> <span class="va">lrscale</span>, data<span class="op">=</span><span class="va">ESS9GB</span><span class="op">)</span>
 
-<span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span>
+<span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 7 × 5</span>
 <span class="co">#&gt;   term        estimate std.error statistic  p.value</span>
 <span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span>
@@ -585,7 +596,7 @@
 <span class="co">#&gt; 6 hinctnta     0.338      0.0614     5.50  4.52e- 8</span>
 <span class="co">#&gt; 7 lrscale     -0.583      0.0881    -6.61  5.37e-11</span>
 
-<span class="fu">as_tibble</span><span class="op">(</span><span class="fu"><a href="reference/smvrnorm.html">smvrnorm</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/vcov.html">vcov</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="reference/smvrnorm.html">smvrnorm</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1,000 × 7</span>
 <span class="co">#&gt;    `(Intercept)`      agea  female eduyrs  uempla hinctnta lrscale</span>
 <span class="co">#&gt;            &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span>
@@ -601,55 +612,56 @@
 <span class="co">#&gt; 10          12.1  0.00306  -0.512   0.465 -1.03      0.381  -0.660</span>
 <span class="co">#&gt; # … with 990 more rows</span></code></pre></div>
 </div>
-<div id="theme_steve-theme_steve_web-theme_steve_ms-steves-preferred-ggplot2-themes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#theme_steve-theme_steve_web-theme_steve_ms-steves-preferred-ggplot2-themes" class="anchor"></a><code>theme_steve()</code>, <code>theme_steve_web()</code>, <code>theme_steve_ms()</code>: Steve’s Preferred <code>{ggplot2}</code> Themes</h3>
-<p><code><a href="reference/theme_steve.html">theme_steve()</a></code> was a preferred theme of mine a few years ago. It is basically <code>theme_bw()</code> from <a href="https://ggplot2.tidyverse.org">ggplot2</a> theme, but with me tweaking a few things. I’ve since moved to <code><a href="reference/theme_steve.html">theme_steve_web()</a></code> for most things now, prominently on my website. It incorporates the “Open Sans” and “Titillium Web” fonts that I like so much. <code><a href="reference/theme_steve.html">post_bg()</a></code> is for changing the backgrounds on plots to better match my website for posts that I write. <code><a href="reference/theme_steve.html">theme_steve_ms()</a></code> is a new addition that uses <a href="https://fonts.google.com/specimen/Crimson+Text">the “Crimson Text” font</a> to match my plots to my LaTeX manuscripts. For those unaware, “Crimson Text” is basically what <a href="https://ctan.org/pkg/cochineal?lang=en"><code>cochineal</code></a> is.</p>
+<div class="section level3">
+<h3 id="theme_steve-theme_steve_web-theme_steve_ms-steves-preferred-ggplot2-themes">
+<code>theme_steve()</code>, <code>theme_steve_web()</code>, <code>theme_steve_ms()</code>: Steve’s Preferred <code>{ggplot2}</code> Themes<a class="anchor" aria-label="anchor" href="#theme_steve-theme_steve_web-theme_steve_ms-steves-preferred-ggplot2-themes"></a>
+</h3>
+<p><code><a href="reference/ggplot-themes.html">theme_steve()</a></code> was a preferred theme of mine a few years ago. It is basically <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code> from <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> theme, but with me tweaking a few things. I’ve since moved to <code><a href="reference/ggplot-themes.html">theme_steve_web()</a></code> for most things now, prominently on my website. It incorporates the “Open Sans” and “Titillium Web” fonts that I like so much. <code><a href="reference/ggplot-themes.html">post_bg()</a></code> is for changing the backgrounds on plots to better match my website for posts that I write. <code><a href="reference/ggplot-themes.html">theme_steve_ms()</a></code> is a new addition that uses <a href="https://fonts.google.com/specimen/Crimson+Text" class="external-link">the “Crimson Text” font</a> to match my plots to my LaTeX manuscripts. For those unaware, “Crimson Text” is basically what <a href="https://ctan.org/pkg/cochineal?lang=en" class="external-link"><code>cochineal</code></a> is.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mtcars</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span><span class="op">(</span><span class="va">.</span>,<span class="fu">aes</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_steve.html">theme_steve</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"A Plot with Steve's Preferred {ggplot2} Theme"</span>,
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op"><a href="https://modelr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">.</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="reference/ggplot-themes.html">theme_steve</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"A Plot with Steve's Preferred {ggplot2} Theme"</span>,
        subtitle <span class="op">=</span> <span class="st">"It's basically `theme_bw()` with some minor tweaks."</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-18-1.png" width="80%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mtcars</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span><span class="op">(</span><span class="va">.</span>,<span class="fu">aes</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_steve.html">theme_steve_web</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"A Plot with Steve's Preferred {ggplot2} Theme"</span>,
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op"><a href="https://modelr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">.</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="reference/ggplot-themes.html">theme_steve_web</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"A Plot with Steve's Preferred {ggplot2} Theme"</span>,
        subtitle <span class="op">=</span> <span class="st">"I use `theme_steve_web()` for most things. It has nicer fonts."</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-18-2.png" width="80%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mtcars</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span><span class="op">(</span><span class="va">.</span>,<span class="fu">aes</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_steve.html">theme_steve_ms</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"A Plot with Steve's Preferred {ggplot2} Theme"</span>,
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op"><a href="https://modelr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">.</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="reference/ggplot-themes.html">theme_steve_ms</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"A Plot with Steve's Preferred {ggplot2} Theme"</span>,
        subtitle <span class="op">=</span> <span class="st">"I use `theme_steve_ms()` will not look pretty in this application, but will in LaTeX."</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-18-3.png" width="80%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mtcars</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span><span class="op">(</span><span class="va">.</span>,<span class="fu">aes</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_steve.html">theme_steve_font</a></span><span class="op">(</span>font <span class="op">=</span> <span class="st">"Comic Sans MS"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"A Plot with Steve's Preferred {ggplot2} Theme"</span>,
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op"><a href="https://modelr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">.</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="reference/ggplot-themes.html">theme_steve_font</a></span><span class="op">(</span>font <span class="op">=</span> <span class="st">"Comic Sans MS"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"A Plot with Steve's Preferred {ggplot2} Theme"</span>,
        subtitle <span class="op">=</span> <span class="st">"I use `theme_steve_font()` for the occasional document that uses Palatino type fonts. Here: it's Comic Sans."</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-18-4.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
-<div id="the-student-t-distribution-location-scale-version" class="section level3">
-<h3 class="hasAnchor">
-<a href="#the-student-t-distribution-location-scale-version" class="anchor"></a>The Student-t Distribution (Location-Scale Version)</h3>
+<div class="section level3">
+<h3 id="the-student-t-distribution-location-scale-version">The Student-t Distribution (Location-Scale Version)<a class="anchor" aria-label="anchor" href="#the-student-t-distribution-location-scale-version"></a>
+</h3>
 <p>Finally, I added a few functions for extending the “standard” t-distribution in R into the three-parameter “location-scale” version. This generalizes the Student-t and is useful for getting acclimated with more general Student-t distributions, which are quite common in Bayesian analyses. <code><a href="reference/studentt.html">dst()</a></code> (density), <code><a href="reference/studentt.html">pst()</a></code> (distribution function), <code><a href="reference/studentt.html">qst()</a></code> (quantile), and <code><a href="reference/studentt.html">rst()</a></code> (random number generation) are available. Here, for example, is using <code><a href="reference/studentt.html">rst()</a></code> to simulate data from one of the most common Student-t distributions in the world of Bayesian priors: the one with three degrees of freedom, a mean of zero, and a standard deviation of ten.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="reference/studentt.html">rst</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">3</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="reference/studentt.html">rst</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">3</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">dat</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span><span class="op">(</span><span class="va">.</span>,<span class="fu">aes</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_density</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_steve.html">theme_steve_web</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Simulated Data from a Student-t (3,0,10) Distribution"</span>,
+<span class="va">dat</span> <span class="op"><a href="https://modelr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">.</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html" class="external-link">geom_density</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="reference/ggplot-themes.html">theme_steve_web</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Simulated Data from a Student-t (3,0,10) Distribution"</span>,
        subtitle <span class="op">=</span> <span class="st">"This prior is common in the world of Bayesian priors and used to be a common default prior in {brms}."</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-19-1.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
@@ -659,49 +671,59 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=stevemisc">https://​cloud.r-project.org/​package=stevemisc</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/svmiller/stevemisc/">https://​github.com/​svmiller/​stevemisc/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/svmiller/stevemisc/issues">https://​github.com/​svmiller/​stevemisc/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=stevemisc" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/svmiller/stevemisc/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/svmiller/stevemisc/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>GPL (&gt;=2)</li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Steve Miller <br><small class="roles"> Author, maintainer </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="authors.html#citation">Citing stevemisc</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=stevemisc"><img src="https://www.r-pkg.org/badges/version/stevemisc?color=green"></a></li>
-<li><a href="https://cran.r-project.org/package=stevemisc"><img src="http://cranlogs.r-pkg.org/badges/grand-total/stevemisc?color=green"></a></li>
-<li><a href="https://cran.r-project.org/package=stevemisc"><img src="http://cranlogs.r-pkg.org/badges/last-month/stevemisc?color=green"></a></li>
-<li><a href="https://cran.r-project.org/package=stevemisc"><img src="http://cranlogs.r-pkg.org/badges/last-week/stevemisc?color=green"></a></li>
+<li>Steve Miller <br><small class="roles"> Author, maintainer </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=stevemisc" class="external-link"><img src="https://www.r-pkg.org/badges/version/stevemisc?color=green"></a></li>
+<li><a href="https://cran.r-project.org/package=stevemisc" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/grand-total/stevemisc?color=green"></a></li>
+<li><a href="https://cran.r-project.org/package=stevemisc" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/last-month/stevemisc?color=green"></a></li>
+<li><a href="https://cran.r-project.org/package=stevemisc" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/last-week/stevemisc?color=green"></a></li>
+</ul>
 </div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Steve Miller.</p>
+  <p></p>
+<p>Developed by Steve Miller.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -709,6 +731,8 @@
 
   
 
+
+  
 
   </body>
 </html>

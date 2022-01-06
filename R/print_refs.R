@@ -1,8 +1,11 @@
 #' Print and Format \code{.bib} Entries as References
 #'
-#' @description \code{print_refs()} is a convenience function I found and edited that will allow a user to print and format
-#' \code{.bib} entries as if they were references. This function is useful if you want to load a \code{.bib} entry or set of
-#' entries and print them in the middle of a document in R Markdown.
+#' @description \code{print_refs()} is a convenience function I found and
+#' edited that will allow a user to print and format \code{.bib}
+#' entries---or a \pkg{bib2df} data frame of \code{.bib} entries, as if they
+#' were references. This function is useful if you want to load a \code{.bib}
+#' entry or set of entries and print them in the middle of a document in
+#' R Markdown.
 #'
 #' @details \code{print_refs()} assumes an active internet connection in the absence of the appropriate CSL file in the
 #' working directory. The citation style language (CSL) file supplied by the user must match a file in the
@@ -11,12 +14,14 @@
 #'
 #' @param bib a valid \code{.bib} entry
 #' @param csl a CSL file, matching one available on the Github repository, that the user wants to format the references. Default is "american-political-science-association.csl".
-#' @param toformat the output wanted by the user. Default is "latex".
+#' @param toformat the output wanted by the user. Default is "markdown_strict".
 #' @param cslrepo a directory of CSL files. Defaults to the one on Github.
 #' @param spit_out logical, defaults to TRUE. If TRUE, wraps ("spits out") formatted citations in a \code{writeLines()} output for the console. If `FALSE`, returns a character vector.
 #' @param delete_after logical, defaults to TRUE. If TRUE, deletes CSL file when it's done. If FALSE, retains CSL for (potential) future use.
 #'
-#' @return  \code{print_refs()} takes a \code{.bib} entry and returns a formatted reference from it.
+#' @return  \code{print_refs()} takes a \code{.bib} entry, or an implied
+#' \pkg{bib2df} data frame, and returns the requested formatted reference
+#' or references from it.
 #'
 #' @examples
 #'
@@ -29,10 +34,18 @@
 #' }
 
 print_refs <- function(bib, csl="american-political-science-association.csl",
-                      toformat="latex",
+                      toformat="markdown_strict",
                       cslrepo="https://raw.githubusercontent.com/citation-style-language/styles/master",
                       spit_out = TRUE,
                       delete_after = TRUE) {
+
+  if (any(class(bib) %in% c("data.frame")) == TRUE) {
+
+    bib <- capture.output(df2bib(bib))
+
+  }
+
+
   if (!file.exists(bib)) {
     message("I'm going to assume this is a .bib entry...")
     tmpbib <- tempfile(fileext = ".bib")

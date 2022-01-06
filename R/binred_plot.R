@@ -1,6 +1,6 @@
 #' Generate a Binned-Residual Plot from a Fitted Generalized Linear Model
 #'
-#' @description \code{binred_plot()} provides a visual diagnostic of the fit of
+#' @description \code{binred_plot()} provides a diagnostic of the fit of
 #'  the generalized linear model by "binning" the fitted and residual values
 #'  from the model and showing where they may fall outside 95% error bounds.
 #'
@@ -13,10 +13,13 @@
 #' The default is the rounded square root of the number of observations in
 #' the model. Be smart about what you want here.
 #'
-#' @return \code{bindred_plot()} returns a plot as a \pkg{ggplot2} object. The
-#' *y*-axis is the mean residuals of the particular bin. The *x*-axis is the
-#' mean fitted values from the bin. Error bounds are 95%. A LOESS smoother is
-#' overlaid as a solid blue line.
+#' @return \code{bindred_plot()} returns a plot as a \pkg{ggplot2} object, as
+#' a default. The *y*-axis is the mean residuals of the particular bin. The
+#' *x*-axis is the mean fitted values from the bin. Error bounds are 95%.
+#' A LOESS smoother is overlaid as a solid blue line.
+#'
+#' If `plot = FALSE`, the function returns a data frame of the binned residuals
+#' and a summary about whether the residuals are in the error bounds.
 #'
 #' @author Steven V. Miller
 #'
@@ -24,6 +27,9 @@
 #' @param nbins number of "bins" for the calculation. Defaults to the rounded
 #' square root of the number of observations in the model in the absence of a
 #' user-specified override here.
+#' @param plot logical, defaults to TRUE. If TRUE, the function plots the
+#' binned residuals. If FALSE, the function returns a data frame of the
+#' binned residuals.
 #'
 #' @examples
 #'
@@ -32,10 +38,11 @@
 #' binred_plot(M1)
 
 
-binred_plot <- function(model, nbins) {
-  data <- model$data
-  data$fitted <- model$fitted.values
-  data$resid <- model$y - model$fitted.values #residuals(model, type = "response")
+binred_plot <- function(model, nbins, plot = TRUE) {
+  y <- model$y
+  fitted <- model$fitted.values
+  resid <- model$y - model$fitted.values #residuals(model, type = "response")
+  data <- data.frame(y, fitted, resid)
 
   n_mod <- nobs(model)
 
@@ -70,6 +77,15 @@ binred_plot <- function(model, nbins) {
   data$se <- p_z(.05)*(data$sdresid/sqrt(data$n))
   data$inbounds <- ifelse((data$meanresid > -(data$se)) & (data$meanresid < data$se), 1, 0)
 
+if (plot == TRUE) {
+
+  prop_inbounds <- sum(data$inbounds)/length(data$inbounds)
+
+  results <- paste0(sum(data$inbounds), " of ", length(data$inbounds),
+                    " bins are inside the error bounds. That is approximately ",
+                    mround(prop_inbounds),
+                    "%. An ideal rate is 95%. An acceptable rate is 80%. Any lower than that typically indicates a questionable model fit. Inspect the returned plot for more.")
+
   ggplot(data, aes(.data$meanfit, .data$meanresid)) +
     geom_point() +
     geom_smooth() +
@@ -77,5 +93,15 @@ binred_plot <- function(model, nbins) {
     geom_ribbon(aes(ymin = .data$se, ymax = Inf), alpha = .1 , fill = "red") +
     geom_line(aes(y = .data$se), colour = "grey70") +
     geom_line(aes(y = -.data$se), colour = "grey70") +
-    geom_hline(yintercept = 0, linetype = "dashed")
+    geom_hline(yintercept = 0, linetype = "dashed") -> plot
+
+  message(results)
+  return(plot)
+
+  } else {
+
+    return(data)
+  }
 }
+
+

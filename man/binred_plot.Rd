@@ -4,7 +4,7 @@
 \alias{binred_plot}
 \title{Generate a Binned-Residual Plot from a Fitted Generalized Linear Model}
 \usage{
-binred_plot(model, nbins)
+binred_plot(model, nbins, plot = TRUE)
 }
 \arguments{
 \item{model}{a fitted GLM model, assuming link is "logit"}
@@ -12,15 +12,22 @@ binred_plot(model, nbins)
 \item{nbins}{number of "bins" for the calculation. Defaults to the rounded
 square root of the number of observations in the model in the absence of a
 user-specified override here.}
+
+\item{plot}{logical, defaults to TRUE. If TRUE, the function plots the
+binned residuals. If FALSE, the function returns a data frame of the
+binned residuals.}
 }
 \value{
-\code{bindred_plot()} returns a plot as a \pkg{ggplot2} object. The
-\emph{y}-axis is the mean residuals of the particular bin. The \emph{x}-axis is the
-mean fitted values from the bin. Error bounds are 95\%. A LOESS smoother is
-overlaid as a solid blue line.
+\code{bindred_plot()} returns a plot as a \pkg{ggplot2} object, as
+a default. The \emph{y}-axis is the mean residuals of the particular bin. The
+\emph{x}-axis is the mean fitted values from the bin. Error bounds are 95\%.
+A LOESS smoother is overlaid as a solid blue line.
+
+If \code{plot = FALSE}, the function returns a data frame of the binned residuals
+and a summary about whether the residuals are in the error bounds.
 }
 \description{
-\code{binred_plot()} provides a visual diagnostic of the fit of
+\code{binred_plot()} provides a diagnostic of the fit of
 the generalized linear model by "binning" the fitted and residual values
 from the model and showing where they may fall outside 95\% error bounds.
 }

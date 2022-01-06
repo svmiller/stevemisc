@@ -7,7 +7,7 @@
 print_refs(
   bib,
   csl = "american-political-science-association.csl",
-  toformat = "latex",
+  toformat = "markdown_strict",
   cslrepo = "https://raw.githubusercontent.com/citation-style-language/styles/master",
   spit_out = TRUE,
   delete_after = TRUE
@@ -18,7 +18,7 @@ print_refs(
 
 \item{csl}{a CSL file, matching one available on the Github repository, that the user wants to format the references. Default is "american-political-science-association.csl".}
 
-\item{toformat}{the output wanted by the user. Default is "latex".}
+\item{toformat}{the output wanted by the user. Default is "markdown_strict".}
 
 \item{cslrepo}{a directory of CSL files. Defaults to the one on Github.}
 
@@ -27,12 +27,17 @@ print_refs(
 \item{delete_after}{logical, defaults to TRUE. If TRUE, deletes CSL file when it's done. If FALSE, retains CSL for (potential) future use.}
 }
 \value{
-\code{print_refs()} takes a \code{.bib} entry and returns a formatted reference from it.
+\code{print_refs()} takes a \code{.bib} entry, or an implied
+\pkg{bib2df} data frame, and returns the requested formatted reference
+or references from it.
 }
 \description{
-\code{print_refs()} is a convenience function I found and edited that will allow a user to print and format
-\code{.bib} entries as if they were references. This function is useful if you want to load a \code{.bib} entry or set of
-entries and print them in the middle of a document in R Markdown.
+\code{print_refs()} is a convenience function I found and
+edited that will allow a user to print and format \code{.bib}
+entries---or a \pkg{bib2df} data frame of \code{.bib} entries, as if they
+were references. This function is useful if you want to load a \code{.bib}
+entry or set of entries and print them in the middle of a document in
+R Markdown.
 }
 \details{
 \code{print_refs()} assumes an active internet connection in the absence of the appropriate CSL file in the
