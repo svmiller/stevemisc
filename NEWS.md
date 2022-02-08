@@ -3,6 +3,7 @@
 - Add `filter_refs()` and, with it, the `{bib2df}` package as a dependency.
 - `print_refs()` will now work on an (implied) `{bib2df}` data frame of `.bib` entries.
 - Add `wom()`.
+- Update `stevepubs`.
 
 # stevemisc 1.3.0
 
