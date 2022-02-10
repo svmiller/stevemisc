@@ -19,6 +19,8 @@
 #' of bootstrapped coefficients (with intercept). These could be easily
 #' converted to a data frame for ease of summary.
 #'
+#' @author Grant McDermott, Vincent Arel-Bundock
+#'
 #'
 #' @examples
 #' \donttest{

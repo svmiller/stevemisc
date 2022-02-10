@@ -46,3 +46,6 @@ BB1 <- sbayesboot(M1)
 BB2 <- sbayesboot(M1, cluster=~cyl)
 }
 }
+\author{
+Grant McDermott, Vincent Arel-Bundock
+}
