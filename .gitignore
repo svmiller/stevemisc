@@ -5,7 +5,6 @@
 .DS_Store
 
 data-raw
-data/map_quiz.rda
 deprecated
 source-dir
 inst/doc

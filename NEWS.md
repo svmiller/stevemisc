@@ -4,6 +4,7 @@
 - `print_refs()` will now work on an (implied) `{bib2df}` data frame of `.bib` entries.
 - Add `wom()`.
 - Add `sbayesboot()`.
+- Add `map_quiz`.
 - Update `stevepubs`.
 
 # stevemisc 1.3.0
