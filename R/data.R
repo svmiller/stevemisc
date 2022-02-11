@@ -165,7 +165,7 @@
 #' \item{\code{ccode2}}{the Correlates of War state code for the
 #' state that is the wrong guess for the state in \code{guess}}
 #' \item{\code{mindist}}{the minimum distance (in kilometers) between
-#' \code{country} and \code{guess}}
+#' \code{country} and \code{guess}}}
 #'
 #' @details
 #'
@@ -175,4 +175,6 @@
 #' them. The maps never changed across five semesters, nor did the prompts.
 #' Use these data as you see fit. Obviously, FERPA considerations mean I
 #' can't share anything else of potential value here.
-#' }
+#'
+
+"map_quiz"
