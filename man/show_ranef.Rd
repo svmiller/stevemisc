@@ -4,12 +4,12 @@
 \alias{show_ranef}
 \title{Get a caterpillar plot of random effects from a mixed model}
 \usage{
-show_ranef(data, grp, reorder = TRUE)
+show_ranef(model, group, reorder = TRUE)
 }
 \arguments{
-\item{data}{a fitted mixed model with random intercepts}
+\item{model}{a fitted mixed model with random intercepts}
 
-\item{grp}{What random intercept/slopes do you want to see as a caterpillar plot? Declare it as a character}
+\item{group}{What random intercept/slopes do you want to see as a caterpillar plot? Declare it as a character}
 
 \item{reorder}{optional argument. DEFAULT is TRUE, which ``re-orders'' the intercepts by the
 original value in the data. If FALSE, the ensuing caterpillar plot defaults to a default method of ordering

@@ -12,7 +12,6 @@ importFrom(stats, "coef", "cor", "dnorm", "dt", "model.matrix",
                 "sd", "terms", "var")
 
 # this is for `show_ranef()` to work without complaints
-importFrom(broom.mixed, "augment")
 importFrom(lme4, "ranef")
 
 # This is for `corvectors()` to work without complaints

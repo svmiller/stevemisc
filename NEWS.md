@@ -6,6 +6,7 @@
 - Add `sbayesboot()`.
 - Add `map_quiz`.
 - Update `stevepubs`.
+- Update `show_ranef()`, which no longer requires `{broom.mixed}` underneath the hood. Remove `{broom.mixed}` as package dependency.
 
 # stevemisc 1.3.0
 
