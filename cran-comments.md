@@ -19,4 +19,4 @@ This submission is accelerated by a recent email from Brian Ripley about the `{b
 
 I identified that stray non-ASCII character and fixed it.
 
-I identified and fixed the class-compare-to-string issue identified by CRAN. I thank CRAN for also suggesting the solution as well.
+I identified and fixed the class-compare-to-string issue identified by CRAN. I thank CRAN for also suggesting the solution as well. This concerned the `carrec()` function.
