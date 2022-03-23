@@ -17,6 +17,6 @@ This submission is accelerated by a recent email from Brian Ripley about the `{b
 
 ## Second Round Comments to CRAN
 
-I identified that stray non-ASCII character and fixed it.
+I identified that stray non-ASCII character and fixed it. This was in the `stevepubs` data frame.
 
 I identified and fixed the class-compare-to-string issue identified by CRAN. I thank CRAN for also suggesting the solution as well. This concerned the `carrec()` function.
