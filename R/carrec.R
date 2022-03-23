@@ -66,35 +66,35 @@ carrec <- function(var, recodes, as_fac, as_num = TRUE, levels) {
         if (0 < length(grep(":", term))) {
             range <- strsplit(strsplit(term, "=")[[1]][1], ":")
             low <- try(eval(parse(text = range[[1]][1])), silent = TRUE)
-            if (class(low) == "try-error") {
+            if (inherits(low, "try-error")) {
                 stop("\n  in recode term: ", term, "\n  message: ", low)
             }
             high <- try(eval(parse(text = range[[1]][2])), silent = TRUE)
-            if (class(high) == "try-error") {
+            if (inherits(high, "try-error")) {
                 stop("\n  in recode term: ", term, "\n  message: ", high)
             }
             target <- try(eval(parse(text = strsplit(term, "=")[[1]][2])),
                           silent = TRUE)
-            if (class(target) == "try-error") {
+            if (inherits(target, "try-error")) {
                 stop("\n  in recode term: ", term, "\n  message: ", target)
             }
             result[(var >= low) & (var <= high)] <- target
         } else if (0 < length(grep("^else=", .squeeze_blanks(term)))) {
             target <- try(eval(parse(text = strsplit(term, "=")[[1]][2])),
                           silent = TRUE)
-            if (class(target) == "try-error") {
+            if (inherits(target, "try-error")) {
                 stop("\n  in recode term: ", term, "\n  message: ", target)
             }
             result[1:length(var)] <- target
         } else {
             set <- try(eval(parse(text = strsplit(term, "=")[[1]][1])),
                        silent = TRUE)
-            if (class(set) == "try-error") {
+            if (inherits(set, "try-error")) {
                 stop("\n  in recode term: ", term, "\n  message: ", set)
             }
             target <- try(eval(parse(text = strsplit(term, "=")[[1]][2])),
                           silent = TRUE)
-            if (class(target) == "try-error") {
+            if (inherits(target, "try-error")) {
                 stop("\n  in recode term: ", term, "\n  message: ", target)
             }
             for (val in set) {

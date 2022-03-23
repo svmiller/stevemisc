@@ -13,3 +13,10 @@ This submission is accelerated by a recent email from Brian Ripley about the `{b
 ## Downstream dependencies
 
 `{peacesciencer}`, a package I created and maintain, is a downstream dependency. The dependency is for the `ps_btscs()` function, which is unaffected by this update. There are no other downstream dependencies to note.
+
+
+## Second Round Comments to CRAN
+
+I identified that stray non-ASCII character and fixed it.
+
+I identified and fixed the class-compare-to-string issue identified by CRAN. I thank CRAN for also suggesting the solution as well.
