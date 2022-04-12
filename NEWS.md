@@ -1,3 +1,7 @@
+# stevemisc 1.4.1
+
+- Adjust `filter_refs()` and `print_refs()` to no longer require `{bib2df}`. With it, `{bib2df}` is also removed as a package dependency.
+
 # stevemisc 1.4.0
 
 - Add `filter_refs()` and, with it, the `{bib2df}` package as a dependency.

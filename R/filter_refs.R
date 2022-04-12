@@ -34,11 +34,55 @@
 
 filter_refs <- function(bibdat, criteria, type = "bibtexkey") {
   if(type == "bibtexkey") {
-  hold_this <- subset(bibdat, bibdat$BIBTEXKEY %in% criteria)
+  cites_i_want <- subset(bibdat, bibdat$BIBTEXKEY %in% criteria)
   } else if (type == "year") {
-  hold_this <- subset(bibdat, bibdat$YEAR %in% criteria)
+  cites_i_want <- subset(bibdat, bibdat$YEAR %in% criteria)
   }
-  return_this <- capture.output(df2bib(hold_this))
-  return(return_this)
+
+
+  not_all_na <- function(x) any(!is.na(x))
+
+  cites_i_want %>%
+    group_split(.data$BIBTEXKEY) -> group_split_cites
+
+  lapply(group_split_cites, function(x) select_if(x, not_all_na)) -> group_split_cites
+
+
+  suppressWarnings(
+    for(i in 1:length(group_split_cites)) {
+      group_split_cites[[i]]$AUTHOR <- paste(unlist(group_split_cites[[i]]$AUTHOR), collapse=" and ")
+      group_split_cites[[i]]$EDITOR <- paste(unlist(group_split_cites[[i]]$EDITOR), collapse=" and ")
+    }
+  )
+
+
+  lapply(group_split_cites, function(x) mutate(x,  EDITOR = ifelse(.data$EDITOR == "", NA, .data$EDITOR))) -> group_split_cites
+  lapply(group_split_cites, function(x) select_if(x, not_all_na)) -> group_split_cites
+
+
+  for(i in 1:length(group_split_cites)) {
+    tibble(x = names(unlist(group_split_cites[[i]])),
+           y = unlist(group_split_cites[[i]])) -> hold_this
+
+    hold_this %>% filter((x %in% c("BIBTEXKEY", "CATEGORY"))) -> hold_this_a
+    hold_this %>% filter(!(x %in% c("BIBTEXKEY", "CATEGORY"))) -> hold_this_b
+
+    print_the_thing_already <- cat(paste0("@", hold_this_a$y[1],
+                                          "{", hold_this_a$y[2],",\n",
+                                          paste0("  ",
+                                                 hold_this_b$x,
+                                                 " = {",
+                                                 hold_this_b$y,
+                                                 "}",
+                                                 collapse = ",\n"),"}"),
+                                   collapse = "\n\n",
+                                   #fill=TRUE,
+                                   file = "",
+                                   append = TRUE)
+    invisible(file)
+  }
+
+
+  #return(print_the_thing_already)
 }
 

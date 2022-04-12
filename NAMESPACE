@@ -101,7 +101,7 @@ importFrom(ggplot2, "facet_wrap")
 importFrom(stats, "model.frame")
 
 # This is for filter_refs()
-importFrom(bib2df, "df2bib")
+# importFrom(bib2df, "df2bib")
 importFrom("utils", "capture.output")
 
 # This is for binred_plot()

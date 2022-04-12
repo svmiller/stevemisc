@@ -20,7 +20,7 @@ on citations to the print_refs() function also included in this package."><!-- m
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.1</span>
       </span>
     </div>
 
@@ -95,137 +95,117 @@ entries, and depends on the <span class="pkg">bib2df</span> package.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Based on `stevepubs` configuration, filter on `BIBTEXKEY` where</span></span>
 <span class="r-in"><span class="co"># the citation key matches one of these.</span></span>
 <span class="r-in"><span class="fu">filter_refs</span><span class="op">(</span><span class="va">stevepubs</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"miller2017etst"</span>, <span class="st">"miller2017etjc"</span>, <span class="st">"miller2013tdpi"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "@Article{miller2013tdpi,"                                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "  Author = {Steven V. Miller},"                                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "  Journal = {Journal of Peace Research},"                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "  Number = {6},"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "  Pages = {677--690},"                                                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "  Title = {Territorial Disputes and the Politics of Individual Well-Being},"                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "  Volume = {50},"                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "  Year = {2013}"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "}"                                                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "@Article{miller2017etst,"                                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "  Author = {Steven V. Miller},"                                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "  Journal = {Political Behavior},"                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "  Number = {2},"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "  Pages = {457--478},"                                                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "  Title = {Economic Threats or Societal Turmoil? Understanding Preferences for Authoritarian Political Systems},"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "  Volume = {39},"                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "  Year = {2017}"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "}"                                                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [21] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [22] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [23] "@Article{miller2017etjc,"                                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [24] "  Author = {Steven V. Miller},"                                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "  Journal = {Political Research Quarterly},"                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [26] "  Number = {4},"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [27] "  Pages = {790--802},"                                                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [28] "  Title = {The Effect of Terrorism on Judicial Confidence},"                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "  Volume = {70},"                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [30] "  Year = {2017}"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "}"                                                                                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> @ARTICLE{miller2013tdpi,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {Steven V. Miller},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   JOURNAL = {Journal of Peace Research},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   NUMBER = {6},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PAGES = {677--690},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TITLE = {Territorial Disputes and the Politics of Individual Well-Being},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   VOLUME = {50},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   YEAR = {2013}} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> @ARTICLE{miller2017etjc,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {Steven V. Miller},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   JOURNAL = {Political Research Quarterly},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   NUMBER = {4},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PAGES = {790--802},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TITLE = {The Effect of Terrorism on Judicial Confidence},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   VOLUME = {70},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   YEAR = {2017}} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> @ARTICLE{miller2017etst,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {Steven V. Miller},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   JOURNAL = {Political Behavior},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   NUMBER = {2},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PAGES = {457--478},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TITLE = {Economic Threats or Societal Turmoil? Understanding Preferences for Authoritarian Political Systems},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   VOLUME = {39},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   YEAR = {2017}} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Based on `stevepubs` configuration, filter on `YEAR` where</span></span>
 <span class="r-in"><span class="co"># the publication year is 2017, 2018, 2019, 2020, or 2021.</span></span>
 <span class="r-in"><span class="fu">filter_refs</span><span class="op">(</span><span class="va">stevepubs</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2017</span><span class="op">:</span><span class="fl">2021</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "@Article{miller2017etst,"                                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "  Author = {Steven V. Miller},"                                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "  Journal = {Political Behavior},"                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "  Number = {2},"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "  Pages = {457--478},"                                                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "  Title = {Economic Threats or Societal Turmoil? Understanding Preferences for Authoritarian Political Systems},"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "  Volume = {39},"                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "  Year = {2017}"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "}"                                                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "@Article{miller2017ieea,"                                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "  Author = {Steven V. Miller},"                                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "  Journal = {Conflict Management and Peace Science},"                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "  Number = {5},"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "  Pages = {526--545},"                                                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "  Title = {Individual-Level Expectations of Executive Authority under Territorial Threat},"                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "  Volume = {34},"                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "  Year = {2017}"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "}"                                                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [21] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [22] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [23] "@Article{miller2017etjc,"                                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [24] "  Author = {Steven V. Miller},"                                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "  Journal = {Political Research Quarterly},"                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [26] "  Number = {4},"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [27] "  Pages = {790--802},"                                                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [28] "  Title = {The Effect of Terrorism on Judicial Confidence},"                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "  Volume = {70},"                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [30] "  Year = {2017}"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "}"                                                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [32] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [33] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [34] "@Article{miller2018etttc,"                                                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [35] "  Author = {Steven V. Miller},"                                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [36] "  Journal = {Peace Economics, Peace Science and Public Policy},"                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "  Number = {1},"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [38] "  Title = {External Territorial Threats and Tolerance of Corruption: A Private/Government Distinction},"         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [39] "  Volume = {24},"                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [40] "  Year = {2018},"                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [41] "  Doi = {10.1515/peps-2017-0043}"                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [42] "}"                                                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [43] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [44] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [45] "@Article{miller2019wata,"                                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [46] "  Author = {Steven V. Miller},"                                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [47] "  Journal = {Social Science Quarterly},"                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [48] "  Number = {1},"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [49] "  Pages = {272--288},"                                                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [50] "  Title = {What Americans Think About Gun Control: Evidence from the General Social Survey, 1972-2016},"         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [51] "  Volume = {100},"                                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [52] "  Year = {2019}"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [53] "}"                                                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [54] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [55] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [56] "@Article{gibleretal2020icm,"                                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [57] "  Author = {Douglas M. Gibler and Steven V. Miller and Erin K. Little},"                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [58] "  Journal = {International Studies Quarterly},"                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [59] "  Number = {2},"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [60] "  Pages = {476--479},"                                                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [61] "  Title = {The Importance of Correct Measurement},"                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [62] "  Volume = {64},"                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [63] "  Year = {2020}"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [64] "}"                                                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [65] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [66] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [67] "@Incollection{milleretal2020gtc,"                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [68] "  Author = {Steven V. Miller and Jaroslav Tir and John A. Vasquez},"                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [69] "  Booktitle = {Oxford Research Encyclopedia of International Studies},"                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [70] "  Publisher = {Oxford University Press},"                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [71] "  Title = {Geography, Territory, and Conflict},"                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [72] "  Year = {2020},"                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [73] "  Doi = {10.1093/acrefore/9780190846626.013.320}"                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [74] "}"                                                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [75] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [76] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [77] "@Article{millerdavis2020ewsp,"                                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [78] "  Author = {Steven V. Miller and Nicholas T. Davis},"                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [79] "  Journal = {Journal of Race, Ethnicity, and Politics},"                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [80] "  Number = {2},"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [81] "  Pages = {334--351},"                                                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [82] "  Title = {The Effect of White Social Prejudice on Support for American Democracy},"                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [83] "  Volume = {6},"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [84] "  Year = {2021}"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [85] "}"                                                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [86] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [87] ""                                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [88] "@Article{curtismiller2021snp,"                                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [89] "  Author = {K. Amber Curtis and Steven V. Miller},"                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [90] "  Journal = {European Union Politics},"                                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [91] "  Number = {2},"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [92] "  Pages = {202--26},"                                                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [93] "  Title = {A (Supra)Nationalist Personality? The Big Five’s Effects on Political-Territorial Identification},"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [94] "  Volume = {22},"                                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [95] "  Year = {2021}"                                                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [96] "}"                                                                                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> @ARTICLE{curtismiller2021snp,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {K. Amber Curtis and Steven V. Miller},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   JOURNAL = {European Union Politics},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   NUMBER = {2},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PAGES = {202--26},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TITLE = {A (Supra)Nationalist Personality? The Big Five's Effects on Political-Territorial Identification},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   VOLUME = {22},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   YEAR = {2021}} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> @ARTICLE{gibleretal2020icm,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {Douglas M. Gibler and Steven V. Miller and Erin K. Little},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   JOURNAL = {International Studies Quarterly},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   NUMBER = {2},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PAGES = {476--479},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TITLE = {The Importance of Correct Measurement},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   VOLUME = {64},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   YEAR = {2020}} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> @ARTICLE{miller2017etjc,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {Steven V. Miller},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   JOURNAL = {Political Research Quarterly},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   NUMBER = {4},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PAGES = {790--802},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TITLE = {The Effect of Terrorism on Judicial Confidence},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   VOLUME = {70},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   YEAR = {2017}} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> @ARTICLE{miller2017etst,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {Steven V. Miller},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   JOURNAL = {Political Behavior},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   NUMBER = {2},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PAGES = {457--478},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TITLE = {Economic Threats or Societal Turmoil? Understanding Preferences for Authoritarian Political Systems},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   VOLUME = {39},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   YEAR = {2017}} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> @ARTICLE{miller2017ieea,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {Steven V. Miller},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   JOURNAL = {Conflict Management and Peace Science},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   NUMBER = {5},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PAGES = {526--545},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TITLE = {Individual-Level Expectations of Executive Authority under Territorial Threat},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   VOLUME = {34},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   YEAR = {2017}} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> @ARTICLE{miller2018etttc,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {Steven V. Miller},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   JOURNAL = {Peace Economics, Peace Science and Public Policy},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   NUMBER = {1},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TITLE = {External Territorial Threats and Tolerance of Corruption: A Private/Government Distinction},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   VOLUME = {24},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   YEAR = {2018},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   DOI = {10.1515/peps-2017-0043}} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> @ARTICLE{miller2019wata,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {Steven V. Miller},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   JOURNAL = {Social Science Quarterly},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   NUMBER = {1},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PAGES = {272--288},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TITLE = {What Americans Think About Gun Control: Evidence from the General Social Survey, 1972-2016},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   VOLUME = {100},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   YEAR = {2019}} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> @ARTICLE{millerdavis2020ewsp,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {Steven V. Miller and Nicholas T. Davis},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   JOURNAL = {Journal of Race, Ethnicity, and Politics},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   NUMBER = {2},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PAGES = {334--351},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TITLE = {The Effect of White Social Prejudice on Support for American Democracy},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   VOLUME = {6},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   YEAR = {2021}} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> @INCOLLECTION{milleretal2020gtc,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {Steven V. Miller and Jaroslav Tir and John A. Vasquez},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   BOOKTITLE = {Oxford Research Encyclopedia of International Studies},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PUBLISHER = {Oxford University Press},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TITLE = {Geography, Territory, and Conflict},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   YEAR = {2020},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   DOI = {10.1093/acrefore/9780190846626.013.320}} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </div>

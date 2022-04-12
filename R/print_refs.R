@@ -2,7 +2,7 @@
 #'
 #' @description \code{print_refs()} is a convenience function I found and
 #' edited that will allow a user to print and format \code{.bib}
-#' entries---or a \pkg{bib2df} data frame of \code{.bib} entries, as if they
+#' entries as if they
 #' were references. This function is useful if you want to load a \code{.bib}
 #' entry or set of entries and print them in the middle of a document in
 #' R Markdown.
@@ -19,9 +19,8 @@
 #' @param spit_out logical, defaults to TRUE. If TRUE, wraps ("spits out") formatted citations in a \code{writeLines()} output for the console. If `FALSE`, returns a character vector.
 #' @param delete_after logical, defaults to TRUE. If TRUE, deletes CSL file when it's done. If FALSE, retains CSL for (potential) future use.
 #'
-#' @return  \code{print_refs()} takes a \code{.bib} entry, or an implied
-#' \pkg{bib2df} data frame, and returns the requested formatted reference
-#' or references from it.
+#' @return  \code{print_refs()} takes a \code{.bib} entry and returns the
+#' requested formatted reference or references from it.
 #'
 #' @examples
 #'
@@ -41,9 +40,57 @@ print_refs <- function(bib, csl="american-political-science-association.csl",
 
   if (any(class(bib) %in% c("data.frame")) == TRUE) {
 
-    bib <- capture.output(df2bib(bib))
+    tmpbib <- c()
 
+    # bib <- capture.output(df2bib(bib))
+
+    not_all_na <- function(x) any(!is.na(x))
+
+    bib %>%
+      group_split(.data$BIBTEXKEY) -> group_split_cites
+
+    lapply(group_split_cites, function(x) select_if(x, not_all_na)) -> group_split_cites
+
+
+    suppressWarnings(
+      for(i in 1:length(group_split_cites)) {
+        group_split_cites[[i]]$AUTHOR <- paste(unlist(group_split_cites[[i]]$AUTHOR), collapse=" and ")
+        group_split_cites[[i]]$EDITOR <- paste(unlist(group_split_cites[[i]]$EDITOR), collapse=" and ")
+      }
+    )
+
+
+    lapply(group_split_cites, function(x) mutate(x,  EDITOR = ifelse(.data$EDITOR == "", NA, .data$EDITOR))) -> group_split_cites
+    lapply(group_split_cites, function(x) select_if(x, not_all_na)) -> group_split_cites
+
+
+    for(i in 1:length(group_split_cites)) {
+      tibble(x = names(unlist(group_split_cites[[i]])),
+             y = unlist(group_split_cites[[i]])) -> hold_this
+
+      hold_this %>% filter((x %in% c("BIBTEXKEY", "CATEGORY"))) -> hold_this_a
+      hold_this %>% filter(!(x %in% c("BIBTEXKEY", "CATEGORY"))) -> hold_this_b
+
+      hold_this_cite <- capture.output(cat(paste0("@", hold_this_a$y[1],
+                                            "{", hold_this_a$y[2],",\n",
+                                            paste0("  ",
+                                                   hold_this_b$x,
+                                                   " = {",
+                                                   hold_this_b$y,
+                                                   "}",
+                                                   collapse = ",\n"),"}"),
+                                     collapse = "\n\n",
+                                     #fill=TRUE,
+                                     file = "",
+                                     append = TRUE))
+      #invisible(file)
+      tmpbib <- c(tmpbib, hold_this_cite)
+    }
+
+    bib <- tmpbib
   }
+
+
 
 
   if (!file.exists(bib)) {
