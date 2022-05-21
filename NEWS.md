@@ -1,3 +1,7 @@
+# stevemisc 1.4.2
+
+- `theme_steve_ms()` now actually uses "Crimson Pro", and not "Crimson Text".
+
 # stevemisc 1.4.1
 
 - Adjust `filter_refs()` and `print_refs()` to no longer require `{bib2df}`. With it, `{bib2df}` is also removed as a package dependency.

@@ -17,7 +17,7 @@
 #' \code{theme_bw()} from \pkg{ggplot2}, but with some other tweaks. \code{theme_steve_web()} extends
 #' \code{theme_steve()} to add custom fonts, notably "Open Sans" and "Titillium Web". In all cases, these
 #' functions take a \pkg{ggplot2} plot and return another \pkg{ggplot2} plot, but with some cosmetic
-#' changes. \code{theme_steve_ms()} takes a \pkg{ggplot2} plot and overlays "Crimson Text" fonts, which is
+#' changes. \code{theme_steve_ms()} takes a \pkg{ggplot2} plot and overlays "Crimson Pro" fonts, which is
 #' the basis of the \code{cochineal} font package in \code{LaTeX}. \code{theme_steve_font()} takes a \pkg{ggplot2} plot and
 #' overlays a font of your choosing.
 #'
@@ -202,19 +202,19 @@ theme_steve_ms <- function(axis_face = "italic", caption_face = "italic", ...) {
                                         face = caption_face),
             plot.title = element_text(hjust = 0, size = 18,
                                       margin = ggplot2::margin(b = 10),
-                                      face = "bold", family = "Crimson Text"),
+                                      face = "bold", family = "Crimson Pro"),
             plot.subtitle = element_text(hjust = 0,
                                          margin = ggplot2::margin(b = 10),
-                                         family = "Crimson Text"),
+                                         family = "Crimson Pro"),
             axis.title.y = element_text(size = 10, hjust = 1,
-                                        face = axis_face, family = "Crimson Text"),
+                                        face = axis_face, family = "Crimson Pro"),
             axis.title.x = element_text(hjust = 1, size = 10, face = axis_face,
-                                        family = "Crimson Text",
+                                        family = "Crimson Pro",
                                         margin = ggplot2::margin(t = 10)),
             legend.position = "bottom",
             legend.title = element_text(face = "bold",
-                                        family = "Crimson Text"),
-            text = element_text(family = "Crimson Text")) +
+                                        family = "Crimson Pro"),
+            text = element_text(family = "Crimson Pro")) +
       theme(legend.spacing.x = unit(.1, "cm"),
             panel.spacing = grid::unit(1.5, "lines"))
   }
@@ -227,19 +227,19 @@ theme_steve_ms <- function(axis_face = "italic", caption_face = "italic", ...) {
                                         face = caption_face),
             plot.title = element_text(hjust = 0, size = 18,
                                       margin = ggplot2::margin(b = 10),
-                                      face = "bold", family = "Crimson Text"),
+                                      face = "bold", family = "Crimson Pro"),
             plot.subtitle = element_text(hjust = 0,
                                          margin = ggplot2::margin(b = 10),
-                                         family = "Crimson Text"),
+                                         family = "Crimson Pro"),
             axis.title.y = element_text(size = 10, hjust = 1,
-                                        face = axis_face, family = "Crimson Text"),
+                                        face = axis_face, family = "Crimson Pro"),
             axis.title.x = element_text(hjust = 1, size = 10, face = axis_face,
-                                        family = "Crimson Text",
+                                        family = "Crimson Pro",
                                         margin = ggplot2::margin(t = 10)),
             legend.position = "bottom",
             legend.title = element_text(face = "bold",
-                                        family = "Crimson Text"),
-            text = element_text(family = "Crimson Text")) +
+                                        family = "Crimson Pro"),
+            text = element_text(family = "Crimson Pro")) +
       theme(legend.spacing.x = unit(.1, "cm"),
             panel.spacing = grid::unit(1.5, "lines"))
   }
