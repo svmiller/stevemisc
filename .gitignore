@@ -14,4 +14,4 @@ Meta
 
 CRAN-RELEASE
 !.gitignore
-.Rproj
+~*.Rproj
