@@ -1,6 +1,5 @@
 !inst/doc
 
-stevemisc.Rproj
 .Rhistory
 .Rproj.user
 .DS_Store
@@ -14,4 +13,3 @@ Meta
 
 CRAN-RELEASE
 !.gitignore
-~*.Rproj
