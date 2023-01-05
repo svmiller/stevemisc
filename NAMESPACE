@@ -111,3 +111,7 @@ importFrom(stats, "nobs")
 
 importFrom("stats", "complete.cases", "update", "rexp")
 importFrom(tidyr, "unite")
+
+# This is for wls()
+
+importFrom("stats", "lm", "na.exclude")

@@ -33,7 +33,7 @@ theme_steve_font(axis_face = "italic", caption_face = "italic", font, ...)
 \code{theme_bw()} from \pkg{ggplot2}, but with some other tweaks. \code{theme_steve_web()} extends
 \code{theme_steve()} to add custom fonts, notably "Open Sans" and "Titillium Web". In all cases, these
 functions take a \pkg{ggplot2} plot and return another \pkg{ggplot2} plot, but with some cosmetic
-changes. \code{theme_steve_ms()} takes a \pkg{ggplot2} plot and overlays "Crimson Text" fonts, which is
+changes. \code{theme_steve_ms()} takes a \pkg{ggplot2} plot and overlays "Crimson Pro" fonts, which is
 the basis of the \code{cochineal} font package in \code{LaTeX}. \code{theme_steve_font()} takes a \pkg{ggplot2} plot and
 overlays a font of your choosing.
 }

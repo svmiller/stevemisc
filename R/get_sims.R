@@ -25,6 +25,7 @@
 #' @author Steven V. Miller
 #'
 #' @examples
+#' \dontrun{
 #' # Note: these models are dumb, but they illustrate how it works.
 #'
 #' M1 <- lm(mpg ~ hp, mtcars)
@@ -53,6 +54,7 @@
 #'
 #' # Random effects are not required here since we're passing over them.
 #' get_sims(M3, newdat, 100, 8675309)
+#' }
 #'
 #' @export
 #'

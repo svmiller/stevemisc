@@ -1,6 +1,7 @@
 # stevemisc 1.4.2
 
 - `theme_steve_ms()` now actually uses "Crimson Pro", and not "Crimson Text".
+- `wls()` does weighted least squares re-estimations of an OLS model.
 
 # stevemisc 1.4.1
 

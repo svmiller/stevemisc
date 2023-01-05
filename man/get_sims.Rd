@@ -34,6 +34,7 @@ which is typically what most people want anyway. Users who want to better incorp
 random intercepts or slope could find that support in the \pkg{merTools} package.
 }
 \examples{
+\dontrun{
 # Note: these models are dumb, but they illustrate how it works.
 
 M1 <- lm(mpg ~ hp, mtcars)
@@ -62,6 +63,7 @@ M3 <- lmer(mpg ~ hp + (1 | cyl), mtcars)
 
 # Random effects are not required here since we're passing over them.
 get_sims(M3, newdat, 100, 8675309)
+}
 
 }
 \author{
