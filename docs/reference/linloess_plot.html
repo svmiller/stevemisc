@@ -22,7 +22,7 @@ outliers that may need further consideration."><!-- mathjax --><script src="http
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
       </span>
     </div>
 
@@ -70,12 +70,17 @@ outliers that may need further consideration.</p>
     <h2>Arguments</h2>
     <dl><dt>mod</dt>
 <dd><p>a fitted OLS model</p></dd>
+
+
 <dt>...</dt>
 <dd><p>optional parameters, passed to the scatterplot (<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point()</a></code>) component of this function. Useful if you want to make the smoothers more legible against the points.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>linloess_plot()</code> returns a faceted scatterplot as a <span class="pkg">ggplot2</span> object. The linear smoother is in solid blue (with blue
+    
+
+<p><code>linloess_plot()</code> returns a faceted scatterplot as a <span class="pkg">ggplot2</span> object. The linear smoother is in solid blue (with blue
 standard error bands) and the LOESS smoother is a dashed black line (with gray/default standard error bands). You can add
 cosmetic features to it after the fact. The function may spit warnings to you related to the LOESS smoother, depending your data. I think
 these to be fine the extent to which this is really just a visual aid and an informal diagnostic for the linearity assumption.</p>
@@ -193,7 +198,7 @@ formula with the name ".y".</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

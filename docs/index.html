@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"stevemisc"</span><span class="op">)</span></code></pre></div>
 <p>You can install the development version of <code>{stevemisc}</code> from Github via the <a href="https://devtools.r-lib.org/" class="external-link">devtools</a> package. I suppose using the <a href="https://remotes.r-lib.org" class="external-link">remotes</a> package would work as well.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"svmiller/stevemisc"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"svmiller/stevemisc"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -96,7 +96,7 @@
 <code>carrec()</code>: A Port of <code>car::recode()</code>
 <a class="anchor" aria-label="anchor" href="#carrec-a-port-of-carrecode"></a>
 </h3>
-<p><code><a href="reference/carrec.html">carrec()</a></code> (phonetically: “car-wreck”) is a simple port of <code>car::recode()</code> that I put in this package because of various function clashes in the <a href="https://r-forge.r-project.org/projects/car/" class="external-link">car</a> package. For those who cut their teeth on Stata, this package offers Stata-like recoding features that are tough to find in the R programming language. It comes with a shortcut as well, <code><a href="reference/carrec.html">carr()</a></code>.</p>
+<p><code><a href="reference/carrec.html">carrec()</a></code> (phonetically: “car-wreck”) is a simple port of <code><a href="https://rdrr.io/pkg/car/man/recode.html" class="external-link">car::recode()</a></code> that I put in this package because of various function clashes in the <a href="https://r-forge.r-project.org/projects/car/" class="external-link">car</a> package. For those who cut their teeth on Stata, this package offers Stata-like recoding features that are tough to find in the R programming language. It comes with a shortcut as well, <code><a href="reference/carrec.html">carr()</a></code>.</p>
 <p>For example, assume the following vector that is some variable of interest on a 1-10 scale. You want to code the variables that are 6 and above to be 1 and code the variables of 1-5 to be 0. Here’s how you would do that.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span>
@@ -199,7 +199,7 @@
                 c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">.5</span><span class="op">)</span>,
                 d <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span><span class="fu">SQLite</span><span class="op">(</span><span class="op">)</span>, <span class="st">":memory:"</span><span class="op">)</span>
+<span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html" class="external-link">SQLite</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">":memory:"</span><span class="op">)</span>
 
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/copy_to.html" class="external-link">copy_to</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">A</span>, <span class="st">"A"</span>,
         temporary<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
@@ -371,7 +371,7 @@
 <code class="sourceCode R"><span class="co"># Note, this function does spam with some messages/warnings.</span>
 <span class="co"># You can disable that in a chunk, as I do here.</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/bib2df" class="external-link">bib2df</a></span><span class="op">)</span>
-<span class="fu"><a href="reference/print_refs.html">print_refs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/capture.output.html" class="external-link">capture.output</a></span><span class="op">(</span><span class="fu">df2bib</span><span class="op">(</span><span class="va">stevepubs</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="reference/print_refs.html">print_refs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/capture.output.html" class="external-link">capture.output</a></span><span class="op">(</span><span class="fu"><a href="https://docs.ropensci.org/bib2df/reference/df2bib.html" class="external-link">df2bib</a></span><span class="op">(</span><span class="va">stevepubs</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Curtis, K. Amber, and Steven V. Miller. 2021. "A (Supra)nationalist</span>
 <span class="co">#&gt; Personality? The Big Five's Effects on Political-Territorial</span>
 <span class="co">#&gt; Identification." \emph{European Union Politics} 22(2): 202--26.</span>
@@ -723,7 +723,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

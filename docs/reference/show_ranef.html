@@ -20,7 +20,7 @@ plots the random slope as another caterpillar plot (as another facet)"><!-- math
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
       </span>
     </div>
 
@@ -66,17 +66,24 @@ plots the random slope as another caterpillar plot (as another facet)</p>
     <h2>Arguments</h2>
     <dl><dt>model</dt>
 <dd><p>a fitted mixed model with random intercepts</p></dd>
+
+
 <dt>group</dt>
 <dd><p>What random intercept/slopes do you want to see as a caterpillar plot? Declare it as a character</p></dd>
+
+
 <dt>reorder</dt>
 <dd><p>optional argument. DEFAULT is TRUE, which ``re-orders'' the intercepts by the
 original value in the data. If FALSE, the ensuing caterpillar plot defaults to a default method of ordering
 the levels of the random effect by their estimated conditional mode.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>show_ranef()</code> returns a caterpillar plot of the random intercepts from a given
-mixed model. If <code>broom.mixed::augment()</code> can process it, this function should work just fine.</p>
+    
+
+<p><code>show_ranef()</code> returns a caterpillar plot of the random intercepts from a given
+mixed model. If <code><a href="https://generics.r-lib.org/reference/augment.html" class="external-link">broom.mixed::augment()</a></code> can process it, this function should work just fine.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -92,6 +99,7 @@ mixed model. If <code>broom.mixed::augment()</code> can process it, this functio
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: Matrix</span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">stevemisc</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sleepstudy</span><span class="op">)</span></span>
 <span class="r-in"></span>
@@ -115,7 +123,7 @@ mixed model. If <code>broom.mixed::augment()</code> can process it, this functio
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

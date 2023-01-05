@@ -27,7 +27,7 @@ other tidyverse functions that are vital to my workflow."><!-- mathjax --><scrip
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
       </span>
     </div>
 
@@ -63,7 +63,7 @@ other tidyverse functions that are vital to my workflow."><!-- mathjax --><scrip
 according to fairly simple recode specifications that former Stata users
 will appreciate. Yes, this is taken from John Fox's <code><a href="https://dplyr.tidyverse.org/reference/recode.html" class="external-link">recode()</a></code> unction in
 his <span class="pkg">car</span> package. I'm going with <code>carrec()</code> (i.e. shorthand for
-<code>car::recode()</code>, phonetically here: "car-wreck") for this package, with
+<code><a href="https://rdrr.io/pkg/car/man/recode.html" class="external-link">car::recode()</a></code>, phonetically here: "car-wreck") for this package, with
 an additional shorthand of <code>carr</code> that does the same thing.</p>
 <p>The goal here is to minimize the number of function clashes with
 multiple packages that I use in my workflow. For example: <span class="pkg">car</span>,
@@ -82,25 +82,38 @@ other <span class="pkg">tidyverse</span> functions that are vital to my workflow
     <h2>Arguments</h2>
     <dl><dt>var</dt>
 <dd><p>numeric vector, character vector, or factor</p></dd>
+
+
 <dt>recodes</dt>
 <dd><p>character string of recode specifications: see below, but
 former Stata users will find this stuff familiar</p></dd>
+
+
 <dt>as_fac</dt>
 <dd><p>return a factor; default is <code>TRUE</code> if <code>var</code> is a
 factor,  <code>FALSE</code> otherwise</p></dd>
+
+
 <dt>as_num</dt>
 <dd><p>if <code>TRUE</code> (which is the default) and <code>as.factor</code> is <code>FALSE</code>,
 the result will be coerced to a numeric if all values in the result are numeric.
 This should be what you want in 99% of applications for regression analysis.</p></dd>
+
+
 <dt>levels</dt>
 <dd><p>an optional argument specifying the order of the levels in the
 returned factor; the default is to use the sort order of the level names.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>optional, only to make the shortcut (<code>carr()</code>) work</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>carrec()</code> returns a vector, recoded to the specifications of the
+    
+
+<p><code>carrec()</code> returns a vector, recoded to the specifications of the
 user. <code>carr()</code> is a simple shortcut for<code>carrec()</code>.</p>
     </div>
     <div id="details">
@@ -140,7 +153,7 @@ carried over to the result. NA is allowed on input and output.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -23,7 +23,7 @@ imbalanced.'><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
       </span>
     </div>
 
@@ -72,22 +72,35 @@ imbalanced.</p>
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>the data set with which you are working</p></dd>
+
+
 <dt>event</dt>
 <dd><p>some event (0, 1) for which you want spells</p></dd>
+
+
 <dt>tvar</dt>
 <dd><p>the time variable (e.g. a year)</p></dd>
+
+
 <dt>csunit</dt>
 <dd><p>the cross-sectional unit (e.g. a dyad or leader)</p></dd>
+
+
 <dt>time_type</dt>
 <dd><p>what type of time-unit are the data? Right now, this will only work with years but support for months and days are forthcoming. Don't do anything with this argument just yet.</p></dd>
+
+
 <dt>ongoing</dt>
 <dd><p>If <code>TRUE</code>, successive 1s are considered ongoing events
 and treated as <code>NA</code> after the first 1. If <code>FALSE</code>, successive 1s
 are all treated as failures. Defaults to <code>FALSE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>ps_spells()</code> takes a data frame and returns the data frame with a new variable
+    
+
+<p><code>ps_spells()</code> takes a data frame and returns the data frame with a new variable
 named <code>spell</code>.</p>
     </div>
     <div id="details">
@@ -132,7 +145,7 @@ it here.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

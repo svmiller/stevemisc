@@ -19,7 +19,7 @@ from the model and showing where they may fall outside 95% error bounds.'><!-- m
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
       </span>
     </div>
 
@@ -64,22 +64,31 @@ from the model and showing where they may fall outside 95% error bounds.</p>
     <h2>Arguments</h2>
     <dl><dt>model</dt>
 <dd><p>a fitted GLM model, assuming link is "logit"</p></dd>
+
+
 <dt>nbins</dt>
 <dd><p>number of "bins" for the calculation. Defaults to the rounded
 square root of the number of observations in the model in the absence of a
 user-specified override here.</p></dd>
+
+
 <dt>plot</dt>
 <dd><p>logical, defaults to TRUE. If TRUE, the function plots the
 binned residuals. If FALSE, the function returns a data frame of the
 binned residuals.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>bindred_plot()</code> returns a plot as a <span class="pkg">ggplot2</span> object, as
+    
+
+<p><code>bindred_plot()</code> returns a plot as a <span class="pkg">ggplot2</span> object, as
 a default. The <em>y</em>-axis is the mean residuals of the particular bin. The
 <em>x</em>-axis is the mean fitted values from the bin. Error bounds are 95%.
-A LOESS smoother is overlaid as a solid blue line.
-If <code>plot = FALSE</code>, the function returns a data frame of the binned residuals
+A LOESS smoother is overlaid as a solid blue line.</p>
+
+
+<p>If <code>plot = FALSE</code>, the function returns a data frame of the binned residuals
 and a summary about whether the residuals are in the error bounds.</p>
     </div>
     <div id="details">
@@ -126,7 +135,7 @@ the model. Be smart about what you want here.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
