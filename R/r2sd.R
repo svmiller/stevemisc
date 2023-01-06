@@ -18,7 +18,6 @@
 #' So, my \code{r2sd} function doesn't have any of the fancier if-else statements that Gelman's \code{rescale}
 #' function has.
 #'
-#' @param data a data frame
 #' @param x a vector, likely in your data frame
 #' @param na what to do with NAs in the vector. Defaults to TRUE (i.e. passes over the missing observations)
 #'
@@ -38,19 +37,4 @@
 
 r2sd <- function(x, na = TRUE) {
     return((x - mean(x, na.rm = na)) / (2 * sd(x, na.rm = na)))
-}
-
-
-#' @rdname r2sd
-#' @export
-
-r2sd_at <- function(data, x) {
-
-  data %>%
-  mutate_at(vars(all_of(x)),
-            list(z = ~r2sd(.))) %>%
-    rename_at(vars(contains("_z")),
-              ~paste("z", gsub("_z", "", .), sep = "_") ) -> data
-  return(data)
-
 }

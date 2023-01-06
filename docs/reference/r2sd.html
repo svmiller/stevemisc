@@ -59,9 +59,7 @@ new vectors and renames the vectors to each have a prefix of <code>z_</code>.</p
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">r2sd</span><span class="op">(</span><span class="va">x</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">r2sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">r2sd</span><span class="op">(</span><span class="va">x</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -72,10 +70,6 @@ new vectors and renames the vectors to each have a prefix of <code>z_</code>.</p
 
 <dt>na</dt>
 <dd><p>what to do with NAs in the vector. Defaults to TRUE (i.e. passes over the missing observations)</p></dd>
-
-
-<dt>data</dt>
-<dd><p>a data frame</p></dd>
 
 </dl></div>
     <div id="value">
@@ -126,7 +120,7 @@ function has.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [91]  0.59476649 -0.18209050  0.70475613  0.33387888  0.25281224 -0.22382176</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [97]  0.29469543  0.21196985 -0.64322852 -0.62643329</span>
 <span class="r-in"></span>
-<span class="r-in"><span class="fu">r2sd_at</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"hp"</span>, <span class="st">"disp"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="at.html">r2sd_at</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"hp"</span>, <span class="st">"disp"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span>

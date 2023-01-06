@@ -2,19 +2,14 @@
 % Please edit documentation in R/r2sd.R
 \name{r2sd}
 \alias{r2sd}
-\alias{r2sd_at}
 \title{Scale a vector (or vectors) by two standard deviations}
 \usage{
 r2sd(x, na = TRUE)
-
-r2sd_at(data, x)
 }
 \arguments{
 \item{x}{a vector, likely in your data frame}
 
 \item{na}{what to do with NAs in the vector. Defaults to TRUE (i.e. passes over the missing observations)}
-
-\item{data}{a data frame}
 }
 \value{
 The function returns a numeric vector rescaled with a mean of 0 and a

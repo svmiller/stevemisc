@@ -1,5 +1,6 @@
 # stevemisc 1.4.2
 
+- Package now contains more scoped helper verbs---the so-called functions. These functions, like `diff_at()`, are self-contained in one R Documentation file.
 - `theme_steve_ms()` now actually uses "Crimson Pro", and not "Crimson Text".
 - `wls()` does weighted least squares re-estimations of an OLS model.
 
