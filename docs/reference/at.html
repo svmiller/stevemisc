@@ -59,15 +59,17 @@ are multiple and explained in the details section below.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">center_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">center_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"c"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="fu">diff_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, l <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="fu">diff_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, l <span class="op">=</span> <span class="fl">1</span>, prefix <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span>
 
-<span class="fu">r1sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu">group_mean_center_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, mean_prefix <span class="op">=</span> <span class="st">"mean"</span>, prefix <span class="op">=</span> <span class="st">"b"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="fu">r2sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu">mean_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"mean"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="fu">within_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<span class="fu">r1sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"s"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="fu">r2sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"z"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -80,6 +82,11 @@ are multiple and explained in the details section below.</p>
 <dd><p>a vector, likely in your data frame</p></dd>
 
 
+<dt>prefix</dt>
+<dd><p>Allows the user to rename the prefix of the new variables.  Each
+function has defaults (see details section).</p></dd>
+
+
 <dt>na</dt>
 <dd><p>what to do with NAs in the vector. Defaults to TRUE
 (i.e. passes over the missing observations). Not applicable to <code>diff_at</code>.</p></dd>
@@ -88,6 +95,12 @@ are multiple and explained in the details section below.</p>
 <dt>l</dt>
 <dd><p>The order of lags for calculating differences in <code>diff_at</code>.
 Applicable only to <code>diff_at</code>.</p></dd>
+
+
+<dt>mean_prefix</dt>
+<dd><p>Applicable only to <code>group_mean_center_at</code>. Specifies
+the prefix of the (assumed) total population mean variables. Default is "mean",
+though the user can change this as they see fit.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -102,294 +115,182 @@ corresponding with the action performed on them.</p>
     <h2>Details</h2>
     <p><code>center_at</code> is a wrapper for <code>mutate_at</code> and <code>rename_at</code> from
 <span class="pkg">dplyr</span>. It takes supplied vectors and effectively centers them from the
-mean. It then renames these new variables to have a prefix of <code>c_</code>. It
-is best used <em>without</em> a <code>group_by</code> preceding it. The underlying code is
-identical to <code>within_at</code> in this same package, though it results in new
-variables with a different prefix.</p>
+mean. It then renames these new variables to have a prefix of <code>c_</code>. The
+default prefix ("c") can be changed by way of an argument in the function.</p>
+<p><code>diff_at</code> is a wrapper for <code>mutate_at</code> and <code>rename_at</code> from
+<span class="pkg">dplyr</span>. It takes supplied vectors and creates differences from the
+previous value recorded above it. It then renames these new variables to have
+a prefix of <code>d_</code> (in the case of a first difference), or something like
+<code>d2_</code> in the case of second differences, or <code>d3_</code> in the case of
+third differences (and so on). The exact prefix depends on the <code>l</code>
+argument, which communicates the order of lags you want. It defaults to 1. The
+default prefix ("d") can be changed by way of an argument in the function.</p>
+<p><code>group_mean_center_at</code> is a wrapper for <code>mutate</code> and <code>across</code>
+in <span class="pkg">dplyr</span>. It takes supplied vectors and centers an (assumed) group mean
+of the variables from an (assumed) total population mean of the variables
+provided to it. It then returns the new variables with a prefix, whose default
+is <code>b_</code>. This prefix communicates, if you will, a kind of "between"
+variable in the panel model context, in juxtaposition to "within" variables
+in the panel model context.</p>
+<p><code>mean_at</code> is a wrapper for <code>mutate_at</code> and <code>rename_at</code> from
+<span class="pkg">dplyr</span>. It takes supplied vectors and creates a variable communicating
+the mean of the variable. It then renames these new variables to have a
+prefix of <code>mean_</code>. This default prefix ("mean") can be changed by way of
+an argument in the function.</p>
 <p><code>r1sd_at</code> is a wrapper for <code>mutate_at</code> and <code>rename_at</code> from
 <span class="pkg">dplyr</span>. It both rescales the supplied vectors to new vectors and renames
 the vectors to each have a prefix of <code>s_</code>. Note the rescaling here is
-just by one standard deviation and not two.</p>
+just by one standard deviation and not two. The default prefix ("s") can be
+changed by way of an argument in the function.</p>
 <p><code>r2sd_at</code> is a wrapper for <code>mutate_at</code> and <code>rename_at</code> from
 <span class="pkg">dplyr</span>. It both rescales the supplied vectors to new vectors and renames
 the vectors to each have a prefix of <code>z_</code>. Note the rescaling here is by
-two standard deviations and not one.</p>
-<p><code>within_at</code> is a wrapper for <code>mutate_at</code> and <code>rename_at</code> from
-<span class="pkg">dplyr</span>. It takes supplied vectors and effectively centers them from the
-mean. It then renames these new variables to have a prefix of <code>w_</code>. It
-is best used with a <code>group_by</code> preceding it on some kind of "subject",
-with an eye toward ultimately including them as covariates in a panel model
-to isolate so-called "within" effects.</p>
+two standard deviations and not one. The default prefix ("z") can be
+changed by way of an argument in the function.</p>
+<p>These functions will fail in the absence of a character vector of a length
+of one. In which case, you should think about using some other <span class="pkg">dplyr</span>
+verb on its own.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="fu">center_at</span><span class="op">(</span><span class="va">USArrests</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Murder"</span>, <span class="st">"Assault"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                Murder Assault UrbanPop Rape c_Murder c_Assault</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Alabama          13.2     236       58 21.2    5.412     65.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Alaska           10.0     263       48 44.5    2.212     92.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Arizona           8.1     294       80 31.0    0.312    123.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Arkansas          8.8     190       50 19.5    1.012     19.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> California        9.0     276       91 40.6    1.212    105.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Colorado          7.9     204       78 38.7    0.112     33.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Connecticut       3.3     110       77 11.1   -4.488    -60.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Delaware          5.9     238       72 15.8   -1.888     67.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Florida          15.4     335       80 31.9    7.612    164.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Georgia          17.4     211       60 25.8    9.612     40.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Hawaii            5.3      46       83 20.2   -2.488   -124.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Idaho             2.6     120       54 14.2   -5.188    -50.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Illinois         10.4     249       83 24.0    2.612     78.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Indiana           7.2     113       65 21.0   -0.588    -57.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iowa              2.2      56       57 11.3   -5.588   -114.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Kansas            6.0     115       66 18.0   -1.788    -55.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Kentucky          9.7     109       52 16.3    1.912    -61.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Louisiana        15.4     249       66 22.2    7.612     78.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Maine             2.1      83       51  7.8   -5.688    -87.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Maryland         11.3     300       67 27.8    3.512    129.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Massachusetts     4.4     149       85 16.3   -3.388    -21.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Michigan         12.1     255       74 35.1    4.312     84.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Minnesota         2.7      72       66 14.9   -5.088    -98.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mississippi      16.1     259       44 17.1    8.312     88.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Missouri          9.0     178       70 28.2    1.212      7.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Montana           6.0     109       53 16.4   -1.788    -61.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Nebraska          4.3     102       62 16.5   -3.488    -68.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Nevada           12.2     252       81 46.0    4.412     81.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Hampshire     2.1      57       56  9.5   -5.688   -113.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Jersey        7.4     159       89 18.8   -0.388    -11.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Mexico       11.4     285       70 32.1    3.612    114.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New York         11.1     254       86 26.1    3.312     83.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> North Carolina   13.0     337       45 16.1    5.212    166.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> North Dakota      0.8      45       44  7.3   -6.988   -125.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ohio              7.3     120       75 21.4   -0.488    -50.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Oklahoma          6.6     151       68 20.0   -1.188    -19.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Oregon            4.9     159       67 29.3   -2.888    -11.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Pennsylvania      6.3     106       72 14.9   -1.488    -64.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rhode Island      3.4     174       87  8.3   -4.388      3.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> South Carolina   14.4     279       48 22.5    6.612    108.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> South Dakota      3.8      86       45 12.8   -3.988    -84.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Tennessee        13.2     188       59 26.9    5.412     17.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Texas            12.7     201       80 25.5    4.912     30.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Utah              3.2     120       80 22.9   -4.588    -50.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Vermont           2.2      48       32 11.2   -5.588   -122.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Virginia          8.5     156       63 20.7    0.712    -14.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Washington        4.0     145       73 26.2   -3.788    -25.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> West Virginia     5.7      81       39  9.3   -2.088    -89.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wisconsin         2.6      53       66 10.8   -5.188   -117.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wyoming           6.8     161       60 15.6   -0.988     -9.76</span>
+<span class="r-in"><span class="va">Example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>category <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span class="r-in">                                   <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span class="r-in">                                   <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"C"</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
+<span class="r-in">                      x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="fu">diff_at</span><span class="op">(</span><span class="va">USArrests</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Murder"</span>, <span class="st">"Assault"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                Murder Assault UrbanPop Rape d_Murder d_Assault</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Alabama          13.2     236       58 21.2       NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Alaska           10.0     263       48 44.5     -3.2        27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Arizona           8.1     294       80 31.0     -1.9        31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Arkansas          8.8     190       50 19.5      0.7      -104</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> California        9.0     276       91 40.6      0.2        86</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Colorado          7.9     204       78 38.7     -1.1       -72</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Connecticut       3.3     110       77 11.1     -4.6       -94</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Delaware          5.9     238       72 15.8      2.6       128</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Florida          15.4     335       80 31.9      9.5        97</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Georgia          17.4     211       60 25.8      2.0      -124</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Hawaii            5.3      46       83 20.2    -12.1      -165</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Idaho             2.6     120       54 14.2     -2.7        74</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Illinois         10.4     249       83 24.0      7.8       129</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Indiana           7.2     113       65 21.0     -3.2      -136</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iowa              2.2      56       57 11.3     -5.0       -57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Kansas            6.0     115       66 18.0      3.8        59</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Kentucky          9.7     109       52 16.3      3.7        -6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Louisiana        15.4     249       66 22.2      5.7       140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Maine             2.1      83       51  7.8    -13.3      -166</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Maryland         11.3     300       67 27.8      9.2       217</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Massachusetts     4.4     149       85 16.3     -6.9      -151</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Michigan         12.1     255       74 35.1      7.7       106</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Minnesota         2.7      72       66 14.9     -9.4      -183</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mississippi      16.1     259       44 17.1     13.4       187</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Missouri          9.0     178       70 28.2     -7.1       -81</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Montana           6.0     109       53 16.4     -3.0       -69</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Nebraska          4.3     102       62 16.5     -1.7        -7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Nevada           12.2     252       81 46.0      7.9       150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Hampshire     2.1      57       56  9.5    -10.1      -195</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Jersey        7.4     159       89 18.8      5.3       102</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Mexico       11.4     285       70 32.1      4.0       126</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New York         11.1     254       86 26.1     -0.3       -31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> North Carolina   13.0     337       45 16.1      1.9        83</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> North Dakota      0.8      45       44  7.3    -12.2      -292</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ohio              7.3     120       75 21.4      6.5        75</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Oklahoma          6.6     151       68 20.0     -0.7        31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Oregon            4.9     159       67 29.3     -1.7         8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Pennsylvania      6.3     106       72 14.9      1.4       -53</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rhode Island      3.4     174       87  8.3     -2.9        68</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> South Carolina   14.4     279       48 22.5     11.0       105</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> South Dakota      3.8      86       45 12.8    -10.6      -193</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Tennessee        13.2     188       59 26.9      9.4       102</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Texas            12.7     201       80 25.5     -0.5        13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Utah              3.2     120       80 22.9     -9.5       -81</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Vermont           2.2      48       32 11.2     -1.0       -72</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Virginia          8.5     156       63 20.7      6.3       108</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Washington        4.0     145       73 26.2     -4.5       -11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> West Virginia     5.7      81       39  9.3      1.7       -64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wisconsin         2.6      53       66 10.8     -3.1       -28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wyoming           6.8     161       60 15.6      4.2       108</span>
+<span class="r-in"><span class="fu">center_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category           x          y         c_x         c_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.527996932  0.7511701  0.06548559  0.96366745</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.108754827 -0.1140987 -0.35375651  0.09839867</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.367758927 -0.9281261 -0.09475241 -0.71562874</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.156813549 -0.9328369 -0.30569779 -0.72033962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.724172281 -0.4621337  0.26166094 -0.24963636</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.141979856 -0.7497709 -0.32053148 -0.53727362</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.356398022 -0.6013288 -0.10611332 -0.38883143</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.557475245  0.1242021  0.09496390  0.33669938</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.006035023 -0.2071348 -0.45647632  0.00536249</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.563462667 -1.4801478  0.10095133 -1.26765048</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.807182184  0.1080437  0.34467084  0.32054099</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.388162453  0.3945454 -0.07434889  0.60704273</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.516811815 -0.3752977  0.05430048 -0.16280036</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.833782667  1.1758299  0.37127133  1.38832718</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.880883655  0.1096244  0.41837231  0.32212171</span>
 <span class="r-in"></span>
-<span class="r-in"><span class="fu">r1sd_at</span><span class="op">(</span><span class="va">USArrests</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Murder"</span>, <span class="st">"Assault"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                Murder Assault UrbanPop Rape    s_Murder   s_Assault</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Alabama          13.2     236       58 21.2  1.24256408  0.78283935</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Alaska           10.0     263       48 44.5  0.50786248  1.10682252</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Arizona           8.1     294       80 31.0  0.07163341  1.47880321</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Arkansas          8.8     190       50 19.5  0.23234938  0.23086801</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> California        9.0     276       91 40.6  0.27826823  1.26281442</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Colorado          7.9     204       78 38.7  0.02571456  0.39885929</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Connecticut       3.3     110       77 11.1 -1.03041900 -0.72908214</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Delaware          5.9     238       72 15.8 -0.43347395  0.80683810</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Florida          15.4     335       80 31.9  1.74767144  1.97077766</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Georgia          17.4     211       60 25.8  2.20685994  0.48285493</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Hawaii            5.3      46       83 20.2 -0.57123050 -1.49704226</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Idaho             2.6     120       54 14.2 -1.19113497 -0.60908837</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Illinois         10.4     249       83 24.0  0.59970018  0.93883125</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Indiana           7.2     113       65 21.0 -0.13500142 -0.69308401</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iowa              2.2      56       57 11.3 -1.28297267 -1.37704849</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Kansas            6.0     115       66 18.0 -0.41051452 -0.66908525</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Kentucky          9.7     109       52 16.3  0.43898421 -0.74108152</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Louisiana        15.4     249       66 22.2  1.74767144  0.93883125</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Maine             2.1      83       51  7.8 -1.30593210 -1.05306531</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Maryland         11.3     300       67 27.8  0.80633501  1.55079947</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Massachusetts     4.4     149       85 16.3 -0.77786532 -0.26110644</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Michigan         12.1     255       74 35.1  0.99001041  1.01082751</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Minnesota         2.7      72       66 14.9 -1.16817555 -1.18505846</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mississippi      16.1     259       44 17.1  1.90838741  1.05882502</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Missouri          9.0     178       70 28.2  0.27826823  0.08687549</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Montana           6.0     109       53 16.4 -0.41051452 -0.74108152</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Nebraska          4.3     102       62 16.5 -0.80082475 -0.82507715</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Nevada           12.2     252       81 46.0  1.01296983  0.97482938</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Hampshire     2.1      57       56  9.5 -1.30593210 -1.36504911</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Jersey        7.4     159       89 18.8 -0.08908257 -0.14111267</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Mexico       11.4     285       70 32.1  0.82929443  1.37080881</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New York         11.1     254       86 26.1  0.76041616  0.99882813</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> North Carolina   13.0     337       45 16.1  1.19664523  1.99477641</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> North Dakota      0.8      45       44  7.3 -1.60440462 -1.50904164</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ohio              7.3     120       75 21.4 -0.11204199 -0.60908837</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Oklahoma          6.6     151       68 20.0 -0.27275797 -0.23710769</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Oregon            4.9     159       67 29.3 -0.66306820 -0.14111267</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Pennsylvania      6.3     106       72 14.9 -0.34163624 -0.77707965</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rhode Island      3.4     174       87  8.3 -1.00745957  0.03887798</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> South Carolina   14.4     279       48 22.5  1.51807718  1.29881255</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> South Dakota      3.8      86       45 12.8 -0.91562187 -1.01706718</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Tennessee        13.2     188       59 26.9  1.24256408  0.20686926</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Texas            12.7     201       80 25.5  1.12776696  0.36286116</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Utah              3.2     120       80 22.9 -1.05337842 -0.60908837</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Vermont           2.2      48       32 11.2 -1.28297267 -1.47304350</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Virginia          8.5     156       63 20.7  0.16347111 -0.17711080</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Washington        4.0     145       73 26.2 -0.86970302 -0.30910395</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> West Virginia     5.7      81       39  9.3 -0.47939280 -1.07706407</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wisconsin         2.6      53       66 10.8 -1.19113497 -1.41304662</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wyoming           6.8     161       60 15.6 -0.22683912 -0.11711392</span>
+<span class="r-in"><span class="fu">diff_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category           x          y         d_x          d_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.527996932  0.7511701          NA           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.108754827 -0.1140987 -0.41924210 -0.865268772</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.367758927 -0.9281261  0.25900410 -0.814027410</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.156813549 -0.9328369 -0.21094538 -0.004710879</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.724172281 -0.4621337  0.56735873  0.470703259</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.141979856 -0.7497709 -0.58219242 -0.287637264</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.356398022 -0.6013288  0.21441817  0.148442187</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.557475245  0.1242021  0.20107722  0.725530817</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.006035023 -0.2071348 -0.55144022 -0.331336893</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.563462667 -1.4801478  0.55742764 -1.273012966</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.807182184  0.1080437  0.24371952  1.588191466</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.388162453  0.3945454 -0.41901973  0.286501734</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.516811815 -0.3752977  0.12864936 -0.769843090</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.833782667  1.1758299  0.31697085  1.551127546</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.880883655  0.1096244  0.04710099 -1.066205474</span>
 <span class="r-in"></span>
-<span class="r-in"><span class="fu">r2sd_at</span><span class="op">(</span><span class="va">USArrests</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Murder"</span>, <span class="st">"Assault"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                Murder Assault UrbanPop Rape    z_Murder   z_Assault</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Alabama          13.2     236       58 21.2  0.62128204  0.39141967</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Alaska           10.0     263       48 44.5  0.25393124  0.55341126</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Arizona           8.1     294       80 31.0  0.03581670  0.73940160</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Arkansas          8.8     190       50 19.5  0.11617469  0.11543401</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> California        9.0     276       91 40.6  0.13913412  0.63140721</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Colorado          7.9     204       78 38.7  0.01285728  0.19942964</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Connecticut       3.3     110       77 11.1 -0.51520950 -0.36454107</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Delaware          5.9     238       72 15.8 -0.21673697  0.40341905</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Florida          15.4     335       80 31.9  0.87383572  0.98538883</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Georgia          17.4     211       60 25.8  1.10342997  0.24142746</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Hawaii            5.3      46       83 20.2 -0.28561525 -0.74852113</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Idaho             2.6     120       54 14.2 -0.59556749 -0.30454418</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Illinois         10.4     249       83 24.0  0.29985009  0.46941562</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Indiana           7.2     113       65 21.0 -0.06750071 -0.34654200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iowa              2.2      56       57 11.3 -0.64148634 -0.68852424</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Kansas            6.0     115       66 18.0 -0.20525726 -0.33454263</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Kentucky          9.7     109       52 16.3  0.21949210 -0.37054076</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Louisiana        15.4     249       66 22.2  0.87383572  0.46941562</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Maine             2.1      83       51  7.8 -0.65296605 -0.52653266</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Maryland         11.3     300       67 27.8  0.40316750  0.77539973</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Massachusetts     4.4     149       85 16.3 -0.38893266 -0.13055322</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Michigan         12.1     255       74 35.1  0.49500520  0.50541375</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Minnesota         2.7      72       66 14.9 -0.58408777 -0.59252923</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mississippi      16.1     259       44 17.1  0.95419371  0.52941251</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Missouri          9.0     178       70 28.2  0.13913412  0.04343774</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Montana           6.0     109       53 16.4 -0.20525726 -0.37054076</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Nebraska          4.3     102       62 16.5 -0.40041237 -0.41253858</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Nevada           12.2     252       81 46.0  0.50648492  0.48741469</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Hampshire     2.1      57       56  9.5 -0.65296605 -0.68252456</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Jersey        7.4     159       89 18.8 -0.04454128 -0.07055634</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Mexico       11.4     285       70 32.1  0.41464722  0.68540441</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New York         11.1     254       86 26.1  0.38020808  0.49941407</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> North Carolina   13.0     337       45 16.1  0.59832262  0.99738821</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> North Dakota      0.8      45       44  7.3 -0.80220231 -0.75452082</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ohio              7.3     120       75 21.4 -0.05602100 -0.30454418</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Oklahoma          6.6     151       68 20.0 -0.13637898 -0.11855384</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Oregon            4.9     159       67 29.3 -0.33153410 -0.07055634</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Pennsylvania      6.3     106       72 14.9 -0.17081812 -0.38853982</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rhode Island      3.4     174       87  8.3 -0.50372979  0.01943899</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> South Carolina   14.4     279       48 22.5  0.75903859  0.64940628</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> South Dakota      3.8      86       45 12.8 -0.45781094 -0.50853359</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Tennessee        13.2     188       59 26.9  0.62128204  0.10343463</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Texas            12.7     201       80 25.5  0.56388348  0.18143058</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Utah              3.2     120       80 22.9 -0.52668921 -0.30454418</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Vermont           2.2      48       32 11.2 -0.64148634 -0.73652175</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Virginia          8.5     156       63 20.7  0.08173555 -0.08855540</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Washington        4.0     145       73 26.2 -0.43485151 -0.15455197</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> West Virginia     5.7      81       39  9.3 -0.23969640 -0.53853203</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wisconsin         2.6      53       66 10.8 -0.59556749 -0.70652331</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wyoming           6.8     161       60 15.6 -0.11341956 -0.05855696</span>
+<span class="r-in"><span class="fu">diff_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span>, l<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category           x          y        d3_x        d3_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.527996932  0.7511701          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.108754827 -0.1140987          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.367758927 -0.9281261          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.156813549 -0.9328369 -0.37118338 -1.68400706</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.724172281 -0.4621337  0.61541745 -0.34803503</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.141979856 -0.7497709 -0.22577907  0.17835512</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.356398022 -0.6013288  0.19958447  0.33150818</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.557475245  0.1242021 -0.16669704  0.58633574</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.006035023 -0.2071348 -0.13594483  0.54263611</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.563462667 -1.4801478  0.20706465 -0.87881904</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.807182184  0.1080437  0.24970694 -0.01615839</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.388162453  0.3945454  0.38212743  0.60168023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.516811815 -0.3752977 -0.04665085  1.10485011</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.833782667  1.1758299  0.02660048  1.06778619</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.880883655  0.1096244  0.49272120 -0.28492102</span>
 <span class="r-in"></span>
-<span class="r-in"><span class="co"># Note: best used with a group_by() preceding it.</span></span>
-<span class="r-in"><span class="fu">within_at</span><span class="op">(</span><span class="va">USArrests</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Murder"</span>, <span class="st">"Assault"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                Murder Assault UrbanPop Rape w_Murder w_Assault</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Alabama          13.2     236       58 21.2    5.412     65.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Alaska           10.0     263       48 44.5    2.212     92.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Arizona           8.1     294       80 31.0    0.312    123.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Arkansas          8.8     190       50 19.5    1.012     19.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> California        9.0     276       91 40.6    1.212    105.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Colorado          7.9     204       78 38.7    0.112     33.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Connecticut       3.3     110       77 11.1   -4.488    -60.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Delaware          5.9     238       72 15.8   -1.888     67.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Florida          15.4     335       80 31.9    7.612    164.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Georgia          17.4     211       60 25.8    9.612     40.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Hawaii            5.3      46       83 20.2   -2.488   -124.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Idaho             2.6     120       54 14.2   -5.188    -50.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Illinois         10.4     249       83 24.0    2.612     78.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Indiana           7.2     113       65 21.0   -0.588    -57.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iowa              2.2      56       57 11.3   -5.588   -114.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Kansas            6.0     115       66 18.0   -1.788    -55.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Kentucky          9.7     109       52 16.3    1.912    -61.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Louisiana        15.4     249       66 22.2    7.612     78.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Maine             2.1      83       51  7.8   -5.688    -87.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Maryland         11.3     300       67 27.8    3.512    129.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Massachusetts     4.4     149       85 16.3   -3.388    -21.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Michigan         12.1     255       74 35.1    4.312     84.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Minnesota         2.7      72       66 14.9   -5.088    -98.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mississippi      16.1     259       44 17.1    8.312     88.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Missouri          9.0     178       70 28.2    1.212      7.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Montana           6.0     109       53 16.4   -1.788    -61.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Nebraska          4.3     102       62 16.5   -3.488    -68.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Nevada           12.2     252       81 46.0    4.412     81.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Hampshire     2.1      57       56  9.5   -5.688   -113.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Jersey        7.4     159       89 18.8   -0.388    -11.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New Mexico       11.4     285       70 32.1    3.612    114.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New York         11.1     254       86 26.1    3.312     83.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> North Carolina   13.0     337       45 16.1    5.212    166.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> North Dakota      0.8      45       44  7.3   -6.988   -125.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ohio              7.3     120       75 21.4   -0.488    -50.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Oklahoma          6.6     151       68 20.0   -1.188    -19.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Oregon            4.9     159       67 29.3   -2.888    -11.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Pennsylvania      6.3     106       72 14.9   -1.488    -64.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rhode Island      3.4     174       87  8.3   -4.388      3.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> South Carolina   14.4     279       48 22.5    6.612    108.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> South Dakota      3.8      86       45 12.8   -3.988    -84.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Tennessee        13.2     188       59 26.9    5.412     17.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Texas            12.7     201       80 25.5    4.912     30.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Utah              3.2     120       80 22.9   -4.588    -50.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Vermont           2.2      48       32 11.2   -5.588   -122.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Virginia          8.5     156       63 20.7    0.712    -14.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Washington        4.0     145       73 26.2   -3.788    -25.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> West Virginia     5.7      81       39  9.3   -2.088    -89.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wisconsin         2.6      53       66 10.8   -5.188   -117.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wyoming           6.8     161       60 15.6   -0.988     -9.76</span>
+<span class="r-in"><span class="fu">mean_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category           x          y    mean_x     mean_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.527996932  0.7511701 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.108754827 -0.1140987 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.367758927 -0.9281261 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.156813549 -0.9328369 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.724172281 -0.4621337 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.141979856 -0.7497709 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.356398022 -0.6013288 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.557475245  0.1242021 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.006035023 -0.2071348 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.563462667 -1.4801478 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.807182184  0.1080437 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.388162453  0.3945454 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.516811815 -0.3752977 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.833782667  1.1758299 0.4625113 -0.2124973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.880883655  0.1096244 0.4625113 -0.2124973</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">group_mean_center_at</span><span class="op">(</span><span class="fu">mean_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The absence of a grouping factor means you're going to be subtracting a mean from itself. It's up to you if you want to do that. You probably didn't want that, but I did it anyway. I'm just bringing that to your attention.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category           x          y    mean_x     mean_y b_x b_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.527996932  0.7511701 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.108754827 -0.1140987 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.367758927 -0.9281261 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.156813549 -0.9328369 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.724172281 -0.4621337 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.141979856 -0.7497709 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.356398022 -0.6013288 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.557475245  0.1242021 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.006035023 -0.2071348 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.563462667 -1.4801478 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.807182184  0.1080437 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.388162453  0.3945454 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.516811815 -0.3752977 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.833782667  1.1758299 0.4625113 -0.2124973   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.880883655  0.1096244 0.4625113 -0.2124973   0   0</span>
+<span class="r-in"><span class="co"># ^ Alternatively, a better way:</span></span>
+<span class="r-in"><span class="co"># Example %&gt;%</span></span>
+<span class="r-in"><span class="co">#   mean_at(c("x", "y")) %&gt;%</span></span>
+<span class="r-in"><span class="co">#   group_by(category) %&gt;%</span></span>
+<span class="r-in"><span class="co">#   group_mean_center_at(c("x", "y"))</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">r1sd_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category           x          y        s_x          s_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.527996932  0.7511701  0.2355505  1.390849179</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.108754827 -0.1140987 -1.2724560  0.142017577</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.367758927 -0.9281261 -0.3408228 -1.032858009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.156813549 -0.9328369 -1.0995896 -1.039657162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.724172281 -0.4621337  0.9411898 -0.360297032</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.141979856 -0.7497709 -1.1529461 -0.775440300</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.356398022 -0.6013288 -0.3816877 -0.561195547</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.557475245  0.1242021  0.3415835  0.485954011</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.006035023 -0.2071348 -1.6419373  0.007739615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.563462667 -1.4801478  0.3631202 -1.829584085</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.807182184  0.1080437  1.2397750  0.462632806</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.388162453  0.3945454 -0.2674316  0.876137177</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.516811815 -0.3752977  0.1953179 -0.234967731</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.833782667  1.1758299  1.3354565  2.003755266</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.880883655  0.1096244  1.5048779  0.464914233</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">r2sd_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category           x          y         z_x          z_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.527996932  0.7511701  0.11777526  0.695424590</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.108754827 -0.1140987 -0.63622799  0.071008788</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.367758927 -0.9281261 -0.17041138 -0.516429004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.156813549 -0.9328369 -0.54979480 -0.519828581</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.724172281 -0.4621337  0.47059491 -0.180148516</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.141979856 -0.7497709 -0.57647306 -0.387720150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.356398022 -0.6013288 -0.19084387 -0.280597773</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.557475245  0.1242021  0.17079175  0.242977006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.006035023 -0.2071348 -0.82096865  0.003869808</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.563462667 -1.4801478  0.18156008 -0.914792042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.807182184  0.1080437  0.61988749  0.231316403</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.388162453  0.3945454 -0.13371582  0.438068589</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.516811815 -0.3752977  0.09765893 -0.117483865</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.833782667  1.1758299  0.66772823  1.001877633</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.880883655  0.1096244  0.75243894  0.232457117</span>
 </code></pre></div>
     </div>
   </div>

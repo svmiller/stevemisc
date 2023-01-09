@@ -3,31 +3,41 @@
 \name{center_at}
 \alias{center_at}
 \alias{diff_at}
+\alias{group_mean_center_at}
+\alias{mean_at}
 \alias{r1sd_at}
 \alias{r2sd_at}
-\alias{within_at}
 \title{Scoped Helper Verbs}
 \usage{
-center_at(data, x, na = TRUE)
+center_at(data, x, prefix = "c", na = TRUE)
 
-diff_at(data, x, l = 1)
+diff_at(data, x, l = 1, prefix = "d")
 
-r1sd_at(data, x, na = TRUE)
+group_mean_center_at(data, x, mean_prefix = "mean", prefix = "b", na = TRUE)
 
-r2sd_at(data, x, na = TRUE)
+mean_at(data, x, prefix = "mean", na = TRUE)
 
-within_at(data, x, na = TRUE)
+r1sd_at(data, x, prefix = "s", na = TRUE)
+
+r2sd_at(data, x, prefix = "z", na = TRUE)
 }
 \arguments{
 \item{data}{a data frame}
 
 \item{x}{a vector, likely in your data frame}
 
+\item{prefix}{Allows the user to rename the prefix of the new variables.  Each
+function has defaults (see details section).}
+
 \item{na}{what to do with NAs in the vector. Defaults to TRUE
 (i.e. passes over the missing observations). Not applicable to \code{diff_at}.}
 
 \item{l}{The order of lags for calculating differences in \code{diff_at}.
 Applicable only to \code{diff_at}.}
+
+\item{mean_prefix}{Applicable only to \code{group_mean_center_at}. Specifies
+the prefix of the (assumed) total population mean variables. Default is "mean",
+though the user can change this as they see fit.}
 }
 \value{
 The function returns a set of new vectors in a data frame after
@@ -43,38 +53,71 @@ are multiple and explained in the details section below.
 \details{
 \code{center_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
 \pkg{dplyr}. It takes supplied vectors and effectively centers them from the
-mean. It then renames these new variables to have a prefix of \code{c_}. It
-is best used \emph{without} a \code{group_by} preceding it. The underlying code is
-identical to \code{within_at} in this same package, though it results in new
-variables with a different prefix.
+mean. It then renames these new variables to have a prefix of \code{c_}. The
+default prefix ("c") can be changed by way of an argument in the function.
+
+\code{diff_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
+\pkg{dplyr}. It takes supplied vectors and creates differences from the
+previous value recorded above it. It then renames these new variables to have
+a prefix of \code{d_} (in the case of a first difference), or something like
+\code{d2_} in the case of second differences, or \code{d3_} in the case of
+third differences (and so on). The exact prefix depends on the \code{l}
+argument, which communicates the order of lags you want. It defaults to 1. The
+default prefix ("d") can be changed by way of an argument in the function.
+
+\code{group_mean_center_at} is a wrapper for \code{mutate} and \code{across}
+in \pkg{dplyr}. It takes supplied vectors and centers an (assumed) group mean
+of the variables from an (assumed) total population mean of the variables
+provided to it. It then returns the new variables with a prefix, whose default
+is \code{b_}. This prefix communicates, if you will, a kind of "between"
+variable in the panel model context, in juxtaposition to "within" variables
+in the panel model context.
+
+\code{mean_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
+\pkg{dplyr}. It takes supplied vectors and creates a variable communicating
+the mean of the variable. It then renames these new variables to have a
+prefix of \code{mean_}. This default prefix ("mean") can be changed by way of
+an argument in the function.
 
 \code{r1sd_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
 \pkg{dplyr}. It both rescales the supplied vectors to new vectors and renames
 the vectors to each have a prefix of \code{s_}. Note the rescaling here is
-just by one standard deviation and not two.
+just by one standard deviation and not two. The default prefix ("s") can be
+changed by way of an argument in the function.
 
 \code{r2sd_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
 \pkg{dplyr}. It both rescales the supplied vectors to new vectors and renames
 the vectors to each have a prefix of \code{z_}. Note the rescaling here is by
-two standard deviations and not one.
+two standard deviations and not one. The default prefix ("z") can be
+changed by way of an argument in the function.
 
-\code{within_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
-\pkg{dplyr}. It takes supplied vectors and effectively centers them from the
-mean. It then renames these new variables to have a prefix of \code{w_}. It
-is best used with a \code{group_by} preceding it on some kind of "subject",
-with an eye toward ultimately including them as covariates in a panel model
-to isolate so-called "within" effects.
+These functions will fail in the absence of a character vector of a length
+of one. In which case, you should think about using some other \pkg{dplyr}
+verb on its own.
 }
 \examples{
 
-center_at(USArrests, c("Murder", "Assault"))
+Example <- data.frame(category = c(rep("A", 5),
+                                   rep("B", 5),
+                                   rep("C", 5)),
+                      x = runif(15), y = rnorm(15))
 
-diff_at(USArrests, c("Murder", "Assault"))
+center_at(Example, c("x", "y"))
 
-r1sd_at(USArrests, c("Murder", "Assault"))
+diff_at(Example, c("x", "y"))
 
-r2sd_at(USArrests, c("Murder", "Assault"))
+diff_at(Example, c("x", "y"), l=3)
 
-# Note: best used with a group_by() preceding it.
-within_at(USArrests, c("Murder", "Assault"))
+mean_at(Example, c("x", "y"))
+
+group_mean_center_at(mean_at(Example, c("x", "y")), c("x", "y"))
+# ^ Alternatively, a better way:
+# Example \%>\%
+#   mean_at(c("x", "y")) \%>\%
+#   group_by(category) \%>\%
+#   group_mean_center_at(c("x", "y"))
+
+r1sd_at(Example, c("x", "y"))
+
+r2sd_at(Example, c("x", "y"))
 }
