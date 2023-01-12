@@ -152,7 +152,7 @@ diff_at <- function(data, x, l=1, prefix = "d") {
 group_mean_center_at <- function(data, x, mean_prefix = "mean",
                                  prefix = "b", na = TRUE) {
 
-  are_means_there <- paste0("mean_", x)
+  are_means_there <- paste0(mean_prefix,"_", x)
 
   if (!all(i <- are_means_there %in% colnames(data))) {
     stop("The (assumed) total population means are not present in the data. Did you want to run a global mean_at() first, perhaps?")
@@ -168,10 +168,18 @@ group_mean_center_at <- function(data, x, mean_prefix = "mean",
 
   mp <- paste0(mean_prefix, "_")
   nvp <- paste0(prefix,"_{.col}")
+  nvp_check <- paste0(prefix, "_", x)
 
   data %>%
     mutate(across(all_of(x), ~
                     mean(., na.rm=T) - get(str_c(mp, cur_column())), .names = nvp)) -> data
+
+  data %>%
+    filter_at(nvp_check, ~. != 0) -> check_this
+
+  if(nrow(check_this) == 0) {
+    warning("The ensuing output for these variables you created are all 0, indicating you subtracted a thing from a different version of itself in this function. Are you sure these mean variables aren't themselves actually group means? Check your code more carefully.")
+  }
 
   return(data)
 
