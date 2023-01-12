@@ -74,5 +74,10 @@ to_tbl <- function(...) tibble::as_tibble(...)
 
 
 fct_reorg <- function(fac, ...) {
-  fct_recode(fct_relevel(fac, ...), ...)
+  dots <- unname(list(...))
+
+  fac <- do.call("fct_relevel", c(list(fac), dots))
+  fac <- fct_recode(fac, ...)
+  fac
+
 }
