@@ -4,6 +4,7 @@
 \alias{center_at}
 \alias{diff_at}
 \alias{group_mean_center_at}
+\alias{log_at}
 \alias{mean_at}
 \alias{r1sd_at}
 \alias{r2sd_at}
@@ -14,6 +15,8 @@ center_at(data, x, prefix = "c", na = TRUE)
 diff_at(data, x, l = 1, prefix = "d")
 
 group_mean_center_at(data, x, mean_prefix = "mean", prefix = "b", na = TRUE)
+
+log_at(data, x, prefix = "ln", plus_1 = FALSE)
 
 mean_at(data, x, prefix = "mean", na = TRUE)
 
@@ -38,6 +41,11 @@ Applicable only to \code{diff_at}.}
 \item{mean_prefix}{Applicable only to \code{group_mean_center_at}. Specifies
 the prefix of the (assumed) total population mean variables. Default is "mean",
 though the user can change this as they see fit.}
+
+\item{plus_1}{Applicable only to \code{log_at}. If TRUE, adds 1 to the
+variables prior to log transformation. If FALSE, performs logarithmic
+transformation on variables no matter whether 0 occurs (i.e. 0s will
+come back as -Inf). Defaults to FALSE.}
 }
 \value{
 The function returns a set of new vectors in a data frame after
@@ -73,6 +81,12 @@ is \code{b_}. This prefix communicates, if you will, a kind of "between"
 variable in the panel model context, in juxtaposition to "within" variables
 in the panel model context.
 
+\code{log_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
+\pkg{dplyr}. It takes supplied vectors and creates a variable that takes
+a natural logarithmic transformation of them. It then renames these new
+variables to have a prefix of \code{ln_}. This default prefix ("ln") can be
+changed by way of an argument in the function.
+
 \code{mean_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
 \pkg{dplyr}. It takes supplied vectors and creates a variable communicating
 the mean of the variable. It then renames these new variables to have a
@@ -100,13 +114,17 @@ verb on its own.
 Example <- data.frame(category = c(rep("A", 5),
                                    rep("B", 5),
                                    rep("C", 5)),
-                      x = runif(15), y = rnorm(15))
+                      x = runif(15), y = runif(15))
 
 center_at(Example, c("x", "y"))
 
 diff_at(Example, c("x", "y"))
 
 diff_at(Example, c("x", "y"), l=3)
+
+log_at(Example, c("x", "y"))
+
+log_at(Example, c("x", "y"), plus_1 = TRUE)
 
 mean_at(Example, c("x", "y"))
 

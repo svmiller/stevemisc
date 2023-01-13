@@ -65,6 +65,8 @@ are multiple and explained in the details section below.</p>
 
 <span class="fu">group_mean_center_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, mean_prefix <span class="op">=</span> <span class="st">"mean"</span>, prefix <span class="op">=</span> <span class="st">"b"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
+<span class="fu">log_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"ln"</span>, plus_1 <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
 <span class="fu">mean_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"mean"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="fu">r1sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"s"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
@@ -102,6 +104,13 @@ Applicable only to <code>diff_at</code>.</p></dd>
 the prefix of the (assumed) total population mean variables. Default is "mean",
 though the user can change this as they see fit.</p></dd>
 
+
+<dt>plus_1</dt>
+<dd><p>Applicable only to <code>log_at</code>. If TRUE, adds 1 to the
+variables prior to log transformation. If FALSE, performs logarithmic
+transformation on variables no matter whether 0 occurs (i.e. 0s will
+come back as -Inf). Defaults to FALSE.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -132,6 +141,11 @@ provided to it. It then returns the new variables with a prefix, whose default
 is <code>b_</code>. This prefix communicates, if you will, a kind of "between"
 variable in the panel model context, in juxtaposition to "within" variables
 in the panel model context.</p>
+<p><code>log_at</code> is a wrapper for <code>mutate_at</code> and <code>rename_at</code> from
+<span class="pkg">dplyr</span>. It takes supplied vectors and creates a variable that takes
+a natural logarithmic transformation of them. It then renames these new
+variables to have a prefix of <code>ln_</code>. This default prefix ("ln") can be
+changed by way of an argument in the function.</p>
 <p><code>mean_at</code> is a wrapper for <code>mutate_at</code> and <code>rename_at</code> from
 <span class="pkg">dplyr</span>. It takes supplied vectors and creates a variable communicating
 the mean of the variable. It then renames these new variables to have a
@@ -158,98 +172,135 @@ verb on its own.</p>
 <span class="r-in"><span class="va">Example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>category <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">5</span><span class="op">)</span>,</span>
 <span class="r-in">                                   <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">5</span><span class="op">)</span>,</span>
 <span class="r-in">                                   <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"C"</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">                      x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in">                      x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">center_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x           y         c_x         c_y</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.26852877  0.60907842 -0.24842302  0.70673749</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.98862560 -1.44559829  0.47167381 -1.34793923</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.71736978 -1.29436077  0.20041799 -1.19670170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.60026013  0.04252411  0.08330835  0.14018318</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.44244718 -1.92486639 -0.07450461 -1.82720733</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.81324147  0.97072888  0.29628969  1.06838795</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.40920683 -0.02230809 -0.10774495  0.07535098</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.38727321 -1.69307174 -0.12967857 -1.59541267</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.59946026  0.24297720  0.08250848  0.34063627</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.67872413  0.15739254  0.16177235  0.25505160</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.69851490  1.51661371  0.18156312  1.61427277</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.08634931 -0.11258901 -0.43060247 -0.01492995</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.13828563  0.23143615 -0.37866615  0.32909522</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.89064329 -0.97904008  0.37369150 -0.88138101</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.03534628  2.23619736 -0.48160551  2.33385643</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x          y         c_x        c_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.74672576 0.41752823  0.21340519 -0.1493581</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.14856527 0.83598232 -0.38475530  0.2690960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.89587575 0.18192990  0.36255518 -0.3849564</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.39631973 0.39844948 -0.13700084 -0.1684368</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.87384983 0.34417597  0.34052926 -0.2227103</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.43550339 0.73398220 -0.09781719  0.1670959</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.60518333 0.96748654  0.07186275  0.4006002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.02544965 0.95474160 -0.50787092  0.3878553</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.80846803 0.13886299  0.27514745 -0.4280233</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.64031172 0.99922778  0.10699115  0.4323415</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.25293613 0.83591651 -0.28038445  0.2690302</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.73604217 0.08408537  0.20272160 -0.4828009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.10544946 0.85101375 -0.42787112  0.2841275</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.37755757 0.08334624 -0.15576300 -0.4835401</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.95157082 0.67656550  0.41825024  0.1096792</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">diff_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x           y         d_x         d_y</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.26852877  0.60907842          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.98862560 -1.44559829  0.72009683 -2.05467672</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.71736978 -1.29436077 -0.27125582  0.15123753</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.60026013  0.04252411 -0.11710965  1.33688488</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.44244718 -1.92486639 -0.15781296 -1.96739050</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.81324147  0.97072888  0.37079429  2.89559527</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.40920683 -0.02230809 -0.40403464 -0.99303697</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.38727321 -1.69307174 -0.02193362 -1.67076365</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.59946026  0.24297720  0.21218705  1.93604894</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.67872413  0.15739254  0.07926387 -0.08558467</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.69851490  1.51661371  0.01979077  1.35922117</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.08634931 -0.11258901 -0.61216559 -1.62920272</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.13828563  0.23143615  0.05193632  0.34402516</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.89064329 -0.97904008  0.75235766 -1.21047623</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.03534628  2.23619736 -0.85529701  3.21523744</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x          y        d_x         d_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.74672576 0.41752823         NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.14856527 0.83598232 -0.5981605  0.41845409</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.89587575 0.18192990  0.7473105 -0.65405243</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.39631973 0.39844948 -0.4995560  0.21651958</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.87384983 0.34417597  0.4775301 -0.05427351</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.43550339 0.73398220 -0.4383464  0.38980623</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.60518333 0.96748654  0.1696799  0.23350434</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.02544965 0.95474160 -0.5797337 -0.01274494</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.80846803 0.13886299  0.7830184 -0.81587861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.64031172 0.99922778 -0.1681563  0.86036479</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.25293613 0.83591651 -0.3873756 -0.16331128</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.73604217 0.08408537  0.4831060 -0.75183113</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.10544946 0.85101375 -0.6305927  0.76692837</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.37755757 0.08334624  0.2721081 -0.76766751</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.95157082 0.67656550  0.5740132  0.59321926</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">diff_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span>, l<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x           y        d3_x        d3_y</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.26852877  0.60907842          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.98862560 -1.44559829          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.71736978 -1.29436077          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.60026013  0.04252411  0.33173137 -0.56655431</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.44244718 -1.92486639 -0.54617842 -0.47926810</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.81324147  0.97072888  0.09587169  2.26508965</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.40920683 -0.02230809 -0.19105330 -0.06483220</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.38727321 -1.69307174 -0.05517397  0.23179465</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.59946026  0.24297720 -0.21378121 -0.72775167</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.67872413  0.15739254  0.26951730  0.17970063</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.69851490  1.51661371  0.31124169  3.20968545</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.08634931 -0.11258901 -0.51311095 -0.35556622</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.13828563  0.23143615 -0.54043850  0.07404361</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.89064329 -0.97904008  0.19212838 -2.49565379</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.03534628  2.23619736 -0.05100304  2.34878637</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x          y        d3_x        d3_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.74672576 0.41752823          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.14856527 0.83598232          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.89587575 0.18192990          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.39631973 0.39844948 -0.35040603 -0.01907875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.87384983 0.34417597  0.72528456 -0.49180635</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.43550339 0.73398220 -0.46037236  0.55205230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.60518333 0.96748654  0.20886360  0.56903706</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.02544965 0.95474160 -0.84840018  0.61056564</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.80846803 0.13886299  0.37296464 -0.59511920</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.64031172 0.99922778  0.03512839  0.03174124</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.25293613 0.83591651  0.22748647 -0.11882510</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.73604217 0.08408537 -0.07242585 -0.05477762</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.10544946 0.85101375 -0.53486227 -0.14821404</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.37755757 0.08334624  0.12462144 -0.75257027</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.95157082 0.67656550  0.21552864  0.59248012</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">log_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x          y        ln_x          ln_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.74672576 0.41752823 -0.29205728 -0.8734031252</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.14856527 0.83598232 -1.90673088 -0.1791478112</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.89587575 0.18192990 -0.10995355 -1.7041338471</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.39631973 0.39844948 -0.92553399 -0.9201745734</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.87384983 0.34417597 -0.13484673 -1.0666022173</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.43550339 0.73398220 -0.83125271 -0.3092705029</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.60518333 0.96748654 -0.50222385 -0.0330537650</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.02544965 0.95474160 -3.67105319 -0.0463145467</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.80846803 0.13886299 -0.21261415 -1.9742674830</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.64031172 0.99922778 -0.44580016 -0.0007725154</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.25293613 0.83591651 -1.37461828 -0.1792265439</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.73604217 0.08408537 -0.30646786 -2.4759226319</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.10544946 0.85101375 -2.24952353 -0.1613269960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.37755757 0.08334624 -0.97403222 -2.4847518210</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.95157082 0.67656550 -0.04964117 -0.3907260214</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">log_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span>, plus_1 <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x          y      ln_x       ln_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.74672576 0.41752823 0.5577430 0.34891467</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.14856527 0.83598232 0.1385136 0.60757966</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.89587575 0.18192990 0.6396809 0.16714861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.39631973 0.39844948 0.3338400 0.33536411</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.87384983 0.34417597 0.6279950 0.29578116</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.43550339 0.73398220 0.3615156 0.55042061</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.60518333 0.96748654 0.4732380 0.67675686</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.02544965 0.95474160 0.0251312 0.67025801</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.80846803 0.13886299 0.5924801 0.13003039</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.64031172 0.99922778 0.4948863 0.69276100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.25293613 0.83591651 0.2254897 0.60754382</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.73604217 0.08408537 0.5516079 0.08073666</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.10544946 0.85101375 0.1002520 0.61573346</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.37755757 0.08334624 0.3203121 0.08005462</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.95157082 0.67656550 0.6686346 0.51674735</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">mean_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x           y    mean_x      mean_y</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.26852877  0.60907842 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.98862560 -1.44559829 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.71736978 -1.29436077 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.60026013  0.04252411 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.44244718 -1.92486639 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.81324147  0.97072888 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.40920683 -0.02230809 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.38727321 -1.69307174 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.59946026  0.24297720 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.67872413  0.15739254 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.69851490  1.51661371 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.08634931 -0.11258901 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.13828563  0.23143615 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.89064329 -0.97904008 0.5169518 -0.09765907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.03534628  2.23619736 0.5169518 -0.09765907</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x          y    mean_x    mean_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.74672576 0.41752823 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.14856527 0.83598232 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.89587575 0.18192990 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.39631973 0.39844948 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.87384983 0.34417597 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.43550339 0.73398220 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.60518333 0.96748654 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.02544965 0.95474160 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.80846803 0.13886299 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.64031172 0.99922778 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.25293613 0.83591651 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.73604217 0.08408537 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.10544946 0.85101375 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.37755757 0.08334624 0.5333206 0.5668863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.95157082 0.67656550 0.5333206 0.5668863</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">group_mean_center_at</span><span class="op">(</span><span class="fu">mean_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The absence of a grouping factor means you're going to be subtracting a mean from itself. It's up to you if you want to do that. You probably didn't want that, but I did it anyway. I'm just bringing that to your attention.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x           y    mean_x      mean_y b_x b_y</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.26852877  0.60907842 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.98862560 -1.44559829 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.71736978 -1.29436077 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.60026013  0.04252411 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.44244718 -1.92486639 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.81324147  0.97072888 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.40920683 -0.02230809 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.38727321 -1.69307174 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.59946026  0.24297720 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.67872413  0.15739254 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.69851490  1.51661371 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.08634931 -0.11258901 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.13828563  0.23143615 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.89064329 -0.97904008 0.5169518 -0.09765907   0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.03534628  2.23619736 0.5169518 -0.09765907   0   0</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The ensuing output for these variables you created are all 0, indicating you subtracted a thing from a different version of itself in this function. Are you sure these mean variables aren't themselves actually group means? Check your code more carefully.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x          y    mean_x    mean_y b_x b_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.74672576 0.41752823 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.14856527 0.83598232 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.89587575 0.18192990 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.39631973 0.39844948 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.87384983 0.34417597 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.43550339 0.73398220 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.60518333 0.96748654 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.02544965 0.95474160 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.80846803 0.13886299 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.64031172 0.99922778 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.25293613 0.83591651 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.73604217 0.08408537 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.10544946 0.85101375 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.37755757 0.08334624 0.5333206 0.5668863   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.95157082 0.67656550 0.5333206 0.5668863   0   0</span>
 <span class="r-in"><span class="co"># ^ Alternatively, a better way:</span></span>
 <span class="r-in"><span class="co"># Example %&gt;%</span></span>
 <span class="r-in"><span class="co">#   mean_at(c("x", "y")) %&gt;%</span></span>
@@ -257,40 +308,40 @@ verb on its own.</p>
 <span class="r-in"><span class="co">#   group_mean_center_at(c("x", "y"))</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">r1sd_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x           y        s_x         s_y</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.26852877  0.60907842 -0.8417490  0.59250704</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.98862560 -1.44559829  1.5982053 -1.13007092</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.71736978 -1.29436077  0.6790903 -1.00327801</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.60026013  0.04252411  0.2822795  0.11752528</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.44244718 -1.92486639 -0.2524492 -1.53187460</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.81324147  0.97072888  1.0039390  0.89570370</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.40920683 -0.02230809 -0.3650797  0.06317195</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.38727321 -1.69307174 -0.4393990 -1.33754507</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.59946026  0.24297720  0.2795692  0.28557901</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.67872413  0.15739254  0.5481445  0.21382745</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.69851490  1.51661371  0.6152030  1.35335680</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.08634931 -0.11258901 -1.4590404 -0.01251681</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.13828563  0.23143615 -1.2830609  0.27590334</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.89064329 -0.97904008  1.2662050 -0.73892282</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.03534628  2.23619736 -1.6318575  1.95663367</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x          y        s_x        s_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.74672576 0.41752823  0.6945870 -0.4335035</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.14856527 0.83598232 -1.2522940  0.7810363</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.89587575 0.18192990  1.1800375 -1.1173145</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.39631973 0.39844948 -0.4459077 -0.4888785</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.87384983 0.34417597  1.1083480 -0.6464043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.43550339 0.73398220 -0.3183735  0.4849866</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.60518333 0.96748654  0.2338975  1.1627199</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.02544965 0.95474160 -1.6530083  1.1257285</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.80846803 0.13886299  0.8955445 -1.2423138</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.64031172 0.99922778  0.3482327  1.2548471</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.25293613 0.83591651 -0.9125898  0.7808452</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.73604217 0.08408537  0.6598143 -1.4013028</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.10544946 0.85101375 -1.3926265  0.8246641</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.37755757 0.08334624 -0.5069744 -1.4034481</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.95157082 0.67656550  1.3613127  0.3183378</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">r2sd_at</span><span class="op">(</span><span class="va">Example</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x           y        z_x          z_y</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.26852877  0.60907842 -0.4208745  0.296253522</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.98862560 -1.44559829  0.7991026 -0.565035460</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.71736978 -1.29436077  0.3395451 -0.501639007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.60026013  0.04252411  0.1411397  0.058762639</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.44244718 -1.92486639 -0.1262246 -0.765937300</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.81324147  0.97072888  0.5019695  0.447851849</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.40920683 -0.02230809 -0.1825399  0.031585975</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.38727321 -1.69307174 -0.2196995 -0.668772534</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.59946026  0.24297720  0.1397846  0.142789503</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.67872413  0.15739254  0.2740723  0.106913723</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.69851490  1.51661371  0.3076015  0.676678400</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.08634931 -0.11258901 -0.7295202 -0.006258405</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.13828563  0.23143615 -0.6415305  0.137951670</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.89064329 -0.97904008  0.6331025 -0.369461409</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.03534628  2.23619736 -0.8159288  0.978316835</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category          x          y        z_x        z_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.74672576 0.41752823  0.3472935 -0.2167517</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.14856527 0.83598232 -0.6261470  0.3905181</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         A 0.89587575 0.18192990  0.5900187 -0.5586573</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         A 0.39631973 0.39844948 -0.2229538 -0.2444392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         A 0.87384983 0.34417597  0.5541740 -0.3232022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         B 0.43550339 0.73398220 -0.1591867  0.2424933</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         B 0.60518333 0.96748654  0.1169487  0.5813600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         B 0.02544965 0.95474160 -0.8265042  0.5628642</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         B 0.80846803 0.13886299  0.4477723 -0.6211569</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        B 0.64031172 0.99922778  0.1741163  0.6274236</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        C 0.25293613 0.83591651 -0.4562949  0.3904226</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        C 0.73604217 0.08408537  0.3299071 -0.7006514</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.10544946 0.85101375 -0.6963133  0.4123321</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.37755757 0.08334624 -0.2534872 -0.7017241</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.95157082 0.67656550  0.6806563  0.1591689</span>
 </code></pre></div>
     </div>
   </div>

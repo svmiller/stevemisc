@@ -10,11 +10,11 @@ figures:
 
 reference:
         - title: Functions
-          desc: These functions are miscellaneous functions I've written to serve my research or pedagogical needs.
+          desc: These are miscellaneous functions I've written to serve my research or pedagogical needs.
           contents:
                 - starts_with("theme_|binred|carr|cor|db_|fct_|filter|get_|jenny|lin|make|mround|rev|%nin%|normal|p_|pr|ps|r1|r2|rb|sb|sh|sm|tbl|w")
         - title: Datasets
-          desc: These are toy data sets necessary for illustrating or testing functions, ot might be data sets that just found their way here for one reason or another.
+          desc: These are toy data sets necessary for illustrating or testing functions, or might be data sets that just found their way here for one reason or another.
           contents:
                 - has_keyword("datasets")
                 - has_keyword("info")
