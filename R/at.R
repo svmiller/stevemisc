@@ -62,8 +62,8 @@
 #'
 #' @param data a data frame
 #' @param x a vector, likely in your data frame
-#' @param l The order of lags for calculating differences in \code{diff_at}.
-#' Applicable only to \code{diff_at}.
+#' @param o The order of lags for calculating differences in \code{diff_at} or
+#' \code{lag_at}. Applicable only to these functions.
 #' @param na what to do with NAs in the vector. Defaults to TRUE
 #' (i.e. passes over the missing observations). Not applicable to \code{diff_at}.
 #' @param prefix Allows the user to rename the prefix of the new variables.  Each
@@ -82,33 +82,40 @@
 #'
 #' @examples
 #'
+#' set.seed(8675309)
 #' Example <- data.frame(category = c(rep("A", 5),
 #'                                    rep("B", 5),
 #'                                    rep("C", 5)),
-#'                       x = runif(15), y = runif(15))
+#'                       x = runif(15), y = runif(15),
+#'                       z = sample(1:20, 15, replace=TRUE))
 #'
-#' center_at(Example, c("x", "y"))
+#' my_vars <- c("x", "y", "z")
+#' center_at(Example, my_vars)
 #'
-#' diff_at(Example, c("x", "y"))
+#' diff_at(Example, my_vars)
 #'
-#' diff_at(Example, c("x", "y"), l=3)
+#' diff_at(Example, my_vars, o=3)
 #'
-#' log_at(Example, c("x", "y"))
+#' lag_at(Example, my_vars)
 #'
-#' log_at(Example, c("x", "y"), plus_1 = TRUE)
+#' lag_at(Example, my_vars, o=3)
 #'
-#' mean_at(Example, c("x", "y"))
+#' log_at(Example, my_vars)
 #'
-#' group_mean_center_at(mean_at(Example, c("x", "y")), c("x", "y"))
+#' log_at(Example, my_vars, plus_1 = TRUE)
+#'
+#' mean_at(Example, my_vars)
+#'
+#' group_mean_center_at(mean_at(Example, my_vars), my_vars)
 #' # ^ Alternatively, a better way:
 #' # Example %>%
-#' #   mean_at(c("x", "y")) %>%
+#' #   mean_at(my_vars) %>%
 #' #   group_by(category) %>%
-#' #   group_mean_center_at(c("x", "y"))
+#' #   group_mean_center_at(my_vars)
 #'
-#' r1sd_at(Example, c("x", "y"))
+#' r1sd_at(Example, my_vars)
 #'
-#' r2sd_at(Example, c("x", "y"))
+#' r2sd_at(Example, my_vars)
 
 
 #' @rdname at
@@ -136,21 +143,21 @@ center_at <- function(data, x, prefix = "c", na=TRUE) {
 #' @export
 #'
 
-diff_at <- function(data, x, l=1, prefix = "d") {
+diff_at <- function(data, x, o=1, prefix = "d") {
 
   if(length(x) == 1) {
     stop("The use of a scoped helper verb like this requires more than one variable.")
   }
 
-  if(l == 1) {
+  if(o == 1) {
     prefixx <- prefix
   } else {
-    prefixx <- paste0(prefix,l)
+    prefixx <- paste0(prefix,o)
   }
 
   data %>%
     mutate_at(vars(all_of(x)),
-              list(tmp = ~(.) - lag(., l))) %>%
+              list(tmp = ~(.) - lag(., o))) %>%
     rename_at(vars(contains("_tmp")),
               ~paste(prefixx, gsub("_tmp", "", .), sep = "_") ) -> data
   return(data)
@@ -197,6 +204,34 @@ group_mean_center_at <- function(data, x, mean_prefix = "mean",
 
   return(data)
 
+}
+
+#' @rdname at
+#' @export
+#'
+
+lag_at <- function(data, x, prefix = "l", o=1) {
+
+  # https://gist.github.com/RJHKnight/22dbe5a3ef1d2701afd48370a1f1742c
+  lag_fn <- list()
+  lags <- 1:o
+
+  for(i in lags) {
+
+    fixer <- function(x, i) {
+      force(i)
+      return(
+        function(x) {
+          return(dplyr::lag(x, i))
+        }
+      )}
+
+    lag_fn[[i]] <- fixer(x, i)
+  }
+
+
+  data %>%
+    mutate(across(all_of(x), lag_fn, .names = paste0(prefix,"{.fn}_{.col}")))
 }
 
 #' @rdname at

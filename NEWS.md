@@ -2,7 +2,8 @@
 
 - Package now contains more scoped helper verbs---the so-called functions. These functions, like `diff_at()`, are self-contained in one R Documentation file.
 - `theme_steve_ms()` now actually uses "Crimson Pro", and not "Crimson Text".
-- `wls()` does weighted least squares re-estimations of an OLS model.
+- `wls()` does weighted least squares re-estimations of an OLS model. HT @hadley for some information about a class issue.
+- `fct_reorg()` completely re-written (by @hadley himself) in light of upcoming `{forcats}` release.
 
 # stevemisc 1.4.1
 
