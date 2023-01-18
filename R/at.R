@@ -30,6 +30,12 @@
 #' variable in the panel model context, in juxtaposition to "within" variables
 #' in the panel model context.
 #'
+#' \code{lag_at} is a wrapper for \code{mutate} and \code{across} from
+#' \pkg{dplyr}. It takes supplied vector(s) and creates lag variables from them.
+#' These new variables have a prefix of \code{l[o]_} where \code{o} corresponds
+#' to the order of the lag. This default prefix ("l") can be
+#' changed by way of an argument in the function.
+#'
 #' \code{log_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
 #' \pkg{dplyr}. It takes supplied vectors and creates a variable that takes
 #' a natural logarithmic transformation of them. It then renames these new
@@ -54,16 +60,16 @@
 #' two standard deviations and not one. The default prefix ("z") can be
 #' changed by way of an argument in the function.
 #'
-#'
-#' These functions will fail in the absence of a character vector of a length
-#' of one. In which case, you should think about using some other \pkg{dplyr}
-#' verb on its own.
+#' All functions, except for \code{lag_at}, will fail in the absence of a
+#' character vector of a length of one. They are intended to work across multiple
+#' columns instead of just one. If you are wanting to create one new variable,
+#' you should think about using some other \pkg{dplyr} verb on its own.
 #'
 #'
 #' @param data a data frame
 #' @param x a vector, likely in your data frame
-#' @param o The order of lags for calculating differences in \code{diff_at} or
-#' \code{lag_at}. Applicable only to these functions.
+#' @param o The order of lags for calculating differences or lags in
+#' \code{diff_at} or \code{lag_at}. Applicable only to these functions.
 #' @param na what to do with NAs in the vector. Defaults to TRUE
 #' (i.e. passes over the missing observations). Not applicable to \code{diff_at}.
 #' @param prefix Allows the user to rename the prefix of the new variables.  Each
@@ -218,7 +224,7 @@ lag_at <- function(data, x, prefix = "l", o=1) {
 
   for(i in lags) {
 
-    fixer <- function(x, i) {
+    func <- function(x, i) {
       force(i)
       return(
         function(x) {
@@ -226,12 +232,14 @@ lag_at <- function(data, x, prefix = "l", o=1) {
         }
       )}
 
-    lag_fn[[i]] <- fixer(x, i)
+    lag_fn[[i]] <- func(x, i)
   }
 
 
   data %>%
-    mutate(across(all_of(x), lag_fn, .names = paste0(prefix,"{.fn}_{.col}")))
+    mutate(across(all_of(x), lag_fn, .names = paste0(prefix,"{.fn}_{.col}"))) -> data
+
+  return(data)
 }
 
 #' @rdname at

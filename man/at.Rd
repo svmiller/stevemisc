@@ -38,8 +38,8 @@ function has defaults (see details section).}
 \item{na}{what to do with NAs in the vector. Defaults to TRUE
 (i.e. passes over the missing observations). Not applicable to \code{diff_at}.}
 
-\item{o}{The order of lags for calculating differences in \code{diff_at} or
-\code{lag_at}. Applicable only to these functions.}
+\item{o}{The order of lags for calculating differences or lags in
+\code{diff_at} or \code{lag_at}. Applicable only to these functions.}
 
 \item{mean_prefix}{Applicable only to \code{group_mean_center_at}. Specifies
 the prefix of the (assumed) total population mean variables. Default is "mean",
@@ -84,6 +84,12 @@ is \code{b_}. This prefix communicates, if you will, a kind of "between"
 variable in the panel model context, in juxtaposition to "within" variables
 in the panel model context.
 
+\code{lag_at} is a wrapper for \code{mutate} and \code{across} from
+\pkg{dplyr}. It takes supplied vector(s) and creates lag variables from them.
+These new variables have a prefix of \code{l[o]_} where \code{o} corresponds
+to the order of the lag. This default prefix ("l") can be
+changed by way of an argument in the function.
+
 \code{log_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
 \pkg{dplyr}. It takes supplied vectors and creates a variable that takes
 a natural logarithmic transformation of them. It then renames these new
@@ -108,9 +114,10 @@ the vectors to each have a prefix of \code{z_}. Note the rescaling here is by
 two standard deviations and not one. The default prefix ("z") can be
 changed by way of an argument in the function.
 
-These functions will fail in the absence of a character vector of a length
-of one. In which case, you should think about using some other \pkg{dplyr}
-verb on its own.
+All functions, except for \code{lag_at}, will fail in the absence of a
+character vector of a length of one. They are intended to work across multiple
+columns instead of just one. If you are wanting to create one new variable,
+you should think about using some other \pkg{dplyr} verb on its own.
 }
 \examples{
 
