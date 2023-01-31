@@ -20,7 +20,7 @@ on citations to the print_refs() function also included in this package."><!-- m
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5</span>
       </span>
     </div>
 
@@ -59,7 +59,7 @@ on citations to the <code><a href="print_refs.html">print_refs()</a></code> func
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">filter_refs</span><span class="op">(</span><span class="va">bibdat</span>, <span class="va">criteria</span>, type <span class="op">=</span> <span class="st">"bibtexkey"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">filter_refs</span><span class="op">(</span><span class="va">bibdat</span>, <span class="va">criteria</span>, type <span class="op">=</span> <span class="st">"bibtexkey"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -99,9 +99,9 @@ entries, and depends on the <span class="pkg">bib2df</span> package.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Based on `stevepubs` configuration, filter on `BIBTEXKEY` where</span></span>
-<span class="r-in"><span class="co"># the citation key matches one of these.</span></span>
-<span class="r-in"><span class="fu">filter_refs</span><span class="op">(</span><span class="va">stevepubs</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"miller2017etst"</span>, <span class="st">"miller2017etjc"</span>, <span class="st">"miller2013tdpi"</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Based on `stevepubs` configuration, filter on `BIBTEXKEY` where</span></span></span>
+<span class="r-in"><span><span class="co"># the citation key matches one of these.</span></span></span>
+<span class="r-in"><span><span class="fu">filter_refs</span><span class="op">(</span><span class="va">stevepubs</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"miller2017etst"</span>, <span class="st">"miller2017etjc"</span>, <span class="st">"miller2013tdpi"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> @ARTICLE{miller2013tdpi,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {Steven V. Miller},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   JOURNAL = {Journal of Peace Research},</span>
@@ -129,10 +129,10 @@ entries, and depends on the <span class="pkg">bib2df</span> package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   VOLUME = {39},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   YEAR = {2017}} </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Based on `stevepubs` configuration, filter on `YEAR` where</span></span>
-<span class="r-in"><span class="co"># the publication year is 2017, 2018, 2019, 2020, or 2021.</span></span>
-<span class="r-in"><span class="fu">filter_refs</span><span class="op">(</span><span class="va">stevepubs</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2017</span><span class="op">:</span><span class="fl">2021</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Based on `stevepubs` configuration, filter on `YEAR` where</span></span></span>
+<span class="r-in"><span><span class="co"># the publication year is 2017, 2018, 2019, 2020, or 2021.</span></span></span>
+<span class="r-in"><span><span class="fu">filter_refs</span><span class="op">(</span><span class="va">stevepubs</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2017</span><span class="op">:</span><span class="fl">2021</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> @ARTICLE{curtismiller2021snp,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   AUTHOR = {K. Amber Curtis and Steven V. Miller},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   JOURNAL = {European Union Politics},</span>
@@ -227,7 +227,7 @@ entries, and depends on the <span class="pkg">bib2df</span> package.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

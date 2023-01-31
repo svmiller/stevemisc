@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5</span>
       </span>
     </div>
 
@@ -53,7 +53,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">sbayesboot</span><span class="op">(</span><span class="va">object</span>, reps <span class="op">=</span> <span class="fl">1000L</span>, <span class="va">seed</span>, cluster <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sbayesboot</span><span class="op">(</span><span class="va">object</span>, reps <span class="op">=</span> <span class="fl">1000L</span>, <span class="va">seed</span>, cluster <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -102,17 +102,17 @@ something up, so feel free to point to cases where I did screw up.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">hp</span>, <span class="va">mtcars</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Default options</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">BB1</span> <span class="op">&lt;-</span> <span class="fu">sbayesboot</span><span class="op">(</span><span class="va">M1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Cluster bootstrap on cylinder variable</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">BB2</span> <span class="op">&lt;-</span> <span class="fu">sbayesboot</span><span class="op">(</span><span class="va">M1</span>, cluster<span class="op">=</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># }</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">hp</span>, <span class="va">mtcars</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Default options</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">BB1</span> <span class="op">&lt;-</span> <span class="fu">sbayesboot</span><span class="op">(</span><span class="va">M1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Cluster bootstrap on cylinder variable</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">BB2</span> <span class="op">&lt;-</span> <span class="fu">sbayesboot</span><span class="op">(</span><span class="va">M1</span>, cluster<span class="op">=</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -127,7 +127,7 @@ something up, so feel free to point to cases where I did screw up.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

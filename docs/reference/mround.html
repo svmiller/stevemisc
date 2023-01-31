@@ -19,7 +19,7 @@ By default, it rounds to two. The user can adjust this."><!-- mathjax --><script
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5</span>
       </span>
     </div>
 
@@ -57,7 +57,7 @@ By default, it rounds to two. The user can adjust this.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">mround</span><span class="op">(</span><span class="va">x</span>, d <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mround</span><span class="op">(</span><span class="va">x</span>, d <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -84,9 +84,9 @@ to the user.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">mround</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">mround</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1] 77.17 86.70  8.91 30.97 62.94 93.54 49.49 18.95 32.14 32.52 58.12 84.82</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [13] 67.87 52.93 22.46 68.72 14.33 24.87 39.63 61.16  4.70 34.00 60.88  5.18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [25] 29.85 34.66 87.61 41.54 76.29 22.50 66.38 40.79 41.30 67.60 95.44 27.72</span>
@@ -96,7 +96,7 @@ to the user.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [73] 47.95  3.81 51.50  3.64 47.21  2.44 31.31 72.60 24.25 95.20  4.47 57.24</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [85] 83.92 96.72 16.90 25.97 30.70 73.46 43.82 85.82 87.88 26.51 70.31 30.54</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [97] 90.63  6.73 60.41 15.60</span>
-<span class="r-in"><span class="fu">mround</span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span> <span class="co"># same as above</span></span>
+<span class="r-in"><span><span class="fu">mround</span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span> <span class="co"># same as above</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1] 77.17 86.70  8.91 30.97 62.94 93.54 49.49 18.95 32.14 32.52 58.12 84.82</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [13] 67.87 52.93 22.46 68.72 14.33 24.87 39.63 61.16  4.70 34.00 60.88  5.18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [25] 29.85 34.66 87.61 41.54 76.29 22.50 66.38 40.79 41.30 67.60 95.44 27.72</span>
@@ -106,7 +106,7 @@ to the user.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [73] 47.95  3.81 51.50  3.64 47.21  2.44 31.31 72.60 24.25 95.20  4.47 57.24</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [85] 83.92 96.72 16.90 25.97 30.70 73.46 43.82 85.82 87.88 26.51 70.31 30.54</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [97] 90.63  6.73 60.41 15.60</span>
-<span class="r-in"><span class="fu">mround</span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">mround</span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1] 77.172 86.698  8.905 30.967 62.935 93.542 49.492 18.947 32.144 32.524</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [11] 58.119 84.819 67.867 52.925 22.461 68.724 14.332 24.873 39.633 61.155</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [21]  4.699 33.996 60.877  5.179 29.851 34.662 87.609 41.538 76.293 22.500</span>
@@ -131,7 +131,7 @@ to the user.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

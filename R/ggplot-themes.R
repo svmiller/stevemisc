@@ -67,6 +67,7 @@
 #' @export
 
 theme_steve <- function(...) {
+  .Deprecated(package="stevethemes", msg = "This function is deprecated and will be removed in a future release.\nCheck the development of {stevethemes} (svmiller/stevethemes) for more.")
   theme_bw() + theme(panel.border = element_blank(),
                      plot.margin = margin(15, 15, 15, 15),
                      plot.caption = element_text(hjust = 1,

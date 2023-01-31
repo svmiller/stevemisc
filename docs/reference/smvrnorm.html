@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5</span>
       </span>
     </div>
 
@@ -53,15 +53,15 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">smvrnorm</span><span class="op">(</span>
-  n <span class="op">=</span> <span class="fl">1</span>,
-  <span class="va">mu</span>,
-  <span class="va">sigma</span>,
-  tol <span class="op">=</span> <span class="fl">1e-06</span>,
-  empirical <span class="op">=</span> <span class="cn">FALSE</span>,
-  eispack <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">seed</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">smvrnorm</span><span class="op">(</span></span>
+<span>  n <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  <span class="va">mu</span>,</span>
+<span>  <span class="va">sigma</span>,</span>
+<span>  tol <span class="op">=</span> <span class="fl">1e-06</span>,</span>
+<span>  empirical <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  eispack <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">seed</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -114,10 +114,10 @@ of interest from a regression model.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, <span class="va">mtcars</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">smvrnorm</span><span class="op">(</span><span class="fl">100</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, <span class="va">mtcars</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">smvrnorm</span><span class="op">(</span><span class="fl">100</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        (Intercept)         disp        cyl</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1,]    34.44180 -0.016093590 -1.6668364</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [2,]    32.03398 -0.018701730 -1.2757296</span>
@@ -219,7 +219,7 @@ of interest from a regression model.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [98,]    38.92558 -0.018050955 -2.3751259</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [99,]    37.27147 -0.015998570 -2.1360520</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [100,]    30.62294 -0.033973310 -0.4645830</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -234,7 +234,7 @@ of interest from a regression model.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

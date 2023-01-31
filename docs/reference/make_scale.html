@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5</span>
       </span>
     </div>
 
@@ -53,7 +53,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">make_scale</span><span class="op">(</span><span class="va">x</span>, <span class="va">minim</span>, <span class="va">maxim</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_scale</span><span class="op">(</span><span class="va">x</span>, <span class="va">minim</span>, <span class="va">maxim</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -86,9 +86,9 @@ The function is flexible enough for any minimum or maximum.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">1</span>, <span class="fl">100</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">make_scale</span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span> <span class="co"># works</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">1</span>, <span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">make_scale</span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span> <span class="co"># works</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1] 3.691435 2.107502 3.670319 2.808087 2.615673 2.354313 2.035948 3.128916</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [9] 3.787428 2.048508 2.514866 3.244003 2.778355 4.685685 4.348520 3.125769</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [17] 4.614064 3.065012 3.651240 4.612916 4.896847 2.237435 4.184424 3.979520</span>
@@ -102,9 +102,9 @@ The function is flexible enough for any minimum or maximum.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [81] 3.763996 4.694063 4.213002 4.505863 2.531546 4.016657 2.649579 3.645823</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [89] 4.208062 2.575016 4.158535 4.681841 4.639911 3.903428 3.686708 2.344965</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [97] 3.054974 3.248985 5.000000 4.889466</span>
-<span class="r-in"><span class="fu">make_scale</span><span class="op">(</span><span class="va">x</span>, <span class="fl">5</span>, <span class="fl">2</span><span class="op">)</span> <span class="co"># results in message</span></span>
+<span class="r-in"><span><span class="fu">make_scale</span><span class="op">(</span><span class="va">x</span>, <span class="fl">5</span>, <span class="fl">2</span><span class="op">)</span> <span class="co"># results in message</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The desired minimum should not be greater than or equal to the desired maximum. Try again.</span>
-<span class="r-in"><span class="fu">make_scale</span><span class="op">(</span><span class="va">x</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span> <span class="co"># probably why you're using this.</span></span>
+<span class="r-in"><span><span class="fu">make_scale</span><span class="op">(</span><span class="va">x</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span> <span class="co"># probably why you're using this.</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1] 0.56381179 0.03583408 0.55677310 0.26936218 0.20522434 0.11810428</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [7] 0.01198278 0.37630528 0.59580925 0.01616923 0.17162203 0.41466759</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [13] 0.25945173 0.89522844 0.78283997 0.37525631 0.87135473 0.35500402</span>
@@ -136,7 +136,7 @@ The function is flexible enough for any minimum or maximum.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

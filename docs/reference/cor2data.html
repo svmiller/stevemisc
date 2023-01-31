@@ -19,7 +19,7 @@ regressions when population parameters are known and set in advance."><!-- mathj
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5</span>
       </span>
     </div>
 
@@ -57,7 +57,7 @@ regressions when population parameters are known and set in advance.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">cor2data</span><span class="op">(</span><span class="va">cor</span>, <span class="va">n</span>, <span class="va">seed</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cor2data</span><span class="op">(</span><span class="va">cor</span>, <span class="va">n</span>, <span class="va">seed</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -88,15 +88,15 @@ normal distribution, but with those pre-set correlations.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"control"</span>, <span class="st">"treat"</span>, <span class="st">"instr"</span>, <span class="st">"e"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">Correlations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.001</span>, <span class="fl">0.001</span>, <span class="fl">0.001</span>,</span>
-<span class="r-in">                             <span class="fl">0.001</span>, <span class="fl">1</span>, <span class="fl">0.85</span>, <span class="op">-</span><span class="fl">0.5</span>,</span>
-<span class="r-in">                            <span class="fl">0.001</span>, <span class="fl">0.85</span>, <span class="fl">1</span>, <span class="fl">0.001</span>,</span>
-<span class="r-in">                           <span class="fl">0.001</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.001</span>, <span class="fl">1</span><span class="op">)</span>,nrow<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://dbi.r-dbi.org/reference/rownames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">Correlations</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">Correlations</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">vars</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">cor2data</span><span class="op">(</span><span class="va">Correlations</span>, <span class="fl">1000</span>, <span class="fl">8675309</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"control"</span>, <span class="st">"treat"</span>, <span class="st">"instr"</span>, <span class="st">"e"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">Correlations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.001</span>, <span class="fl">0.001</span>, <span class="fl">0.001</span>,</span></span>
+<span class="r-in"><span>                             <span class="fl">0.001</span>, <span class="fl">1</span>, <span class="fl">0.85</span>, <span class="op">-</span><span class="fl">0.5</span>,</span></span>
+<span class="r-in"><span>                            <span class="fl">0.001</span>, <span class="fl">0.85</span>, <span class="fl">1</span>, <span class="fl">0.001</span>,</span></span>
+<span class="r-in"><span>                           <span class="fl">0.001</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.001</span>, <span class="fl">1</span><span class="op">)</span>,nrow<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">Correlations</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">Correlations</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">vars</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">cor2data</span><span class="op">(</span><span class="va">Correlations</span>, <span class="fl">1000</span>, <span class="fl">8675309</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            control         treat        instr             e</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    -0.9965823534  0.7208272032  0.287418622 -0.2321504442</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     1.0654160534  0.9882846616  0.854663879 -0.2618288603</span>
@@ -1098,7 +1098,7 @@ normal distribution, but with those pre-set correlations.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 998  -1.0648583323  0.1998847209 -0.517541832 -0.9332636902</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 999  -0.2312225216 -0.2999658454 -0.204561509 -0.1774115591</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1000  0.5015486388  0.7851524817  0.724885412 -0.2499866497</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -1113,7 +1113,7 @@ normal distribution, but with those pre-set correlations.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

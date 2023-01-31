@@ -20,7 +20,7 @@ are multiple and explained in the details section below."><!-- mathjax --><scrip
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5</span>
       </span>
     </div>
 
@@ -59,21 +59,21 @@ are multiple and explained in the details section below.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">center_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"c"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">diff_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, o <span class="op">=</span> <span class="fl">1</span>, prefix <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span>
-
-<span class="fu">group_mean_center_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, mean_prefix <span class="op">=</span> <span class="st">"mean"</span>, prefix <span class="op">=</span> <span class="st">"b"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">lag_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"l"</span>, o <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-
-<span class="fu">log_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"ln"</span>, plus_1 <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">mean_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"mean"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">r1sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"s"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">r2sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"z"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">center_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"c"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">diff_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, o <span class="op">=</span> <span class="fl">1</span>, prefix <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">group_mean_center_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, mean_prefix <span class="op">=</span> <span class="st">"mean"</span>, prefix <span class="op">=</span> <span class="st">"b"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">lag_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"l"</span>, o <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">log_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"ln"</span>, plus_1 <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">mean_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"mean"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">r1sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"s"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">r2sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"z"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -176,16 +176,16 @@ you should think about using some other <span class="pkg">dplyr</span> verb on i
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">8675309</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">Example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>category <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">5</span><span class="op">)</span>,</span>
-<span class="r-in">                                   <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">5</span><span class="op">)</span>,</span>
-<span class="r-in">                                   <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"C"</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">                      x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span>,</span>
-<span class="r-in">                      z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">15</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">my_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"z"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">center_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">8675309</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">Example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>category <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                                   <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                                   <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"C"</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                      x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                      z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">15</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">my_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"z"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">center_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    category         x          y  z         c_x         c_y c_z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.1594836 0.91822046  9 -0.45270578  0.38488743  -4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.4781883 0.71636154 19 -0.13400109  0.18302851   6</span>
@@ -202,8 +202,8 @@ you should think about using some other <span class="pkg">dplyr</span> verb on i
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.5109512 0.07917477  5 -0.10123826 -0.45415826  -8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.2601681 0.15996809  6 -0.35202128 -0.37336494  -7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.7494857 0.81639049  6  0.13729632  0.28305746  -7</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">diff_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">diff_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    category         x          y  z          d_x           d_y d_z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.1594836 0.91822046  9           NA            NA  NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.4781883 0.71636154 19  0.318704692 -0.2018589161  10</span>
@@ -220,8 +220,8 @@ you should think about using some other <span class="pkg">dplyr</span> verb on i
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.5109512 0.07917477  5 -0.072365765 -0.1754637090 -13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.2601681 0.15996809  6 -0.250783015  0.0807933176   1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.7494857 0.81639049  6  0.489317597  0.6564223976   0</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">diff_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span>, o<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">diff_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span>, o<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    category         x          y  z         d3_x          d3_y d3_z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.1594836 0.91822046  9           NA            NA   NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.4781883 0.71636154 19           NA            NA   NA</span>
@@ -238,8 +238,8 @@ you should think about using some other <span class="pkg">dplyr</span> verb on i
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.5109512 0.07917477  5  0.065791005 -0.4804757291  -11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.2601681 0.15996809  6 -0.578064396 -0.5095012465   -6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.7494857 0.81639049  6  0.166168816  0.5617520062  -12</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">lag_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">lag_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    category         x          y  z      l1_x       l1_y l1_z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.1594836 0.91822046  9        NA         NA   NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.4781883 0.71636154 19 0.1594836 0.91822046    9</span>
@@ -256,8 +256,8 @@ you should think about using some other <span class="pkg">dplyr</span> verb on i
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.5109512 0.07917477  5 0.5833169 0.25463848   18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.2601681 0.15996809  6 0.5109512 0.07917477    5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.7494857 0.81639049  6 0.2601681 0.15996809    6</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">lag_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span>, o<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">lag_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span>, o<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    category         x          y  z      l1_x      l2_x      l3_x       l1_y</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.1594836 0.91822046  9        NA        NA        NA         NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.4781883 0.71636154 19 0.1594836        NA        NA 0.91822046</span>
@@ -290,8 +290,8 @@ you should think about using some other <span class="pkg">dplyr</span> verb on i
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13 0.66946933 0.55965050   18   12   16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 14 0.25463848 0.66946933    5   18   12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 15 0.07917477 0.25463848    6    5   18</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">log_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">log_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    category         x          y  z        ln_x        ln_y     ln_z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.1594836 0.91822046  9 -1.83581396 -0.08531777 2.197225</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.4781883 0.71636154 19 -0.73775063 -0.33357029 2.944439</span>
@@ -308,8 +308,8 @@ you should think about using some other <span class="pkg">dplyr</span> verb on i
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.5109512 0.07917477  5 -0.67148128 -2.53609759 1.609438</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.2601681 0.15996809  6 -1.34642717 -1.83278093 1.791759</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.7494857 0.81639049  6 -0.28836799 -0.20286250 1.791759</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">log_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span>, plus_1 <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">log_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span>, plus_1 <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    category         x          y  z      ln_x       ln_y     ln_z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.1594836 0.91822046  9 0.1479748 0.65139791 2.302585</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.4781883 0.71636154 19 0.3908172 0.54020667 2.995732</span>
@@ -326,8 +326,8 @@ you should think about using some other <span class="pkg">dplyr</span> verb on i
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.5109512 0.07917477  5 0.4127394 0.07619665 1.791759</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.2601681 0.15996809  6 0.2312452 0.14839249 1.945910</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.7494857 0.81639049  6 0.5593219 0.59685128 1.945910</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">mean_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">mean_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    category         x          y  z    mean_x   mean_y mean_z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.1594836 0.91822046  9 0.6121894 0.533333     13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.4781883 0.71636154 19 0.6121894 0.533333     13</span>
@@ -344,8 +344,8 @@ you should think about using some other <span class="pkg">dplyr</span> verb on i
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.5109512 0.07917477  5 0.6121894 0.533333     13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.2601681 0.15996809  6 0.6121894 0.533333     13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.7494857 0.81639049  6 0.6121894 0.533333     13</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">group_mean_center_at</span><span class="op">(</span><span class="fu">mean_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span>, <span class="va">my_vars</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">group_mean_center_at</span><span class="op">(</span><span class="fu">mean_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span>, <span class="va">my_vars</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The absence of a grouping factor means you're going to be subtracting a mean from itself. It's up to you if you want to do that. You probably didn't want that, but I did it anyway. I'm just bringing that to your attention.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The ensuing output for these variables you created are all 0, indicating you subtracted a thing from a different version of itself in this function. Are you sure these mean variables aren't themselves actually group means? Check your code more carefully.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    category         x          y  z    mean_x   mean_y mean_z b_x b_y b_z</span>
@@ -364,13 +364,13 @@ you should think about using some other <span class="pkg">dplyr</span> verb on i
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.5109512 0.07917477  5 0.6121894 0.533333     13   0   0   0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.2601681 0.15996809  6 0.6121894 0.533333     13   0   0   0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.7494857 0.81639049  6 0.6121894 0.533333     13   0   0   0</span>
-<span class="r-in"><span class="co"># ^ Alternatively, a better way:</span></span>
-<span class="r-in"><span class="co"># Example %&gt;%</span></span>
-<span class="r-in"><span class="co">#   mean_at(my_vars) %&gt;%</span></span>
-<span class="r-in"><span class="co">#   group_by(category) %&gt;%</span></span>
-<span class="r-in"><span class="co">#   group_mean_center_at(my_vars)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">r1sd_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># ^ Alternatively, a better way:</span></span></span>
+<span class="r-in"><span><span class="co"># Example %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co">#   mean_at(my_vars) %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co">#   group_by(category) %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co">#   group_mean_center_at(my_vars)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">r1sd_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    category         x          y  z        s_x         s_y        s_z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.1594836 0.91822046  9 -1.8112227  1.22348833 -0.7954674</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.4781883 0.71636154 19 -0.5361226  0.58181493  1.1932011</span>
@@ -387,8 +387,8 @@ you should think about using some other <span class="pkg">dplyr</span> verb on i
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13        C 0.5109512 0.07917477  5 -0.4050424 -1.44368791 -1.5909348</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 14        C 0.2601681 0.15996809  6 -1.4083958 -1.18686040 -1.3920679</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 15        C 0.7494857 0.81639049  6  0.5493064  0.89978905 -1.3920679</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">r2sd_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">r2sd_at</span><span class="op">(</span><span class="va">Example</span>, <span class="va">my_vars</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    category         x          y  z         z_x         z_y         z_z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         A 0.1594836 0.91822046  9 -0.90561135  0.61174417 -0.39773369</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         A 0.4781883 0.71636154 19 -0.26806132  0.29090746  0.59660054</span>
@@ -419,7 +419,7 @@ you should think about using some other <span class="pkg">dplyr</span> verb on i
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

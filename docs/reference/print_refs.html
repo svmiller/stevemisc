@@ -22,7 +22,7 @@ R Markdown."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stevemisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5</span>
       </span>
     </div>
 
@@ -63,14 +63,14 @@ R Markdown.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">print_refs</span><span class="op">(</span>
-  <span class="va">bib</span>,
-  csl <span class="op">=</span> <span class="st">"american-political-science-association.csl"</span>,
-  toformat <span class="op">=</span> <span class="st">"markdown_strict"</span>,
-  cslrepo <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/citation-style-language/styles/master"</span>,
-  spit_out <span class="op">=</span> <span class="cn">TRUE</span>,
-  delete_after <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">print_refs</span><span class="op">(</span></span>
+<span>  <span class="va">bib</span>,</span>
+<span>  csl <span class="op">=</span> <span class="st">"american-political-science-association.csl"</span>,</span>
+<span>  toformat <span class="op">=</span> <span class="st">"markdown_strict"</span>,</span>
+<span>  cslrepo <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/citation-style-language/styles/master"</span>,</span>
+<span>  spit_out <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  delete_after <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -116,18 +116,18 @@ The Github repository of CSL files is available here: <a href="https://github.co
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="va">example</span> <span class="op">&lt;-</span> <span class="st">"@Book{vasquez2009twp, Title = {The War Puzzle Revisited},</span>
-<span class="r-in">Author = {Vasquez, John A}, Publisher = {New York, NY: Cambridge University Press},</span>
-<span class="r-in">Year = {2009}}"</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">print_refs</span><span class="op">(</span><span class="va">example</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">example</span> <span class="op">&lt;-</span> <span class="st">"@Book{vasquez2009twp, Title = {The War Puzzle Revisited},</span></span></span>
+<span class="r-in"><span><span class="st">Author = {Vasquez, John A}, Publisher = {New York, NY: Cambridge University Press},</span></span></span>
+<span class="r-in"><span><span class="st">Year = {2009}}"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">print_refs</span><span class="op">(</span><span class="va">example</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> I'm going to assume this is a .bib entry...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading CSL from https://raw.githubusercontent.com/citation-style-language/styles/master/american-political-science-association.csl</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Vasquez, John A. 2009. *The War Puzzle Revisited*. New York, NY:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Cambridge University Press.</span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -142,7 +142,7 @@ The Github repository of CSL files is available here: <a href="https://github.co
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -1,7 +1,7 @@
 Package: stevemisc
 Type: Package
 Title: Steve's Miscellaneous Functions
-Version: 1.4.19
+Version: 1.5
 Depends: R (>= 3.6.0), stats
 Authors@R: c(
     person("Steve", "Miller", email = "steven.v.miller@gmail.com",
@@ -24,7 +24,9 @@ Authors@R: c(
                    family = "McDermott",
                    role = "ctb",
                    email = "grantmcd@uoregon.edu",
-                   comment = c(ORCID = "0000-0001-7883-8573"))
+                   comment = c(ORCID = "0000-0001-7883-8573")),
+     person("Hadley", "Wickham", , "hadley@rstudio.com", role = "ctb",
+           comment = c(ORCID = "0000-0003-4757-117X"))
     )
 Description: These are miscellaneous functions that I find useful for my research and teaching.
     The contents include themes for plots, functions for simulating
@@ -58,5 +60,5 @@ Suggests:
     DBI,
     RSQLite,
     dbplyr
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
