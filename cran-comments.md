@@ -1,6 +1,10 @@
 ## Test environment
 
-- ubuntu 18.04, R 4.0.3
+- Pop! OS 22.04, R 4.1.2
+
+## Feedback to CRAN in light of initial rejection
+
+URL redirects will be the death of me. I apologize for the inconvenience.
 
 ## Initial Comments to CRAN
 
