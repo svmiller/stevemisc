@@ -18,9 +18,11 @@
 #' previous value recorded above it. It then renames these new variables to have
 #' a prefix of \code{d_} (in the case of a first difference), or something like
 #' \code{d2_} in the case of second differences, or \code{d3_} in the case of
-#' third differences (and so on). The exact prefix depends on the \code{l}
+#' third differences (and so on). The exact prefix depends on the \code{o}
 #' argument, which communicates the order of lags you want. It defaults to 1. The
-#' default prefix ("d") can be changed by way of an argument in the function.
+#' default prefix ("d") can be changed by way of an argument in the function,
+#' though the naming convention will omit a numerical prefix for first
+#' differences.
 #'
 #' \code{group_mean_center_at} is a wrapper for \code{mutate} and \code{across}
 #' in \pkg{dplyr}. It takes supplied vectors and centers an (assumed) group mean
@@ -33,14 +35,18 @@
 #' \code{lag_at} is a wrapper for \code{mutate} and \code{across} from
 #' \pkg{dplyr}. It takes supplied vector(s) and creates lag variables from them.
 #' These new variables have a prefix of \code{l[o]_} where \code{o} corresponds
-#' to the order of the lag. This default prefix ("l") can be
-#' changed by way of an argument in the function.
+#' to the order of the lag (specified by an argument in the function, which
+#' defaults to 1). This default prefix ("l") can be changed by way of an
+#' another argument in the function.
 #'
 #' \code{log_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
 #' \pkg{dplyr}. It takes supplied vectors and creates a variable that takes
 #' a natural logarithmic transformation of them. It then renames these new
 #' variables to have a prefix of \code{ln_}. This default prefix ("ln") can be
-#' changed by way of an argument in the function.
+#' changed by way of an argument in the function. Users can optionally specify
+#' that they want to add 1 to the vector before taking its natural logarithm,
+#' which is a popular thing to do when positive reals have naturally occurring
+#' zeroes.
 #'
 #' \code{mean_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
 #' \pkg{dplyr}. It takes supplied vectors and creates a variable communicating
@@ -70,8 +76,10 @@
 #' @param x a vector, likely in your data frame
 #' @param o The order of lags for calculating differences or lags in
 #' \code{diff_at} or \code{lag_at}. Applicable only to these functions.
-#' @param na what to do with NAs in the vector. Defaults to TRUE
-#' (i.e. passes over the missing observations). Not applicable to \code{diff_at}.
+#' @param na a logical about whether missing values should be ignored in the
+#' creation of means and re-scaled variables. Defaults to TRUE (i.e. pass
+#' over/remove missing observations). Not applicable to \code{diff_at},
+#' \code{lag_at}, and \code{log_at}.
 #' @param prefix Allows the user to rename the prefix of the new variables.  Each
 #' function has defaults (see details section).
 #' @param mean_prefix Applicable only to \code{group_mean_center_at}. Specifies
@@ -329,32 +337,3 @@ r2sd_at <- function(data, x, prefix = "z", na=TRUE) {
   return(data)
 
 }
-
-#' #' @rdname at
-#' #' @export
-#' #'
-#'
-#' within_at <- function(data, x, na=TRUE) {
-#'
-#'   if(length(x) == 1) {
-#'     stop("The use of a scoped helper verb like this requires more than one variable.")
-#'   }
-#'
-#'   data %>%
-#'     mutate_at(vars(all_of(x)),
-#'               list(w = ~. - mean(., na = na))) %>%
-#'     rename_at(vars(contains("_w")),
-#'               ~paste("w", gsub("_w", "", .), sep = "_") ) -> data
-#'   return(data)
-#'
-#' }
-
-
-# \code{within_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
-# \pkg{dplyr}. It takes supplied vectors and effectively centers them from the
-# mean. It then renames these new variables to have a prefix of \code{w_}. It
-# is best used with a \code{group_by} preceding it on some kind of "subject",
-# with an eye toward ultimately including them as covariates in a panel model
-# to isolate so-called "within" effects. Its underlying functionality is
-# effectively identical to \code{center_at} and the distinctions between the two
-# are the different prefixes and different intended uses/contexts.

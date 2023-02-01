@@ -6,7 +6,7 @@
 \alias{post_bg}
 \alias{theme_steve_ms}
 \alias{theme_steve_font}
-\title{Steve's Preferred \pkg{ggplot2} Themes and Assorted Stuff}
+\title{Legacy functions for Steve's Preferred \pkg{ggplot2} Themes and Assorted Stuff}
 \usage{
 theme_steve(...)
 
@@ -42,14 +42,19 @@ overlays a font of your choosing.
 basically \code{theme_bw()} from \pkg{ggplot2} theme, but with me
 tweaking a few things. I've since moved to \code{theme_steve_web()} for most things
 now, prominently on my website. It incorporates the "Open Sans" and "Titillium Web"
-fonts that I like so much. \code{post_bg()} is for changing the backgrounds on
-plots to better match my website for posts that I write. \code{theme_steve_ms()} is
-for \code{LaTeX} manuscripts that use the \code{cochineal} font package. \code{theme_steve_font()} is
-for any purpose, allowing you to supply your own font.
+fonts that I like so much. \code{post_bg()} is a legacy function for changing the
+backgrounds on plots to better match what was the background color on my website.
+\code{theme_steve_ms()} is for \code{LaTeX} manuscripts that use the
+\code{cochineal} font package. \code{theme_steve_font()} is for any purpose,
+allowing you to supply your own font.
 }
 \details{
-\code{theme_steve_web()} depends on having the fonts installed on your end.
-It's ultimately optional for you to have them.
+\code{theme_steve_web()} and \code{theme_steve_ms()} both explicitly
+depend on having the fonts installed on your end. It's ultimately optional
+for you to have them but the use of these functions imply them. All functions
+that remain here should be understood as "legacy" functions that will no longer
+be maintained or updated. The \pkg{stevethemes} package will have all my
+\pkg{ggplot2} elements going forward.
 }
 \examples{
 \dontrun{

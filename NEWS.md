@@ -1,8 +1,8 @@
-# stevemisc 1.5
+# stevemisc 1.5.0
 
-- Package now contains more scoped helper verbs---the so-called functions. These functions---like `center_at()`, `diff_at()`, and more---are self-contained in one R Documentation file.
+- Package now contains more scoped helper verbs---the so-called "at" functions. These functions---like `center_at()`, `diff_at()`, and more---are self-contained in one R Documentation file.
 - `theme_steve_ms()` now actually uses "Crimson Pro", and not "Crimson Text".
-- `theme_steve()` is deprecated and will be removed in a later release. This function has been been effectively moved and expanded to [`{stevethemes}`](http://svmiller.com/stevethemes)
+- `theme_steve()` is deprecated and will be removed in a later release. This function has been been effectively moved and expanded to [`{stevethemes}`](http://svmiller.com/stevethemes). The remaining `{ggplot2}` functions in this package are becoming legacy functions with that in mind.
 - `wls()` does weighted least squares re-estimations of an OLS model. HT @hadley for some information about a class issue.
 - `fct_reorg()` completely re-written (by @hadley himself) in light of new `{forcats}` release.
 
