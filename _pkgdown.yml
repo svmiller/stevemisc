@@ -8,15 +8,61 @@ template:
 figures:
   fig.width: 11
 
-
 reference:
-        - title: Functions
-          desc: These are miscellaneous functions I've written to serve my research or pedagogical needs.
-          contents:
-                - starts_with("theme_|binred|carr|cor|db_|fct_|filter|get_|jenny|lin|make|mround|rev|%nin%|normal|p_|pr|ps|r1|r2|rb|sb|sh|sm|tbl|w")
-        - title: Datasets
-          desc: These are toy data sets necessary for illustrating or testing functions, or might be data sets that just found their way here for one reason or another.
-          contents:
-                - has_keyword("datasets")
-                - has_keyword("info")
+  - title: Functions
+    desc: These are miscellaneous functions I've written to serve my research or
+      pedagogical needs.
+    contents:
+      - center_at
+      - binred_plot
+      - carrec
+      - cor2data
+      - corvectors
+      - db_lselect
+      - fct_reorg
+      - filter_refs
+      - get_sims
+      - get_var_info
+      - theme_steve
+      - jenny
+      - linloess_plot
+      - make_perclab
+      - make_scale
+      - mround
+      - starts_with("%")
+      - normal_dist
+      - p_z
+      - prepare_refs
+      - print_refs
+      - ps_btscs
+      - ps_spells
+      - r1sd
+      - r2sd
+      - rbnorm
+      - revcode
+      - sbayesboot
+      - sbtscs
+      - show_ranef
+      - smvrnorm
+      - studentt
+      - tbl_df
+      - wls
+      - wom
+  - title: Datasets
+    desc: These are toy data sets necessary for illustrating or testing functions,
+      or might be data sets that just found their way here for one reason or
+      another.
+    contents:
+      - has_keyword("datasets")
+
+
+# reference:
+#         - title: Functions
+#           desc: These are miscellaneous functions I've written to serve my research or pedagogical needs.
+#           contents:
+#                 - starts_with("theme_|binred|carr|cor|db_|fct_|filter|get_|jenny|lin|make|mround|rev|%nin%|normal|p_|pr|ps|r1|r2|rb|sb|sh|sm|tbl|w")
+#         - title: Datasets
+#           desc: These are toy data sets necessary for illustrating or testing functions, or might be data sets that just found their way here for one reason or another.
+#           contents:
+#                 - has_keyword("datasets")
 
