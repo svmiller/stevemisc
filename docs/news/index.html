@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">stevemisc</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.6.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,12 +45,18 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.6.0" id="stevemisc-160">stevemisc 1.6.0<a class="anchor" aria-label="anchor" href="#stevemisc-160"></a></h2>
+<ul><li>
+<code>theme_steve()</code> is removed from the package. This function is now in <a href="http://svmiller.com/stevethemes/">stevethemes</a>, which will house all my <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> themes going forward.</li>
+<li>Fix a warning/error/bug in <code><a href="../reference/ps_spells.html">ps_spells()</a></code> that was brought to my attention by CRAN. I don’t know why this came up just now, but it’s apparently been an issue lurking around R development for some time now that <a href="https://stackoverflow.com/questions/68101279/warning-in-xtfrm-data-framex-cannot-xtfrm-data-frames-error-while-ordering" class="external-link">it’s always been wrong to call <code>order()</code> on a data frame</a>. The underlying <code><a href="https://rdrr.io/r/base/order.html" class="external-link">order()</a></code> calls have been replaced with <code><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange()</a></code>. This fix concerns a related issue that also affects <a href="https://github.com/svmiller/peacesciencer/" class="external-link">peacesciencer</a>.</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.5.0" id="stevemisc-150">stevemisc 1.5.0<a class="anchor" aria-label="anchor" href="#stevemisc-150"></a></h2><p class="text-muted">CRAN release: 2023-02-01</p>
 <ul><li>Package now contains more scoped helper verbs—the so-called “at” functions. These functions—like <code><a href="../reference/at.html">center_at()</a></code>, <code><a href="../reference/at.html">diff_at()</a></code>, and more—are self-contained in one R Documentation file.</li>
 <li>
 <code><a href="../reference/ggplot-themes.html">theme_steve_ms()</a></code> now actually uses “Crimson Pro”, and not “Crimson Text”.</li>
 <li>
-<code><a href="../reference/ggplot-themes.html">theme_steve()</a></code> is deprecated and will be removed in a later release. This function has been been effectively moved to <a href="http://svmiller.com/stevethemes/">stevethemes</a>, where it has also been expanded and improved. The remaining <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> functions in this package are becoming legacy functions with that in mind.</li>
+<code>theme_steve()</code> is deprecated and will be removed in a later release. This function has been been effectively moved to <a href="http://svmiller.com/stevethemes/">stevethemes</a>, where it has also been expanded and improved. The remaining <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> functions in this package are becoming legacy functions with that in mind.</li>
 <li>
 <code><a href="../reference/wls.html">wls()</a></code> does weighted least squares re-estimations of an OLS model. HT <a href="https://github.com/hadley" class="external-link">@hadley</a> for some information about a class issue.</li>
 <li>
@@ -110,7 +116,7 @@
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2" id="stevemisc-02">stevemisc 0.2<a class="anchor" aria-label="anchor" href="#stevemisc-02"></a></h2>
-<p>Update <code><a href="../reference/carrec.html">carrec()</a></code>, <code><a href="../reference/cor2data.html">cor2data()</a></code>, <code><a href="../reference/corvectors.html">corvectors()</a></code>, <code><a href="../reference/get_sims.html">get_sims()</a></code>, <code><a href="../reference/get_var_info.html">get_var_info()</a></code>, <code><a href="../reference/make_perclab.html">make_perclab()</a></code>, <code><a href="../reference/make_scale.html">make_scale()</a></code>, <code><a href="../reference/jenny.html">jenny()</a></code>, <code>%nin%</code>, <code><a href="../reference/normal_dist.html">normal_dist()</a></code>, <code><a href="../reference/rbnorm.html">rbnorm()</a></code>, <code><a href="../reference/sbtscs.html">sbtscs()</a></code>, <code><a href="../reference/show_ranef.html">show_ranef()</a></code>, <code><a href="../reference/smvrnorm.html">smvrnorm()</a></code>, <code><a href="../reference/ggplot-themes.html">theme_steve()</a></code>, and <code><a href="../reference/ggplot-themes.html">theme_steve_web()</a></code>. Remove <code>multiplot()</code>.</p>
+<p>Update <code><a href="../reference/carrec.html">carrec()</a></code>, <code><a href="../reference/cor2data.html">cor2data()</a></code>, <code><a href="../reference/corvectors.html">corvectors()</a></code>, <code><a href="../reference/get_sims.html">get_sims()</a></code>, <code><a href="../reference/get_var_info.html">get_var_info()</a></code>, <code><a href="../reference/make_perclab.html">make_perclab()</a></code>, <code><a href="../reference/make_scale.html">make_scale()</a></code>, <code><a href="../reference/jenny.html">jenny()</a></code>, <code>%nin%</code>, <code><a href="../reference/normal_dist.html">normal_dist()</a></code>, <code><a href="../reference/rbnorm.html">rbnorm()</a></code>, <code><a href="../reference/sbtscs.html">sbtscs()</a></code>, <code><a href="../reference/show_ranef.html">show_ranef()</a></code>, <code><a href="../reference/smvrnorm.html">smvrnorm()</a></code>, <code>theme_steve()</code>, and <code><a href="../reference/ggplot-themes.html">theme_steve_web()</a></code>. Remove <code>multiplot()</code>.</p>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.17" id="stevemisc-0117">stevemisc 0.1.17<a class="anchor" aria-label="anchor" href="#stevemisc-0117"></a></h2>
@@ -294,7 +300,7 @@
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.4.6" id="stevemisc-0146">stevemisc 0.1.4.6<a class="anchor" aria-label="anchor" href="#stevemisc-0146"></a></h2>
-<p>Update <code><a href="../reference/ggplot-themes.html">theme_steve()</a></code>, <code><a href="../reference/ggplot-themes.html">theme_steve_web()</a></code>, and <code>ustradegdp</code>.</p>
+<p>Update <code>theme_steve()</code>, <code><a href="../reference/ggplot-themes.html">theme_steve_web()</a></code>, and <code>ustradegdp</code>.</p>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.4.4" id="stevemisc-0144">stevemisc 0.1.4.4<a class="anchor" aria-label="anchor" href="#stevemisc-0144"></a></h2>
@@ -322,18 +328,18 @@
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.2" id="stevemisc-012">stevemisc 0.1.2<a class="anchor" aria-label="anchor" href="#stevemisc-012"></a></h2>
-<p>Changed the title on <code><a href="../reference/ggplot-themes.html">theme_steve()</a></code>. Add <code>mround2()</code></p>
+<p>Changed the title on <code>theme_steve()</code>. Add <code>mround2()</code></p>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="stevemisc-011">stevemisc 0.1.1<a class="anchor" aria-label="anchor" href="#stevemisc-011"></a></h2>
-<p>Changed the title on <code><a href="../reference/ggplot-themes.html">theme_steve()</a></code></p>
+<p>Changed the title on <code>theme_steve()</code></p>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="stevemisc-010">stevemisc 0.1.0<a class="anchor" aria-label="anchor" href="#stevemisc-010"></a></h2>
 <p>Initial developmental release. Features included:</p>
 <ul><li><code><a href="../reference/sbtscs.html">sbtscs()</a></code></li>
 <li><code><a href="../reference/show_ranef.html">show_ranef()</a></code></li>
-<li><code><a href="../reference/ggplot-themes.html">theme_steve()</a></code></li>
+<li><code>theme_steve()</code></li>
 </ul></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

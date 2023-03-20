@@ -38,7 +38,6 @@ importFrom(purrr, reduce)
 
 importFrom(methods, is)
 
-export(theme_steve)
 export(theme_steve_web)
 export(post_bg)
 

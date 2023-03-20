@@ -1,9 +1,10 @@
 #' @title Legacy functions for Steve's Preferred \pkg{ggplot2} Themes and Assorted Stuff
 #'
-#' @description \code{theme_steve()} was a preferred theme of mine a few years ago. It is
-#' basically \code{theme_bw()} from \pkg{ggplot2} theme, but with me
-#' tweaking a few things. I've since moved to \code{theme_steve_web()} for most things
-#' now, prominently on my website. It incorporates the "Open Sans" and "Titillium Web"
+#' @description \code{theme_steve()}, now in \pkg{stevethemes}, was a preferred
+#' theme of mine a few years ago. It was basically \code{theme_bw()} from
+#' \pkg{ggplot2} theme, but with me tweaking a few things. I then moved to
+#' \code{theme_steve_web()} for most things now, prominently on my website.
+#' This theme incorporates the "Open Sans" and "Titillium Web"
 #' fonts that I like so much. \code{post_bg()} is a legacy function for changing the
 #' backgrounds on plots to better match what was the background color on my website.
 #' \code{theme_steve_ms()} is for \code{LaTeX} manuscripts that use the
@@ -18,8 +19,7 @@
 #' \pkg{ggplot2} elements going forward.
 #'
 #' @return \code{post_bg()} takes a \pkg{ggplot2} plot and changes the background to have a color of
-#' "#fdfdfd". \code{theme_steve()} takes a \pkg{ggplot2} plot and formats it to approximate
-#' \code{theme_bw()} from \pkg{ggplot2}, but with some other tweaks. \code{theme_steve_web()} extends
+#' "#fdfdfd". \code{theme_steve_web()} extends
 #' \code{theme_steve()} to add custom fonts, notably "Open Sans" and "Titillium Web". In all cases, these
 #' functions take a \pkg{ggplot2} plot and return another \pkg{ggplot2} plot, but with some cosmetic
 #' changes. \code{theme_steve_ms()} takes a \pkg{ggplot2} plot and overlays "Crimson Pro" fonts, which is
@@ -36,11 +36,6 @@
 #' \dontrun{
 #' library(ggplot2)
 #'
-#' ggplot(mtcars, aes(x = mpg, y = hp)) +
-#'   geom_point() + theme_steve() +
-#'   labs(title = "A ggplot2 Plot from the Motor Trend Car Road Tests Data",
-#'   subtitle = "We've all seen this plot over a hundred times.",
-#'   caption = "Data: ?mtcars in {datasets} in base R.")
 #'
 #' ggplot(mtcars, aes(x = mpg, y = hp)) +
 #'   geom_point() + theme_steve_web() +
@@ -71,26 +66,24 @@
 #' @seealso [ggplot2::theme]
 #' @export
 
-theme_steve <- function(...) {
-  .Deprecated(package="stevethemes", msg = "This function is deprecated and will be removed in a future release.\nCheck the development of {stevethemes} (svmiller/stevethemes) for this function and more.")
-  theme_bw() + theme(panel.border = element_blank(),
-                     plot.margin = margin(15, 15, 15, 15),
-                     plot.caption = element_text(hjust = 1,
-                                                 size = 9,
-                                                 margin = margin(t = 10),
-                                                 face = "italic"),
-                     plot.title = element_text(hjust = 0, size = 18,
-                                               margin = margin(b = 10), face = "bold"),
-                     axis.title.y = element_text(size = 12, hjust = 1, face = "italic"),
-                     axis.title.x = element_text(hjust = 1, size = 12, face = "italic"),
-                     legend.position = "bottom",
-                     legend.title = element_text(face = "bold")) +
-    theme(legend.spacing.x = unit(0.1, "cm"))
+# theme_steve <- function(...) {
+#   .Deprecated(package="stevethemes", msg = "This function is deprecated and will be removed in a future release.\nCheck the development of {stevethemes} (svmiller/stevethemes) for this function and more.")
+#   theme_bw() + theme(panel.border = element_blank(),
+#                      plot.margin = margin(15, 15, 15, 15),
+#                      plot.caption = element_text(hjust = 1,
+#                                                  size = 9,
+#                                                  margin = margin(t = 10),
+#                                                  face = "italic"),
+#                      plot.title = element_text(hjust = 0, size = 18,
+#                                                margin = margin(b = 10), face = "bold"),
+#                      axis.title.y = element_text(size = 12, hjust = 1, face = "italic"),
+#                      axis.title.x = element_text(hjust = 1, size = 12, face = "italic"),
+#                      legend.position = "bottom",
+#                      legend.title = element_text(face = "bold")) +
+#     theme(legend.spacing.x = unit(0.1, "cm"))
+#
+# }
 
-}
-
-#' @rdname ggplot-themes
-#' @export
 
 theme_steve_web <- function(...) {
   #require(ggplot2)

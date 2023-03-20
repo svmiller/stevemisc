@@ -32,11 +32,11 @@
 #' are all treated as failures. Defaults to \code{FALSE}.
 #'
 #' @examples
-#' \donttest{
+#'
 #' One <- ps_btscs(usa_mids, midongoing, year, dyad)
 #' Two <- ps_spells(usa_mids, midongoing, year, dyad)
 #' identical(One, Two)
-#' }
+#'
 #'
 
 
@@ -87,7 +87,8 @@ ps_spells <- function (data, event, tvar, csunit, time_type = "year", ongoing = 
   data$orig_order <- 1:nrow(data)
   data$temp_date <- as.Date(paste0(data[[tvar]], "-06-30"))
   keep <- c(event, csunit, tvar, "orig_order", "temp_date")
-  res <- data[order(data[, csunit], data[, tvar]), keep]
+  #res <- data[order(data[, csunit], data[, tvar]), keep]
+  res <- arrange(data, csunit, tvar)
 
   if (ongoing==TRUE) {
     failure <- function(x) return(c(x[1], pmax(0, diff(x))))
@@ -127,7 +128,8 @@ ps_spells <- function (data, event, tvar, csunit, time_type = "year", ongoing = 
 
   # Create duration variable, need to order by spell ID and date!!!!
   helper <- 1 - res$ongoing
-  res <- res[order(res$spellID, res[, tvar]), ]
+  #res <- res[order(res$spellID, res[, tvar]), ]
+  res <- arrange(res, res$spellID, tvar)
   res <- as.data.frame(res)
   res$duration[!is.na(res$spellID)] <- unlist(
     by(helper[!is.na(res$spellID)], res$spellID[!is.na(res$spellID)], cumsum) )

@@ -40,11 +40,11 @@ package. See documentation there for more information. I thank Andreas Beger for
 it here.
 }
 \examples{
-\donttest{
+
 One <- ps_btscs(usa_mids, midongoing, year, dyad)
 Two <- ps_spells(usa_mids, midongoing, year, dyad)
 identical(One, Two)
-}
+
 
 }
 \references{

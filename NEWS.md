@@ -1,3 +1,8 @@
+# stevemisc 1.6.0
+
+- `theme_steve()` is removed from the package. This function is now in `{stevethemes}`, which will house all my `{ggplot2}` themes going forward.
+- Fix a warning/error/bug in `ps_spells()` that was brought to my attention by CRAN. I don't know why this came up just now, but it's apparently been an issue lurking around R development for some time now that [it's always been wrong to call `order()` on a data frame](https://stackoverflow.com/questions/68101279/warning-in-xtfrm-data-framex-cannot-xtfrm-data-frames-error-while-ordering). The underlying `order()` calls have been replaced with `arrange()`. This fix concerns a related issue that also affects `{peacesciencer}`.
+
 # stevemisc 1.5.0
 
 - Package now contains more scoped helper verbs---the so-called "at" functions. These functions---like `center_at()`, `diff_at()`, and more---are self-contained in one R Documentation file.

@@ -1,7 +1,7 @@
 Package: stevemisc
 Type: Package
 Title: Steve's Miscellaneous Functions
-Version: 1.5.0
+Version: 1.6.0
 Depends: R (>= 3.6.0), stats
 Authors@R: c(
     person("Steve", "Miller", email = "steven.v.miller@gmail.com",

@@ -23,7 +23,8 @@ reference:
       - filter_refs
       - get_sims
       - get_var_info
-      - theme_steve
+      - theme_steve_web
+      - theme_steve_font
       - jenny
       - linloess_plot
       - make_perclab
