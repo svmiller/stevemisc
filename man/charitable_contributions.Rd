@@ -9,7 +9,7 @@ A data frame with 470 observations on the following 8 variables.
 \describe{
 \item{\code{subject}}{a numeric identifier for the subject}
 \item{\code{time}}{a numeric time identifier, as a simple integer from 1 to 10}
-\item{\code{charity}}{the sum of cash and other property contributions, excluding carry-govers from previous years}
+\item{\code{charity}}{the sum of cash and other property contributions, excluding carry-overs from previous years}
 \item{\code{income}}{adjusted gross income}
 \item{\code{price}}{1 minus the marginal income tax rate, which is defined on income prior to contributions}
 \item{\code{age}}{a dummy variable that equals 1 if the respondent is over 64, 0 otherwise}
