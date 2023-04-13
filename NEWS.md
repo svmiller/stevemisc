@@ -1,3 +1,7 @@
+# stevemisc 1.7.0
+
+- Add `charitable_contributions`.
+
 # stevemisc 1.6.0
 
 - `theme_steve()` is removed from the package. This function is now in `{stevethemes}`, which will house all my `{ggplot2}` themes going forward.

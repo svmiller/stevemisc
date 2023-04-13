@@ -178,3 +178,32 @@
 #'
 
 "map_quiz"
+
+
+#' Charitable Contributions Panel Data
+#'
+#' This is a toy panel data set on charitable contributions across 10 years for
+#' 47 taxpayers. It's useful for illustrating the estimation of panel models.
+#'
+#' @format A data frame with 470 observations on the following 8 variables.
+#' \describe{
+#' \item{\code{subject}}{a numeric identifier for the subject}
+#' \item{\code{time}}{a numeric time identifier, as a simple integer from 1 to 10}
+#' \item{\code{charity}}{the sum of cash and other property contributions, excluding carry-govers from previous years}
+#' \item{\code{income}}{the country I asked the student to correctly
+#' identify}
+#' \item{\code{price}}{1 minus the marginal income tax rate, which is defined on income prior to contributions}
+#' \item{\code{age}}{a dummy variable that equals 1 if the respondent is over 64, 0 otherwise}
+#' \item{\code{ms}}{a dummy variable that equals 1 if the respondent is married, 0 otherwise}
+#' \item{\code{deps}}{the number of claimed dependents, as an integer}}
+#'
+#' @details
+#'
+#' Frees (2003) is the nominal source for these data, as they appear as toy data
+#' sets for use in his book. The actual source for these data as I obtained them
+#' is Gujarati (2012). The underlying source of the raw data are supposedly the
+#' 1979-1988 *Statistics of Income* Panel of Individual Tax Returns. Given the
+#' opacity of the data, and its temporal limitations, these data should only be
+#' used for illustration and not inference.
+#'
+"charitable_contributions"
