@@ -17,7 +17,7 @@ diff_at(data, x, o = 1, prefix = "d")
 
 group_mean_center_at(data, x, mean_prefix = "mean", prefix = "b", na = TRUE)
 
-lag_at(data, x, prefix = "l", o = 1)
+lag_at(data, x, prefix = "l", o = 1, .by = NULL)
 
 log_at(data, x, prefix = "ln", plus_1 = FALSE)
 
@@ -46,6 +46,11 @@ over/remove missing observations). Not applicable to \code{diff_at},
 \item{mean_prefix}{Applicable only to \code{group_mean_center_at}. Specifies
 the prefix of the (assumed) total population mean variables. Default is "mean",
 though the user can change this as they see fit.}
+
+\item{.by}{a selection of columns by which to group the operation. Defaults
+to NULL. Right now, applicable just to \code{lag_at} though this will
+eventually become a standard feature of the functions as this operator moves
+beyond the experimental in \pkg{dplyr}.}
 
 \item{plus_1}{Applicable only to \code{log_at}. If TRUE, adds 1 to the
 variables prior to log transformation. If FALSE, performs logarithmic

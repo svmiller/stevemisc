@@ -1,6 +1,7 @@
 # stevemisc 1.7.0
 
 - Add `charitable_contributions`.
+- Scoped helper verbs are gradually getting `.by` support. Starts with `lag_at()`.
 
 # stevemisc 1.6.0
 

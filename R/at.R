@@ -89,6 +89,10 @@
 #' variables prior to log transformation. If FALSE, performs logarithmic
 #' transformation on variables no matter whether 0 occurs (i.e. 0s will
 #' come back as -Inf). Defaults to FALSE.
+#' @param .by a selection of columns by which to group the operation. Defaults
+#' to NULL. Right now, applicable just to \code{lag_at} though this will
+#' eventually become a standard feature of the functions as this operator moves
+#' beyond the experimental in \pkg{dplyr}.
 #'
 #' @return The function returns a set of new vectors in a data frame after
 #' performing relevant functions. The new vectors have distinct prefixes
@@ -224,7 +228,9 @@ group_mean_center_at <- function(data, x, mean_prefix = "mean",
 #' @export
 #'
 
-lag_at <- function(data, x, prefix = "l", o=1) {
+lag_at <- function(data, x, prefix = "l", o=1, .by=NULL) {
+
+  by <- enquo(.by)
 
   # https://gist.github.com/RJHKnight/22dbe5a3ef1d2701afd48370a1f1742c
   lag_fn <- list()
@@ -245,7 +251,9 @@ lag_at <- function(data, x, prefix = "l", o=1) {
 
 
   data %>%
-    mutate(across(all_of(x), lag_fn, .names = paste0(prefix,"{.fn}_{.col}"))) -> data
+    mutate(across(all_of(x), lag_fn,
+                  .names = paste0(prefix,"{.fn}_{.col}")),
+           .by = !!by) -> data
 
   return(data)
 }
