@@ -60,9 +60,9 @@ are multiple and explained in the details section below.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">center_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"c"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">center_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"c"</span>, na <span class="op">=</span> <span class="cn">TRUE</span>, .by <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">diff_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, o <span class="op">=</span> <span class="fl">1</span>, prefix <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span></span>
+<span><span class="fu">diff_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, o <span class="op">=</span> <span class="fl">1</span>, prefix <span class="op">=</span> <span class="st">"d"</span>, .by <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">group_mean_center_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, mean_prefix <span class="op">=</span> <span class="st">"mean"</span>, prefix <span class="op">=</span> <span class="st">"b"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -70,11 +70,11 @@ are multiple and explained in the details section below.</p>
 <span></span>
 <span><span class="fu">log_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"ln"</span>, plus_1 <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">mean_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"mean"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">mean_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"mean"</span>, na <span class="op">=</span> <span class="cn">TRUE</span>, .by <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">r1sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"s"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">r1sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"s"</span>, na <span class="op">=</span> <span class="cn">TRUE</span>, .by <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">r2sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"z"</span>, na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">r2sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"z"</span>, na <span class="op">=</span> <span class="cn">TRUE</span>, .by <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -99,6 +99,12 @@ over/remove missing observations). Not applicable to <code>diff_at</code>,
 <code>lag_at</code>, and <code>log_at</code>.</p></dd>
 
 
+<dt>.by</dt>
+<dd><p>a selection of columns by which to group the operation. Defaults
+to NULL. This will eventually become a standard feature of the functions
+as this operator moves beyond the experimental in <span class="pkg">dplyr</span>.</p></dd>
+
+
 <dt>o</dt>
 <dd><p>The order of lags for calculating differences or lags in
 <code>diff_at</code> or <code>lag_at</code>. Applicable only to these functions.</p></dd>
@@ -108,13 +114,6 @@ over/remove missing observations). Not applicable to <code>diff_at</code>,
 <dd><p>Applicable only to <code>group_mean_center_at</code>. Specifies
 the prefix of the (assumed) total population mean variables. Default is "mean",
 though the user can change this as they see fit.</p></dd>
-
-
-<dt>.by</dt>
-<dd><p>a selection of columns by which to group the operation. Defaults
-to NULL. Right now, applicable just to <code>lag_at</code> though this will
-eventually become a standard feature of the functions as this operator moves
-beyond the experimental in <span class="pkg">dplyr</span>.</p></dd>
 
 
 <dt>plus_1</dt>

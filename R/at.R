@@ -90,9 +90,8 @@
 #' transformation on variables no matter whether 0 occurs (i.e. 0s will
 #' come back as -Inf). Defaults to FALSE.
 #' @param .by a selection of columns by which to group the operation. Defaults
-#' to NULL. Right now, applicable just to \code{lag_at} though this will
-#' eventually become a standard feature of the functions as this operator moves
-#' beyond the experimental in \pkg{dplyr}.
+#' to NULL. This will eventually become a standard feature of the functions
+#' as this operator moves beyond the experimental in \pkg{dplyr}.
 #'
 #' @return The function returns a set of new vectors in a data frame after
 #' performing relevant functions. The new vectors have distinct prefixes
@@ -140,17 +139,27 @@
 #' @export
 #'
 
-center_at <- function(data, x, prefix = "c", na=TRUE) {
+center_at <- function(data, x, prefix = "c", na=TRUE, .by=NULL) {
+
+  by <- enquo(.by)
 
   if(length(x) == 1) {
     stop("The use of a scoped helper verb like this requires more than one variable.")
   }
 
+  # data %>%
+  #   mutate_at(vars(all_of(x)),
+  #             list(tmp = ~. - mean(., na = na))) %>%
+  #   rename_at(vars(contains("_tmp")),
+  #             ~paste(prefix, gsub("_tmp", "", .), sep = "_") ) -> data
+
+
   data %>%
-    mutate_at(vars(all_of(x)),
-              list(tmp = ~. - mean(., na = na))) %>%
-    rename_at(vars(contains("_tmp")),
-              ~paste(prefix, gsub("_tmp", "", .), sep = "_") ) -> data
+    mutate(across(all_of(x),
+                  ~(.) - mean(., na = na),
+                  .names = paste0(prefix,"_{.col}")),
+           .by = !!by) -> data
+
   return(data)
 
 }
@@ -301,17 +310,26 @@ log_at <- function(data, x, prefix = "ln", plus_1 = FALSE) {
 #' @export
 #'
 
-mean_at <- function(data, x, prefix = "mean", na=TRUE) {
+mean_at <- function(data, x, prefix = "mean", na=TRUE, .by=NULL) {
+
+  by <- enquo(.by)
 
   if(length(x) == 1) {
     stop("The use of a scoped helper verb like this requires more than one variable.")
   }
 
+  # data %>%
+  #   mutate_at(vars(all_of(x)),
+  #             list(tmp = ~mean(., na = na))) %>%
+  #   rename_at(vars(contains("_tmp")),
+  #             ~paste(prefix, gsub("_tmp", "", .), sep = "_") ) -> data
+
   data %>%
-    mutate_at(vars(all_of(x)),
-              list(tmp = ~mean(., na = na))) %>%
-    rename_at(vars(contains("_tmp")),
-              ~paste(prefix, gsub("_tmp", "", .), sep = "_") ) -> data
+    mutate(across(all_of(x),
+                  ~mean(., na = na),
+                  .names = paste0(prefix,"_{.col}")),
+           .by = !!by) -> data
+
   return(data)
 
 }
@@ -322,17 +340,26 @@ mean_at <- function(data, x, prefix = "mean", na=TRUE) {
 #' @export
 #'
 
-r1sd_at <- function(data, x, prefix = "s", na=TRUE) {
+r1sd_at <- function(data, x, prefix = "s", na=TRUE, .by=NULL) {
+
+  by <- enquo(.by)
 
   if(length(x) == 1) {
     stop("The use of a scoped helper verb like this requires more than one variable.")
   }
 
+  # data %>%
+  #   mutate_at(vars(all_of(x)),
+  #             list(tmp = ~r1sd(., na=na))) %>%
+  #   rename_at(vars(contains("_tmp")),
+  #             ~paste(prefix, gsub("_tmp", "", .), sep = "_") ) -> data
+
   data %>%
-    mutate_at(vars(all_of(x)),
-              list(tmp = ~r1sd(., na=na))) %>%
-    rename_at(vars(contains("_tmp")),
-              ~paste(prefix, gsub("_tmp", "", .), sep = "_") ) -> data
+    mutate(across(all_of(x),
+                  ~r1sd(., na = na),
+                  .names = paste0(prefix,"_{.col}")),
+           .by = !!by) -> data
+
   return(data)
 
 }
@@ -341,17 +368,27 @@ r1sd_at <- function(data, x, prefix = "s", na=TRUE) {
 #' @export
 #'
 
-r2sd_at <- function(data, x, prefix = "z", na=TRUE) {
+r2sd_at <- function(data, x, prefix = "z", na=TRUE, .by=NULL) {
+
+  by <- enquo(.by)
 
   if(length(x) == 1) {
     stop("The use of a scoped helper verb like this requires more than one variable.")
   }
 
+  # data %>%
+  #   mutate_at(vars(all_of(x)),
+  #             list(tmp = ~r2sd(., na=na))) %>%
+  #   rename_at(vars(contains("_tmp")),
+  #             ~paste(prefix, gsub("_tmp", "", .), sep = "_") ) -> data
+
   data %>%
-    mutate_at(vars(all_of(x)),
-              list(tmp = ~r2sd(., na=na))) %>%
-    rename_at(vars(contains("_tmp")),
-              ~paste(prefix, gsub("_tmp", "", .), sep = "_") ) -> data
+    mutate(across(all_of(x),
+                  ~r2sd(., na = na),
+                  .names = paste0(prefix,"_{.col}")),
+           .by = !!by) -> data
+
+
   return(data)
 
 }

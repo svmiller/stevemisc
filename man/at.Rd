@@ -11,7 +11,7 @@
 \alias{r2sd_at}
 \title{Scoped Helper Verbs}
 \usage{
-center_at(data, x, prefix = "c", na = TRUE)
+center_at(data, x, prefix = "c", na = TRUE, .by = NULL)
 
 diff_at(data, x, o = 1, prefix = "d", .by = NULL)
 
@@ -21,11 +21,11 @@ lag_at(data, x, prefix = "l", o = 1, .by = NULL)
 
 log_at(data, x, prefix = "ln", plus_1 = FALSE)
 
-mean_at(data, x, prefix = "mean", na = TRUE)
+mean_at(data, x, prefix = "mean", na = TRUE, .by = NULL)
 
-r1sd_at(data, x, prefix = "s", na = TRUE)
+r1sd_at(data, x, prefix = "s", na = TRUE, .by = NULL)
 
-r2sd_at(data, x, prefix = "z", na = TRUE)
+r2sd_at(data, x, prefix = "z", na = TRUE, .by = NULL)
 }
 \arguments{
 \item{data}{a data frame}
@@ -40,13 +40,12 @@ creation of means and re-scaled variables. Defaults to TRUE (i.e. pass
 over/remove missing observations). Not applicable to \code{diff_at},
 \code{lag_at}, and \code{log_at}.}
 
+\item{.by}{a selection of columns by which to group the operation. Defaults
+to NULL. This will eventually become a standard feature of the functions
+as this operator moves beyond the experimental in \pkg{dplyr}.}
+
 \item{o}{The order of lags for calculating differences or lags in
 \code{diff_at} or \code{lag_at}. Applicable only to these functions.}
-
-\item{.by}{a selection of columns by which to group the operation. Defaults
-to NULL. Right now, applicable just to \code{lag_at} though this will
-eventually become a standard feature of the functions as this operator moves
-beyond the experimental in \pkg{dplyr}.}
 
 \item{mean_prefix}{Applicable only to \code{group_mean_center_at}. Specifies
 the prefix of the (assumed) total population mean variables. Default is "mean",
