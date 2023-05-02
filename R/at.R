@@ -161,7 +161,9 @@ center_at <- function(data, x, prefix = "c", na=TRUE) {
 #' @export
 #'
 
-diff_at <- function(data, x, o=1, prefix = "d") {
+diff_at <- function(data, x, o=1, prefix = "d", .by = NULL) {
+
+  by <- enquo(.by)
 
   if(length(x) == 1) {
     stop("The use of a scoped helper verb like this requires more than one variable.")
@@ -173,11 +175,19 @@ diff_at <- function(data, x, o=1, prefix = "d") {
     prefixx <- paste0(prefix,o)
   }
 
+  # data %>%
+  #   mutate_at(vars(all_of(x)),
+  #             list(tmp = ~(.) - lag(., o))) %>%
+  #   rename_at(vars(contains("_tmp")),
+  #             ~paste(prefixx, gsub("_tmp", "", .), sep = "_") ) -> data
+
   data %>%
-    mutate_at(vars(all_of(x)),
-              list(tmp = ~(.) - lag(., o))) %>%
-    rename_at(vars(contains("_tmp")),
-              ~paste(prefixx, gsub("_tmp", "", .), sep = "_") ) -> data
+    mutate(across(all_of(x),
+                  ~(.) - lag(., o),
+                  .names = paste0(prefixx,"_{.col}")),
+           .by = !!by) -> data
+
+
   return(data)
 
 }
