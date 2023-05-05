@@ -15,7 +15,14 @@ center_at(data, x, prefix = "c", na = TRUE, .by = NULL)
 
 diff_at(data, x, o = 1, prefix = "d", .by = NULL)
 
-group_mean_center_at(data, x, mean_prefix = "mean", prefix = "b", na = TRUE)
+group_mean_center_at(
+  data,
+  x,
+  mean_prefix = "mean",
+  prefix = "b",
+  na = TRUE,
+  .by
+)
 
 lag_at(data, x, prefix = "l", o = 1, .by = NULL)
 
@@ -42,7 +49,10 @@ over/remove missing observations). Not applicable to \code{diff_at},
 
 \item{.by}{a selection of columns by which to group the operation. Defaults
 to NULL. This will eventually become a standard feature of the functions
-as this operator moves beyond the experimental in \pkg{dplyr}.}
+as this operator moves beyond the experimental in \pkg{dplyr}. The argument
+is not applicable to \code{log_at} (why would it be) and is optional for all
+functions except \code{group_mean_center_at}. \code{group_mean_center_at}
+must have something specified for grouped mean-centering.}
 
 \item{o}{The order of lags for calculating differences or lags in
 \code{diff_at} or \code{lag_at}. Applicable only to these functions.}
@@ -73,7 +83,7 @@ are multiple and explained in the details section below.
 mean. It then renames these new variables to have a prefix of \code{c_}. The
 default prefix ("c") can be changed by way of an argument in the function.
 
-\code{diff_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
+\code{diff_at} is a wrapper for \code{mutate} and \code{across} from
 \pkg{dplyr}. It takes supplied vectors and creates differences from the
 previous value recorded above it. It then renames these new variables to have
 a prefix of \code{d_} (in the case of a first difference), or something like
@@ -99,7 +109,7 @@ to the order of the lag (specified by an argument in the function, which
 defaults to 1). This default prefix ("l") can be changed by way of an
 another argument in the function.
 
-\code{log_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
+\code{log_at} is a wrapper for \code{mutate} and \code{across} from
 \pkg{dplyr}. It takes supplied vectors and creates a variable that takes
 a natural logarithmic transformation of them. It then renames these new
 variables to have a prefix of \code{ln_}. This default prefix ("ln") can be
@@ -108,19 +118,19 @@ that they want to add 1 to the vector before taking its natural logarithm,
 which is a popular thing to do when positive reals have naturally occurring
 zeroes.
 
-\code{mean_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
+\code{mean_at} is a wrapper for \code{mutate} and \code{across} from
 \pkg{dplyr}. It takes supplied vectors and creates a variable communicating
 the mean of the variable. It then renames these new variables to have a
 prefix of \code{mean_}. This default prefix ("mean") can be changed by way of
 an argument in the function.
 
-\code{r1sd_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
+\code{r1sd_at} is a wrapper for \code{mutate} and \code{across} from
 \pkg{dplyr}. It both rescales the supplied vectors to new vectors and renames
 the vectors to each have a prefix of \code{s_}. Note the rescaling here is
 just by one standard deviation and not two. The default prefix ("s") can be
 changed by way of an argument in the function.
 
-\code{r2sd_at} is a wrapper for \code{mutate_at} and \code{rename_at} from
+\code{r2sd_at} is a wrapper for \code{mutate} and \code{across} from
 \pkg{dplyr}. It both rescales the supplied vectors to new vectors and renames
 the vectors to each have a prefix of \code{z_}. Note the rescaling here is by
 two standard deviations and not one. The default prefix ("z") can be
@@ -156,13 +166,6 @@ log_at(Example, my_vars)
 log_at(Example, my_vars, plus_1 = TRUE)
 
 mean_at(Example, my_vars)
-
-group_mean_center_at(mean_at(Example, my_vars), my_vars)
-# ^ Alternatively, a better way:
-# Example \%>\%
-#   mean_at(my_vars) \%>\%
-#   group_by(category) \%>\%
-#   group_mean_center_at(my_vars)
 
 r1sd_at(Example, my_vars)
 
