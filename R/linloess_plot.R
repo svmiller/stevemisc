@@ -10,6 +10,9 @@
 #' @details This function makes an implicit assumption that there is no variable in the regression
 #'  formula with the name ".y".
 #'
+#' It may be in your interest (for the sake of rudimentary diagnostic checks) to
+#' disable the standard error bands for particularly ill-fitting linear models.
+#'
 #' @return \code{linloess_plot()} returns a faceted scatterplot as a \pkg{ggplot2} object. The linear smoother is in solid blue (with blue
 #' standard error bands) and the LOESS smoother is a dashed black line (with gray/default standard error bands). You can add
 #' cosmetic features to it after the fact. The function may spit warnings to you related to the LOESS smoother, depending your data. I think
@@ -18,6 +21,7 @@
 #' @author Steven V. Miller
 #'
 #' @param mod a fitted OLS model
+#' @param se logical, defaults to \code{TRUE}. If \code{TRUE}, gives standard error estimates with the assorted smoothers.
 #' @param ... optional parameters, passed to the scatterplot (\code{geom_point()}) component of this function. Useful if you want to make the smoothers more legible against the points.
 #'
 #' @examples
@@ -28,7 +32,7 @@
 #' linloess_plot(M1, color="black", pch=21)
 
 
-linloess_plot <- function(mod, ...) {
+linloess_plot <- function(mod, se = TRUE, ...) {
   modframe <- model.frame(mod)
 
   dat <- gather(modframe, "var", "value", 2:ncol(modframe))
@@ -41,8 +45,9 @@ linloess_plot <- function(mod, ...) {
     # scatterplot
     geom_point(...) +
     # linear smoother
-    geom_smooth(method="lm", fill="blue") +
+    geom_smooth(method="lm", fill="blue", se = se) +
     # loess smoother, with different color
-    geom_smooth(method="loess", color="black", linetype="dashed")
+    geom_smooth(method="loess", color="black", linetype="dashed",
+                se = se)
 
 }

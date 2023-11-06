@@ -4,10 +4,12 @@
 \alias{linloess_plot}
 \title{Compare Linear Smoother to LOESS Smoother for Your OLS Model}
 \usage{
-linloess_plot(mod, ...)
+linloess_plot(mod, se = TRUE, ...)
 }
 \arguments{
 \item{mod}{a fitted OLS model}
+
+\item{se}{logical, defaults to \code{TRUE}. If \code{TRUE}, gives standard error estimates with the assorted smoothers.}
 
 \item{...}{optional parameters, passed to the scatterplot (\code{geom_point()}) component of this function. Useful if you want to make the smoothers more legible against the points.}
 }
@@ -28,6 +30,9 @@ outliers that may need further consideration.
 \details{
 This function makes an implicit assumption that there is no variable in the regression
 formula with the name ".y".
+
+It may be in your interest (for the sake of rudimentary diagnostic checks) to
+disable the standard error bands for particularly ill-fitting linear models.
 }
 \examples{
 

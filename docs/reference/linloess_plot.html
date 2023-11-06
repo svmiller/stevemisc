@@ -20,7 +20,7 @@ outliers that may need further consideration."><!-- mathjax --><script src="http
     
     <a class="navbar-brand me-2" href="../index.html">stevemisc</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.6.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.7.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,13 +66,17 @@ outliers that may need further consideration.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">linloess_plot</span><span class="op">(</span><span class="va">mod</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">linloess_plot</span><span class="op">(</span><span class="va">mod</span>, se <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>mod</dt>
 <dd><p>a fitted OLS model</p></dd>
+
+
+<dt>se</dt>
+<dd><p>logical, defaults to <code>TRUE</code>. If <code>TRUE</code>, gives standard error estimates with the assorted smoothers.</p></dd>
 
 
 <dt>...</dt>
@@ -92,6 +96,8 @@ these to be fine the extent to which this is really just a visual aid and an inf
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This function makes an implicit assumption that there is no variable in the regression
 formula with the name ".y".</p>
+<p>It may be in your interest (for the sake of rudimentary diagnostic checks) to
+disable the standard error bands for particularly ill-fitting linear models.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>

@@ -40,6 +40,7 @@ reference:
       - r1sd
       - r2sd
       - rbnorm
+      - rd_plot
       - revcode
       - sbayesboot
       - sbtscs

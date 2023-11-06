@@ -1,7 +1,9 @@
 # stevemisc 1.7.0
 
 - Add `charitable_contributions`.
+- Add `rd_plot()`
 - Scoped helper verbs (the "at" functions) are gradually getting `.by` support and, with it, breaking their link to the superseded `_at()` functions from `{dplyr}`. 
+- `linloess_plot()` now has a `se` argument for optionally disabling standard error bands. For particularly ill-fitting linear models, this may be advisable.
 
 # stevemisc 1.6.0
 
