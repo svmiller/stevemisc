@@ -35,7 +35,7 @@
 
 rd_plot <- function(mod) {
 
-  sdr <- sd(resid(mod))
+  sdr <- sd(resid(mod), na.rm=T)
 
   hold_this <- data.frame(x = resid(mod))
 

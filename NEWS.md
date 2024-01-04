@@ -1,3 +1,7 @@
+# stevemisc 1.8.0
+
+- `rd_plot()` now has an `na.rm = TRUE` argument quietly passed to the extraction of the standard deviation of the residuals. This ensures that missing values in the data don't result in missing residuals, which then result in no standard deviation of the residuals.
+
 # stevemisc 1.7.0
 
 - Add `charitable_contributions`.
