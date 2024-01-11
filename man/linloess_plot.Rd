@@ -4,32 +4,47 @@
 \alias{linloess_plot}
 \title{Compare Linear Smoother to LOESS Smoother for Your OLS Model}
 \usage{
-linloess_plot(mod, se = TRUE, ...)
+linloess_plot(mod, resid = FALSE, se = TRUE, ...)
 }
 \arguments{
 \item{mod}{a fitted OLS model}
 
-\item{se}{logical, defaults to \code{TRUE}. If \code{TRUE}, gives standard error estimates with the assorted smoothers.}
+\item{resid}{logical, defaults to \code{FALSE}. If \code{FALSE}, the y-axis
+on these plots are the raw values of the dependent variable. If \code{TRUE},
+the y-axis is the model's residuals. Either work well here for the matter
+at hand, provided you treat the output here as illustrative or suggestive.}
 
-\item{...}{optional parameters, passed to the scatterplot (\code{geom_point()}) component of this function. Useful if you want to make the smoothers more legible against the points.}
+\item{se}{logical, defaults to \code{TRUE}. If \code{TRUE}, gives standard
+error estimates with the assorted smoothers.}
+
+\item{...}{optional parameters, passed to the scatterplot
+(\code{geom_point()}) component of this function. Useful if you want to make
+the smoothers more legible against the points.}
 }
 \value{
-\code{linloess_plot()} returns a faceted scatterplot as a \pkg{ggplot2} object. The linear smoother is in solid blue (with blue
-standard error bands) and the LOESS smoother is a dashed black line (with gray/default standard error bands). You can add
-cosmetic features to it after the fact. The function may spit warnings to you related to the LOESS smoother, depending your data. I think
-these to be fine the extent to which this is really just a visual aid and an informal diagnostic for the linearity assumption.
+\code{linloess_plot()} returns a faceted scatterplot as a
+\pkg{ggplot2} object. The linear smoother is in solid blue (with blue
+standard error bands) and the LOESS smoother is a dashed black line (with
+gray/default standard error bands). You can add cosmetic features to it after
+the fact. The function may spit warnings to you related to the LOESS smoother,
+depending your data. I think these to be fine the extent to which this is
+really just a visual aid and an informal diagnostic for the linearity
+assumption.
 }
 \description{
-\code{linloess_plot()} provides a visual diagnostic of the linearity assumption of the OLS model.
-Provided an OLS model fit by \code{lm()} in base R, the function extracts the model frame and creates a faceted
-scatterplot. For each facet, a linear smoother and LOESS smoother are estimated over the points. Users who run
-this function can assess just how much the linear smoother and LOESS smoother diverge. The more they diverge, the
-more the user can determine how much the OLS model is a good fit as specified. The plot will also point to potential
-outliers that may need further consideration.
+\code{linloess_plot()} provides a visual diagnostic of the
+linearity assumption of the OLS model. Provided an OLS model fit by
+\code{lm()} in base R, the function extracts the model frame and creates a
+faceted scatterplot. For each facet, a linear smoother and LOESS smoother
+are estimated over the points. Users who run this function can assess just
+how much the linear smoother and LOESS smoother diverge. The more they
+diverge, the more the user can determine how much the OLS model is a good
+fit as specified. The plot will also point to potential outliers that may
+need further consideration.
 }
 \details{
-This function makes an implicit assumption that there is no variable in the regression
-formula with the name ".y".
+This function makes an implicit assumption that there is no variable
+in the regression formula with the name ".y" or ".resid".
 
 It may be in your interest (for the sake of rudimentary diagnostic checks) to
 disable the standard error bands for particularly ill-fitting linear models.

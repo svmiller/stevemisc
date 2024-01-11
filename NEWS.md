@@ -1,6 +1,8 @@
 # stevemisc 1.8.0
 
 - `rd_plot()` now has an `na.rm = TRUE` argument quietly passed to the extraction of the standard deviation of the residuals. This ensures that missing values in the data don't result in missing residuals, which then result in no standard deviation of the residuals.
+- `linloess_plot()` now has a `resid` argument that allows for comparison against the model's residuals on the *y*-axis rather than the default (the raw values of *y* on the *y*-axis).
+- Assorted documentation fixes.
 
 # stevemisc 1.7.0
 

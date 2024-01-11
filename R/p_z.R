@@ -18,7 +18,7 @@
 #'
 #' @param x a numeric vector (one or multiple) between 0 or 1
 #' @param ts a logical, defaults to TRUE. If TRUE, returns two-sided critical z-value.
-#'  If FALSE, the function returns a one-sized critical z-value.
+#'  If FALSE, the function returns a one-sided critical z-value.
 #'
 #' @return This function takes a numeric vector, corresponding to the p-value you want, and
 #' returns a numeric vector coinciding with the z-value you want under the standard normal
