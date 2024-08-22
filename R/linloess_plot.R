@@ -28,12 +28,17 @@
 #' @author Steven V. Miller
 #'
 #' @param mod a fitted OLS model
-#' @param resid logical, defaults to \code{FALSE}. If \code{FALSE}, the y-axis
+#' @param resid logical, defaults to \code{TRUE}. If \code{FALSE}, the y-axis
 #' on these plots are the raw values of the dependent variable. If \code{TRUE},
 #' the y-axis is the model's residuals. Either work well here for the matter
 #' at hand, provided you treat the output here as illustrative or suggestive.
 #' @param se logical, defaults to \code{TRUE}. If \code{TRUE}, gives standard
 #' error estimates with the assorted smoothers.
+#' @param span a numeric, defaults to .75. An adjustment to the smoother. Higher
+#' values permit smoother lines and might be warranted in the presence of
+#' sparse pockets of the data.
+#' @param smoother defaults to "loess", and is passed to the 'method' argument
+#' for the non-linear smoother.
 #' @param ... optional parameters, passed to the scatterplot
 #' (\code{geom_point()}) component of this function. Useful if you want to make
 #' the smoothers more legible against the points.
@@ -46,7 +51,7 @@
 #' linloess_plot(M1, color="black", pch=21)
 
 
-linloess_plot <- function(mod, resid = FALSE, se = TRUE, ...) {
+linloess_plot <- function(mod, resid = TRUE, smoother = "loess", se = TRUE, span = .75, ...) {
   modframe <- model.frame(mod)
 
   if(resid == FALSE) {
@@ -62,9 +67,9 @@ linloess_plot <- function(mod, resid = FALSE, se = TRUE, ...) {
       geom_point(...) +
       # linear smoother
       geom_smooth(method="lm", fill="blue", se = se) +
-      # loess smoother, with different color
-      geom_smooth(method="loess", color="black", linetype="dashed",
-                  se = se)
+      # smoother, with different color
+      geom_smooth(method = smoother, color = "black", linetype = "dashed",
+                  se = se, span = span)
 
   } else {
     modframe$.resid <- resid(mod)
@@ -81,9 +86,9 @@ linloess_plot <- function(mod, resid = FALSE, se = TRUE, ...) {
       geom_point(...) +
       # linear smoother
       geom_smooth(method="lm", fill="blue", se = se) +
-      # loess smoother, with different color
-      geom_smooth(method="loess", color="black", linetype="dashed",
-                  se = se)
+      # smoother, with different color
+      geom_smooth(method = smoother, color = "black", linetype = "dashed",
+                  se = se, span = span)
   }
 
 

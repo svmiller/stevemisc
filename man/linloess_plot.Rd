@@ -4,18 +4,32 @@
 \alias{linloess_plot}
 \title{Compare Linear Smoother to LOESS Smoother for Your OLS Model}
 \usage{
-linloess_plot(mod, resid = FALSE, se = TRUE, ...)
+linloess_plot(
+  mod,
+  resid = TRUE,
+  smoother = "loess",
+  se = TRUE,
+  span = 0.75,
+  ...
+)
 }
 \arguments{
 \item{mod}{a fitted OLS model}
 
-\item{resid}{logical, defaults to \code{FALSE}. If \code{FALSE}, the y-axis
+\item{resid}{logical, defaults to \code{TRUE}. If \code{FALSE}, the y-axis
 on these plots are the raw values of the dependent variable. If \code{TRUE},
 the y-axis is the model's residuals. Either work well here for the matter
 at hand, provided you treat the output here as illustrative or suggestive.}
 
+\item{smoother}{defaults to "loess", and is passed to the 'method' argument
+for the non-linear smoother.}
+
 \item{se}{logical, defaults to \code{TRUE}. If \code{TRUE}, gives standard
 error estimates with the assorted smoothers.}
+
+\item{span}{a numeric, defaults to .75. An adjustment to the smoother. Higher
+values permit smoother lines and might be warranted in the presence of
+sparse pockets of the data.}
 
 \item{...}{optional parameters, passed to the scatterplot
 (\code{geom_point()}) component of this function. Useful if you want to make
