@@ -1,3 +1,7 @@
+# stevemisc 1.9.0
+
+- `spp_test()` is a simulation-based approach to interpreting the Phillips-Perron test for unit root.
+
 # stevemisc 1.8.0
 
 - `rd_plot()` now has an `na.rm = TRUE` argument quietly passed to the extraction of the standard deviation of the residuals. This ensures that missing values in the data don't result in missing residuals, which then result in no standard deviation of the residuals.
