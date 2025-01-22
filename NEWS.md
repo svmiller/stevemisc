@@ -1,6 +1,6 @@
 # stevemisc 1.9.0
 
-- `spp_test()` is a simulation-based approach to interpreting the Phillips-Perron test for unit root.
+- `rewb_at()` is a convenience wrapper for `mean_at()`, `group_mean_center_at()`, and `center_at()`. It's useful for preparing data for a random effects, within-between (REWB) panel analysis.
 
 # stevemisc 1.8.0
 

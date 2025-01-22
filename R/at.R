@@ -66,6 +66,15 @@
 #' two standard deviations and not one. The default prefix ("z") can be
 #' changed by way of an argument in the function.
 #'
+#' \code{rewb_at} is a wrapper for routines done by \code{mean_at},
+#' \code{group_mean_center_at}, and \code{center_at} in this package. It
+#' implicitly assumes the data are a panel and runs these three routines in order
+#' to create so-called "between" and "within" variables for a "random effects,
+#' within-between" analysis. Means are calculated based on available data, so
+#' there is no `na` argument available in this function. The function will fail
+#' in the presence of variables in the data matching those that this routine
+#' wants to create.
+#'
 #' All functions, except for \code{lag_at}, will fail in the absence of a
 #' character vector of a length of one. They are intended to work across multiple
 #' columns instead of just one. If you are wanting to create one new variable,
@@ -95,6 +104,10 @@
 #' is not applicable to \code{log_at} (why would it be) and is optional for all
 #' functions except \code{group_mean_center_at}. \code{group_mean_center_at}
 #' must have something specified for grouped mean-centering.
+#' @param w_prefix Applicable only to \code{rewb_at}, but specifies prefix for
+#' so-called "within" variables created by this procedure. Defaults to "w".
+#' @param b_prefix Applicable only to \code{rewb_at}, but specifies prefix for
+#' so-called "between" variables created by this procedure. Defaults to "b".
 #'
 #' @return The function returns a set of new vectors in a data frame after
 #' performing relevant functions. The new vectors have distinct prefixes
@@ -217,6 +230,11 @@ group_mean_center_at <- function(data, x, mean_prefix = "mean",
   if(length(x) == 1) {
     stop("The use of a scoped helper verb like this requires more than one variable.")
   }
+
+  # if(is.null(.by)) {
+  #
+  #   warning("The absence of the .by argument means you're going to be subtracting a mean from itself. It's up to you if you want to do that. You probably didn't want that, but I did it anyway. I'm just bringing that to your attention.")
+  # }
 
   # if(is.grouped_df(data) == FALSE) {
   #   warning("The absence of a grouping factor means you're going to be subtracting a mean from itself. It's up to you if you want to do that. You probably didn't want that, but I did it anyway. I'm just bringing that to your attention.")
@@ -389,5 +407,67 @@ r2sd_at <- function(data, x, prefix = "z", na=TRUE, .by=NULL) {
 
 
   return(data)
+
+}
+
+
+#' @rdname at
+#' @export
+#'
+#'
+
+rewb_at <- function(data, x, w_prefix = "w", b_prefix = "b", .by) {
+
+  if(is.null(.by)) {
+    stop("This procedure makes no sense in the absence of a grouping variable declared in the .by argument.")
+  }
+
+  by <- enquo(.by)
+
+  are_global_means_there <- paste0("mean_", x)
+
+  if (any(i <- are_global_means_there %in% colnames(data))) {
+    stop("There are global means with prefices of `mean_` in the data that this routine wants to create. It would be easier for you to remove those and proceed.")
+  }
+
+  are_bs_there <- paste0(b_prefix,"_", x)
+
+  if (any(i <- are_bs_there %in% colnames(data))) {
+    stop("The assumed group means that this routine wants to create appear to be in the data. It would be easier for you to remove those and proceed.")
+  }
+
+  are_ws_there <- paste0(w_prefix,"_", x)
+
+  if (any(i <- are_bs_there %in% colnames(data))) {
+    stop("The assumed 'within' variables that this routine wants to create appear to be in the data. It would be easier for you to remove those and proceed.")
+  }
+
+  if(length(x) == 1) {
+    stop("The use of a scoped helper verb like this requires more than one variable.")
+  }
+
+  mp <- paste0("mean_")
+  nvp <- paste0(b_prefix,"_{.col}")
+  nvp_check <- paste0(b_prefix, "_", x)
+
+
+  data %>%
+    # mean_at...
+    mutate(across(all_of(x),
+                  ~mean(., na.rm = TRUE),
+                  .names = paste0("mean","_{.col}"))) %>%
+    # gmc_at...
+    mutate(across(all_of(x), ~
+                    mean(., na.rm = TRUE) - get(str_c(mp, cur_column())), .names = nvp),
+           .by = !!by) %>%
+    # center at...
+    mutate(across(all_of(x),
+                  ~(.) - mean(., na.rm = TRUE),
+                  .names = paste0(w_prefix,"_{.col}")),
+           .by = !!by) -> data
+
+  return(data)
+
+
 
 }
