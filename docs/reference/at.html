@@ -69,7 +69,9 @@ are multiple and explained in the details section below.</p>
 <span></span>
 <span><span class="fu">r1sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"s"</span>, na <span class="op">=</span> <span class="cn">TRUE</span>, .by <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">r2sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"z"</span>, na <span class="op">=</span> <span class="cn">TRUE</span>, .by <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">r2sd_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, prefix <span class="op">=</span> <span class="st">"z"</span>, na <span class="op">=</span> <span class="cn">TRUE</span>, .by <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">rewb_at</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, w_prefix <span class="op">=</span> <span class="st">"w"</span>, b_prefix <span class="op">=</span> <span class="st">"b"</span>, <span class="va">.by</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -121,6 +123,16 @@ though the user can change this as they see fit.</p></dd>
 variables prior to log transformation. If FALSE, performs logarithmic
 transformation on variables no matter whether 0 occurs (i.e. 0s will
 come back as -Inf). Defaults to FALSE.</p></dd>
+
+
+<dt id="arg-w-prefix">w_prefix<a class="anchor" aria-label="anchor" href="#arg-w-prefix"></a></dt>
+<dd><p>Applicable only to <code>rewb_at</code>, but specifies prefix for
+so-called "within" variables created by this procedure. Defaults to "w".</p></dd>
+
+
+<dt id="arg-b-prefix">b_prefix<a class="anchor" aria-label="anchor" href="#arg-b-prefix"></a></dt>
+<dd><p>Applicable only to <code>rewb_at</code>, but specifies prefix for
+so-called "between" variables created by this procedure. Defaults to "b".</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -181,6 +193,14 @@ changed by way of an argument in the function.</p>
 the vectors to each have a prefix of <code>z_</code>. Note the rescaling here is by
 two standard deviations and not one. The default prefix ("z") can be
 changed by way of an argument in the function.</p>
+<p><code>rewb_at</code> is a wrapper for routines done by <code>mean_at</code>,
+<code>group_mean_center_at</code>, and <code>center_at</code> in this package. It
+implicitly assumes the data are a panel and runs these three routines in order
+to create so-called "between" and "within" variables for a "random effects,
+within-between" analysis. Means are calculated based on available data, so
+there is no <code>na</code> argument available in this function. The function will fail
+in the presence of variables in the data matching those that this routine
+wants to create.</p>
 <p>All functions, except for <code>lag_at</code>, will fail in the absence of a
 character vector of a length of one. They are intended to work across multiple
 columns instead of just one. If you are wanting to create one new variable,
