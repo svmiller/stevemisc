@@ -43,7 +43,7 @@
 #' @param suppress_warning logical, defaults to \code{TRUE}. If \code{TRUE},
 #' the plot suppresses assorted warnings from the LOESS smoother that would
 #' otherwise be cautioning you about things your eyes could otherwise see.
-#' @param ... optional parameters, passed to the scatterplot
+#' @param ... optional parameters, passed to the scatterplot in \code{linloess_plot()}
 #' (\code{geom_point()}) component of this function. Useful if you want to make
 #' the smoothers more legible against the points.
 #'
@@ -114,11 +114,12 @@ linloess_plot <- function(mod, resid = TRUE, smoother = "loess",
 
 #' Print method for class 'linloess'
 #'
-#' @param llplot a ggplot object with this special 'linloess' class
+#' @param x a ggplot object with this special 'linloess' class
+#' @param ... Additional arguments in the context of the print function (not used)
 #' @keywords internal
 #' @rdname linloess_plot
 #' @export
-print.linloess <- function(llplot) {
-  class(llplot) <- setdiff(class(llplot), "linloess")
-  suppressWarnings(print(llplot))
+print.linloess <- function(x, ...) {
+  class(x) <- setdiff(class(x), "linloess")
+  suppressWarnings(print(x, ...))
 }

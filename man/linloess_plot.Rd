@@ -3,7 +3,7 @@
 \name{linloess_plot}
 \alias{linloess_plot}
 \alias{print.linloess}
-\title{Compare Linear Smoother to LOESS Smoother for Your OLS Model}
+\title{Compare Linear Smoother to LOESS Smoother for Your Linear Model}
 \usage{
 linloess_plot(
   mod,
@@ -18,7 +18,7 @@ linloess_plot(
 \method{print}{linloess}(x, ...)
 }
 \arguments{
-\item{mod}{a fitted OLS model}
+\item{mod}{a fitted model, ideally a simple linear model}
 
 \item{resid}{logical, defaults to \code{TRUE}. If \code{FALSE}, the y-axis
 on these plots are the raw values of the dependent variable. If \code{TRUE},
@@ -40,7 +40,7 @@ sparse pockets of the data.}
 the plot suppresses assorted warnings from the LOESS smoother that would
 otherwise be cautioning you about things your eyes could otherwise see.}
 
-\item{...}{additional arguments (ignored)}
+\item{...}{Additional arguments in the context of the print function (not used)}
 
 \item{x}{a ggplot object with this special 'linloess' class}
 }
@@ -50,18 +50,18 @@ otherwise be cautioning you about things your eyes could otherwise see.}
 standard error bands) and the LOESS smoother is a dashed black line (with
 gray/default standard error bands). You can add cosmetic features to it after
 the fact. The function may spit warnings to you related to the LOESS smoother,
-depending your data. I think these to be fine the extent to which this is
-really just a visual aid and an informal diagnostic for the linearity
-assumption.
+depending your data and whether you have disabled the warnings in the
+function. I think these to be fine the extent to which this is really just a
+visual aid and an informal diagnostic for the linearity assumption.
 }
 \description{
 \code{linloess_plot()} provides a visual diagnostic of the
-linearity assumption of the OLS model. Provided an OLS model fit by
+linearity assumption of the OLS model. Provided a linear model fit by
 \code{lm()} in base R, the function extracts the model frame and creates a
 faceted scatterplot. For each facet, a linear smoother and LOESS smoother
 are estimated over the points. Users who run this function can assess just
 how much the linear smoother and LOESS smoother diverge. The more they
-diverge, the more the user can determine how much the OLS model is a good
+diverge, the more the user can determine how much the linear model is a good
 fit as specified. The plot will also point to potential outliers that may
 need further consideration.
 }
