@@ -9,6 +9,7 @@
 \alias{mean_at}
 \alias{r1sd_at}
 \alias{r2sd_at}
+\alias{rewb_at}
 \title{Scoped Helper Verbs}
 \usage{
 center_at(data, x, prefix = "c", na = TRUE, .by = NULL)
@@ -33,6 +34,8 @@ mean_at(data, x, prefix = "mean", na = TRUE, .by = NULL)
 r1sd_at(data, x, prefix = "s", na = TRUE, .by = NULL)
 
 r2sd_at(data, x, prefix = "z", na = TRUE, .by = NULL)
+
+rewb_at(data, x, w_prefix = "w", b_prefix = "b", .by)
 }
 \arguments{
 \item{data}{a data frame}
@@ -65,6 +68,12 @@ though the user can change this as they see fit.}
 variables prior to log transformation. If FALSE, performs logarithmic
 transformation on variables no matter whether 0 occurs (i.e. 0s will
 come back as -Inf). Defaults to FALSE.}
+
+\item{w_prefix}{Applicable only to \code{rewb_at}, but specifies prefix for
+so-called "within" variables created by this procedure. Defaults to "w".}
+
+\item{b_prefix}{Applicable only to \code{rewb_at}, but specifies prefix for
+so-called "between" variables created by this procedure. Defaults to "b".}
 }
 \value{
 The function returns a set of new vectors in a data frame after
@@ -135,6 +144,15 @@ changed by way of an argument in the function.
 the vectors to each have a prefix of \code{z_}. Note the rescaling here is by
 two standard deviations and not one. The default prefix ("z") can be
 changed by way of an argument in the function.
+
+\code{rewb_at} is a wrapper for routines done by \code{mean_at},
+\code{group_mean_center_at}, and \code{center_at} in this package. It
+implicitly assumes the data are a panel and runs these three routines in order
+to create so-called "between" and "within" variables for a "random effects,
+within-between" analysis. Means are calculated based on available data, so
+there is no \code{na} argument available in this function. The function will fail
+in the presence of variables in the data matching those that this routine
+wants to create.
 
 All functions, except for \code{lag_at}, will fail in the absence of a
 character vector of a length of one. They are intended to work across multiple

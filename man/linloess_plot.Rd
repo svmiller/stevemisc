@@ -2,6 +2,7 @@
 % Please edit documentation in R/linloess_plot.R
 \name{linloess_plot}
 \alias{linloess_plot}
+\alias{print.linloess}
 \title{Compare Linear Smoother to LOESS Smoother for Your OLS Model}
 \usage{
 linloess_plot(
@@ -10,8 +11,11 @@ linloess_plot(
   smoother = "loess",
   se = TRUE,
   span = 0.75,
+  suppress_warning = TRUE,
   ...
 )
+
+\method{print}{linloess}(x, ...)
 }
 \arguments{
 \item{mod}{a fitted OLS model}
@@ -25,15 +29,20 @@ at hand, provided you treat the output here as illustrative or suggestive.}
 for the non-linear smoother.}
 
 \item{se}{logical, defaults to \code{TRUE}. If \code{TRUE}, gives standard
-error estimates with the assorted smoothers.}
+error estimates with the assorted smoothers. If \code{resid} is \code{TRUE},
+there is no standard error for a flat line at 0.}
 
 \item{span}{a numeric, defaults to .75. An adjustment to the smoother. Higher
 values permit smoother lines and might be warranted in the presence of
 sparse pockets of the data.}
 
-\item{...}{optional parameters, passed to the scatterplot
-(\code{geom_point()}) component of this function. Useful if you want to make
-the smoothers more legible against the points.}
+\item{suppress_warning}{logical, defaults to \code{TRUE}. If \code{TRUE},
+the plot suppresses assorted warnings from the LOESS smoother that would
+otherwise be cautioning you about things your eyes could otherwise see.}
+
+\item{...}{additional arguments (ignored)}
+
+\item{x}{a ggplot object with this special 'linloess' class}
 }
 \value{
 \code{linloess_plot()} returns a faceted scatterplot as a
@@ -65,11 +74,13 @@ disable the standard error bands for particularly ill-fitting linear models.
 }
 \examples{
 
-M1 <- lm(mpg ~ ., data=mtcars)
+M1 <- lm(mpg ~ am + carb + disp, data=mtcars)
 
 linloess_plot(M1)
 linloess_plot(M1, color="black", pch=21)
+
 }
 \author{
 Steven V. Miller
 }
+\keyword{internal}

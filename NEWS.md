@@ -1,6 +1,7 @@
 # stevemisc 1.9.0
 
 - `rewb_at()` is a convenience wrapper for `mean_at()`, `group_mean_center_at()`, and `center_at()`. It's useful for preparing data for a random effects, within-between (REWB) panel analysis.
+- `linloess_plot()` now has a special print class for suppressing warnings that come from the LOESS smoother. Additionally, there is a `suppress_warnings` argument in this function.
 
 # stevemisc 1.8.0
 
