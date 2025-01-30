@@ -43,6 +43,10 @@
 #' @param suppress_warning logical, defaults to \code{TRUE}. If \code{TRUE},
 #' the plot suppresses assorted warnings from the LOESS smoother that would
 #' otherwise be cautioning you about things your eyes could otherwise see.
+#' @param no_dummies logical, defaults to \code{FALSE}. If \code{TRUE}, removes
+#' binary independent variables from the plot. If \code{FALSE}, facets appear for
+#' binary independent variables. You should probably just set this to \code{TRUE}
+#' for your own use cases.
 #' @param ... optional parameters, passed to the scatterplot in \code{linloess_plot()}
 #' (\code{geom_point()}) component of this function. Useful if you want to make
 #' the smoothers more legible against the points.
@@ -62,9 +66,16 @@
 #'
 linloess_plot <- function(mod, resid = TRUE, smoother = "loess",
                           se = TRUE, span = .75,
+                          no_dummies = FALSE,
                           suppress_warning = TRUE, ...) {
 
   modframe <- model.frame(mod)
+
+  if(no_dummies == TRUE) {
+
+  modframe <- modframe[, sapply(modframe, function(col) length(na.omit(unique(col)))) > 2]
+
+  }
 
   if(resid == FALSE) {
 
@@ -78,9 +89,9 @@ linloess_plot <- function(mod, resid = TRUE, smoother = "loess",
       # scatterplot
       geom_point(...) +
       # linear smoother
-      geom_smooth(method="lm", fill="blue", se = se) +
+      geom_smooth(method="lm", fill="black", color='black', se = se) +
       # smoother, with different color
-      geom_smooth(method = smoother, color = "black", linetype = "dashed",
+      geom_smooth(method = smoother, color = "blue", linetype = "dashed",
                   se = se, span = span) -> plot
 
   } else {
@@ -97,9 +108,9 @@ linloess_plot <- function(mod, resid = TRUE, smoother = "loess",
       # scatterplot
       geom_point(...) +
       # linear smoother
-      geom_smooth(method="lm", fill="blue", se = FALSE) +
+      geom_smooth(method="lm", color="black", linetype = 'dashed', se = FALSE) +
       # smoother, with different color
-      geom_smooth(method = smoother, color = "black", linetype = "dashed",
+      geom_smooth(method = smoother, color = "blue",
                   se = se, span = span) -> plot
   }
 
@@ -115,7 +126,7 @@ linloess_plot <- function(mod, resid = TRUE, smoother = "loess",
 #' Print method for class 'linloess'
 #'
 #' @param x a ggplot object with this special 'linloess' class
-#' @param ... Additional arguments in the context of the print function (not used)
+#' @param ... Additional arguments (passed to the scatterplot in \code{linloess_plot()}, not used in the print function
 #' @keywords internal
 #' @rdname linloess_plot
 #' @export
