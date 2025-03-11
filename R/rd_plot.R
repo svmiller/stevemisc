@@ -25,24 +25,27 @@
 #' @author Steven V. Miller
 #'
 #' @param mod a fitted linear model
+#' @param ... optional arguments, intended for adjusting the line width.
 #'
 #' @examples
 #'
-#' M1 <- lm(mpg ~ ., data=mtcars)
+#' M1 <- lm(mpg ~ hp + disp, data = mtcars)
 #'
 #' rd_plot(M1)
+#' rd_plot(M1, linewidth = 1.1)
 
 
-rd_plot <- function(mod) {
+rd_plot <- function(mod, ...) {
 
   sdr <- sd(resid(mod), na.rm=T)
 
   hold_this <- data.frame(x = resid(mod))
 
   ggplot(hold_this, aes(x)) +
-    geom_density() +
+    geom_density(...) +
     stat_function(fun = dnorm, color="blue",
                   args = list(mean = 0, sd = sdr),
-                  linetype="dashed", linewidth=1.1)
+                  linetype="dashed", ...)
+
 
 }

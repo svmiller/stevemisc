@@ -4,10 +4,12 @@
 \alias{rd_plot}
 \title{Residual Density Plot for Linear Models}
 \usage{
-rd_plot(mod)
+rd_plot(mod, ...)
 }
 \arguments{
 \item{mod}{a fitted linear model}
+
+\item{...}{optional arguments, intended for adjusting the line width.}
 }
 \value{
 \code{rd_plot()} returns a density plot a \pkg{ggplot2} object. A
@@ -36,9 +38,10 @@ reasonably approximated upon visual inspection.
 }
 \examples{
 
-M1 <- lm(mpg ~ ., data=mtcars)
+M1 <- lm(mpg ~ hp + disp, data = mtcars)
 
 rd_plot(M1)
+rd_plot(M1, linewidth = 1.1)
 }
 \author{
 Steven V. Miller

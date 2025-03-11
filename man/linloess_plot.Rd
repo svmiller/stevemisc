@@ -11,6 +11,7 @@ linloess_plot(
   smoother = "loess",
   se = TRUE,
   span = 0.75,
+  no_dummies = FALSE,
   suppress_warning = TRUE,
   ...
 )
@@ -36,11 +37,16 @@ there is no standard error for a flat line at 0.}
 values permit smoother lines and might be warranted in the presence of
 sparse pockets of the data.}
 
+\item{no_dummies}{logical, defaults to \code{FALSE}. If \code{TRUE}, removes
+binary independent variables from the plot. If \code{FALSE}, facets appear for
+binary independent variables. You should probably just set this to \code{TRUE}
+for your own use cases.}
+
 \item{suppress_warning}{logical, defaults to \code{TRUE}. If \code{TRUE},
 the plot suppresses assorted warnings from the LOESS smoother that would
 otherwise be cautioning you about things your eyes could otherwise see.}
 
-\item{...}{Additional arguments in the context of the print function (not used)}
+\item{...}{Additional arguments (passed to the scatterplot in \code{linloess_plot()}, not used in the print function}
 
 \item{x}{a ggplot object with this special 'linloess' class}
 }
