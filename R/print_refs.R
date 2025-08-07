@@ -2,22 +2,39 @@
 #'
 #' @description \code{print_refs()} is a convenience function I found and
 #' edited that will allow a user to print and format \code{.bib}
-#' entries as if they
-#' were references. This function is useful if you want to load a \code{.bib}
-#' entry or set of entries and print them in the middle of a document in
-#' R Markdown.
+#' entries as if they were references. This function is useful if you want to
+#' load a \code{.bib} entry or set of entries and print them in the middle of a
+#' document in R Markdown.
 #'
-#' @details \code{print_refs()} assumes an active internet connection in the absence of the appropriate CSL file in the
-#' working directory. The citation style language (CSL) file supplied by the user must match a file in the
-#' massive Github repository of CSL files. Users interested in potential outputs should read more about Pandoc (\url{https://pandoc.org/MANUAL.html}).
-#' The Github repository of CSL files is available here: \url{https://github.com/citation-style-language/styles}.
+#' @details
+#'
+#' \code{print_refs()} assumes an active internet connection in the absence of
+#' the appropriate CSL file in the working directory. The citation style
+#' language (CSL) file supplied by the user must match a file in the massive
+#' Github repository of CSL files. Users interested in potential outputs should
+#' read more about Pandoc (\url{https://pandoc.org/MANUAL.html}). The Github
+#' repository of CSL files is available here: \url{https://github.com/citation-style-language/styles}.
+#'
+#' I have an older version of the APSA CSL file that I prefer to use available
+#' on my Github. If you want to use it dynamically, set `csl` to
+#' "american-political-science-association-2015.csl" and set `cslrepo` to
+#' "https://raw.githubusercontent.com/svmiller/hopplock/refs/heads/main". The
+#' file is available on my Github here: \url{https://github.com/svmiller/hopplock}.
 #'
 #' @param bib a valid \code{.bib} entry
-#' @param csl a CSL file, matching one available on the Github repository, that the user wants to format the references. Default is "american-political-science-association.csl".
+#' @param csl a CSL file, matching one available on the Github repository, that
+#' the user wants to format the references. Default is
+#' "american-political-science-association.csl".
 #' @param toformat the output wanted by the user. Default is "markdown_strict".
 #' @param cslrepo a directory of CSL files. Defaults to the one on Github.
-#' @param spit_out logical, defaults to TRUE. If TRUE, wraps ("spits out") formatted citations in a \code{writeLines()} output for the console. If `FALSE`, returns a character vector.
-#' @param delete_after logical, defaults to TRUE. If TRUE, deletes CSL file when it's done. If FALSE, retains CSL for (potential) future use.
+#' @param spit_out logical, defaults to TRUE. If TRUE, wraps ("spits out")
+#' formatted citations in a \code{writeLines()} output for the console.
+#' If `FALSE`, returns a character vector.
+#' @param delete_after logical, defaults to TRUE. If TRUE, deletes CSL file when
+#' it's done. If FALSE, retains CSL for (potential) future use.
+#' @param scrub_bibitem logical, defaults to FALSE. If TRUE, function leans on
+#' `str_replace_all()` in `{stringr}` to remove the use of "bibitem" in LaTeX.
+#' Only applicable to cases where \code{toformat} is "LaTeX".
 #'
 #' @return  \code{print_refs()} takes a \code{.bib} entry and returns the
 #' requested formatted reference or references from it.
@@ -36,7 +53,8 @@ print_refs <- function(bib, csl="american-political-science-association.csl",
                       toformat="markdown_strict",
                       cslrepo="https://raw.githubusercontent.com/citation-style-language/styles/master",
                       spit_out = TRUE,
-                      delete_after = TRUE) {
+                      delete_after = TRUE,
+                      scrub_bibitem = FALSE) {
 
   if (any(class(bib) %in% c("data.frame")) == TRUE) {
 
@@ -139,6 +157,13 @@ print_refs <- function(bib, csl="american-political-science-association.csl",
   result <- str_subset(result, "\\leavevmode|\\\\begin|\\\\end|\\\\hyper", negate=TRUE)
   result <- str_replace(result, "\\{``", '"')
   result <- str_replace(result, "''\\}", '"')
+
+  if(scrub_bibitem == TRUE) {
+    result <- str_replace_all(result, regex("^\\\\bibitem\\[\\\\citeproctext\\]\\{[^}]+\\}\\s*", multiline = TRUE), "")
+
+  }
+
+
 
   }
 
