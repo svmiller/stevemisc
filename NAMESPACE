@@ -91,7 +91,7 @@ importFrom(grid,unit)
 importFrom(httr, "GET", "write_disk", "http_error", "status_code")
 #importFrom(rmarkdown, "find_pandoc", "pandoc", "with_pandoc_safe_environment")
 import(rmarkdown)
-importFrom(stringr, "str_subset", "str_replace", "str_c")
+importFrom(stringr, "str_subset", "str_replace", "str_c", "str_replace_all", "regex")
 importFrom(tools, "file_ext")
 
 # This is for linloess_plot()
