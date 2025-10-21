@@ -1,3 +1,7 @@
+## Feedback Upon Initial Rejection
+
+I forgot I enabled HTTPS on my website when I switched from an American to a European provider. I apologize for wasting your time. This should be fixed now.
+
 ## Test environment
 
 - Pop! OS 22.04, R 4.1.2

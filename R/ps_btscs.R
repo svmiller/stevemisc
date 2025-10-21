@@ -18,7 +18,7 @@
 #' \emph{R package version 1.4-3}.
 #'
 #' Miller, Steven V. 2017. ``Quickly Create Peace Years for BTSCS Models with \code{sbtscs} in \code{stevemisc}.''
-#' \url{http://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/}
+#' \url{https://svmiller.com/blog/2017/06/quickly-create-peace-years-for-btscs-models-with-stevemisc/}
 #'
 #' @param data the data set with which you are working
 #' @param event some event (0, 1) for which you want spells or peace years

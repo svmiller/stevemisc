@@ -20,7 +20,9 @@
 #'  inherited from how \pkg{dplyr} interfaces with SQL, allowing the user to extract
 #'  some information about the query (e.g. through \code{show_query()}).
 #'
-#' @references Miller, Steven V. 2020. "Clever Uses of Relational (SQL) Databases to Store Your Wider Data (with Some Assistance from \code{dplyr} and \code{purrr})" \url{http://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/}
+#' @references Miller, Steven V. 2020. "Clever Uses of Relational (SQL) Databases to
+#' Store Your Wider Data (with Some Assistance from \code{dplyr} and \code{purrr})"
+#' \url{https://svmiller.com/blog/2020/11/smarter-ways-to-store-your-wide-data-with-sql-magic-purrr/}
 #'
 #' @examples
 #'
