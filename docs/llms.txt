@@ -1,0 +1,208 @@
+# Steve’s Miscellaneous Functions
+
+[![](https://www.r-pkg.org/badges/version/stevemisc?color=green)](https://cran.r-project.org/package=stevemisc)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/stevemisc?color=green)](https://cran.r-project.org/package=stevemisc)
+[![](http://cranlogs.r-pkg.org/badges/last-month/stevemisc?color=green)](https://cran.r-project.org/package=stevemisc)
+[![](http://cranlogs.r-pkg.org/badges/last-week/stevemisc?color=green)](https://cran.r-project.org/package=stevemisc)
+
+![My stevemisc
+hexlogo](http://svmiller.com/images/stevemisc-hexlogo.png)
+
+`{stevemisc}` is an R package that includes various functions and tools
+that I have written over the years to assist me in my research,
+teaching, and public presentations (i.e. stuff I put on my blog). I
+offer it here for a public release because 1) I am vain and think I want
+an entire, eponymous ecosystem in the R programming language (i.e. the
+“steveverse”) and 2) I think there are tools here that are broadly
+useful for users that I’m trying to bundle with other things that I
+offer (prominently
+[`{steveproj}`](https://github.com/svmiller/steveproj)). Namely,
+`{stevemisc}` offers tools to assist in data organization, data
+presentation, data recoding, and data simulation.
+
+## Installation
+
+You can install this on CRAN.
+
+``` r
+
+install.packages("stevemisc")
+```
+
+You can install the development version of `{stevemisc}` from Github via
+the [devtools](https://devtools.r-lib.org/) package. I suppose using the
+[remotes](https://remotes.r-lib.org) package would work as well.
+
+``` r
+
+devtools::install_github("svmiller/stevemisc")
+```
+
+# Package index
+
+## Functions
+
+These are miscellaneous functions I’ve written to serve my research or
+pedagogical needs.
+
+- [`center_at()`](http://svmiller.com/reference/at.md)
+  [`diff_at()`](http://svmiller.com/reference/at.md)
+  [`group_mean_center_at()`](http://svmiller.com/reference/at.md)
+  [`lag_at()`](http://svmiller.com/reference/at.md)
+  [`log_at()`](http://svmiller.com/reference/at.md)
+  [`mean_at()`](http://svmiller.com/reference/at.md)
+  [`r1sd_at()`](http://svmiller.com/reference/at.md)
+  [`r2sd_at()`](http://svmiller.com/reference/at.md)
+  [`rewb_at()`](http://svmiller.com/reference/at.md) : Scoped Helper
+  Verbs
+
+- [`binred_plot()`](http://svmiller.com/reference/binred_plot.md) :
+  Generate a Binned-Residual Plot from a Fitted Generalized Linear Model
+
+- [`carrec()`](http://svmiller.com/reference/carrec.md)
+  [`carr()`](http://svmiller.com/reference/carrec.md) : Recode a
+  Variable
+
+- [`cor2data()`](http://svmiller.com/reference/cor2data.md) : Simulate
+  Data from Correlation Matrix
+
+- [`corvectors()`](http://svmiller.com/reference/corvectors.md) : Create
+  multivariate data by permutation
+
+- [`db_lselect()`](http://svmiller.com/reference/db_lselect.md) : Lazily
+  select variables from multiple tables in a relational database
+
+- [`fct_reorg()`](http://svmiller.com/reference/fct_reorg.md) :
+  Reorganize a factor after "re-leveling" it
+
+- [`filter_refs()`](http://svmiller.com/reference/filter_refs.md) :
+  Filter a Data Frame of Citations and Return the Entries as a Character
+
+- [`fr_plot()`](http://svmiller.com/reference/fr_plot.md) :
+  Fitted-Residual Plot for Linear Models
+
+- [`get_sims()`](http://svmiller.com/reference/get_sims.md) : Get
+  Simulations from a Model Object (with New Data)
+
+- [`get_var_info()`](http://svmiller.com/reference/get_var_info.md)
+  [`gvi()`](http://svmiller.com/reference/get_var_info.md) : Get a small
+  data frame of the variable label and values.
+
+- [`theme_steve_web()`](http://svmiller.com/reference/ggplot-themes.md)
+  [`post_bg()`](http://svmiller.com/reference/ggplot-themes.md)
+  [`theme_steve_ms()`](http://svmiller.com/reference/ggplot-themes.md)
+  [`theme_steve_font()`](http://svmiller.com/reference/ggplot-themes.md)
+  :
+
+  Legacy functions for Steve's Preferred ggplot2 Themes and Assorted
+  Stuff
+
+- [`jenny()`](http://svmiller.com/reference/jenny.md) : Set the Only
+  Reproducible Seed That Matters
+
+- [`linloess_plot()`](http://svmiller.com/reference/linloess_plot.md)
+  [`print(`*`<linloess>`*`)`](http://svmiller.com/reference/linloess_plot.md)
+  : Compare Linear Smoother to LOESS Smoother for Your Linear Model
+
+- [`make_perclab()`](http://svmiller.com/reference/make_perclab.md) :
+  Make Percentage Label for Proportion and Add Percentage Sign
+
+- [`make_scale()`](http://svmiller.com/reference/make_scale.md) :
+  Rescale Vector to Arbitrary Minimum and Maximum
+
+- [`mround()`](http://svmiller.com/reference/mround.md) : Multiply a
+  Number by 100 and Round It (By Default: 2)
+
+- [`n2w()`](http://svmiller.com/reference/n2w.md) : Convert Number
+  (Integer) to Word
+
+- [`` `%nin%` ``](http://svmiller.com/reference/nin.md) : Find
+  Non-Matching Elements
+
+- [`normal_dist()`](http://svmiller.com/reference/normal_dist.md) :
+
+  Make and annotate a normal distribution with ggplot2
+
+- [`p_z()`](http://svmiller.com/reference/p_z.md) : Convert the p-value
+  you want to the z-value it actually is
+
+- [`prepare_refs()`](http://svmiller.com/reference/prepare_refs.md) :
+
+  Prepare bib2df Data Frame for Formatting to Various Outputs
+
+- [`print_refs()`](http://svmiller.com/reference/print_refs.md) :
+
+  Print and Format `.bib` Entries as References
+
+- [`ps_btscs()`](http://svmiller.com/reference/ps_btscs.md) : Create
+  "peace years" or "spells" by cross-sectional unit, more generally
+
+- [`ps_spells()`](http://svmiller.com/reference/ps_spells.md) : Create
+  "spells" by cross-sectional unit, even more generally
+
+- [`r1sd()`](http://svmiller.com/reference/r1sd.md) : Scale a vector by
+  one standard deviation
+
+- [`r2sd()`](http://svmiller.com/reference/r2sd.md) : Scale a vector (or
+  vectors) by two standard deviations
+
+- [`rbnorm()`](http://svmiller.com/reference/rbnorm.md) : Bounded Normal
+  (Really: Scaled Beta) Distribution
+
+- [`rd_plot()`](http://svmiller.com/reference/rd_plot.md) : Residual
+  Density Plot for Linear Models
+
+- [`revcode()`](http://svmiller.com/reference/revcode.md) : Reverse code
+  a numeric variable
+
+- [`sbayesboot()`](http://svmiller.com/reference/sbayesboot.md) :
+  Bootstrap a Regression Model, the Bayesian Way
+
+- [`sbtscs()`](http://svmiller.com/reference/sbtscs.md) : Create "peace
+  years" or "spells" by cross-sectional unit
+
+- [`show_ranef()`](http://svmiller.com/reference/show_ranef.md) : Get a
+  caterpillar plot of random effects from a mixed model
+
+- [`smvrnorm()`](http://svmiller.com/reference/smvrnorm.md) : Simulate
+  from a Multivariate Normal Distribution
+
+- [`dst()`](http://svmiller.com/reference/studentt.md)
+  [`pst()`](http://svmiller.com/reference/studentt.md)
+  [`qst()`](http://svmiller.com/reference/studentt.md)
+  [`rst()`](http://svmiller.com/reference/studentt.md) : The Student-t
+  Distribution (Location-Scale)
+
+- [`tbl_df()`](http://svmiller.com/reference/tbl_df.md)
+  [`to_tbl()`](http://svmiller.com/reference/tbl_df.md) : Convert data
+  frame to an object of class "tibble"
+
+- [`wls()`](http://svmiller.com/reference/wls.md) : Get Weighted Least
+  Squares of Your OLS Model
+
+- [`wom()`](http://svmiller.com/reference/wom.md) : Generate Week of the
+  Month from a Date
+
+## Datasets
+
+These are toy data sets necessary for illustrating or testing functions,
+or might be data sets that just found their way here for one reason or
+another.
+
+- [`charitable_contributions`](http://svmiller.com/reference/charitable_contributions.md)
+  : Charitable Contributions Panel Data
+- [`ess9_labelled`](http://svmiller.com/reference/ess9_labelled.md) :
+  Some Labeled Data in the European Social Survey (Round 9)
+- [`fra_leaderyears`](http://svmiller.com/reference/fra_leaderyears.md)
+  : French Leader-Years, 1874-2015
+- [`gmy_dyadyears`](http://svmiller.com/reference/gmy_dyadyears.md) :
+  German Dyad-Years, 1816-2020
+- [`map_quiz`](http://svmiller.com/reference/map_quiz.md) : Map Quiz
+  Wrong Guesses Across Five Intro to IR Courses
+- [`stevepubs`](http://svmiller.com/reference/stevepubs.md) : An
+  Incomplete List of My Publications, All of Which You Should Cite
+- [`strategic_rivalries`](http://svmiller.com/reference/strategic_rivalries.md)
+  : Strategic Rivalries, 1494-2010
+- [`usa_mids`](http://svmiller.com/reference/usa_mids.md) : United
+  States Militarized Interstate Disputes (MIDs)
+

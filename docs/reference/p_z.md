@@ -1,0 +1,63 @@
+# Convert the p-value you want to the z-value it actually is
+
+I *loathe* how statistical instruction privileges obtaining a magical
+p-value by reference to an area underneath the standard normal curve,
+only to botch what the actual z-value is corresponding to the magical
+p-value. This simple function converts the p-value you want (typically
+.05, thanks to R.A. Fisher) to the z-value it actually is for the kind
+of claims we typically make in inferential statistics. If we're going to
+do inference the wrong way, let's at least get the z-value right.
+
+## Usage
+
+``` r
+p_z(x, ts = TRUE)
+```
+
+## Arguments
+
+- x:
+
+  a numeric vector (one or multiple) between 0 or 1
+
+- ts:
+
+  a logical, defaults to TRUE. If TRUE, returns two-sided critical
+  z-value. If FALSE, the function returns a one-sided critical z-value.
+
+## Value
+
+This function takes a numeric vector, corresponding to the p-value you
+want, and returns a numeric vector coinciding with the z-value you want
+under the standard normal distribution. For example, the z-value
+corresponding with the magic number of .05 (the conventional cutoff for
+assessing statistical significance) is not 1.96, it's something like
+1.959964 (rounding to the default six decimal points).
+
+## Details
+
+`p_z()` takes a p-value of interest and converts it, with precision, to
+the z-value it actually is. The function takes a vector and returns a
+vector. The function assumes you're doing something akin to calculating
+a confidence interval or testing a regression coefficient against a null
+hypothesis of zero. This means the default output is a two-sided
+critical z-value. We're taught to use two-sided z-values when we're
+agnostic about the direction of the effect or statistic of interest,
+which is, to be frank, hilarious given how most research is typically
+done.
+
+## Examples
+
+``` r
+
+library(stevemisc)
+
+p_z(.05)
+#> [1] 1.959964
+p_z(c(.001, .01, .05, .1))
+#> [1] 3.290527 2.575829 1.959964 1.644854
+p_z(.05, ts=FALSE)
+#> [1] 1.644854
+p_z(c(.001, .01, .05, .1), ts=FALSE)
+#> [1] 3.090232 2.326348 1.644854 1.281552
+```

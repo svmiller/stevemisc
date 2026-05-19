@@ -1,0 +1,65 @@
+# Reverse code a numeric variable
+
+`revcode` allows you to reverse code a numeric variable. If, say, you
+have a Likert item that has values of 1, 2, 3, 4, and 5, the function
+inverts the scale so that 1 = 5, 2 = 4, 3 = 3, 4 = 2, and 5 = 1.
+
+## Usage
+
+``` r
+revcode(x)
+```
+
+## Arguments
+
+- x:
+
+  a numeric vector
+
+## Value
+
+The function returns a numeric vector that reverse codes the the numeric
+vector that was supplied to it.
+
+## Details
+
+This function passes over NAs you may have in your variable. It does
+assume, reasonably might I add, that the observed values include both
+the minimum and the maximum. This is usually the case in a discrete
+ordered-categorical variable (like a Likert item). It also assumes that
+the numeric vector supplied to it contains all possible values and that
+the minimum observed value is 1. This is usually a safe assumption in
+survey data where the variable of interest is ordinal (either on a 1:4
+scale, or 1:5 scale, or 1:10 scale). No matter, use the function with
+that in mind.
+
+## Examples
+
+``` r
+
+data.frame(x1 = rep(c(1:7, NA), 2),
+      x2 = c(1:10, 1:4, NA, NA),
+     x3 = rep(c(1:4), 4)) -> example_data
+
+library(dplyr)
+library(magrittr)
+
+example_data %>% mutate_at(vars("x1", "x2", "x3"), ~revcode(.))
+#>    x1 x2 x3
+#> 1   7 10  4
+#> 2   6  9  3
+#> 3   5  8  2
+#> 4   4  7  1
+#> 5   3  6  4
+#> 6   2  5  3
+#> 7   1  4  2
+#> 8  NA  3  1
+#> 9   7  2  4
+#> 10  6  1  3
+#> 11  5 10  2
+#> 12  4  9  1
+#> 13  3  8  4
+#> 14  2  7  3
+#> 15  1 NA  2
+#> 16 NA NA  1
+```

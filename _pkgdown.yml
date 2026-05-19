@@ -21,6 +21,7 @@ reference:
       - db_lselect
       - fct_reorg
       - filter_refs
+      - fr_plot
       - get_sims
       - get_var_info
       - theme_steve_web
@@ -30,6 +31,7 @@ reference:
       - make_perclab
       - make_scale
       - mround
+      - n2w
       - starts_with("%")
       - normal_dist
       - p_z
