@@ -1,3 +1,8 @@
+# stevemisc 2.0.0
+
+- `fr_plot()` makes a fitted-residual plot from a linear model estimated with the `lm()` function in base R.
+- `n2w()` converts numbers (integers, ideally) to an English word or set of words.
+
 # stevemisc 1.9.0
 
 - `rewb_at()` is a convenience wrapper for `mean_at()`, `group_mean_center_at()`, and `center_at()`. It's useful for preparing data for a random effects, within-between (REWB) panel analysis.

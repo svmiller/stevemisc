@@ -12,7 +12,7 @@ rd_plot(mod, ...)
 \item{...}{optional arguments, intended for adjusting the line width.}
 }
 \value{
-\code{rd_plot()} returns a density plot a \pkg{ggplot2} object. A
+\code{rd_plot()} returns a density plot as a \pkg{ggplot2} object. A
 density plot of the actual residuals is a solid black line. A stylized normal
 distribution matching the description of the residuals is the blue dashed
 line.

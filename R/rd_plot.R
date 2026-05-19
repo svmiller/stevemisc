@@ -17,7 +17,7 @@
 #' the normality assumption of the residuals is never held but can often be
 #' reasonably approximated upon visual inspection.
 #'
-#' @return \code{rd_plot()} returns a density plot a \pkg{ggplot2} object. A
+#' @return \code{rd_plot()} returns a density plot as a \pkg{ggplot2} object. A
 #' density plot of the actual residuals is a solid black line. A stylized normal
 #' distribution matching the description of the residuals is the blue dashed
 #' line.
