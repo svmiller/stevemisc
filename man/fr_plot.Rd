@@ -4,7 +4,7 @@
 \alias{fr_plot}
 \title{Fitted-Residual Plot for Linear Models}
 \usage{
-fr_plot(mod, ...)
+fr_plot(mod)
 }
 \arguments{
 \item{mod}{a fitted linear model}

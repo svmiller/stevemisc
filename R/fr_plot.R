@@ -42,16 +42,16 @@
 #' fr_plot(M1)
 
 
-fr_plot <-  function(mod, ...) {
+fr_plot <-  function(mod) {
 
-  if(class(mod) != "lm") {
-    stop("Fitted-residual plots only make sense for linear models. This function right now only supports models of class 'lm'.")
+  if(!(inherits(mod, "lm") && length(class(mod)) == 1)) {
+    stop("Fitted-residual plots only make sense for linear models. This function right now only supports models of class 'lm' and class 'lm' *only*.")
   }
 
   data.frame(fit = fitted(mod),
              res = resid(mod)) -> hold_this
 
-  ggplot(hold_this, aes(x = fit, y = res)) +
+  ggplot(hold_this, aes(x = .data$fit, y = .data$res)) +
     geom_point() +
     geom_hline(yintercept = 0, linetype = 'dashed') +
     geom_smooth(method = 'loess')

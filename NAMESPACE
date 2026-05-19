@@ -112,7 +112,7 @@ importFrom(stats, "nobs")
 importFrom("stats", "complete.cases", "update", "rexp")
 importFrom(tidyr, "unite")
 
-# This is for wls() and rd_plot()
+# This is for wls(), rd_plot(), and fr_plot()
 
-importFrom("stats", "lm", "na.exclude", "resid")
+importFrom("stats", "lm", "na.exclude", "resid", "fitted")
 
