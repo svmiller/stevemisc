@@ -31,6 +31,7 @@ reference:
       - make_perclab
       - make_scale
       - mround
+      - msl.brms
       - n2w
       - starts_with("%")
       - normal_dist

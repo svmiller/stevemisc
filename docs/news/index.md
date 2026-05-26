@@ -5,6 +5,9 @@
 - [`fr_plot()`](http://svmiller.com/reference/fr_plot.md) makes a
   fitted-residual plot from a linear model estimated with the
   [`lm()`](https://rdrr.io/r/stats/lm.html) function in base R.
+- [`msl.brms()`](http://svmiller.com/reference/msl.brms.md) creates a
+  custom [modelsummary](https://modelsummary.com) list for presentation
+  in `modelsummary()`.
 - [`n2w()`](http://svmiller.com/reference/n2w.md) converts numbers
   (integers, ideally) to an English word or set of words.
 

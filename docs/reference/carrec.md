@@ -4,8 +4,9 @@ This recodes a numeric vector, character vector, or factor according to
 fairly simple recode specifications that former Stata users will
 appreciate. Yes, this is taken from John Fox's `recode()` unction in his
 car package. I'm going with `carrec()` (i.e. shorthand for
-`car::recode()`, phonetically here: "car-wreck") for this package, with
-an additional shorthand of `carr` that does the same thing.
+[`car::recode()`](https://rdrr.io/pkg/car/man/recode.html), phonetically
+here: "car-wreck") for this package, with an additional shorthand of
+`carr` that does the same thing.
 
 The goal here is to minimize the number of function clashes with
 multiple packages that I use in my workflow. For example: car, dplyr,

@@ -113,6 +113,10 @@ pedagogical needs.
 - [`mround()`](http://svmiller.com/reference/mround.md) : Multiply a
   Number by 100 and Round It (By Default: 2)
 
+- [`msl.brms()`](http://svmiller.com/reference/msl.brms.md) :
+
+  Create Custom modelsummary List from a Model Fitted in brms
+
 - [`n2w()`](http://svmiller.com/reference/n2w.md) : Convert Number
   (Integer) to Word
 
