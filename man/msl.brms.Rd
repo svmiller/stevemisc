@@ -26,11 +26,17 @@ function.
 }
 \details{
 Bayesians typically recoil at the thought of reporting \emph{p}-values for
-presentation even as reviewers ask to see these.
+presentation even as reviewers ask to see these. The \emph{p}-value in question is
+the "probability of direction" of an effect's existence. Makowski et al. (2019)
+is a worthwhile read on this procedure. The function calculates what they
+propose but doesn't require \pkg{bayestestR} as a dependency.
 
 Right now, the only easy goodness of fit parameter to return is the number of
 observations. The output of this function is easily customized ex post by the
 user.
+
+The function scrubs the \code{b_} prefix in the terms, which is is a convention of
+the modeling procedure in \pkg{brms}.
 }
 \examples{
 
@@ -45,4 +51,9 @@ backend = 'cmdstanr', cores = 4, chains = 4)
 msl.brms(M1)
 
 }
+}
+\references{
+Makowski, Dominique, Mattan S. Ben-Shachar, S. H. Annabel Chen, & Daniel
+Lüdecke. 2019.  "Indices of Effect Existence and Significance in the Bayesian
+Framework." \emph{Frontiers in Psychology} (10)2767.
 }
