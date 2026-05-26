@@ -1,6 +1,7 @@
 # stevemisc 2.0.0
 
 - `fr_plot()` makes a fitted-residual plot from a linear model estimated with the `lm()` function in base R.
+- `msl.brms()` creates a custom `{modelsummary}` list for presentation in `modelsummary()`.
 - `n2w()` converts numbers (integers, ideally) to an English word or set of words.
 
 # stevemisc 1.9.0
