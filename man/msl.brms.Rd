@@ -45,10 +45,19 @@ the modeling procedure in \pkg{brms}.
 library(stevedata)
 library(brms)
 
+# This is typically how I do it. 4 chains, 4 cores. backend is cmdstanr.
 M1 <- brm(gc ~ ool + cvlhs + vl + fl + m + pd, data = Mitchell68,
 backend = 'cmdstanr', cores = 4, chains = 4)
 
-msl.brms(M1)
+MSL <- msl.brms(M1)
+
+MSL
+
+# You can customize this output if you know how {modelsummary} does things.
+# For example:
+
+MSL$glance$r.squared <- as.vector(bayes_R2(M1, robust = TRUE))[1]
+MSL$glance$adj.r.squared <- as.vector(loo_R2(M1, robust = TRUE))[1]
 
 }
 }
