@@ -21,7 +21,7 @@ reference:
       - db_lselect
       - fct_reorg
       - filter_refs
-      - fr_plot
+      - fr.plot
       - get_sims
       - get_var_info
       - theme_steve_web

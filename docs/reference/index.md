@@ -38,7 +38,7 @@ pedagogical needs.
 - [`filter_refs()`](http://svmiller.com/reference/filter_refs.md) :
   Filter a Data Frame of Citations and Return the Entries as a Character
 
-- [`fr_plot()`](http://svmiller.com/reference/fr_plot.md) :
+- [`fr.plot()`](http://svmiller.com/reference/fr.plot.md) :
   Fitted-Residual Plot for Linear Models
 
 - [`get_sims()`](http://svmiller.com/reference/get_sims.md) : Get

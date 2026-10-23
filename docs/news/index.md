@@ -2,7 +2,7 @@
 
 ## stevemisc 2.0.0
 
-- [`fr_plot()`](http://svmiller.com/reference/fr_plot.md) makes a
+- [`fr.plot()`](http://svmiller.com/reference/fr.plot.md) makes a
   fitted-residual plot from a linear model estimated with the
   [`lm()`](https://rdrr.io/r/stats/lm.html) function in base R.
 - [`msl.brms()`](http://svmiller.com/reference/msl.brms.md) creates a
@@ -190,8 +190,8 @@ functions, and more.
 
 ## stevemisc 0.3.1
 
-Move almost all data to [stevedata](http://svmiller.com/stevedata/). Add
-[`p_z()`](http://svmiller.com/reference/p_z.md).
+Move almost all data to [stevedata](https://svmiller.com/stevedata/).
+Add [`p_z()`](http://svmiller.com/reference/p_z.md).
 
 ## stevemisc 0.3.0
 
