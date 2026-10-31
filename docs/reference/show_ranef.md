@@ -33,9 +33,8 @@ show_ranef(model, group, reorder = TRUE)
 ## Value
 
 `show_ranef()` returns a caterpillar plot of the random intercepts from
-a given mixed model. If
-[`broom.mixed::augment()`](https://generics.r-lib.org/reference/augment.html)
-can process it, this function should work just fine.
+a given mixed model. If `broom.mixed::augment()` can process it, this
+function should work just fine.
 
 ## Details
 

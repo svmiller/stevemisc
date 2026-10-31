@@ -13,6 +13,8 @@ linloess_plot(
   span = 0.75,
   no_dummies = FALSE,
   suppress_warning = TRUE,
+  degree = 2,
+  robust = FALSE,
   ...
 )
 
@@ -46,6 +48,12 @@ for your own use cases.}
 the plot suppresses assorted warnings from the LOESS smoother that would
 otherwise be cautioning you about things your eyes could otherwise see.}
 
+\item{degree}{takes either 1 or 2 and passes argument to \code{geom_smooth()}
+call in the function. 1 = linear local fits. 2 = quadratic local fits.}
+
+\item{robust}{logical, defaults to \code{FALSE}. If \code{TRUE}, employs robust
+smoothing in which large residuals are downweighted while fitting.}
+
 \item{...}{Additional arguments (passed to the scatterplot in \code{linloess_plot()}, not used in the print function}
 
 \item{x}{a ggplot object with this special 'linloess' class}
@@ -61,6 +69,8 @@ function. I think these to be fine the extent to which this is really just a
 visual aid and an informal diagnostic for the linearity assumption.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
 \code{linloess_plot()} provides a visual diagnostic of the
 linearity assumption of the OLS model. Provided a linear model fit by
 \code{lm()} in base R, the function extracts the model frame and creates a

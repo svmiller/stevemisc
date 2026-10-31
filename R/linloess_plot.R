@@ -1,6 +1,10 @@
 #' Compare Linear Smoother to LOESS Smoother for Your Linear Model
 #'
-#' @description \code{linloess_plot()} provides a visual diagnostic of the
+#' @description
+#'
+#' `r lifecycle::badge("deprecated")`
+#'
+#' \code{linloess_plot()} provides a visual diagnostic of the
 #' linearity assumption of the OLS model. Provided a linear model fit by
 #' \code{lm()} in base R, the function extracts the model frame and creates a
 #' faceted scatterplot. For each facet, a linear smoother and LOESS smoother
@@ -47,6 +51,10 @@
 #' binary independent variables from the plot. If \code{FALSE}, facets appear for
 #' binary independent variables. You should probably just set this to \code{TRUE}
 #' for your own use cases.
+#' @param robust logical, defaults to \code{FALSE}. If \code{TRUE}, employs robust
+#' smoothing in which large residuals are downweighted while fitting.
+#' @param degree takes either 1 or 2 and passes argument to \code{geom_smooth()}
+#' call in the function. 1 = linear local fits. 2 = quadratic local fits.
 #' @param ... optional parameters, passed to the scatterplot in \code{linloess_plot()}
 #' (\code{geom_point()}) component of this function. Useful if you want to make
 #' the smoothers more legible against the points.
@@ -67,7 +75,13 @@
 linloess_plot <- function(mod, resid = TRUE, smoother = "loess",
                           se = TRUE, span = .75,
                           no_dummies = FALSE,
-                          suppress_warning = TRUE, ...) {
+                          suppress_warning = TRUE,
+                          degree = 2,
+                          robust = FALSE, ...) {
+
+  .Deprecated(new = "lmr.plot",
+              package = "stevemisc",
+              msg = "linloess_plot() is deprecated and will be removed soon enough. Use lmr.plot() instead.")
 
   modframe <- model.frame(mod)
 
@@ -92,7 +106,11 @@ linloess_plot <- function(mod, resid = TRUE, smoother = "loess",
       geom_smooth(method="lm", fill="black", color='black', se = se) +
       # smoother, with different color
       geom_smooth(method = smoother, color = "blue", linetype = "dashed",
-                  se = se, span = span) -> plot
+                  se = se, span = span,
+                  method.args = list(
+                    degree = degree,
+                    family = if (robust) "symmetric" else "gaussian"
+                  )) -> plot
 
   } else {
     modframe$.resid <- resid(mod)
@@ -111,7 +129,11 @@ linloess_plot <- function(mod, resid = TRUE, smoother = "loess",
       geom_smooth(method="lm", color="black", linetype = 'dashed', se = FALSE) +
       # smoother, with different color
       geom_smooth(method = smoother, color = "blue",
-                  se = se, span = span) -> plot
+                  se = se, span = span,
+                  method.args = list(
+                    degree = degree,
+                    family = if (robust) "symmetric" else "gaussian"
+                  )) -> plot
   }
 
   if(suppress_warning == TRUE) {

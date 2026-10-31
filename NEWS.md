@@ -3,6 +3,9 @@
 - `fr.plot()` makes a fitted-residual plot from a linear model estimated with the `lm()` function in base R.
 - `msl.brms()` creates a custom `{modelsummary}` list for presentation in `modelsummary()`.
 - `n2w()` converts numbers (integers, ideally) to an English word or set of words.
+- `linloess_plot()` has a `robust` and `degree` argument for fine-tuning the LOESS smoother.
+- `lmr.plot()` is a more streamlined linear model faceted residual plot and will replace `linloess_plot()`.
+- `linloess_plot()` is deprecated, to be removed at a later release.
 
 # stevemisc 1.9.0
 

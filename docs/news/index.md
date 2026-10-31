@@ -10,6 +10,14 @@
   in `modelsummary()`.
 - [`n2w()`](http://svmiller.com/reference/n2w.md) converts numbers
   (integers, ideally) to an English word or set of words.
+- [`linloess_plot()`](http://svmiller.com/reference/linloess_plot.md)
+  has a `robust` and `degree` argument for fine-tuning the LOESS
+  smoother.
+- [`lmr.plot()`](http://svmiller.com/reference/lmr.plot.md) is a more
+  streamlined linear model faceted residual plot and will replace
+  [`linloess_plot()`](http://svmiller.com/reference/linloess_plot.md).
+- [`linloess_plot()`](http://svmiller.com/reference/linloess_plot.md) is
+  deprecated, to be removed at a later release.
 
 ## stevemisc 1.9.0
 

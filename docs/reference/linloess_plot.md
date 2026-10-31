@@ -1,5 +1,7 @@
 # Compare Linear Smoother to LOESS Smoother for Your Linear Model
 
+**\[deprecated\]**
+
 `linloess_plot()` provides a visual diagnostic of the linearity
 assumption of the OLS model. Provided a linear model fit by
 [`lm()`](https://rdrr.io/r/stats/lm.html) in base R, the function
@@ -22,6 +24,8 @@ linloess_plot(
   span = 0.75,
   no_dummies = FALSE,
   suppress_warning = TRUE,
+  degree = 2,
+  robust = FALSE,
   ...
 )
 
@@ -72,6 +76,17 @@ print(x, ...)
   warnings from the LOESS smoother that would otherwise be cautioning
   you about things your eyes could otherwise see.
 
+- degree:
+
+  takes either 1 or 2 and passes argument to
+  [`geom_smooth()`](https://ggplot2.tidyverse.org/reference/geom_smooth.html)
+  call in the function. 1 = linear local fits. 2 = quadratic local fits.
+
+- robust:
+
+  logical, defaults to `FALSE`. If `TRUE`, employs robust smoothing in
+  which large residuals are downweighted while fitting.
+
 - ...:
 
   Additional arguments (passed to the scatterplot in `linloess_plot()`,
@@ -113,10 +128,12 @@ Steven V. Miller
 M1 <- lm(mpg ~ am + carb + disp, data=mtcars)
 
 linloess_plot(M1)
+#> Warning: linloess_plot() is deprecated and will be removed soon enough. Use lmr.plot() instead.
 #> `geom_smooth()` using formula = 'y ~ x'
 #> `geom_smooth()` using formula = 'y ~ x'
 
 linloess_plot(M1, color="black", pch=21)
+#> Warning: linloess_plot() is deprecated and will be removed soon enough. Use lmr.plot() instead.
 #> `geom_smooth()` using formula = 'y ~ x'
 #> `geom_smooth()` using formula = 'y ~ x'
 

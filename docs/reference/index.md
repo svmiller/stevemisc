@@ -62,7 +62,12 @@ pedagogical needs.
 
 - [`linloess_plot()`](http://svmiller.com/reference/linloess_plot.md)
   [`print(`*`<linloess>`*`)`](http://svmiller.com/reference/linloess_plot.md)
-  : Compare Linear Smoother to LOESS Smoother for Your Linear Model
+  **\[deprecated\]** : Compare Linear Smoother to LOESS Smoother for
+  Your Linear Model
+
+- [`lmr.plot()`](http://svmiller.com/reference/lmr.plot.md)
+  [`print(`*`<lmr.plot>`*`)`](http://svmiller.com/reference/lmr.plot.md)
+  : Fit a Residual Plot of Your Linear Model
 
 - [`make_perclab()`](http://svmiller.com/reference/make_perclab.md) :
   Make Percentage Label for Proportion and Add Percentage Sign

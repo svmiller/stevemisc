@@ -28,6 +28,7 @@ reference:
       - theme_steve_font
       - jenny
       - linloess_plot
+      - lmr.plot
       - make_perclab
       - make_scale
       - mround

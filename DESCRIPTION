@@ -61,6 +61,7 @@ Suggests:
     knitr,
     DBI,
     RSQLite,
-    dbplyr
+    dbplyr,
+    lifecycle
 RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
