@@ -79,9 +79,9 @@ linloess_plot <- function(mod, resid = TRUE, smoother = "loess",
                           degree = 2,
                           robust = FALSE, ...) {
 
-  .Deprecated(new = "lmr.plot",
+  .Deprecated(new = "lmr_plot",
               package = "stevemisc",
-              msg = "linloess_plot() is deprecated and will be removed soon enough. Use lmr.plot() instead.")
+              msg = "linloess_plot() is deprecated and will be removed soon enough. Use lmr_plot() instead, and be mindful of slight differences in functionality.")
 
   modframe <- model.frame(mod)
 

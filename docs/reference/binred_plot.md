@@ -30,7 +30,7 @@ binred_plot(model, nbins, plot = TRUE)
 
 ## Value
 
-`bindred_plot()` returns a plot as a ggplot2 object, as a default. The
+`binred_plot()` returns a plot as a ggplot2 object, as a default. The
 *y*-axis is the mean residuals of the particular bin. The *x*-axis is
 the mean fitted values from the bin. Error bounds are 95%. A LOESS
 smoother is overlaid as a solid blue line.
@@ -58,14 +58,17 @@ Steven V. Miller
 
 ``` r
 
-M1 <- glm(vs ~ mpg + cyl + drat, data=mtcars, family=binomial(link="logit"))
+set.seed(8675309)
+n <- 500
+x <- rnorm(n)
+a <- -.5
+b <- .75
+p <- plogis(a + b*x)
+y <- rbinom(n, size = 1, prob = p)
+
+M1 <- glm(y ~ x, family=binomial(link='logit'))
 
 binred_plot(M1)
-#> 2 of 6 bins are inside the error bounds. That is approximately 33.33%. An ideal rate is 95%. An acceptable rate is 80%. Any lower than that typically indicates a questionable model fit. Inspect the returned plot for more.
+#> 21 of 22 bins are inside the error bounds. That is approximately 95.45%. An ideal rate is 95%. An acceptable rate is 80%. Any lower than that typically indicates a questionable model fit. Inspect the returned plot for more.
 #> `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
-#> Warning: Chernobyl! trL>n 6
-#> Warning: Chernobyl! trL>n 6
-#> Warning: NaNs produced
-#> Warning: NaNs produced
-#> Warning: no non-missing arguments to max; returning -Inf
 ```

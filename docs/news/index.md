@@ -2,7 +2,7 @@
 
 ## stevemisc 2.0.0
 
-- [`fr.plot()`](http://svmiller.com/reference/fr.plot.md) makes a
+- [`fr_plot()`](http://svmiller.com/reference/fr_plot.md) makes a
   fitted-residual plot from a linear model estimated with the
   [`lm()`](https://rdrr.io/r/stats/lm.html) function in base R.
 - [`msl.brms()`](http://svmiller.com/reference/msl.brms.md) creates a
@@ -13,11 +13,12 @@
 - [`linloess_plot()`](http://svmiller.com/reference/linloess_plot.md)
   has a `robust` and `degree` argument for fine-tuning the LOESS
   smoother.
-- [`lmr.plot()`](http://svmiller.com/reference/lmr.plot.md) is a more
+- [`lmr_plot()`](http://svmiller.com/reference/lmr.plot.md) is a more
   streamlined linear model faceted residual plot and will replace
   [`linloess_plot()`](http://svmiller.com/reference/linloess_plot.md).
 - [`linloess_plot()`](http://svmiller.com/reference/linloess_plot.md) is
   deprecated, to be removed at a later release.
+- Assorted documentation updates.
 
 ## stevemisc 1.9.0
 

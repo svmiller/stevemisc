@@ -1,6 +1,6 @@
 # Fit a Residual Plot of Your Linear Model
 
-`lmr.plot()` provides a visual diagnostic of the linearity assumption of
+`lmr_plot()` provides a visual diagnostic of the linearity assumption of
 the linear model. Provided a linear model fit by
 [`lm()`](https://rdrr.io/r/stats/lm.html) in base R, the function
 extracts the model frame and creates a faceted scatterplot. For each
@@ -14,7 +14,7 @@ consideration.
 ## Usage
 
 ``` r
-lmr.plot(
+lmr_plot(
   mod,
   smoother = "loess",
   se = FALSE,
@@ -44,9 +44,8 @@ print(x, ...)
 
 - se:
 
-  logical, defaults to `TRUE`. If `TRUE`, gives standard error estimates
-  with the assorted smoothers. If `resid` is `TRUE`, there is no
-  standard error for a flat line at 0.
+  logical, defaults to `FALSE`. If `TRUE`, gives standard error
+  estimates with the assorted smoothers.
 
 - span:
 
@@ -89,7 +88,7 @@ print(x, ...)
 
 ## Value
 
-`lmr.plot()` returns a faceted scatterplot as a ggplot2 object. The
+`lmr_plot()` returns a faceted scatterplot as a ggplot2 object. The
 linear smoother is flat at 0 by definition and is depicted by a black
 dashed line. The LOESS smoother is a blue line. You can add cosmetic
 features to it after the fact. The function may spit warnings to you
@@ -126,11 +125,11 @@ y <- 5 + .5*x1 + .5*x2 + e
 
 M1 <- lm(y ~ x1 + x2)
 
-lmr.plot(M1)
+lmr_plot(M1)
 #> `geom_smooth()` using formula = 'y ~ x'
 #> `geom_smooth()` using formula = 'y ~ x'
 
-lmr.plot(M1, color="black", pch=21)
+lmr_plot(M1, color="black", pch=21)
 #> `geom_smooth()` using formula = 'y ~ x'
 #> `geom_smooth()` using formula = 'y ~ x'
 

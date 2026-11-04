@@ -13,7 +13,7 @@
 #' The default is the rounded square root of the number of observations in
 #' the model. Be smart about what you want here.
 #'
-#' @return \code{bindred_plot()} returns a plot as a \pkg{ggplot2} object, as
+#' @return \code{binred_plot()} returns a plot as a \pkg{ggplot2} object, as
 #' a default. The *y*-axis is the mean residuals of the particular bin. The
 #' *x*-axis is the mean fitted values from the bin. Error bounds are 95%.
 #' A LOESS smoother is overlaid as a solid blue line.
@@ -33,26 +33,35 @@
 #'
 #' @examples
 #'
-#' M1 <- glm(vs ~ mpg + cyl + drat, data=mtcars, family=binomial(link="logit"))
+#' set.seed(8675309)
+#' n <- 500
+#' x <- rnorm(n)
+#' a <- -.5
+#' b <- .75
+#' p <- plogis(a + b*x)
+#' y <- rbinom(n, size = 1, prob = p)
+#'
+#' M1 <- glm(y ~ x, family=binomial(link='logit'))
 #'
 #' binred_plot(M1)
 
 
 binred_plot <- function(model, nbins, plot = TRUE) {
+
   y <- model$y
   fitted <- model$fitted.values
   resid <- model$y - model$fitted.values #residuals(model, type = "response")
   data <- data.frame(y, fitted, resid)
 
-  n_mod <- nobs(model)
+  n.mod <- nobs(model)
 
   if(missing(nbins)) {
-    n_bins <- round(sqrt(n_mod))
+    n.bins <- round(sqrt(n.mod))
   } else { # assuming user wants their own binnie-bin-bins
-    n_bins <- nbins
+    n.bins <- nbins
   }
 
-  breaks.index <- floor(length(model$fitted.values) * (1:(n_bins - 1)) / n_bins)
+  breaks.index <- floor(length(model$fitted.values) * (1:(n.bins - 1)) / n.bins)
   breaks <- unique(c(-Inf, sort(model$fitted.values)[breaks.index], Inf))
 
   data <- subset(data, select=c("fitted", "resid"))
@@ -79,11 +88,11 @@ binred_plot <- function(model, nbins, plot = TRUE) {
 
 if (plot == TRUE) {
 
-  prop_inbounds <- sum(data$inbounds)/length(data$inbounds)
+  prop.inbounds <- sum(data$inbounds)/length(data$inbounds)
 
   results <- paste0(sum(data$inbounds), " of ", length(data$inbounds),
                     " bins are inside the error bounds. That is approximately ",
-                    mround(prop_inbounds),
+                    mround(prop.inbounds),
                     "%. An ideal rate is 95%. An acceptable rate is 80%. Any lower than that typically indicates a questionable model fit. Inspect the returned plot for more.")
 
   ggplot(data, aes(.data$meanfit, .data$meanresid)) +
@@ -104,4 +113,16 @@ if (plot == TRUE) {
   }
 }
 
-
+#' #' @rdname br.plot
+#' #' @export
+#'
+#' binred_plot <- function(model, nbins, plot = TRUE) {
+#'
+#'   .Deprecated(
+#'     new = "br.plot",
+#'     package = "stevemisc"
+#'   )
+#'
+#'   br.plot(model, nbins, plot)
+#'
+#' }

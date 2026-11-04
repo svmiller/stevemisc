@@ -108,7 +108,7 @@ copy_to(con, C, "C",
 # This returns no warning because columns "a" and "b" are in all tables
 c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b"))
 #> # Source:   SQL [?? x 3]
-#> # Database: sqlite 3.52.0 [:memory:]
+#> # Database: sqlite 3.53.1 [:memory:]
 #>      uid       a b    
 #>    <int>   <dbl> <chr>
 #>  1     1 -0.997  f    
@@ -129,7 +129,7 @@ c("A", "B", "C") %>% db_lselect(con, c("uid", "a", "b", "d"))
 #> Warning: Unknown columns: `d`
 #> Warning: Unknown columns: `d`
 #> # Source:   SQL [?? x 4]
-#> # Database: sqlite 3.52.0 [:memory:]
+#> # Database: sqlite 3.53.1 [:memory:]
 #>      uid       a b         d
 #>    <int>   <dbl> <chr> <dbl>
 #>  1     1 -0.997  f        NA

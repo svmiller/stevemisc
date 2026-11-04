@@ -16,7 +16,7 @@ diagnostic purposes.
 ## Usage
 
 ``` r
-fr_plot(mod)
+fr_plot(mod, se = TRUE)
 ```
 
 ## Arguments
@@ -24,6 +24,12 @@ fr_plot(mod)
 - mod:
 
   a fitted linear model
+
+- se:
+
+  logical, defaults to TRUE. If TRUE, includes a band for the standard
+  error around the LOESS smoother line. If FALSE, band is suppressed for
+  presentation.
 
 ## Value
 

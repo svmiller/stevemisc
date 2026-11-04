@@ -1,6 +1,6 @@
 #' Fit a Residual Plot of Your Linear Model
 #'
-#' @description \code{lmr.plot()} provides a visual diagnostic of the
+#' @description \code{lmr_plot()} provides a visual diagnostic of the
 #' linearity assumption of the linear model. Provided a linear model fit by
 #' \code{lm()} in base R, the function extracts the model frame and creates a
 #' faceted scatterplot. For each facet, a linear smoother and LOESS smoother
@@ -19,7 +19,7 @@
 #' This function will ignore interactions in your model, returning only the
 #' first-order terms in the model's specification.
 #'
-#' @return \code{lmr.plot()} returns a faceted scatterplot as a
+#' @return \code{lmr_plot()} returns a faceted scatterplot as a
 #' \pkg{ggplot2} object. The linear smoother is flat at 0 by definition and
 #' is depicted by a black dashed line. The LOESS smoother is a blue line. You can
 #' add cosmetic features to it after the fact. The function may spit warnings to
@@ -31,9 +31,8 @@
 #' @author Steven V. Miller
 #'
 #' @param mod a fitted model, ideally a simple linear model
-#' @param se logical, defaults to \code{TRUE}. If \code{TRUE}, gives standard
-#' error estimates with the assorted smoothers. If \code{resid} is \code{TRUE},
-#' there is no standard error for a flat line at 0.
+#' @param se logical, defaults to \code{FALSE}. If \code{TRUE}, gives standard
+#' error estimates with the assorted smoothers.
 #' @param span a numeric, defaults to .75. An adjustment to the smoother. Higher
 #' values permit smoother lines and might be warranted in the presence of
 #' sparse pockets of the data.
@@ -50,7 +49,7 @@
 #' smoothing in which large residuals are downweighted while fitting.
 #' @param degree takes either 1 or 2 and passes argument to \code{geom_smooth()}
 #' call in the function. 1 = linear local fits. 2 = quadratic local fits.
-#' @param ... optional parameters, passed to the scatterplot in \code{lmr.plot()}
+#' @param ... optional parameters, passed to the scatterplot in \code{lmr_plot()}
 #' (\code{geom_point()}) component of this function. Useful if you want to make
 #' the smoothers more legible against the points.
 #'
@@ -64,8 +63,8 @@
 #'
 #' M1 <- lm(y ~ x1 + x2)
 #'
-#' lmr.plot(M1)
-#' lmr.plot(M1, color="black", pch=21)
+#' lmr_plot(M1)
+#' lmr_plot(M1, color="black", pch=21)
 #'
 
 
@@ -73,7 +72,7 @@
 #' @rdname lmr.plot
 #' @export
 #'
-lmr.plot <- function(mod, smoother = "loess", se = FALSE, span = .75,
+lmr_plot <- function(mod, smoother = "loess", se = FALSE, span = .75,
                      dummies = FALSE, warning = TRUE, degree = 2,
                      robust = FALSE, ...) {
 

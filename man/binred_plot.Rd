@@ -18,7 +18,7 @@ binned residuals. If FALSE, the function returns a data frame of the
 binned residuals.}
 }
 \value{
-\code{bindred_plot()} returns a plot as a \pkg{ggplot2} object, as
+\code{binred_plot()} returns a plot as a \pkg{ggplot2} object, as
 a default. The \emph{y}-axis is the mean residuals of the particular bin. The
 \emph{x}-axis is the mean fitted values from the bin. Error bounds are 95\%.
 A LOESS smoother is overlaid as a solid blue line.
@@ -43,7 +43,15 @@ the model. Be smart about what you want here.
 }
 \examples{
 
-M1 <- glm(vs ~ mpg + cyl + drat, data=mtcars, family=binomial(link="logit"))
+set.seed(8675309)
+n <- 500
+x <- rnorm(n)
+a <- -.5
+b <- .75
+p <- plogis(a + b*x)
+y <- rbinom(n, size = 1, prob = p)
+
+M1 <- glm(y ~ x, family=binomial(link='logit'))
 
 binred_plot(M1)
 }

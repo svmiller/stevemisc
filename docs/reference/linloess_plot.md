@@ -128,12 +128,12 @@ Steven V. Miller
 M1 <- lm(mpg ~ am + carb + disp, data=mtcars)
 
 linloess_plot(M1)
-#> Warning: linloess_plot() is deprecated and will be removed soon enough. Use lmr.plot() instead.
+#> Warning: linloess_plot() is deprecated and will be removed soon enough. Use lmr_plot() instead, and be mindful of slight differences in functionality.
 #> `geom_smooth()` using formula = 'y ~ x'
 #> `geom_smooth()` using formula = 'y ~ x'
 
 linloess_plot(M1, color="black", pch=21)
-#> Warning: linloess_plot() is deprecated and will be removed soon enough. Use lmr.plot() instead.
+#> Warning: linloess_plot() is deprecated and will be removed soon enough. Use lmr_plot() instead, and be mindful of slight differences in functionality.
 #> `geom_smooth()` using formula = 'y ~ x'
 #> `geom_smooth()` using formula = 'y ~ x'
 
